@@ -22,6 +22,8 @@
 		58DA69522A951BED00F93FDF /* RefugeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugeList.swift */; };
 		58DA69562A951E3100F93FDF /* RefugesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69552A951E3100F93FDF /* RefugesInfo.swift */; };
 		58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69572A951F4100F93FDF /* RefugesInfo+Geometry.swift */; };
+		58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695B2A95217800F93FDF /* RefugeCell.swift */; };
+		58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
 		58EB4A732A054078001BAE72 /* Data+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A722A054078001BAE72 /* Data+extensions.swift */; };
 		58EB4A762A054275001BAE72 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A752A054275001BAE72 /* String+extensions.swift */; };
@@ -74,6 +76,8 @@
 		58DA69512A951BED00F93FDF /* RefugeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeList.swift; sourceTree = "<group>"; };
 		58DA69552A951E3100F93FDF /* RefugesInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfo.swift; sourceTree = "<group>"; };
 		58DA69572A951F4100F93FDF /* RefugesInfo+Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Geometry.swift"; sourceTree = "<group>"; };
+		58DA695B2A95217800F93FDF /* RefugeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeCell.swift; sourceTree = "<group>"; };
+		58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+PointType.swift"; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A722A054078001BAE72 /* Data+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A752A054275001BAE72 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				58DA69512A951BED00F93FDF /* RefugeList.swift */,
+				58DA695B2A95217800F93FDF /* RefugeCell.swift */,
 			);
 			path = RefugeList;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				58FD006C2A041310004182B6 /* RefugesInfo+Point.swift */,
 				58DA69572A951F4100F93FDF /* RefugesInfo+Geometry.swift */,
 				58FD006E2A04145D004182B6 /* RefugesInfo.RefugeResponse.swift */,
+				58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */,
 			);
 			path = RefugesInfo;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */,
 				58B62EDF2A06BD2F00451009 /* LoadingTask.swift in Sources */,
 				58DA69522A951BED00F93FDF /* RefugeList.swift in Sources */,
 				58DA694C2A95164D00F93FDF /* RefugeDetailView+refugeLoadingView.swift in Sources */,
@@ -436,6 +443,7 @@
 				58EB4A7E2A05A1AA001BAE72 /* BannerView.swift in Sources */,
 				58FD00682A04089C004182B6 /* RefugeDetailView.swift in Sources */,
 				58FD006B2A040AAE004182B6 /* RefugesInfoData.swift in Sources */,
+				58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */,
 				58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */,
 				58C55C6329F6DD25008F3A54 /* Persistence.swift in Sources */,
 				58C55C5C29F6DD22008F3A54 /* ContentView.swift in Sources */,

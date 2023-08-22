@@ -18,10 +18,12 @@ extension RefugesInfo {
     struct Point: Codable {
         let id: Int
         let name: String
+        let type: RefugesInfo.PointType
 
         enum CodingKeys: String, CodingKey {
             case id
             case name = "nom"
+            case type
         }
     }
 

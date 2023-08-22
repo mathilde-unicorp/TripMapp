@@ -19,7 +19,7 @@ extension RefugeDetailView {
 
                 VStack {
                     HStack {
-                        Text(refuge.properties.nom)
+                        Text(refuge.properties.name)
                             .font(.title)
 
                         Spacer()
@@ -39,7 +39,7 @@ struct RefugeDetailView_refugeDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         RefugeDetailView.refugeDescriptionView(
             RefugesInfo.Feature(
-                properties: RefugesInfo.Point(id: 0, name: "Refuge name"),
+                properties: RefugesInfo.Point(id: 0, name: "Refuge name", type: .init(value: .bivouac)),
                 geometry: .init(coordinates: [0, 0])
             )
         )
