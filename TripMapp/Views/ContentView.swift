@@ -9,20 +9,12 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @State private var selectedTab: RefugePointType? = .hut
+
+    @ObservedObject var refugesInfoData = RefugesInfoData()
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            ForEach(RefugePointType.allCases, id: \.self) { pointType in
-                RefugeList(refugeType: pointType)
-                    .tabItem {
-                        pointType.icon
-                        Text(pointType.name)
-                    }
-                    .tag(pointType)
-                    .environmentObject(RefugesInfoData())
-            }
-        }
+        RefugesByTypeView(tabs: [.refuge, .hut, .bedAndBreakfast])
+            .environmentObject(refugesInfoData)
     }
 }
 

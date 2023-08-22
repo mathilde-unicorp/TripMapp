@@ -24,7 +24,7 @@ struct MapView: View {
         print("init with coordinates: \(coordinate)")
         region = MKCoordinateRegion(
             center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         )
     }
 }

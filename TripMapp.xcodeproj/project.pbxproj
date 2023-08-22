@@ -19,11 +19,13 @@
 		58C55C7C29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */; };
 		58DA694C2A95164D00F93FDF /* RefugeDetailView+refugeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA694B2A95164D00F93FDF /* RefugeDetailView+refugeLoadingView.swift */; };
 		58DA694E2A9516DA00F93FDF /* RefugeDetailView+refugeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA694D2A9516DA00F93FDF /* RefugeDetailView+refugeDescriptionView.swift */; };
-		58DA69522A951BED00F93FDF /* RefugeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugeList.swift */; };
+		58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugesView.swift */; };
 		58DA69562A951E3100F93FDF /* RefugesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69552A951E3100F93FDF /* RefugesInfo.swift */; };
 		58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69572A951F4100F93FDF /* RefugesInfo+Geometry.swift */; };
 		58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695B2A95217800F93FDF /* RefugeCell.swift */; };
 		58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */; };
+		58DA69602A955B6E00F93FDF /* RefugesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695F2A955B6E00F93FDF /* RefugesList.swift */; };
+		58DA69632A9561F500F93FDF /* RefugesByTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69622A9561F500F93FDF /* RefugesByTypeView.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
 		58EB4A732A054078001BAE72 /* Data+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A722A054078001BAE72 /* Data+extensions.swift */; };
 		58EB4A762A054275001BAE72 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A752A054275001BAE72 /* String+extensions.swift */; };
@@ -73,11 +75,13 @@
 		58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		58DA694B2A95164D00F93FDF /* RefugeDetailView+refugeLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugeDetailView+refugeLoadingView.swift"; sourceTree = "<group>"; };
 		58DA694D2A9516DA00F93FDF /* RefugeDetailView+refugeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugeDetailView+refugeDescriptionView.swift"; sourceTree = "<group>"; };
-		58DA69512A951BED00F93FDF /* RefugeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeList.swift; sourceTree = "<group>"; };
+		58DA69512A951BED00F93FDF /* RefugesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesView.swift; sourceTree = "<group>"; };
 		58DA69552A951E3100F93FDF /* RefugesInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfo.swift; sourceTree = "<group>"; };
 		58DA69572A951F4100F93FDF /* RefugesInfo+Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Geometry.swift"; sourceTree = "<group>"; };
 		58DA695B2A95217800F93FDF /* RefugeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeCell.swift; sourceTree = "<group>"; };
 		58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+PointType.swift"; sourceTree = "<group>"; };
+		58DA695F2A955B6E00F93FDF /* RefugesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesList.swift; sourceTree = "<group>"; };
+		58DA69622A9561F500F93FDF /* RefugesByTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesByTypeView.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A722A054078001BAE72 /* Data+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A752A054275001BAE72 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
@@ -189,13 +193,14 @@
 			path = RefugeDetail;
 			sourceTree = "<group>";
 		};
-		58DA69502A951BE100F93FDF /* RefugeList */ = {
+		58DA69502A951BE100F93FDF /* RefugesView */ = {
 			isa = PBXGroup;
 			children = (
-				58DA69512A951BED00F93FDF /* RefugeList.swift */,
+				58DA69512A951BED00F93FDF /* RefugesView.swift */,
+				58DA695F2A955B6E00F93FDF /* RefugesList.swift */,
 				58DA695B2A95217800F93FDF /* RefugeCell.swift */,
 			);
-			path = RefugeList;
+			path = RefugesView;
 			sourceTree = "<group>";
 		};
 		58DA69532A951D3900F93FDF /* DataSource */ = {
@@ -218,6 +223,14 @@
 			path = RefugesInfo;
 			sourceTree = "<group>";
 		};
+		58DA69612A9561D000F93FDF /* RefugesByType */ = {
+			isa = PBXGroup;
+			children = (
+				58DA69622A9561F500F93FDF /* RefugesByTypeView.swift */,
+			);
+			path = RefugesByType;
+			sourceTree = "<group>";
+		};
 		58EB4A742A054264001BAE72 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +244,8 @@
 		58EB4A772A0545D6001BAE72 /* Refuge */ = {
 			isa = PBXGroup;
 			children = (
-				58DA69502A951BE100F93FDF /* RefugeList */,
+				58DA69612A9561D000F93FDF /* RefugesByType */,
+				58DA69502A951BE100F93FDF /* RefugesView */,
 				58DA694F2A951BD500F93FDF /* RefugeDetail */,
 			);
 			path = Refuge;
@@ -435,7 +449,7 @@
 			files = (
 				58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */,
 				58B62EDF2A06BD2F00451009 /* LoadingTask.swift in Sources */,
-				58DA69522A951BED00F93FDF /* RefugeList.swift in Sources */,
+				58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */,
 				58DA694C2A95164D00F93FDF /* RefugeDetailView+refugeLoadingView.swift in Sources */,
 				58DA69562A951E3100F93FDF /* RefugesInfo.swift in Sources */,
 				58FD006D2A041310004182B6 /* RefugesInfo+Point.swift in Sources */,
@@ -445,10 +459,12 @@
 				58FD006B2A040AAE004182B6 /* RefugesInfoData.swift in Sources */,
 				58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */,
 				58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */,
+				58DA69632A9561F500F93FDF /* RefugesByTypeView.swift in Sources */,
 				58C55C6329F6DD25008F3A54 /* Persistence.swift in Sources */,
 				58C55C5C29F6DD22008F3A54 /* ContentView.swift in Sources */,
 				58EB4A852A05A46B001BAE72 /* FullHeight.swift in Sources */,
 				58DA694E2A9516DA00F93FDF /* RefugeDetailView+refugeDescriptionView.swift in Sources */,
+				58DA69602A955B6E00F93FDF /* RefugesList.swift in Sources */,
 				58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */,
 				58C55C6629F6DD25008F3A54 /* TripMapp.xcdatamodeld in Sources */,
 				58C55C5A29F6DD22008F3A54 /* TripMappApp.swift in Sources */,

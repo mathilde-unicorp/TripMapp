@@ -13,7 +13,8 @@ enum NetworkError: Error {
 }
 
 protocol RefugesInfoDataProtocol {
-    func loadRefuge(id: String) async throws -> RefugesInfo.Refuge
+    func loadRefuge(id: Int) async throws -> RefugesInfo.Refuge
+    func loadRefuges(type: RefugesInfo.PointType?) async throws -> [RefugesInfo.Refuge]
 }
 
 final class RefugesInfoData: ObservableObject {
@@ -22,7 +23,7 @@ final class RefugesInfoData: ObservableObject {
 
     // MARK - Load Refuge
 
-    func loadRefuge(id: String) async throws -> RefugesInfo.Refuge {
+    func loadRefuge(id: Int) async throws -> RefugesInfo.Refuge {
         let urlString = "\(baseURL)point?id=\(id)&format=geojson&detail=complet"
 
         guard let url = urlString.toURL else {
@@ -43,8 +44,8 @@ final class RefugesInfoData: ObservableObject {
         }
     }
 
-    func loadRefuges(type: RefugePointType? = nil) async throws -> [RefugesInfo.Refuge] {
-        let urlString = "\(baseURL)massif?massif=351&type_points=\(type?.name ?? "all")&"//nb_points=22
+    func loadRefuges(type: RefugesInfo.PointType? = nil) async throws -> [RefugesInfo.Refuge] {
+        let urlString = "\(baseURL)massif?massif=351&type_points=\(type?.value ?? "all")"//&nb_points=22
 
         guard let url = urlString.toURL else {
             throw NetworkError.invalidURL(url: urlString)
@@ -62,10 +63,14 @@ final class RefugesInfoData: ObservableObject {
 }
 
 final class MockRefugesInfoData: ObservableObject, RefugesInfoDataProtocol {
-    func loadRefuge(id: String) async throws -> RefugesInfo.Refuge {
+    func loadRefuge(id: Int) async throws -> RefugesInfo.Refuge {
         return RefugesInfo.Feature(
-            properties: RefugesInfo.Point(id: 42, name: "Quarante-Deux", type: .init(value: .bivouac)),
+            properties: RefugesInfo.Point(id: id, name: "Quarante-Deux", type: .bivouac),
             geometry: RefugesInfo.Geometry(coordinates: [0.0, 0.0])
         )
+    }
+
+    func loadRefuges(type: RefugesInfo.PointType?) async throws -> [RefugesInfo.Refuge] {
+        return []
     }
 }

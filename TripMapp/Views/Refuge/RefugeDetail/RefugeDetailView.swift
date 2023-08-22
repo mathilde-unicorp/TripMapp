@@ -14,7 +14,7 @@ import SwiftUI
 
  Example usage:
  ```
- let refugeDetail = RefugeDetailView(id: "refugeId")
+ let refugeDetail = RefugeDetailView(id: 1234)
      .environmentObject(RefugesInfoData())
  ```
  */
@@ -24,8 +24,8 @@ struct RefugeDetailView: View {
 
     // MARK: View Parameters
 
-    /// Point id on refuges info database
-    var id: String
+    /// Point id on refuges info database (commonly refuge id)
+    var pointId: Int
 
     @EnvironmentObject var refugesInfoData: RefugesInfoData
 
@@ -48,7 +48,7 @@ struct RefugeDetailView: View {
         }
         .loadingTask(isLoading: $isLoading) {
             do {
-                self.refuge = try await refugesInfoData.loadRefuge(id: id)
+                self.refuge = try await refugesInfoData.loadRefuge(id: pointId)
             } catch {
                 self.hasError = true
             }
@@ -59,7 +59,7 @@ struct RefugeDetailView: View {
 
 struct RefugeView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugeDetailView(id: "4889")
+        RefugeDetailView(pointId: 4889)
             .environmentObject(RefugesInfoData())
     }
 }

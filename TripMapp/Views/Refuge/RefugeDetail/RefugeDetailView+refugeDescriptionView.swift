@@ -39,7 +39,7 @@ struct RefugeDetailView_refugeDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         RefugeDetailView.refugeDescriptionView(
             RefugesInfo.Feature(
-                properties: RefugesInfo.Point(id: 0, name: "Refuge name", type: .init(value: .bivouac)),
+                properties: RefugesInfo.Point(id: 0, name: "Refuge name", type: .bivouac),
                 geometry: .init(coordinates: [0, 0])
             )
         )
