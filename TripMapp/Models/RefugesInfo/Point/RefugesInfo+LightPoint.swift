@@ -1,8 +1,8 @@
 //
-//  RefugesInfoPoint.swift
+//  RefugesInfo+LightPoint.swift
 //  TripMapp
 //
-//  Created by Ressier Mathilde on 04/05/2023.
+//  Created by Ressier Mathilde on 24/08/2023.
 //
 
 import Foundation
@@ -15,7 +15,7 @@ extension RefugesInfo {
      - id: The identifier of the point.
      - name: The name of the point.
      */
-    struct Point: Codable {
+    struct LightPoint: Codable {
         let id: Int
         let name: String
         let type: RefugesInfo.PointType

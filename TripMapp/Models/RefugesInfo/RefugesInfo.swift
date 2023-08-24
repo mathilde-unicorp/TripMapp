@@ -16,4 +16,14 @@ struct RefugesInfo {
         let properties: T
         let geometry: RefugesInfo.Geometry
     }
+
+    struct NameValueField<T: Codable>: Codable {
+        let name: String
+        let value: T
+
+        private enum CodingKeys: String, CodingKey {
+            case name = "nom"
+            case value = "valeur"
+        }
+    }
 }

@@ -16,7 +16,7 @@ struct RefugesView: View {
 
     // MARK: State
 
-    @State private var refuges: [RefugesInfo.Refuge]?
+    @State private var refuges: [RefugesInfo.LightRefugePoint]?
     @State private var isLoading: Bool = true
     @State private var hasError: Bool = false
 

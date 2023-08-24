@@ -9,13 +9,13 @@ import SwiftUI
 
 struct RefugesList: View {
 
-    let refuges: [RefugesInfo.Refuge]
+    let refuges: [RefugesInfo.LightRefugePoint]
 
     @EnvironmentObject var refugesInfoData: RefugesInfoData
 
     @State private var searchText: String = ""
 
-    private var filteredRefuges: [RefugesInfo.Refuge] {
+    private var filteredRefuges: [RefugesInfo.LightRefugePoint] {
         if searchText.isEmpty {
             return refuges
         }
@@ -50,10 +50,7 @@ struct RefugesList: View {
 struct RefugesView_refugesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RefugesList(refuges: [
-                .init(properties: .init(id: 4889, name: "Refuge", type: .refuge),
-                      geometry: .init(coordinates: [0, 0]))
-            ])
+            RefugesList(refuges: MockRefugesInfoData().refuges.map(\.toLightPoint))
             .environmentObject(RefugesInfoData())
         }
     }

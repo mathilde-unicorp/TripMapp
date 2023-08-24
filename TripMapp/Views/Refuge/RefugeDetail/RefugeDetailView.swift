@@ -31,7 +31,7 @@ struct RefugeDetailView: View {
 
     // MARK: State
 
-    @State private var refuge: RefugesInfo.Refuge?
+    @State private var refuge: RefugesInfo.RefugePoint?
     @State private var hasError: Bool = false
     @State private var isLoading: Bool = true
 
@@ -40,7 +40,7 @@ struct RefugeDetailView: View {
     var body: some View {
         VStack {
             if let refuge = refuge {
-                RefugeDetailView.refugeDescriptionView(refuge)
+                RefugeDescriptionView(viewModel: .build(from: refuge))
             } else {
                 RefugeDetailView.refugeLoadingView(isLoading: isLoading)
                     .banner(isPresented: $hasError, text: "Cannot load content :(", type: .error)
@@ -59,7 +59,7 @@ struct RefugeDetailView: View {
 
 struct RefugeView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugeDetailView(pointId: 4889)
+        RefugeDetailView(pointId: 4880)
             .environmentObject(RefugesInfoData())
     }
 }

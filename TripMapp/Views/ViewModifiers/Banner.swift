@@ -30,8 +30,12 @@ extension View {
 
 struct Banner_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello, World !")
+        NavigationView {
+            VStack {
+                Text("Hello, World !")
+            }
             .setFullHeight(alignment: .center)
-            .banner(isPresented: .constant(true), text: "Do you know ?", type: .information)
+        }
+        .banner(isPresented: .constant(true), text: "Do you know ?", type: .information)
     }
 }
