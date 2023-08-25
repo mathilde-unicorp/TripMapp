@@ -17,11 +17,14 @@ struct RefugeDescriptionView: View {
             ZStack(alignment: .bottomLeading) {
                 MapView(
                     coordinate: viewModel.coordinate,
-                    annotationItems: [.init(
-                        coordinate: viewModel.coordinate,
-                        title: viewModel.title,
-                        image: viewModel.icon
-                    )]
+                    span: 0.02,
+                    annotationItems: [
+                        .init(
+                            coordinate: viewModel.coordinate,
+                            title: viewModel.title,
+                            image: viewModel.icon
+                        )
+                    ]
                 )
                 .frame(height: 400)
 

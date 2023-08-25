@@ -21,20 +21,16 @@ struct MapAnnotationItem: View {
     private let imageSize = 30.0
 
     var body: some View {
-        HStack(spacing: 12.0) {
+        VStack(spacing: 12.0) {
             item.image
                 .resizable()
                 .scaledToFit()
                 .frame(width: imageSize, height: imageSize)
-                .padding(8) // Add padding around the content
-                .background(Color.white) // Add a white background
-                .cornerRadius(8) // Add rounded corners
-                .foregroundColor(.green)
-
-//            Text(item.title)
-//                .font(.caption)
-//                .foregroundColor(Color(uiColor: .label))
         }
+        .padding(8)
+        .background(Color(uiColor: .systemBackground))
+        .cornerRadius(8)
+        .foregroundColor(.green)
         .shadow(radius: 4) // Add a subtle shadow
     }
 }

@@ -25,23 +25,43 @@ struct RefugesList: View {
         }
     }
 
-    var body: some View {
-        List(filteredRefuges, id: \.properties.id) { refuge in
-            NavigationLink(destination: {
-                RefugeDetailView(pointId: refuge.properties.id)
-                    .environmentObject(refugesInfoData)
-            }, label: {
-                RefugeCell(
-                    name: refuge.properties.name,
-                    image: refuge.properties.type.icon
-                )
-            })
+    private var annotationItems: [AnnotationItem] {
+        return filteredRefuges.map { refuge in
+            AnnotationItem(
+                coordinate: refuge.geometry.coordinated2D,
+                title: refuge.properties.name,
+                image: refuge.properties.type.icon
+            )
         }
-        .searchable(text: $searchText)
-        .overlay {
-            if filteredRefuges.isEmpty {
-                Text("Sorry, no result found.")
-                    .font(.headline)
+    }
+
+    var body: some View {
+        VStack {
+            MapView(
+                coordinate: filteredRefuges.first?.geometry.coordinated2D ?? .init(latitude: 0.0, longitude: 0.0),
+                span: 1.0,
+                annotationItems: annotationItems
+            )
+            .frame(height: 400)
+
+            List(filteredRefuges, id: \.properties.id) { refuge in
+                NavigationLink(destination: {
+                    RefugeDetailView(pointId: refuge.properties.id)
+                        .environmentObject(refugesInfoData)
+                }, label: {
+                    RefugeCell(
+                        name: refuge.properties.name,
+                        image: refuge.properties.type.icon
+                    )
+                })
+            }
+            .listStyle(.plain)
+            .searchable(text: $searchText)
+            .overlay {
+                if filteredRefuges.isEmpty {
+                    Text("Sorry, no result found.")
+                        .font(.headline)
+                }
             }
         }
     }

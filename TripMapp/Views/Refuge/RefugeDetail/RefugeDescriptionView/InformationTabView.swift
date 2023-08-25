@@ -25,11 +25,8 @@ extension RefugeDescriptionView {
                 
             }
             .padding()
-            .background(Color.white)
         }
     }
-
-
 }
 
 struct RefugeDescriptionView_InformationTab_Previews: PreviewProvider {

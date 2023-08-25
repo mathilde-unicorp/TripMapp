@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
 
     let coordinate: CLLocationCoordinate2D
+    let span: CGFloat
     let annotationItems: [AnnotationItem]
 
     @State private var region = MKCoordinateRegion()
@@ -31,7 +32,7 @@ struct MapView: View {
         print("init with coordinates: \(coordinate)")
         region = MKCoordinateRegion(
             center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            span: MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
         )
     }
 }
@@ -42,6 +43,7 @@ struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView(
             coordinate: coordinate,
+            span: 0.02,
             annotationItems: [.init(
                 coordinate: coordinate,
                 title: "Title",

@@ -11,13 +11,13 @@ extension RefugesInfo {
 
     struct AdditionalInfo: Codable {
         let officialSite: OfficialSite
-        let missingWall: NameValueField<Bool?>
-        let fireplace: NameValueField<Bool?>
-        let stove: NameValueField<Bool?>
-        let blankets: NameValueField<Bool?>
+        let missingWall: NameValueField<String?>
+        let fireplace: NameValueField<String?>
+        let stove: NameValueField<String?>
+        let blankets: NameValueField<String?>
         let mattressPlaces: MattressPlaces
         let toilets: NameValueField<String?>
-        let wood: NameValueField<Bool?>
+        let wood: NameValueField<String?>
         let water: NameValueField<String?>
 
         private enum CodingKeys: String, CodingKey {
@@ -47,7 +47,7 @@ extension RefugesInfo {
     
     struct MattressPlaces: Codable {
         let name: String
-        let count: Int?
+        let count: String?
         let value: String
 
         private enum CodingKeys: String, CodingKey {

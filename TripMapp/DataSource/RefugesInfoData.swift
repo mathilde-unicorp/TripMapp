@@ -26,6 +26,8 @@ final class RefugesInfoData: ObservableObject {
     // MARK - Load Refuge
 
     func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
+        print("Load refuge id: \(id)")
+        
         let urlString = "\(baseURL)point?id=\(id)&format=geojson&detail=complet"
 
         guard let url = urlString.toURL else {
