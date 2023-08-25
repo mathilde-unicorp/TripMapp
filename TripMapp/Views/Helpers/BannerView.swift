@@ -42,7 +42,6 @@ struct BannerView: View {
                 Image(systemName: "x.circle")
                     .colorInvert()
             }
-            .frame(height: 24.0)
             .padding()
             .background(bannerType.bannerColor) // Need to be before onTapGesture
             .onTapGesture {

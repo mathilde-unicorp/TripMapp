@@ -15,8 +15,15 @@ struct RefugeDescriptionView: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottomLeading) {
-                MapView(coordinate: viewModel.coordinate)
-                    .frame(height: 400)
+                MapView(
+                    coordinate: viewModel.coordinate,
+                    annotationItems: [.init(
+                        coordinate: viewModel.coordinate,
+                        title: viewModel.title,
+                        image: viewModel.icon
+                    )]
+                )
+                .frame(height: 400)
 
                 RefugeTitleView(
                     icon: viewModel.icon,
