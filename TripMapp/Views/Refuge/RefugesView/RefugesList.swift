@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct RefugesList: View {
 
@@ -35,10 +36,16 @@ struct RefugesList: View {
         }
     }
 
+    private var centralPoint: CLLocationCoordinate2D {
+        filteredRefuges
+            .map { $0.geometry.coordinated2D }
+            .calculateCentralPoint() ?? .init(latitude: 0.0, longitude: 0.0)
+    }
+
     var body: some View {
         VStack {
             MapView(
-                coordinate: filteredRefuges.first?.geometry.coordinated2D ?? .init(latitude: 0.0, longitude: 0.0),
+                coordinate: centralPoint,
                 span: 1.0,
                 annotationItems: annotationItems
             )
