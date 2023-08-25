@@ -8,12 +8,12 @@
 import Foundation
 
 extension URL {
-    func getData() async throws -> Data {
-        let (data, _) = try await URLSession.shared.data(from: self)
+    func getData(session: URLSession = .shared) async throws -> Data {
+        let (data, _) = try await session.data(from: self)
         return data
     }
 
-    func get<T: Codable>(decoder: JSONDecoder = JSONDecoder()) async throws -> T {
+    func get<T: Codable>(session: URLSession = .shared, decoder: JSONDecoder = JSONDecoder()) async throws -> T {
         return try await self
             .getData()
             .decode(decoder: decoder)

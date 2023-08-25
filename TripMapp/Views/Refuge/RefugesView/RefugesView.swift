@@ -12,7 +12,7 @@ struct RefugesView: View {
     /// Type of refuges to load. If null, load all types.
     let refugeType: RefugesInfo.PointType?
 
-    @EnvironmentObject var refugesInfoData: RefugesInfoData
+    @EnvironmentObject var refugesInfoData: RefugesInfoDataProvider
 
     // MARK: State
 
@@ -52,6 +52,6 @@ struct RefugesView: View {
 struct RefugeList_Previews: PreviewProvider {
     static var previews: some View {
         RefugesView(refugeType: .refuge)
-            .environmentObject(RefugesInfoData())
+            .environmentObject(RefugesInfoDataProvider())
     }
 }

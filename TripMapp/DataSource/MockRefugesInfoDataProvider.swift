@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockRefugesInfoData: ObservableObject, RefugesInfoDataProtocol {
+final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProtocol {
     let refuges: [RefugesInfo.RefugePoint] = [
         RefugesInfo.RefugePoint(properties: .init(
             id: 0,
@@ -54,7 +54,10 @@ final class MockRefugesInfoData: ObservableObject, RefugesInfoDataProtocol {
         return refuges[0]
     }
 
-    func loadRefuges(type: RefugesInfo.PointType?) async throws -> [RefugesInfo.LightRefugePoint] {
+    func loadRefuges(
+        massif: RefugesInfo.DefaultMassif,
+        type: RefugesInfo.PointType?
+    ) async throws -> [RefugesInfo.LightRefugePoint] {
         return refuges.map { $0.toLightPoint }
     }
 }

@@ -11,7 +11,7 @@ struct RefugesByTypeView: View {
 
     let tabs: [RefugesInfo.PointType]
 
-    @EnvironmentObject var refugesInfoData: RefugesInfoData
+    @EnvironmentObject var refugesInfoData: RefugesInfoDataProvider
 
     @State private var selectedTab: RefugesInfo.PointType? = .hut
 
@@ -19,7 +19,7 @@ struct RefugesByTypeView: View {
         TabView(selection: $selectedTab) {
             ForEach(tabs, id: \.self) { pointType in
                 RefugesView(refugeType: pointType)
-                    .environmentObject(RefugesInfoData())
+                    .environmentObject(RefugesInfoDataProvider())
                     .tabItem {
                         pointType.icon
                         Text(pointType.value)
@@ -33,6 +33,6 @@ struct RefugesByTypeView: View {
 struct RefugesByType_Previews: PreviewProvider {
     static var previews: some View {
         RefugesByTypeView(tabs:  [.refuge, .hut, .bedAndBreakfast])
-            .environmentObject(RefugesInfoData())
+            .environmentObject(RefugesInfoDataProvider())
     }
 }

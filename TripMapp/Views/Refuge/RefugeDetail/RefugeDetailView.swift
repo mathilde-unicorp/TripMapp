@@ -7,6 +7,32 @@
 
 import SwiftUI
 
+class RefugeDetaiViewModel: ObservableObject {
+
+    @Published var refuge: RefugesInfo.RefugePoint?
+    @Published var hasError: Bool = false
+    @Published var isLoading: Bool = true
+
+    private let refugeId: Int
+
+    private let dataProvider: RefugesInfoDataProviderProtocol
+    private let router: AppRouter
+
+    init(refugeId: Int, dataProvider: RefugesInfoDataProviderProtocol, router: AppRouter) {
+        self.refugeId = refugeId
+        self.dataProvider = dataProvider
+        self.router = router
+    }
+
+    func loadRefuge() async throws {
+        do {
+            self.refuge = try await dataProvider.loadRefuge(id: refugeId)
+        } catch {
+            self.hasError = true
+        }
+    }
+}
+
 /**
  A view that displays detailed information about a refuge.
 
@@ -22,36 +48,21 @@ struct RefugeDetailView: View {
 
     // MARK: - Properties
 
-    // MARK: View Parameters
-
-    /// Point id on refuges info database (commonly refuge id)
-    var pointId: Int
-
-    @EnvironmentObject var refugesInfoData: RefugesInfoData
-
-    // MARK: State
-
-    @State private var refuge: RefugesInfo.RefugePoint?
-    @State private var hasError: Bool = false
-    @State private var isLoading: Bool = true
+    @ObservedObject var viewModel: RefugeDetaiViewModel
 
     // MARK: - Body
 
     var body: some View {
         VStack {
-            if let refuge = refuge {
+            if let refuge = viewModel.refuge {
                 RefugeDescriptionView(viewModel: .build(from: refuge))
             } else {
-                RefugeDetailView.refugeLoadingView(isLoading: isLoading)
-                    .banner(isPresented: $hasError, text: "Cannot load content :(", type: .error)
+                RefugeDetailView.refugeLoadingView(isLoading: viewModel.isLoading)
+                    .banner(isPresented: $viewModel.hasError, text: "Cannot load content :(", type: .error)
             }
         }
-        .loadingTask(isLoading: $isLoading) {
-            do {
-                self.refuge = try await refugesInfoData.loadRefuge(id: pointId)
-            } catch {
-                self.hasError = true
-            }
+        .loadingTask(isLoading: $viewModel.isLoading) {
+            try await viewModel.loadRefuge()
         }
     }
 }
@@ -59,7 +70,6 @@ struct RefugeDetailView: View {
 
 struct RefugeView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugeDetailView(pointId: 4880)
-            .environmentObject(RefugesInfoData())
+        AppRouter.shared.createRefugeDetailView(refugeId: 4880)
     }
 }

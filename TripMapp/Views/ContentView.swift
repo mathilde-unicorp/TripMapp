@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
 
-    @ObservedObject var refugesInfoData = RefugesInfoData()
+    @ObservedObject var refugesInfoData = RefugesInfoDataProvider()
 
     var body: some View {
         RefugesByTypeView(tabs: [.refuge, .hut, .bedAndBreakfast])

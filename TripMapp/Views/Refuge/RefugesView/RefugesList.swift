@@ -12,7 +12,7 @@ struct RefugesList: View {
 
     let refuges: [RefugesInfo.LightRefugePoint]
 
-    @EnvironmentObject var refugesInfoData: RefugesInfoData
+    @EnvironmentObject var refugesInfoData: RefugesInfoDataProvider
 
     @State private var searchText: String = ""
 
@@ -53,8 +53,7 @@ struct RefugesList: View {
 
             List(filteredRefuges, id: \.properties.id) { refuge in
                 NavigationLink(destination: {
-                    RefugeDetailView(pointId: refuge.properties.id)
-                        .environmentObject(refugesInfoData)
+                    AppRouter.shared.createRefugeDetailView(refugeId: refuge.id)
                 }, label: {
                     RefugeCell(
                         name: refuge.properties.name,
@@ -77,8 +76,8 @@ struct RefugesList: View {
 struct RefugesView_refugesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RefugesList(refuges: MockRefugesInfoData().refuges.map(\.toLightPoint))
-            .environmentObject(RefugesInfoData())
+            RefugesList(refuges: MockRefugesInfoDataProvider().refuges.map(\.toLightPoint))
+            .environmentObject(RefugesInfoDataProvider())
         }
     }
 }
