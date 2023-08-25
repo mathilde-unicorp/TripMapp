@@ -53,7 +53,7 @@ struct RefugesList: View {
 
             List(filteredRefuges, id: \.properties.id) { refuge in
                 NavigationLink(destination: {
-                    AppRouter.shared.createRefugeDetailView(refugeId: refuge.id)
+                    AppRouter.shared.createRefugeDetailView(refugeId: refuge.properties.id)
                 }, label: {
                     RefugeCell(
                         name: refuge.properties.name,

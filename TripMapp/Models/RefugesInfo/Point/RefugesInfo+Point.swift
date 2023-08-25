@@ -53,5 +53,5 @@ extension RefugesInfo {
 
     typealias Access = NameValueField<String>
 
-    typealias Owner = NameValueField<String>
+    typealias Owner = NameValueField<String?>
 }

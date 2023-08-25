@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProtocol {
+final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProviderProtocol {
     let refuges: [RefugesInfo.RefugePoint] = [
         RefugesInfo.RefugePoint(properties: .init(
             id: 0,
@@ -36,7 +36,7 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProtoc
             creator: .init(id: 1141, name: "Claude Mauguier"),
             article: .init(demonstrative: "cette", definite: "la", partitive: "d'une"),
             additionnalInfo: .init(
-                officialSite: .init(name: "Site Internet", url: "", value: ""),
+                officialSite: .init(name: "Site Internet", url: nil, value: nil),
                 missingWall: .init(name: "", value: nil),
                 fireplace: .init(name: "", value: nil),
                 stove: .init(name: "", value: nil),

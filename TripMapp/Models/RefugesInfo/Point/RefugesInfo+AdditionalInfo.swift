@@ -35,8 +35,8 @@ extension RefugesInfo {
 
     struct OfficialSite: Codable {
         let name: String
-        let url: String
-        let value: String
+        let url: String?
+        let value: String?
 
         private enum CodingKeys: String, CodingKey {
             case name = "nom"
@@ -47,7 +47,7 @@ extension RefugesInfo {
     
     struct MattressPlaces: Codable {
         let name: String
-        let count: String?
+        let count: Int?
         let value: String
 
         private enum CodingKeys: String, CodingKey {
