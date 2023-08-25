@@ -1,18 +1,16 @@
 //
-//  RefugeDetailView+refugeLoadingView.swift
+//  RefugeLoadingView.swift
 //  TripMapp
 //
-//  Created by Ressier Mathilde on 22/08/2023.
+//  Created by Ressier Mathilde on 25/08/2023.
 //
 
 import SwiftUI
 
-extension RefugeDetailView {
-    
-    // MARK: - Views
+struct RefugeLoadingView: View {
+    let isLoading: Bool
 
-    @ViewBuilder
-    static func refugeLoadingView(isLoading: Bool) -> some View {
+    var body: some View {
         VStack {
             Rectangle()
                 .fill(Color(UIColor.secondarySystemBackground))
@@ -37,9 +35,8 @@ extension RefugeDetailView {
     }
 }
 
-
-struct RefugeDetailView_refugeLoadingView_Previews: PreviewProvider {
+struct RefugeLoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugeDetailView.refugeLoadingView(isLoading: true)
+        RefugeLoadingView(isLoading: true)
     }
 }

@@ -14,28 +14,25 @@ struct RefugeDescriptionView: View {
 
     var body: some View {
         VStack {
-            ZStack(alignment: .bottomLeading) {
-                MapView(
-                    coordinate: viewModel.coordinate,
-                    span: 0.02,
-                    annotationItems: [
-                        .init(
-                            coordinate: viewModel.coordinate,
-                            title: viewModel.title,
-                            image: viewModel.icon
-                        )
-                    ]
-                )
-                .frame(height: 400)
+            MapView(
+                coordinate: viewModel.coordinate,
+                span: 0.02,
+                annotationItems: [
+                    .init(
+                        coordinate: viewModel.coordinate,
+                        title: viewModel.title,
+                        image: viewModel.icon
+                    )
+                ]
+            )
+            .frame(height: 300)
 
-                RefugeTitleView(
-                    icon: viewModel.icon,
-                    title: viewModel.title,
-                    placeID: viewModel.placeID
-                )
-                .padding()
-                .background(Color(uiColor: .systemBackground).opacity(0.8))
-            }
+            RefugeTitleView(
+                icon: viewModel.icon,
+                title: viewModel.title,
+                placeID: viewModel.placeID
+            )
+            .padding()
 
             TabView {
 

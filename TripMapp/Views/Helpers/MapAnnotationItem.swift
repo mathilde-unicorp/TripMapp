@@ -18,7 +18,7 @@ struct AnnotationItem: Identifiable {
 struct MapAnnotationItem: View {
     let item: AnnotationItem
 
-    private let imageSize = 30.0
+    private let imageSize = 20.0
 
     var body: some View {
         VStack(spacing: 12.0) {
