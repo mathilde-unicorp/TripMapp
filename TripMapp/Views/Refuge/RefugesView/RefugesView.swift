@@ -24,7 +24,7 @@ struct RefugesView: View {
         NavigationView {
             VStack {
                 if let refuges = refuges {
-                    RefugesList(refuges: refuges)
+                    RefugesList(refuges: refuges, router: .shared) // use view model
                 } else {
                     refugesListLoading(isLoading: isLoading)
                 }

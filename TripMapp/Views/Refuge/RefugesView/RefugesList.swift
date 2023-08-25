@@ -8,11 +8,11 @@
 import SwiftUI
 import CoreLocation
 
+
 struct RefugesList: View {
 
     let refuges: [RefugesInfo.LightRefugePoint]
-
-    @EnvironmentObject var refugesInfoData: RefugesInfoDataProvider
+    let router: AppRouter
 
     @State private var searchText: String = ""
 
@@ -53,7 +53,7 @@ struct RefugesList: View {
 
             List(filteredRefuges, id: \.properties.id) { refuge in
                 NavigationLink(destination: {
-                    AppRouter.shared.createRefugeDetailView(refugeId: refuge.properties.id)
+                    router.createRefugeDetailView(refugeId: refuge.properties.id)
                 }, label: {
                     RefugeCell(
                         name: refuge.properties.name,
@@ -76,8 +76,11 @@ struct RefugesList: View {
 struct RefugesView_refugesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RefugesList(refuges: MockRefugesInfoDataProvider().refuges.map(\.toLightPoint))
-            .environmentObject(RefugesInfoDataProvider())
+            RefugesList(
+                refuges: MockRefugesInfoDataProvider().refuges.map(\.toLightPoint),
+                router: AppRouter.mock
+            )
+
         }
     }
 }
