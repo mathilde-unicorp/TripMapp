@@ -15,6 +15,7 @@ struct LoadingTask: ViewModifier {
     func body(content: Content) -> some View {
         content
             .task {
+                print("entering load task")
                 self.isLoading = true
 
                 do {

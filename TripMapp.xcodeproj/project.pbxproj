@@ -49,6 +49,7 @@
 		58E4AC322A9E11580099C9E2 /* RefugesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */; };
 		58E4AC342A9E14530099C9E2 /* RefugesMapAndListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC332A9E14530099C9E2 /* RefugesMapAndListViewModel.swift */; };
 		58E4AC362A9E18B30099C9E2 /* RefugesByTypeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC352A9E18B30099C9E2 /* RefugesByTypeTabViewModel.swift */; };
+		58E4AC392A9E195F0099C9E2 /* RefugePointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC382A9E195F0099C9E2 /* RefugePointType.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
 		58EB4A732A054078001BAE72 /* Data+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A722A054078001BAE72 /* Data+extensions.swift */; };
 		58EB4A762A054275001BAE72 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A752A054275001BAE72 /* String+extensions.swift */; };
@@ -128,6 +129,7 @@
 		58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesViewModel.swift; sourceTree = "<group>"; };
 		58E4AC332A9E14530099C9E2 /* RefugesMapAndListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesMapAndListViewModel.swift; sourceTree = "<group>"; };
 		58E4AC352A9E18B30099C9E2 /* RefugesByTypeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesByTypeTabViewModel.swift; sourceTree = "<group>"; };
+		58E4AC382A9E195F0099C9E2 /* RefugePointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugePointType.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A722A054078001BAE72 /* Data+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+extensions.swift"; sourceTree = "<group>"; };
 		58EB4A752A054275001BAE72 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,14 @@
 			path = RefugesByType;
 			sourceTree = "<group>";
 		};
+		58E4AC372A9E192F0099C9E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58E4AC382A9E195F0099C9E2 /* RefugePointType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		58EB4A742A054264001BAE72 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +386,7 @@
 		58FD00642A040757004182B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58E4AC372A9E192F0099C9E2 /* Models */,
 				58EB4A7F2A05A1D9001BAE72 /* Helpers */,
 				58EB4A782A058D6C001BAE72 /* ViewModifiers */,
 				58EB4A772A0545D6001BAE72 /* Refuge */,
@@ -558,6 +569,7 @@
 				58AD5A452A97BB1700571534 /* RefugesInfo+Coordinates.swift in Sources */,
 				58AD5A4F2A97BF1200571534 /* RefugesInfo+Creator.swift in Sources */,
 				58AD5A4B2A97BEA000571534 /* RefugesInfo+AdditionalInfo.swift in Sources */,
+				58E4AC392A9E195F0099C9E2 /* RefugePointType.swift in Sources */,
 				58B2B9082A995506007BFE3F /* RefugeLoadingView.swift in Sources */,
 				58B2B8FB2A9900A5007BFE3F /* RefugeDescriptionViewModel.swift in Sources */,
 				58DA69562A951E3100F93FDF /* RefugesInfo.swift in Sources */,

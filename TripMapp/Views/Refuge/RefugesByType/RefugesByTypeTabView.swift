@@ -14,10 +14,11 @@ struct RefugesByTypeTabView: View {
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
             ForEach(viewModel.tabs, id: \.self) { pointType in
-                viewModel.createRefugesView(refugeType: pointType)
+                RefugesView(viewModel: .init(refugeType: pointType, dataProvider: RefugesInfoDataProvider(), router: viewModel.router))
+//                AppRouter.shared.createRefugesView(refugeType: pointType)
                     .tabItem {
                         pointType.icon
-                        Text(pointType.value)
+                        Text(pointType.name)
                     }
                     .tag(pointType)
             }

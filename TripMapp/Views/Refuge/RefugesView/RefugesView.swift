@@ -22,6 +22,7 @@ struct RefugesView: View {
             }
             .loadingTask(isLoading: $viewModel.isLoading) {
                 do {
+                    print("load refuges")
                     self.viewModel.refuges = try await viewModel.loadRefuges()
                 } catch {
                     self.viewModel.hasError = true

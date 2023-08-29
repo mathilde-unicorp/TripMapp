@@ -17,12 +17,12 @@ class RefugesViewModel: ObservableObject {
     @Published var hasError: Bool = false
 
     var navigationTitle: String {
-        return refugeType?.value.capitalized ?? "All"
+        return refugeType?.name.capitalized ?? "All"
     }
 
     // MARK: Private properties
 
-    private let refugeType: RefugesInfo.PointType?
+    private let refugeType: RefugePointType?
 
     private let router: AppRouter
     private let dataProvider: RefugesInfoDataProviderProtocol
@@ -30,7 +30,7 @@ class RefugesViewModel: ObservableObject {
     // MARK: - Init
 
     init(
-        refugeType: RefugesInfo.PointType?,
+        refugeType: RefugePointType?,
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
@@ -42,7 +42,12 @@ class RefugesViewModel: ObservableObject {
     // MARK: - Requests
 
     func loadRefuges() async throws -> [RefugesInfo.LightRefugePoint]? {
-        try await dataProvider.loadRefuges(massif: .pyrenees, type: refugeType)
+        print("load refuges with point type: \(refugeType?.toRefugesInfoPointType?.value)")
+
+        return try await dataProvider.loadRefuges(
+            massif: .pyrenees,
+            type: refugeType?.toRefugesInfoPointType
+        )
     }
 
     // MARK: - Router

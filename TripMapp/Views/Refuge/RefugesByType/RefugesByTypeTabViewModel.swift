@@ -11,19 +11,19 @@ class RefugesByTypeTabViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var selectedTab: RefugesInfo.PointType? = .hut
+    @Published var selectedTab: RefugePointType? = .hut
 
-    let tabs: [RefugesInfo.PointType]
+    let tabs: [RefugePointType]
 
     // MARK: Private properties
 
-    private let router: AppRouter
+    let router: AppRouter
     private let dataProvider: RefugesInfoDataProviderProtocol
 
     // MARK: - Init
 
     init(
-        tabs: [RefugesInfo.PointType],
+        tabs: [RefugePointType],
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
@@ -37,8 +37,9 @@ class RefugesByTypeTabViewModel: ObservableObject {
 
     // MARK: - Router
 
-    @ViewBuilder
-    func createRefugesView(refugeType: RefugesInfo.PointType) -> some View {
-        router.createRefugesView(refugeType: refugeType)
-    }
+//    @ViewBuilder
+//    func createRefugesView(refugeType: RefugePointType) -> some View {
+//        print("create refuges view with point type: \(refugeType.name)")
+//        return router.createRefugesView(refugeType: refugeType)
+//    }
 }
