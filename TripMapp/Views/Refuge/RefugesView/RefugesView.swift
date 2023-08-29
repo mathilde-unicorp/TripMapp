@@ -9,34 +9,25 @@ import SwiftUI
 
 struct RefugesView: View {
 
-    /// Type of refuges to load. If null, load all types.
-    let refugeType: RefugesInfo.PointType?
-
-    @EnvironmentObject var refugesInfoData: RefugesInfoDataProvider
-
-    // MARK: State
-
-    @State private var refuges: [RefugesInfo.LightRefugePoint]?
-    @State private var isLoading: Bool = true
-    @State private var hasError: Bool = false
+    @ObservedObject var viewModel: RefugesViewModel
 
     var body: some View {
         NavigationView {
             VStack {
-                if let refuges = refuges {
-                    RefugesList(refuges: refuges, router: .shared) // use view model
+                if let refuges = viewModel.refuges {
+                    viewModel.createRefugesMapAndListView(refuges: refuges)
                 } else {
-                    refugesListLoading(isLoading: isLoading)
+                    refugesListLoading(isLoading: viewModel.isLoading)
                 }
             }
-            .loadingTask(isLoading: $isLoading) {
+            .loadingTask(isLoading: $viewModel.isLoading) {
                 do {
-                    self.refuges = try await refugesInfoData.loadRefuges(type: refugeType)
+                    self.viewModel.refuges = try await viewModel.loadRefuges()
                 } catch {
-                    self.hasError = true
+                    self.viewModel.hasError = true
                 }
             }
-            .navigationTitle(refugeType?.value.capitalized ?? "All")
+            .navigationTitle(viewModel.navigationTitle)
         }
     }
 
@@ -49,9 +40,8 @@ struct RefugesView: View {
 
 }
 
-struct RefugeList_Previews: PreviewProvider {
+struct RefugesView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugesView(refugeType: .refuge)
-            .environmentObject(RefugesInfoDataProvider())
+        AppRouter.shared.createRefugesView(refugeType: .refuge)
     }
 }

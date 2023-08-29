@@ -10,11 +10,10 @@ import CoreData
 
 struct ContentView: View {
 
-    @ObservedObject var refugesInfoData = RefugesInfoDataProvider()
+    private let router: AppRouter = .shared
 
     var body: some View {
-        RefugesByTypeView(tabs: [.refuge, .hut, .bedAndBreakfast])
-            .environmentObject(refugesInfoData)
+        router.createRefugesByTypeTabView(tabs: [.refuge, .hut, .bedAndBreakfast])
     }
 }
 

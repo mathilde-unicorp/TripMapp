@@ -26,7 +26,6 @@ struct RefugeCell_Previews: PreviewProvider {
     static var previews: some View {
         List {
             RefugeCell(name: "Home", image: Image(systemName: "house"))
-
         }
     }
 }

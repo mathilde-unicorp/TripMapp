@@ -39,6 +39,34 @@ class AppRouter {
     // MARK: - Modules
     // -------------------------------------------------------------------------
 
+    func createRefugesByTypeTabView(tabs: [RefugesInfo.PointType]) -> RefugesByTypeTabView {
+        RefugesByTypeTabView(viewModel: .init(
+            tabs: tabs,
+            dataProvider: self.refugesInfoDataProvider,
+            router: self
+        ))
+    }
+
+    func createRefugesView(refugeType: RefugesInfo.PointType?) -> RefugesView {
+        RefugesView(viewModel: .init(
+            refugeType: refugeType,
+            dataProvider: self.refugesInfoDataProvider,
+            router: self
+        ))
+    }
+
+    func createRefugesMapAndListView(
+        initialSearchText: String = "",
+        refuges: [RefugesInfo.LightRefugePoint]
+    ) -> RefugesMapAndListView {
+        RefugesMapAndListView(viewModel: .init(
+            searchText: initialSearchText,
+            refuges: refuges,
+            dataProvider: self.refugesInfoDataProvider,
+            router: self
+        ))
+    }
+
     func createRefugeDetailView(refugeId: Int) -> RefugeDetailView {
         RefugeDetailView(viewModel: .init(
             refugeId: refugeId,
