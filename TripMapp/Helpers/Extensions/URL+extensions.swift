@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Unicorp_DataTypesLibrary
 
 extension URL {
     func getData(session: URLSession = .shared) async throws -> Data {

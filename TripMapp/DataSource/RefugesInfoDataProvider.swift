@@ -25,14 +25,34 @@ protocol RefugesInfoDataProviderProtocol {
 
 final class RefugesInfoDataProvider: ObservableObject, RefugesInfoDataProviderProtocol {
 
-    let baseURL = "https://www.refuges.info/api/"
+    private let session: URLSession
 
-    // MARK - Load Refuge
+    // -------------------------------------------------------------------------
+    // MARK: - Init
+    // -------------------------------------------------------------------------
+
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForResource = 60
+        self.session = URLSession(configuration: configuration)
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Refuges
+    // -------------------------------------------------------------------------
 
     func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
         print("Load refuge id: \(id)")
+
+        let endpoint = Endpoint(path: "point", queryItems: [
+            URLQueryItem(name: "id", value: id.toString),
+            URLQueryItem(name: "format", value: "geojson"),
+            URLQueryItem(name: "detail", value: "complet"),
+        ])
+
         let response: RefugesInfo.RefugeResponse<RefugesInfo.Point> = try await self.get(
-            endpoint: "point?id=\(id)&format=geojson&detail=complet"
+            endpoint: endpoint
         )
 
         guard let refuge = response.features.first else {
@@ -49,8 +69,14 @@ final class RefugesInfoDataProvider: ObservableObject, RefugesInfoDataProviderPr
         let massifValue = massif.rawValue
         let typeValue = type?.value ?? "all"
 
+        let endpoint = Endpoint(path: "massif", queryItems: [
+            URLQueryItem(name: "massif", value: massifValue.toString),
+            URLQueryItem(name: "type_points", value: typeValue),
+            URLQueryItem(name: "nb_points", value: "100")
+        ])
+
         let response: RefugesInfo.RefugeResponse<RefugesInfo.LightPoint> = try await self.get(
-            endpoint: "massif?massif=\(massifValue)&type_points=\(typeValue)&nb_points=100"
+            endpoint: endpoint
         )
         return response.features
     }
@@ -59,20 +85,9 @@ final class RefugesInfoDataProvider: ObservableObject, RefugesInfoDataProviderPr
     // MARK: - Tools
     // -------------------------------------------------------------------------
 
-    private let session: URLSession
-
-    init() {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30
-        configuration.timeoutIntervalForResource = 60
-        self.session = URLSession(configuration: configuration)
-    }
-
-    private func get<T: Codable>(endpoint: String) async throws -> T {
-        let urlString = "\(baseURL)\(endpoint)"
-
-        guard let url = urlString.toURL else {
-            throw NetworkError.invalidURL(url: urlString)
+    private func get<T: Codable>(endpoint: Endpoint) async throws -> T {
+        guard let url = endpoint.buildURL() else {
+            throw NetworkError.invalidURL(url: endpoint.path)
         }
 
         do {

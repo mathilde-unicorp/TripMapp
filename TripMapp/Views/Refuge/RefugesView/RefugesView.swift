@@ -14,31 +14,16 @@ struct RefugesView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if let refuges = viewModel.refuges {
+                AsyncContentView(
+                    source: viewModel,
+                    loadingView: ProgressView()
+                ) { refuges in
                     viewModel.createRefugesMapAndListView(refuges: refuges)
-                } else {
-                    refugesListLoading(isLoading: viewModel.isLoading)
-                }
-            }
-            .loadingTask(isLoading: $viewModel.isLoading) {
-                do {
-                    print("load refuges")
-                    self.viewModel.refuges = try await viewModel.loadRefuges()
-                } catch {
-                    self.viewModel.hasError = true
                 }
             }
             .navigationTitle(viewModel.navigationTitle)
         }
     }
-
-    @ViewBuilder
-    func refugesListLoading(isLoading: Bool) -> some View {
-        if isLoading {
-            ProgressView()
-        }
-    }
-
 }
 
 struct RefugesView_Previews: PreviewProvider {

@@ -11,6 +11,13 @@ import SwiftUI
 
 class RefugesMapAndListViewModel: ObservableObject {
 
+    // MARK: Private Properties
+
+    private let dataProvider: RefugesInfoDataProviderProtocol
+    private let router: AppRouter
+
+    private let refuges: [RefugesInfo.LightRefugePoint]
+
     // MARK: - UI Properties
 
     @Published var searchText: String
@@ -41,13 +48,6 @@ class RefugesMapAndListViewModel: ObservableObject {
             .calculateCentralPoint() ?? .init(latitude: 0.0, longitude: 0.0)
     }
 
-    // MARK: Private Properties
-
-    private let refuges: [RefugesInfo.LightRefugePoint]
-
-    private let dataProvider: RefugesInfoDataProviderProtocol
-    private let router: AppRouter
-
     // MARK: - Init
 
     init(
@@ -63,8 +63,6 @@ class RefugesMapAndListViewModel: ObservableObject {
     }
 
     // MARK: - Requests
-
-
 
     // MARK: - Router
 

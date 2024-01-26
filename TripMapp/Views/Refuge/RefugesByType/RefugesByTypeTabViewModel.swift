@@ -39,7 +39,6 @@ class RefugesByTypeTabViewModel: ObservableObject {
 
     @ViewBuilder
     func createRefugesView(refugeType: RefugePointType) -> some View {
-        print("create refuges view with point type: \(refugeType.name)")
-        return router.createRefugesView(refugeType: refugeType)
+        router.createRefugesView(refugeType: refugeType)
     }
 }

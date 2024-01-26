@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "unicorp.datatypeslib.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift",
+      "state" : {
+        "revision" : "d04e4b021344b65f6ff4c4379534809d38110ab7",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

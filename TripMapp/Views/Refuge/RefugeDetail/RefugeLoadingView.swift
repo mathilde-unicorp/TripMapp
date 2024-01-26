@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct RefugeLoadingView: View {
-    let isLoading: Bool
-
     var body: some View {
         VStack {
             Rectangle()
@@ -21,13 +19,10 @@ struct RefugeLoadingView: View {
                         .scaledToFit()
                         .padding(32.0)
                         .foregroundColor(Color(UIColor.tertiarySystemBackground))
-
                 }
 
-            if isLoading {
-                ProgressView()
-                    .padding(32.0)
-            }
+            ProgressView()
+                .padding(32.0)
 
             Spacer()
         }
@@ -37,6 +32,6 @@ struct RefugeLoadingView: View {
 
 struct RefugeLoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        RefugeLoadingView(isLoading: true)
+        RefugeLoadingView()
     }
 }

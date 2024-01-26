@@ -8,24 +8,23 @@
 import Foundation
 import SwiftUI
 
-class RefugesViewModel: ObservableObject {
+class RefugesViewModel: ObservableObject, LoadableObject {
+
+    // MARK: Private properties
+
+    private let router: AppRouter
+    private let dataProvider: RefugesInfoDataProviderProtocol
+
+    private let refugeType: RefugePointType?
 
     // MARK: - UI Properties
 
-    @Published var refuges: [RefugesInfo.LightRefugePoint]?
-    @Published var isLoading: Bool = true
-    @Published var hasError: Bool = false
+    @Published var state: LoadingState<[RefugesInfo.LightRefugePoint]> = .idle
 
     var navigationTitle: String {
         return refugeType?.name.capitalized ?? "All"
     }
 
-    // MARK: Private properties
-
-    private let refugeType: RefugePointType?
-
-    private let router: AppRouter
-    private let dataProvider: RefugesInfoDataProviderProtocol
 
     // MARK: - Init
 
@@ -41,13 +40,24 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - Requests
 
-    func loadRefuges() async throws -> [RefugesInfo.LightRefugePoint]? {
-        print("load refuges with point type: \(refugeType?.toRefugesInfoPointType?.value)")
+    func load() {
+        self.state = .loading
+        print("load refuges with point type: \(refugeType?.toRefugesInfoPointType?.value ?? "All")")
 
-        return try await dataProvider.loadRefuges(
-            massif: .pyrenees,
-            type: refugeType?.toRefugesInfoPointType
-        )
+        Task { [weak self] in
+            guard let self = self else { return }
+
+            do {
+                let refuges = try await dataProvider.loadRefuges(
+                    massif: .pyrenees,
+                    type: refugeType?.toRefugesInfoPointType
+                )
+
+                self.state = .loaded(refuges)
+            } catch {
+                self.state = .failed(error)
+            }
+        }
     }
 
     // MARK: - Router
