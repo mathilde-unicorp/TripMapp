@@ -14,30 +14,37 @@ struct RefugesMapAndListView: View {
 
     var body: some View {
         VStack {
-            MapView(
-                coordinate: viewModel.mapCentralPoint,
-                span: 1.0,
-                annotationItems: viewModel.mapAnnotationItems
-            )
-            .frame(height: 400)
+            mapView()
+            refugesList()
+        }
+    }
 
-            List(viewModel.filteredRefuges, id: \.properties.id) { refuge in
-                NavigationLink(destination: {
-                    viewModel.createRefugeDetailView(refugeId: refuge.properties.id)
-                }, label: {
-                    RefugeCell(
-                        name: refuge.properties.name,
-                        image: refuge.properties.type.icon
-                    )
-                })
-            }
-            .listStyle(.plain)
-            .searchable(text: $viewModel.searchText)
-            .overlay {
-                if viewModel.filteredRefuges.isEmpty {
-                    Text("Sorry, no result found.")
-                        .font(.headline)
-                }
+    @ViewBuilder func mapView() -> some View {
+        MapView(
+            coordinate: viewModel.mapCentralPoint,
+            span: 1.0,
+            annotationItems: viewModel.mapAnnotationItems
+        )
+        .frame(height: 400)
+    }
+
+    @ViewBuilder func refugesList() -> some View {
+        List(viewModel.filteredRefuges, id: \.properties.id) { refuge in
+            NavigationLink(destination: {
+                viewModel.createRefugeDetailView(refugeId: refuge.properties.id)
+            }, label: {
+                RefugeCell(
+                    name: refuge.properties.name,
+                    image: refuge.properties.type.icon
+                )
+            })
+        }
+        .listStyle(.plain)
+        .searchable(text: $viewModel.searchText)
+        .overlay {
+            if viewModel.filteredRefuges.isEmpty {
+                Text("Sorry, no result found.")
+                    .font(.headline)
             }
         }
     }

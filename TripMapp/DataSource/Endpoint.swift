@@ -7,26 +7,41 @@
 
 import Foundation
 
-struct Endpoint {
-    var path: String
-    var queryItems = [URLQueryItem]()
+protocol Endpoint {
+    var scheme: String { get }
+    var host: String { get }
+    var defaultPath: String { get }
+
+    var path: String { get set }
+    var queryItems: [URLQueryItem] { get set }
 }
 
 extension Endpoint {
 
     // MARK: Configuration
 
-    static let baseURL = "refuges.info"
-
-    func buildURL() -> URL? {
+    private func buildURL() -> URL? {
         var components = URLComponents()
-        components.scheme = "https"
-        components.host = "refuges.info"
-        components.path = "/api/" + path
-        components.queryItems = queryItems.isEmpty ? nil : queryItems
+        components.scheme = self.scheme
+        components.host = self.host
+        components.path = self.defaultPath + path
+        components.queryItems = self.queryItems.isEmpty ? nil : self.queryItems
 
         // If either the path or the query items passed contained
         // invalid characters, we'll get a nil URL back
         return components.url
+    }
+
+    func get<T: Codable>(session: URLSession = .shared) async throws -> T {
+        guard let url = self.buildURL() else {
+            throw NetworkError.invalidURL(url: self.path)
+        }
+
+        do {
+            return try await url.get(session: session)
+        } catch {
+            print("Invalid data: \(error)")
+            throw error
+        }
     }
 }

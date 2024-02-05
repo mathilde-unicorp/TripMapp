@@ -47,7 +47,7 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProvid
                 water: .init(name: "", value: nil)
             ),
             description: .init(value: "[color=green]*Cette construction fait partie d'un plan d'aménagement du pastoralisme, tout autour du massif, avec la construction de cabanes strictement réservées aux bergers ; la séparation est ainsi effective d'avec les anciennes constructions qui sont désormais destinées aux autres utilisateurs de la montagne (chasseurs, randonneurs).*[/color]\r\nInutile donc de compter dessus, surtout à cette altitude où le bois n'existe pas.\r\n\r\n* * DETRUITE PAR UNE AVALANCHE !!**Sur le sentier &quot;tour des alpages&quot;, entre la Vénitier et l'Arbesserie.")
-        ), geometry: .init(coordinates: [0.0, 0.0]))
+        ), geometry: .init(coordinates: [6.37203, 45.50609]))
     ]
 
     func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
@@ -55,7 +55,7 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProvid
     }
 
     func loadRefuges(
-        massif: RefugesInfo.DefaultMassif,
+        massif: RefugesInfo.Massif,
         type: RefugesInfo.PointType?
     ) async throws -> [RefugesInfo.LightRefugePoint] {
         return refuges.map { $0.toLightPoint }
