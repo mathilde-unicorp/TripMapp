@@ -10,23 +10,33 @@ import SwiftUI
 import CoreLocation
 
 struct RefugeDescriptionViewModel {
-    let title: String
+    let name: String
     let description: String
+    let url: URL
     let coordinate: CLLocationCoordinate2D
-    let access: String
+    let accessDescription: String
     let placeID: Int
     let icon: Image
+}
+
+// =============================================================================
+// MARK: - Build
+// =============================================================================
+
+extension RefugeDescriptionViewModel {
 
     static func build(from refuge: RefugesInfo.RefugePoint) -> Self {
         return RefugeDescriptionViewModel(
-            title: refuge.properties.name,
+            name: refuge.properties.name,
             description: refuge.properties.description.value,
+            url: refuge.properties.link,
             coordinate: refuge.geometry.coordinated2D,
-            access: refuge.properties.access.value,
+            accessDescription: refuge.properties.access.value,
             placeID: refuge.properties.id,
             icon: refuge.properties.type.icon
         )
     }
+
 }
 
 // =============================================================================
@@ -36,7 +46,7 @@ struct RefugeDescriptionViewModel {
 extension RefugeDescriptionViewModel {
 
     static func mock() -> Self {
-        let title = "Gite de la Colle St Michel"
+        let name = "Gite de la Colle St Michel"
         let description = """
 -2 Douches oui
 - cuisine en libre accès oui
@@ -49,7 +59,6 @@ extension RefugeDescriptionViewModel {
     La pension complète, repas du soir, nuit, petit déjeuner et panier repas de midi est de 73.00 €.
     Dans toutes les formules les draps sont fournis.
 """
-        let coordinate = CLLocationCoordinate2D.giteDeLaColleStMichel
         let access = """
 A pieds
 Situé sur le parcours de la Grande Traversée des PréAlpes, le tour du Haut-Verdon.
@@ -61,10 +70,11 @@ Le village est situé sur la D908.
         let placeIcon = Image(systemName: "tent")
 
         return RefugeDescriptionViewModel(
-            title: title,
+            name: name,
             description: description,
-            coordinate: coordinate,
-            access: access,
+            url: .giteDeLaColleStMichel,
+            coordinate: .giteDeLaColleStMichel,
+            accessDescription: access,
             placeID: placeId,
             icon: placeIcon
         )

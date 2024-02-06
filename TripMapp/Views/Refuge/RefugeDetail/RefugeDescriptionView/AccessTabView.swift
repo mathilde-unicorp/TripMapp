@@ -57,7 +57,7 @@ struct AccessTabView_Previews: PreviewProvider {
 
     static var previews: some View {
         RefugeDescriptionView.AccessTabView(
-            coordinate: viewModel.coordinate, access: viewModel.access
+            coordinate: viewModel.coordinate, access: viewModel.description
         )
     }
 }
