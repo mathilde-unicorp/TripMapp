@@ -14,16 +14,18 @@ struct RefugeDescriptionView: View {
 
     var body: some View {
         VStack {
-            MapView(
-                coordinate: viewModel.coordinate,
-                span: 0.02,
-                annotationItems: [
+            RefugesMapView(
+                annotations: [
                     .init(
-                        coordinate: viewModel.coordinate,
-                        title: viewModel.title,
+                        id: viewModel.placeID,
+                        name: viewModel.title,
+                        coordinates: viewModel.coordinate,
                         image: viewModel.icon
                     )
-                ]
+                ], mapCameraPosition: .constant(.region(.init(
+                    center: viewModel.coordinate,
+                    span: .init(latitudeDelta: 0.02, longitudeDelta: 0.02)
+                )))
             )
             .frame(height: 300)
 

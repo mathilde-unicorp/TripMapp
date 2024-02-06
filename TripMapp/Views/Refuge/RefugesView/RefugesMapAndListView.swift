@@ -20,10 +20,12 @@ struct RefugesMapAndListView: View {
     }
 
     @ViewBuilder func mapView() -> some View {
-        MapView(
-            coordinate: viewModel.mapCentralPoint,
-            span: 1.0,
-            annotationItems: viewModel.mapAnnotationItems
+        RefugesMapView(
+            annotations: viewModel.refugesMapAnnotations,
+            mapCameraPosition: .constant(.region(.init(
+                center: viewModel.mapCentralPoint,
+                span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0)
+            )))
         )
         .frame(height: 400)
     }

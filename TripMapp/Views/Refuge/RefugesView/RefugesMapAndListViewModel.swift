@@ -32,11 +32,12 @@ class RefugesMapAndListViewModel: ObservableObject {
         }
     }
 
-    var mapAnnotationItems: [AnnotationItem] {
+    var refugesMapAnnotations: [RefugesMapView.AnnotationViewModel] {
         return filteredRefuges.map { refuge in
-            AnnotationItem(
-                coordinate: refuge.geometry.coordinated2D,
-                title: refuge.properties.name,
+            RefugesMapView.AnnotationViewModel(
+                id: refuge.properties.id,
+                name: refuge.properties.name,
+                coordinates: refuge.geometry.coordinated2D,
                 image: refuge.properties.type.icon
             )
         }

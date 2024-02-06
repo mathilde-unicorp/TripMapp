@@ -36,7 +36,7 @@ struct RefugeDescriptionViewModel {
 extension RefugeDescriptionViewModel {
 
     static func mock() -> Self {
-        let title = "Mock Place"
+        let title = "Gite de la Colle St Michel"
         let description = """
 -2 Douches oui
 - cuisine en libre accès oui
@@ -49,8 +49,14 @@ extension RefugeDescriptionViewModel {
     La pension complète, repas du soir, nuit, petit déjeuner et panier repas de midi est de 73.00 €.
     Dans toutes les formules les draps sont fournis.
 """
-        let coordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
-        let access = "Mock access information"
+        let coordinate = CLLocationCoordinate2D.giteDeLaColleStMichel
+        let access = """
+A pieds
+Situé sur le parcours de la Grande Traversée des PréAlpes, le tour du Haut-Verdon.
+
+En voiture
+Le village est situé sur la D908.
+"""
         let placeId = 1234
         let placeIcon = Image(systemName: "tent")
 

@@ -37,7 +37,6 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
         let endpoint = RefugesInfoEndpoint(path: "point", queryItems: [
             URLQueryItem(name: "id", value: id.toString),
             URLQueryItem(name: "format", value: "geojson"),
-            URLQueryItem(name: "format_texte", value: "markdown"),
             URLQueryItem(name: "detail", value: "complet"),
         ])
 
