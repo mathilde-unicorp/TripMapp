@@ -12,34 +12,38 @@ struct RefugesMapAndListView: View {
 
     @ObservedObject var viewModel: RefugesMapAndListViewModel
 
+    @State private var selectedRefugeId: Int?
+
     var body: some View {
         VStack {
             mapView()
             refugesList()
         }
+        .sheet(item: $selectedRefugeId) { refugeId in
+            viewModel.createRefugeDetailView(refugeId: refugeId)
+        }
     }
 
     @ViewBuilder func mapView() -> some View {
         RefugesMapView(
-            annotations: viewModel.refugesMapAnnotations,
-            mapCameraPosition: .constant(.region(.init(
-                center: viewModel.mapCentralPoint,
-                span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0)
-            )))
+            annotations: $viewModel.refugesMapAnnotations,
+            mapCameraPosition: $viewModel.mapCameraPosition,
+            selectedRefugeId: $selectedRefugeId
         )
-        .frame(height: 400)
+        .frame(height: 300)
     }
 
     @ViewBuilder func refugesList() -> some View {
         List(viewModel.filteredRefuges, id: \.properties.id) { refuge in
-            NavigationLink(destination: {
-                viewModel.createRefugeDetailView(refugeId: refuge.properties.id)
-            }, label: {
-                RefugeCell(
-                    name: refuge.properties.name,
-                    image: refuge.properties.type.icon
-                )
-            })
+            Button(
+                action: { self.selectedRefugeId = refuge.properties.id },
+                label: {
+                    RefugeCell(
+                        name: refuge.properties.name,
+                        image: refuge.properties.type.icon
+                    )
+                }
+            )
         }
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText)

@@ -26,6 +26,7 @@ class RefugeDetailViewModel: ObservableObject, LoadableObject {
         self.router = router
     }
 
+    @MainActor
     func load() {
         state = .loading
 

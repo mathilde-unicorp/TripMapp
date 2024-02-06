@@ -10,12 +10,17 @@ import MapKit
 
 struct RefugesMapView: View {
 
-    @State var annotations: [AnnotationViewModel]
+    /// Annotations to display on the map, representing refuges data
+    @Binding var annotations: [AnnotationViewModel]
 
+    /// The camera position on the map
     @Binding var mapCameraPosition: MapCameraPosition
 
+    /// Selected refuge annotation on the map
+    @Binding var selectedRefugeId: Int?
+
     var body: some View {
-        Map(position: $mapCameraPosition) {
+        Map(position: $mapCameraPosition, selection: $selectedRefugeId) {
             ForEach(annotations, id: \.id) { refuge in
                 Annotation(refuge.name, coordinate: refuge.coordinates) {
                     AnnotationView(image: refuge.image)
@@ -27,7 +32,7 @@ struct RefugesMapView: View {
 
 #Preview {
     RefugesMapView(
-        annotations: [
+        annotations: .constant([
             .init(
                 id: 0,
                 name: "Cabane de Clartan",
@@ -40,12 +45,13 @@ struct RefugesMapView: View {
                 coordinates: .giteDeLaColleStMichel,
                 image: RefugesInfo.DefaultPointType.refuge.toPointType.icon
             )
-        ],
+        ]),
         mapCameraPosition: .constant(
             .region(.init(
                 center: .cabaneClartan,
                 span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0)
             ))
-        )
+        ),
+        selectedRefugeId: .constant(nil)
     )
 }

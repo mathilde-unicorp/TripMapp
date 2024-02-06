@@ -12,5 +12,5 @@ protocol LoadableObject: ObservableObject {
     
     var state: LoadingState<Output> { get }
 
-    func load()
+    @MainActor func load()
 }

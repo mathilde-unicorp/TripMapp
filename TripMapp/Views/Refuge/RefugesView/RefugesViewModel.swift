@@ -40,6 +40,7 @@ class RefugesViewModel: ObservableObject, LoadableObject {
 
     // MARK: - Requests
 
+    @MainActor
     func load() {
         self.state = .loading
         print("load refuges with point type: \(refugeType?.toRefugesInfoPointType?.value ?? "All")")

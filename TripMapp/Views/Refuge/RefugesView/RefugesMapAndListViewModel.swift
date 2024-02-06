@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import SwiftUI
+import MapKit
 
 class RefugesMapAndListViewModel: ObservableObject {
 
@@ -20,34 +21,15 @@ class RefugesMapAndListViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var searchText: String
-
-    var filteredRefuges: [RefugesInfo.LightRefugePoint] {
-        if searchText.isEmpty {
-            return refuges
-        }
-
-        return refuges.filter {
-            $0.properties.name.localizedCaseInsensitiveContains(searchText)
-        }
+    @Published var searchText: String {
+        didSet { self.updateUI() }
     }
 
-    var refugesMapAnnotations: [RefugesMapView.AnnotationViewModel] {
-        return filteredRefuges.map { refuge in
-            RefugesMapView.AnnotationViewModel(
-                id: refuge.properties.id,
-                name: refuge.properties.name,
-                coordinates: refuge.geometry.coordinated2D,
-                image: refuge.properties.type.icon
-            )
-        }
-    }
+    @Published var filteredRefuges: [RefugesInfo.LightRefugePoint] = []
 
-    var mapCentralPoint: CLLocationCoordinate2D {
-        filteredRefuges
-            .map { $0.geometry.coordinated2D }
-            .calculateCentralPoint() ?? .init(latitude: 0.0, longitude: 0.0)
-    }
+    @Published var refugesMapAnnotations: [RefugesMapView.AnnotationViewModel] = []
+
+    @Published var mapCameraPosition: MapCameraPosition = .automatic
 
     // MARK: - Init
 
@@ -57,13 +39,51 @@ class RefugesMapAndListViewModel: ObservableObject {
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.searchText = searchText
         self.refuges = refuges
+        self.searchText = searchText
         self.dataProvider = dataProvider
         self.router = router
+        self.mapCameraPosition = .automatic
+
+        self.updateUI()
     }
 
     // MARK: - Requests
+
+    private func updateUI() {
+        self.filteredRefuges = buildFilteredRefuges(
+            from: self.refuges, searchText: self.searchText
+        )
+        self.refugesMapAnnotations = buildRefugesMapAnnotations(
+            from: self.filteredRefuges
+        )
+    }
+
+    private func buildFilteredRefuges(
+        from refuges: [RefugesInfo.LightRefugePoint],
+        searchText: String
+    ) -> [RefugesInfo.LightRefugePoint] {
+        if searchText.isEmpty {
+            return refuges
+        }
+
+        return refuges.filter {
+            $0.properties.name.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+
+    private func buildRefugesMapAnnotations(
+        from refuges: [RefugesInfo.LightRefugePoint]
+    ) -> [RefugesMapView.AnnotationViewModel] {
+        return filteredRefuges.map { refuge in
+            RefugesMapView.AnnotationViewModel(
+                id: refuge.properties.id,
+                name: refuge.properties.name,
+                coordinates: refuge.geometry.coordinated2D,
+                image: refuge.properties.type.icon
+            )
+        }
+    }
 
     // MARK: - Router
 
