@@ -32,6 +32,6 @@ struct RefugeDetailView: View {
 struct RefugeView_Previews: PreviewProvider {
     static var previews: some View {
         AppRouter.shared
-            .createRefugeDetailView(refugeId: 3101)
+            .createRefugeDetailView(refugeId: 6179)
     }
 }

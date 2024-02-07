@@ -44,6 +44,7 @@ struct RefugesMapAndListView: View {
                     )
                 }
             )
+            .id(refuge.properties.id)
         }
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText)

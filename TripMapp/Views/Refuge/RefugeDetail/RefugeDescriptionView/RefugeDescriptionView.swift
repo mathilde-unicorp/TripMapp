@@ -35,7 +35,7 @@ struct RefugeDescriptionView: View {
 
                 // Place Information
                 ScrollView {
-                    InformationTabView(description: viewModel.description)
+                    InformationsTabView(viewModel: viewModel)
                 }
                 .tabItem {
                     Image(systemName: "info.circle")

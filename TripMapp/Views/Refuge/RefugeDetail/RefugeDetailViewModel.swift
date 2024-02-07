@@ -36,7 +36,7 @@ class RefugeDetailViewModel: ObservableObject, LoadableObject {
             do {
                 let refuge = try await dataProvider.loadRefuge(id: self.refugeId)
 
-                print(refuge)
+                print(refuge.properties.additionnalInfo)
                 self.state = .loaded(refuge)
             } catch {
                 self.state = .failed(error)

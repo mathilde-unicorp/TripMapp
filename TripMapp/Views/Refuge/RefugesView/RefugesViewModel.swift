@@ -43,8 +43,6 @@ class RefugesViewModel: ObservableObject, LoadableObject {
     @MainActor
     func load() {
         self.state = .loading
-        print("load refuges with point type: \(refugeType?.toRefugesInfoPointType?.value ?? "All")")
-
         Task { [weak self] in
             guard let self = self else { return }
 

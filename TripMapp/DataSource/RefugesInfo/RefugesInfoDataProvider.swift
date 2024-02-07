@@ -58,6 +58,8 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
         let massifValue = massif.rawValue
         let typeValue = type?.value ?? "all"
 
+        print("Load refuges with point type: \(typeValue)")
+
         let endpoint = RefugesInfoEndpoint(path: "massif", queryItems: [
             URLQueryItem(name: "massif", value: massifValue.toString),
             URLQueryItem(name: "type_points", value: typeValue),
