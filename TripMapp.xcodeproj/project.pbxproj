@@ -10,7 +10,6 @@
 		582087232B72693B00DDC563 /* RefugesMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087222B72693A00DDC563 /* RefugesMapView.swift */; };
 		582087262B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087252B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift */; };
 		582087282B726CCE00DDC563 /* RefugesMapView.RefugeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087272B726CCE00DDC563 /* RefugesMapView.RefugeAnnotation.swift */; };
-		5820872A2B727F1900DDC563 /* IntegerLiteralType+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087292B727F1900DDC563 /* IntegerLiteralType+extensions.swift */; };
 		5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5820872B2B7291C500DDC563 /* RefugeDescriptionView.Map.swift */; };
 		582E411F2B6295980092AD0E /* Unicorp.DataTypesLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 582E411E2B6295980092AD0E /* Unicorp.DataTypesLibrary */; };
 		58AD5A422A97BA6D00571534 /* RefugesInfo+LightPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AD5A412A97BA6D00571534 /* RefugesInfo+LightPoint.swift */; };
@@ -97,7 +96,6 @@
 		582087222B72693A00DDC563 /* RefugesMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesMapView.swift; sourceTree = "<group>"; };
 		582087252B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+extensions.swift"; sourceTree = "<group>"; };
 		582087272B726CCE00DDC563 /* RefugesMapView.RefugeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesMapView.RefugeAnnotation.swift; sourceTree = "<group>"; };
-		582087292B727F1900DDC563 /* IntegerLiteralType+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntegerLiteralType+extensions.swift"; sourceTree = "<group>"; };
 		5820872B2B7291C500DDC563 /* RefugeDescriptionView.Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.Map.swift; sourceTree = "<group>"; };
 		58AD5A412A97BA6D00571534 /* RefugesInfo+LightPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+LightPoint.swift"; sourceTree = "<group>"; };
 		58AD5A442A97BB1700571534 /* RefugesInfo+Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Coordinates.swift"; sourceTree = "<group>"; };
@@ -410,7 +408,6 @@
 				58EB4A702A054003001BAE72 /* URL+extensions.swift */,
 				58B2B8FE2A991991007BFE3F /* Array+CLLocationCoordinate2D.swift */,
 				582087252B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift */,
-				582087292B727F1900DDC563 /* IntegerLiteralType+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -644,7 +641,6 @@
 				58BDE6062B6D2A97005BFEF3 /* ActionableObject.swift in Sources */,
 				58B2B8F92A98FE3A007BFE3F /* AccessTabView.swift in Sources */,
 				58AD5A4D2A97BEFE00571534 /* RefugesInfo+Article.swift in Sources */,
-				5820872A2B727F1900DDC563 /* IntegerLiteralType+extensions.swift in Sources */,
 				5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */,
 				58C55C6329F6DD25008F3A54 /* Persistence.swift in Sources */,
 				58B2B8F72A98FDC6007BFE3F /* InformationTabView.swift in Sources */,
@@ -1004,7 +1000,7 @@
 			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.1;
+				version = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -11,14 +11,14 @@ struct RefugeLoadingView: View {
     var body: some View {
         VStack {
             Rectangle()
-                .fill(Color(UIColor.secondarySystemBackground))
+                .fill(Color.secondarySystemBackground)
                 .frame(height: 400)
                 .overlay {
                     Image(systemName: "globe.asia.australia.fill")
                         .resizable()
                         .scaledToFit()
                         .padding(32.0)
-                        .foregroundColor(Color(UIColor.tertiarySystemBackground))
+                        .foregroundColor(Color.tertiarySystemBackground)
                 }
 
             ProgressView()

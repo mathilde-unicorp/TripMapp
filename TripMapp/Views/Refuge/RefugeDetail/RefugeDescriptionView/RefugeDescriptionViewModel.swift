@@ -14,6 +14,7 @@ struct RefugeDescriptionViewModel {
     let description: String
     let url: URL
     let coordinate: CLLocationCoordinate2D
+    let altitude: Int
     let accessDescription: String
     let placeID: Int
     let icon: Image
@@ -31,6 +32,7 @@ extension RefugeDescriptionViewModel {
             description: refuge.properties.description.value,
             url: refuge.properties.link,
             coordinate: refuge.geometry.coordinated2D,
+            altitude: refuge.properties.coordinates.altitude,
             accessDescription: refuge.properties.access.value,
             placeID: refuge.properties.id,
             icon: refuge.properties.type.icon
@@ -74,6 +76,7 @@ Le village est situé sur la D908.
             description: description,
             url: .giteDeLaColleStMichel,
             coordinate: .giteDeLaColleStMichel,
+            altitude: 1450,
             accessDescription: access,
             placeID: placeId,
             icon: placeIcon

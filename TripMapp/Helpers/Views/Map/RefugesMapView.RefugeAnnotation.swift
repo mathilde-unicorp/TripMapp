@@ -35,7 +35,7 @@ extension RefugesMapView {
                 .resizable()
                 .scaledToFit()
                 .padding(8)
-                .background(Color(uiColor: .systemBackground))
+                .background(Color.systemBackground)
                 .cornerRadius(8)
                 .foregroundColor(.green)
                 .shadow(radius: 4) // Add a subtle shadow

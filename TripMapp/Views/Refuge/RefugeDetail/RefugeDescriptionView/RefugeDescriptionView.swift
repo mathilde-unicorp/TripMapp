@@ -20,13 +20,13 @@ struct RefugeDescriptionView: View {
 
                 RefugeDescriptionView.Title(viewModel: viewModel)
                     .padding()
-                    .background(Color(UIColor.secondarySystemBackground.withAlphaComponent(0.5)))
+                    .background(Color.secondarySystemBackground.opacity(0.5))
             }
 
             TabView {
                 // Access Information
                 ScrollView {
-                    AccessTabView(coordinate: viewModel.coordinate, access: viewModel.accessDescription)
+                    AccessTabView(viewModel: viewModel)
                 }
                 .tabItem {
                     Image(systemName: "location.circle")
