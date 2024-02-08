@@ -18,7 +18,7 @@ extension RefugeDescriptionView {
 
         init(viewModel: ViewModel) {
             self.annotation = .init(
-                id: viewModel.placeID,
+                id: viewModel.placeId,
                 name: "",
                 coordinates: viewModel.coordinate,
                 image: viewModel.icon

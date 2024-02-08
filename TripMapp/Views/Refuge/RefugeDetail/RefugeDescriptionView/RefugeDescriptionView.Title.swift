@@ -11,20 +11,20 @@ extension RefugeDescriptionView {
     struct Title: View {
         let icon: Image
         let title: String
-        let placeID: Int
+        let placeId: RefugeId
         let url: URL
 
-        init(icon: Image, title: String, placeID: Int, url: URL) {
+        init(icon: Image, title: String, placeId: RefugeId, url: URL) {
             self.icon = icon
             self.title = title
-            self.placeID = placeID
+            self.placeId = placeId
             self.url = url
         }
 
         init(viewModel: ViewModel) {
             self.icon = viewModel.icon
             self.title = viewModel.name
-            self.placeID = viewModel.placeID
+            self.placeId = viewModel.placeId
             self.url = viewModel.url
         }
 
@@ -37,7 +37,7 @@ extension RefugeDescriptionView {
                         .frame(height: 24)
                         .foregroundColor(.green)
 
-                    Text("ID: \(placeID.description)")
+                    Text("ID: \(placeId.description)")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }
@@ -67,7 +67,7 @@ extension RefugeDescriptionView {
     RefugeDescriptionView.Title(
         icon: Image(systemName: "tent"),
         title: "Mock Place With Long Name",
-        placeID: 1234,
+        placeId: 1234,
         url: .giteDeLaColleStMichel
     )
 }

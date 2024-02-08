@@ -31,7 +31,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     // MARK: - Refuges
     // -------------------------------------------------------------------------
 
-    func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
+    func loadRefuge(id: RefugeId) async throws -> RefugesInfo.RefugePoint {
         print("Load refuge id: \(id)")
 
         let endpoint = RefugesInfoEndpoint(path: "point", queryItems: [

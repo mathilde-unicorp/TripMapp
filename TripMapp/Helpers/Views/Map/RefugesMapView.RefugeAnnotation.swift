@@ -14,7 +14,7 @@ import MapKit
 
 extension RefugesMapView {
     struct AnnotationViewModel {
-        let id: Int
+        let id: RefugeId
         let name: String
         let coordinates: CLLocationCoordinate2D
         let image: Image

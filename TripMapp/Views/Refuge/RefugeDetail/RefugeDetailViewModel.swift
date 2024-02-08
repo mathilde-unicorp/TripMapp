@@ -12,7 +12,7 @@ class RefugeDetailViewModel: ObservableObject, LoadableObject {
     private let dataProvider: RefugesInfoDataProviderProtocol
     private let router: AppRouter
 
-    private let refugeId: Int
+    private let refugeId: RefugeId
 
     @Published var state: LoadingState<RefugesInfo.RefugePoint> = .idle
 
@@ -20,7 +20,7 @@ class RefugeDetailViewModel: ObservableObject, LoadableObject {
     // MARK: - Init
     // -------------------------------------------------------------------------
 
-    init(refugeId: Int, dataProvider: RefugesInfoDataProviderProtocol, router: AppRouter) {
+    init(refugeId: RefugeId, dataProvider: RefugesInfoDataProviderProtocol, router: AppRouter) {
         self.refugeId = refugeId
         self.dataProvider = dataProvider
         self.router = router

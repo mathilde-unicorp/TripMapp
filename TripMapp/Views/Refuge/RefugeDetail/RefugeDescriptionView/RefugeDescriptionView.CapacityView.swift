@@ -24,6 +24,10 @@ extension RefugeDescriptionView {
             self.mattressPlaces = viewModel.mattressPlaces
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             VStack {
                 capacityItem(

@@ -16,6 +16,10 @@ extension RefugeDescriptionView {
             self.viewModel = viewModel
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             VStack(alignment: .leading, spacing: 16.0) {
                 Text("Équipement")

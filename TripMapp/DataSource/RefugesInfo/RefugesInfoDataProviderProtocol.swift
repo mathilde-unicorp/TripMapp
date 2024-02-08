@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RefugesInfoDataProviderProtocol {
-    func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint
+    func loadRefuge(id: RefugeId) async throws -> RefugesInfo.RefugePoint
 
     func loadRefuges(
         massif: RefugesInfo.Massif,
