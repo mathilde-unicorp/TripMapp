@@ -9,28 +9,29 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct RefugeDescriptionViewModel {
-    let name: String
-    let note: String
-    let url: URL
-    let coordinate: CLLocationCoordinate2D
-    let altitude: Int
-    let accessDescription: String
-    let placeID: Int
-    let icon: Image
-    let accomodations: [RefugeAccomodation]
-    let places: Int
-    let mattressPlaces: Int
+extension RefugeDescriptionView {
+    struct ViewModel {
+        let name: String
+        let note: String
+        let url: URL
+        let coordinate: CLLocationCoordinate2D
+        let altitude: Int
+        let accessDescription: String
+        let placeID: Int
+        let icon: Image
+        let accomodations: [RefugeAccomodation]
+        let places: Int
+        let mattressPlaces: Int?
+    }
 }
-
 // =============================================================================
 // MARK: - Build
 // =============================================================================
 
-extension RefugeDescriptionViewModel {
+extension RefugeDescriptionView.ViewModel {
 
     static func build(from refuge: RefugesInfo.RefugePoint) -> Self {
-        return RefugeDescriptionViewModel(
+        return RefugeDescriptionView.ViewModel(
             name: refuge.properties.name,
             note: refuge.properties.note.value,
             url: refuge.properties.link,
@@ -41,7 +42,7 @@ extension RefugeDescriptionViewModel {
             icon: refuge.properties.type.icon,
             accomodations: buildAccomodations(from: refuge),
             places: refuge.properties.capacity.value,
-            mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt ?? 0
+            mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt
         )
     }
 
@@ -73,7 +74,7 @@ extension RefugeDescriptionViewModel {
 // MARK: - Mock
 // =============================================================================
 
-extension RefugeDescriptionViewModel {
+extension RefugeDescriptionView.ViewModel {
 
     static func mock() -> Self {
         let name = "Gite de la Colle St Michel"
@@ -99,7 +100,7 @@ Le village est situé sur la D908.
         let placeId = 1234
         let placeIcon = Image(systemName: "tent")
 
-        return RefugeDescriptionViewModel(
+        return RefugeDescriptionView.ViewModel(
             name: name,
             note: note,
             url: .giteDeLaColleStMichel,

@@ -21,7 +21,7 @@ extension RefugeDescriptionView {
             self.accessDescription = accessDescription
         }
 
-        init(viewModel: RefugeDescriptionViewModel) {
+        init(viewModel: ViewModel) {
             self.coordinate = viewModel.coordinate
             self.altitude = viewModel.altitude
             self.accessDescription = viewModel.accessDescription

@@ -10,9 +10,9 @@ import SwiftUI
 extension RefugeDescriptionView {
 
     struct InformationsTabView: View {
-        let viewModel: RefugeDescriptionViewModel
+        let viewModel: ViewModel
 
-        init(viewModel: RefugeDescriptionViewModel) {
+        init(viewModel: ViewModel) {
             self.viewModel = viewModel
         }
 
@@ -22,8 +22,10 @@ extension RefugeDescriptionView {
                     .font(.title2)
                     .fontWeight(.bold)
 
+                CapacityView(viewModel: viewModel)
+
                 AccomodationsView(viewModel: viewModel)
-                    .frame(height: 200)
+                    .frame(height: 100)
 
                 Text("Informations")
                     .font(.title2)

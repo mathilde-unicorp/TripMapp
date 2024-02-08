@@ -16,7 +16,7 @@ extension RefugeDescriptionView {
             self.annotation = annotation
         }
 
-        init(viewModel: RefugeDescriptionViewModel) {
+        init(viewModel: ViewModel) {
             self.annotation = .init(
                 id: viewModel.placeID,
                 name: "",

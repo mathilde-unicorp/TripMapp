@@ -10,7 +10,7 @@ import CoreLocation
 
 struct RefugeDescriptionView: View {
 
-    let viewModel: RefugeDescriptionViewModel
+    let viewModel: ViewModel
 
     var body: some View {
         VStack {

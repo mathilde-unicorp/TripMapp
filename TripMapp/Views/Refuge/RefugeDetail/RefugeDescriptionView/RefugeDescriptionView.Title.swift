@@ -21,7 +21,7 @@ extension RefugeDescriptionView {
             self.url = url
         }
 
-        init(viewModel: RefugeDescriptionViewModel) {
+        init(viewModel: ViewModel) {
             self.icon = viewModel.icon
             self.title = viewModel.name
             self.placeID = viewModel.placeID
