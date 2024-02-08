@@ -27,6 +27,10 @@ extension RefugeDescriptionView {
             self.accessDescription = viewModel.accessDescription
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             VStack(alignment: .leading, spacing: 32.0) {
                 Text("Access Information")

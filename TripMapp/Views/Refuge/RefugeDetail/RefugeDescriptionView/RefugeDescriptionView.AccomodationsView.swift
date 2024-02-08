@@ -30,6 +30,10 @@ extension RefugeDescriptionView {
             )
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             ScrollView(.horizontal) {
                 LazyHStack {

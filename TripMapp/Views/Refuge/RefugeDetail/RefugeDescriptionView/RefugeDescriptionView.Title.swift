@@ -28,6 +28,10 @@ extension RefugeDescriptionView {
             self.url = viewModel.url
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             HStack(spacing: 24.0) {
                 VStack {

@@ -25,6 +25,10 @@ extension RefugeDescriptionView {
             )
         }
 
+        // ---------------------------------------------------------------------
+        // MARK: - Body
+        // ---------------------------------------------------------------------
+
         var body: some View {
             RefugesMapView(
                 annotations: .constant([annotation]),
