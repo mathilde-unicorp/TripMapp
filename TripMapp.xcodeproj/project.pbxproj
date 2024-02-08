@@ -1011,8 +1011,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift";
 			requirement = {
-				kind = revision;
-				revision = 5de668bf0bbe6cb050fba01a7dd8279bffe53e2c;
+				kind = exactVersion;
+				version = 1.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
