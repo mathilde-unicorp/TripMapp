@@ -14,7 +14,7 @@ import MapKit
 
 extension RefugesMapView {
     struct AnnotationViewModel {
-        let id: Int
+        let id: RefugeId
         let name: String
         let coordinates: CLLocationCoordinate2D
         let image: Image
@@ -35,7 +35,7 @@ extension RefugesMapView {
                 .resizable()
                 .scaledToFit()
                 .padding(8)
-                .background(Color(uiColor: .systemBackground))
+                .background(Color.systemBackground)
                 .cornerRadius(8)
                 .foregroundColor(.green)
                 .shadow(radius: 4) // Add a subtle shadow

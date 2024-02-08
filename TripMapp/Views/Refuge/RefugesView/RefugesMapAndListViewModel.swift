@@ -88,7 +88,7 @@ class RefugesMapAndListViewModel: ObservableObject {
     // MARK: - Router
 
     @ViewBuilder
-    func createRefugeDetailView(refugeId: Int) -> some View {
+    func createRefugeDetailView(refugeId: RefugeId) -> some View {
         router.createRefugeDetailView(refugeId: refugeId)
     }
 }

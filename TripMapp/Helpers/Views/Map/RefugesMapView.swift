@@ -17,7 +17,7 @@ struct RefugesMapView: View {
     @Binding var mapCameraPosition: MapCameraPosition
 
     /// Selected refuge annotation on the map
-    @Binding var selectedRefugeId: Int?
+    @Binding var selectedRefugeId: RefugeId?
 
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedRefugeId) {

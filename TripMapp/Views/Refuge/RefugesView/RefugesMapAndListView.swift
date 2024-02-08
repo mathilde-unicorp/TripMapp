@@ -12,7 +12,7 @@ struct RefugesMapAndListView: View {
 
     @ObservedObject var viewModel: RefugesMapAndListViewModel
 
-    @State private var selectedRefugeId: Int?
+    @State private var selectedRefugeId: RefugeId?
 
     var body: some View {
         VStack {
@@ -44,6 +44,7 @@ struct RefugesMapAndListView: View {
                     )
                 }
             )
+            .id(refuge.properties.id)
         }
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText)

@@ -19,7 +19,7 @@ struct DefaultErrorView: View {
 
                 Text("\(error.localizedDescription)")
                     .font(.subheadline)
-                    .foregroundStyle(Color(UIColor.secondaryLabel))
+                    .foregroundStyle(Color.secondaryLabel)
                     .multilineTextAlignment(.center)
             }
 

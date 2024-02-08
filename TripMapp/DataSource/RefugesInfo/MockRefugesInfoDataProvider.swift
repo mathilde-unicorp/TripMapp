@@ -50,7 +50,7 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProvid
         ), geometry: .init(coordinates: [6.37203, 45.50609]))
     ]
 
-    func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
+    func loadRefuge(id: RefugeId) async throws -> RefugesInfo.RefugePoint {
         return refuges[0]
     }
 

@@ -16,7 +16,7 @@ extension RefugesInfo {
      - name: The name of the point.
      */
     struct LightPoint: Codable {
-        let id: Int
+        let id: RefugeId
         let name: String
         let type: RefugesInfo.PointType
 

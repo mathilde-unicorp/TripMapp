@@ -9,23 +9,64 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct RefugeDescriptionViewModel {
-    let title: String
-    let description: String
-    let coordinate: CLLocationCoordinate2D
-    let access: String
-    let placeID: Int
-    let icon: Image
+extension RefugeDescriptionView {
+    struct ViewModel {
+        let name: String
+        let note: String
+        let url: URL
+        let coordinate: CLLocationCoordinate2D
+        let altitude: Int
+        let accessDescription: String
+        let placeId: RefugeId
+        let icon: Image
+        let accomodations: [RefugeAccomodation]
+        let places: Int
+        let mattressPlaces: Int?
+    }
+}
+// =============================================================================
+// MARK: - Build
+// =============================================================================
+
+extension RefugeDescriptionView.ViewModel {
 
     static func build(from refuge: RefugesInfo.RefugePoint) -> Self {
-        return RefugeDescriptionViewModel(
-            title: refuge.properties.name,
-            description: refuge.properties.description.value,
+        return RefugeDescriptionView.ViewModel(
+            name: refuge.properties.name,
+            note: refuge.properties.note.value,
+            url: refuge.properties.link,
             coordinate: refuge.geometry.coordinated2D,
-            access: refuge.properties.access.value,
-            placeID: refuge.properties.id,
-            icon: refuge.properties.type.icon
+            altitude: refuge.properties.coordinates.altitude,
+            accessDescription: refuge.properties.access.value,
+            placeId: refuge.properties.id,
+            icon: refuge.properties.type.icon,
+            accomodations: buildAccomodations(from: refuge),
+            places: refuge.properties.capacity.value,
+            mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt
         )
+    }
+
+    static func buildAccomodations(from refuge: RefugesInfo.RefugePoint) -> [RefugeAccomodation] {
+        let additionalInfo = refuge.properties.additionnalInfo
+        let hasBlankets = additionalInfo.blankets.value?.toInt?.toBool ?? false
+        let missingWall = additionalInfo.missingWall.value?.toInt?.toBool ?? false
+        let hasWater = additionalInfo.water.value?.toInt?.toBool ?? false
+        let hasToilets = additionalInfo.toilets.value?.toInt?.toBool ?? false
+        let hasStove = additionalInfo.stove.value?.toInt?.toBool ?? false
+        let hasWood = additionalInfo.wood.value?.toInt?.toBool ?? false
+        let hasFireplace = additionalInfo.fireplace.value?.toInt?.toBool ?? false
+
+        var accomodations = [RefugeAccomodation]()
+
+        if hasBlankets { accomodations.append(.blankets) }
+        if missingWall { accomodations.append(.missingWall) }
+        if hasWater { accomodations.append(.water) }
+        if hasToilets { accomodations.append(.toilets) }
+        if hasStove { accomodations.append(.stove) }
+        if hasWood { accomodations.append(.wood) }
+        if hasFireplace { accomodations.append(.fireplace) }
+
+        return accomodations
     }
 }
 
@@ -33,11 +74,11 @@ struct RefugeDescriptionViewModel {
 // MARK: - Mock
 // =============================================================================
 
-extension RefugeDescriptionViewModel {
+extension RefugeDescriptionView.ViewModel {
 
     static func mock() -> Self {
-        let title = "Gite de la Colle St Michel"
-        let description = """
+        let name = "Gite de la Colle St Michel"
+        let note = """
 -2 Douches oui
 - cuisine en libre accès oui
 - Gestion libre ou demi-pension
@@ -49,7 +90,6 @@ extension RefugeDescriptionViewModel {
     La pension complète, repas du soir, nuit, petit déjeuner et panier repas de midi est de 73.00 €.
     Dans toutes les formules les draps sont fournis.
 """
-        let coordinate = CLLocationCoordinate2D.giteDeLaColleStMichel
         let access = """
 A pieds
 Situé sur le parcours de la Grande Traversée des PréAlpes, le tour du Haut-Verdon.
@@ -60,13 +100,18 @@ Le village est situé sur la D908.
         let placeId = 1234
         let placeIcon = Image(systemName: "tent")
 
-        return RefugeDescriptionViewModel(
-            title: title,
-            description: description,
-            coordinate: coordinate,
-            access: access,
-            placeID: placeId,
-            icon: placeIcon
+        return RefugeDescriptionView.ViewModel(
+            name: name,
+            note: note,
+            url: .giteDeLaColleStMichel,
+            coordinate: .giteDeLaColleStMichel,
+            altitude: 1450,
+            accessDescription: access,
+            placeId: placeId,
+            icon: placeIcon,
+            accomodations: [.blankets, .fireplace, .stove],
+            places: 10,
+            mattressPlaces: 6
         )
     }
 }

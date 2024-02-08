@@ -10,61 +10,42 @@ import CoreLocation
 
 struct RefugeDescriptionView: View {
 
-    let viewModel: RefugeDescriptionViewModel
+    let viewModel: ViewModel
 
     var body: some View {
         VStack {
-            RefugesMapView(
-                annotations: .constant([
-                    .init(
-                        id: viewModel.placeID,
-                        name: viewModel.title,
-                        coordinates: viewModel.coordinate,
-                        image: viewModel.icon
-                    )
-                ]),
-                mapCameraPosition: .constant(.region(.init(
-                    center: viewModel.coordinate,
-                    span: .init(latitudeDelta: 0.02, longitudeDelta: 0.02)
-                ))),
-                selectedRefugeId: .constant(nil)
-            )
-            .frame(height: 300)
+            ZStack(alignment: .topLeading) {
+                RefugeDescriptionView.Map(viewModel: viewModel)
+                    .frame(height: 300)
 
-            RefugeTitleView(
-                icon: viewModel.icon,
-                title: viewModel.title,
-                placeID: viewModel.placeID
-            )
-            .padding()
+                RefugeDescriptionView.Title(viewModel: viewModel)
+                    .padding()
+                    .background(Color.secondarySystemBackground.opacity(0.5))
+            }
 
             TabView {
-
-                // First Tab: Place Information
+                // Access Information
                 ScrollView {
-                    InformationTabView(description: viewModel.description)
-                }
-                .tabItem {
-                    Image(systemName: "info.circle")
-                    Text("Information")
-                }
-
-                // Second Tab: Access Information
-                ScrollView {
-                    AccessTabView(coordinate: viewModel.coordinate, access: viewModel.access)
+                    AccessTabView(viewModel: viewModel)
                 }
                 .tabItem {
                     Image(systemName: "location.circle")
                     Text("Access")
                 }
+
+                // Place Information
+                ScrollView {
+                    InformationsTabView(viewModel: viewModel)
+                }
+                .tabItem {
+                    Image(systemName: "info.circle")
+                    Text("Information")
+                }
             }
         }
-        .ignoresSafeArea()
     }
 }
 
-struct RefugeDescriptionView_Previews: PreviewProvider {
-    static var previews: some View {
-        RefugeDescriptionView(viewModel: .mock())
-    }
+#Preview {
+    RefugeDescriptionView(viewModel: .mock())
 }

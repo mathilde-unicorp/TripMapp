@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift",
       "state" : {
-        "revision" : "d04e4b021344b65f6ff4c4379534809d38110ab7",
-        "version" : "1.0.1"
+        "revision" : "841c4fb6009237de9cbb818084b2d7ef25a66bf2",
+        "version" : "1.0.3"
       }
     }
   ],

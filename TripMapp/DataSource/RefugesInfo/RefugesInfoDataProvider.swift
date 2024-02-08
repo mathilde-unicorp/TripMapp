@@ -31,7 +31,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     // MARK: - Refuges
     // -------------------------------------------------------------------------
 
-    func loadRefuge(id: Int) async throws -> RefugesInfo.RefugePoint {
+    func loadRefuge(id: RefugeId) async throws -> RefugesInfo.RefugePoint {
         print("Load refuge id: \(id)")
 
         let endpoint = RefugesInfoEndpoint(path: "point", queryItems: [
@@ -57,6 +57,8 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     ) async throws -> [RefugesInfo.LightRefugePoint] {
         let massifValue = massif.rawValue
         let typeValue = type?.value ?? "all"
+
+        print("Load refuges with point type: \(typeValue)")
 
         let endpoint = RefugesInfoEndpoint(path: "massif", queryItems: [
             URLQueryItem(name: "massif", value: massifValue.toString),

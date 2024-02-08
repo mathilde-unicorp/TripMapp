@@ -7,10 +7,12 @@
 
 import Foundation
 
+typealias RefugeId = Int
+
 extension RefugesInfo {
 
     struct Point: Codable {
-        let id: Int
+        let id: RefugeId
         let link: URL
         let name: String
         let symbol: String
