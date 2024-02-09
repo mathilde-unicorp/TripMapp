@@ -40,7 +40,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "detail", value: "complet"),
         ])
 
-        let response: RefugesInfo.RefugeResponse<RefugesInfo.Point> = try await endpoint.get(
+        let response: RefugesInfo.RefugesPointResponse = try await endpoint.get(
             session: session
         )
 
@@ -54,7 +54,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     func loadRefuges(
         massif: RefugesInfo.Massif = .pyrenees,
         type: RefugesInfo.PointType? = nil
-    ) async throws -> [RefugesInfo.LightRefugePoint] {
+    ) async throws -> RefugesInfo.RefugesLightPointResponse {
         let massifValue = massif.rawValue
         let typeValue = type?.value ?? "all"
 
@@ -66,10 +66,15 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "nb_points", value: "100")
         ])
 
-        let response: RefugesInfo.RefugeResponse<RefugesInfo.LightPoint> = try await endpoint.get(
-            session: session
-        )
+        return try await endpoint.get(session: session)
+    }
 
-        return response.features
+    func loadMassifs() async throws -> RefugesInfo.MassifsResponse {
+        let endpoint = RefugesInfoEndpoint(path: "polygones", queryItems: [
+            URLQueryItem(name: "format", value: "geojson"),
+            URLQueryItem(name: "type_polygon", value: "11") // 11 = zone
+        ])
+
+        return try await endpoint.get(session: session)
     }
 }

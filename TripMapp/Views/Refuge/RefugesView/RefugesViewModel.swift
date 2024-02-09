@@ -43,6 +43,7 @@ class RefugesViewModel: ObservableObject, LoadableObject {
     @MainActor
     func load() {
         self.state = .loading
+
         Task { [weak self] in
             guard let self = self else { return }
 
@@ -52,7 +53,7 @@ class RefugesViewModel: ObservableObject, LoadableObject {
                     type: refugeType?.toRefugesInfoPointType
                 )
 
-                self.state = .loaded(refuges)
+                self.state = .loaded(refuges.features)
             } catch {
                 self.state = .failed(error)
             }

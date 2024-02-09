@@ -8,7 +8,6 @@
 import Foundation
 
 extension RefugesInfo {
-
     enum Massif: Int {
         case pyrenees = 351
         case alpes = 352
