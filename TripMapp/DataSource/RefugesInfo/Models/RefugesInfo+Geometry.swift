@@ -21,7 +21,7 @@ extension RefugesInfo {
      - longitude: A computed property that returns the longitude value from the coordinates array.
      - coordinated2D: A computed property that returns a CLLocationCoordinate2D object using the latitude and longitude values.
      */
-    struct Geometry: Codable {
+    struct PointGeometry: Codable {
         let coordinates: [Double]
 
         var latitude: Double { return coordinates[1] }
@@ -29,6 +29,14 @@ extension RefugesInfo {
 
         var coordinated2D: CLLocationCoordinate2D {
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+    }
+
+    struct MultiPolygonGeometry: Codable {
+        let coordinates: [[[[Double]]]]
+
+        var firstCoordinatesList: [[Double]] {
+            return coordinates[0][0]
         }
     }
 
