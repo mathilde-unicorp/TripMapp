@@ -54,6 +54,8 @@
 		58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */; };
 		58CFCC992B7A2C0D00D18E4F /* MapPolygonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC982B7A2C0D00D18E4F /* MapPolygonModel.swift */; };
 		58CFCC9B2B7A2C9400D18E4F /* MapAnnotationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9A2B7A2C9400D18E4F /* MapAnnotationModel.swift */; };
+		58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */; };
+		58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9F2B7A79E800D18E4F /* MockMassifs.swift */; };
 		58D338B42B713FF2000D45EC /* RefugesInfoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B32B713FF2000D45EC /* RefugesInfoEndpoint.swift */; };
 		58D338B62B714014000D45EC /* RefugesInfoDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B52B714014000D45EC /* RefugesInfoDataProviderProtocol.swift */; };
 		58D338B82B714027000D45EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B72B714027000D45EC /* NetworkError.swift */; };
@@ -152,6 +154,8 @@
 		58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassifsMapView.swift; sourceTree = "<group>"; };
 		58CFCC982B7A2C0D00D18E4F /* MapPolygonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPolygonModel.swift; sourceTree = "<group>"; };
 		58CFCC9A2B7A2C9400D18E4F /* MapAnnotationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationModel.swift; sourceTree = "<group>"; };
+		58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRefuges.swift; sourceTree = "<group>"; };
+		58CFCC9F2B7A79E800D18E4F /* MockMassifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMassifs.swift; sourceTree = "<group>"; };
 		58D338B32B713FF2000D45EC /* RefugesInfoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoEndpoint.swift; sourceTree = "<group>"; };
 		58D338B52B714014000D45EC /* RefugesInfoDataProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoDataProviderProtocol.swift; sourceTree = "<group>"; };
 		58D338B72B714027000D45EC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -378,9 +382,19 @@
 			path = TripMappUITests;
 			sourceTree = "<group>";
 		};
+		58CFCC9C2B7A79CE00D18E4F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */,
+				58CFCC9F2B7A79E800D18E4F /* MockMassifs.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		58D338B22B713FE5000D45EC /* RefugesInfo */ = {
 			isa = PBXGroup;
 			children = (
+				58CFCC9C2B7A79CE00D18E4F /* Mocks */,
 				58DA69542A951E2100F93FDF /* Models */,
 				58D338B32B713FF2000D45EC /* RefugesInfoEndpoint.swift */,
 				58D338B52B714014000D45EC /* RefugesInfoDataProviderProtocol.swift */,
@@ -705,6 +719,7 @@
 				58B2B8F72A98FDC6007BFE3F /* RefugeDescriptionView.InformationsTabView.swift in Sources */,
 				58BDE6042B6D2A32005BFEF3 /* AsyncActionView.swift in Sources */,
 				58D46F7F2B73CE180051EA50 /* RefugeAccomodation.swift in Sources */,
+				58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */,
 				58D46F812B73D5530051EA50 /* RefugeDescriptionView.AccomodationsView.swift in Sources */,
 				58C55C5C29F6DD22008F3A54 /* ContentView.swift in Sources */,
 				584C6EF42B76E5F40090D1E0 /* MassifsView.swift in Sources */,
@@ -724,6 +739,7 @@
 				58EB4A832A05A3E4001BAE72 /* FullWidth.swift in Sources */,
 				58CFCC9B2B7A2C9400D18E4F /* MapAnnotationModel.swift in Sources */,
 				58AD5A492A97BE9200571534 /* RefugesInfo+Description.swift in Sources */,
+				58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */,
 				58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */,
 				58E4AC342A9E14530099C9E2 /* RefugesMapAndListViewModel.swift in Sources */,
 				58EB4A812A05A2D3001BAE72 /* Banner.swift in Sources */,

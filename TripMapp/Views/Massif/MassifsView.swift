@@ -13,18 +13,25 @@ struct MassifsView: View {
     @State private var selectedMassif: Int?
 
     var body: some View {
-        AsyncContentView(
-            source: viewModel,
-            loadingView: ProgressView()
-        ) { massifs in
-            MassifsMapView(selectedTag: $selectedMassif, massifs: massifs)
-                .onChange(of: selectedMassif) {
-                    print(selectedMassif)
-                }
+        NavigationStack {
+            AsyncContentView(
+                source: viewModel,
+                loadingView: ProgressView()
+            ) { massifs in
+                MassifsMapView(selectedTag: $selectedMassif, massifs: massifs)
+                    .onChange(of: selectedMassif) {
+                        print(selectedMassif)
+                    }
+            }
+            .navigationDestination(item: $selectedMassif, destination: { massif in
+                viewModel.createRefugesMapView(for: "\(massif)")
+            })
         }
     }
 }
 
 #Preview {
-    AppRouter.shared.createMassifsView()
+    NavigationStack {
+        AppRouter.shared.createMassifsView()
+    }
 }

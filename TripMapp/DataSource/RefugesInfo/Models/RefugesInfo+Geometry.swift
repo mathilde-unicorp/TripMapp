@@ -11,7 +11,7 @@ import MapKit
 extension RefugesInfo {
 
     /**
-     A struct representing a geometry object that conforms to the Codable protocol.
+     A struct representing a point geometry object that conforms to the Codable protocol.
 
      - Parameters:
      - coordinates: An array of Double values representing the coordinates of the geometry.
@@ -33,7 +33,8 @@ extension RefugesInfo {
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
     }
-
+    
+    /// A struct representing a polygon geometry object that conforms to the Codable protocol
     struct MultiPolygonGeometry: Codable {
         let coordinates: [[[[Double]]]]
 

@@ -69,10 +69,12 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
         return try await endpoint.get(session: session)
     }
 
-    func loadMassifs() async throws -> RefugesInfo.MassifsResponse {
+    func loadMassifs(
+        type: RefugesInfo.MassifType
+    ) async throws -> RefugesInfo.MassifsResponse {
         let endpoint = RefugesInfoEndpoint(path: "polygones", queryItems: [
             URLQueryItem(name: "format", value: "geojson"),
-            URLQueryItem(name: "type_polygon", value: "11") // 11 = zone
+            URLQueryItem(name: "type_polygon", value: type.rawValue.toString)
         ])
 
         return try await endpoint.get(session: session)

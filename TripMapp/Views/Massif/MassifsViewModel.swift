@@ -39,7 +39,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
             guard let self = self else { return }
 
             do {
-                let massifs = try await dataProvider.loadMassifs()
+                let massifs = try await dataProvider.loadMassifs(type: .massif)
                 let polygons = massifs.features.map { massif in
                     MapPolygonModel(
                         id: massif.properties.id,
@@ -59,7 +59,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
     // MARK: - Router
 
     @ViewBuilder
-    func createNextView() -> some View {
-        EmptyView()
+    func createRefugesMapView(for massif: String) -> some View {
+        return Text("Massif \(massif)")
     }
 }

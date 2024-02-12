@@ -35,6 +35,6 @@ struct MassifsMapView: View {
     MassifsMapView(
         selectedTag: .constant(nil),
         massifs: [
-            .init(id: 0, name: "Test", coordinates: MockRefugesInfoDataProvider().massifs.first!.geometry.coordinates2D, color: .green)
+            .init(id: 0, name: "Test", coordinates: MockMassifs.massifs.first!.geometry.coordinates2D, color: .green)
         ])
 }
