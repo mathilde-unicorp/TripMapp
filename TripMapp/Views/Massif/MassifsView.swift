@@ -10,26 +10,17 @@ import SwiftUI
 struct MassifsView: View {
 
     @ObservedObject var viewModel: MassifsViewModel
+    @State private var selectedMassif: Int?
 
     var body: some View {
         AsyncContentView(
             source: viewModel,
             loadingView: ProgressView()
         ) { massifs in
-            List(massifs, id: \.properties.id) { massif in
-                VStack {
-                    Text(massif.properties.name.capitalized)
-                        .foregroundStyle(UIColor(hex: massif.properties.colorHexa).swiftUiColor)
-
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(massif.geometry.firstCoordinatesList, id: \.self) {
-                                Text(String(format: "[%.3f, %.3f]", $0[0], $0[1]))
-                            }
-                        }
-                    }
+            MassifsMapView(selectedTag: $selectedMassif, massifs: massifs)
+                .onChange(of: selectedMassif) {
+                    print(selectedMassif)
                 }
-            }
         }
     }
 }

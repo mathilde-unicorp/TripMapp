@@ -11,7 +11,7 @@ import MapKit
 struct RefugesMapView: View {
 
     /// Annotations to display on the map, representing refuges data
-    @Binding var annotations: [AnnotationViewModel]
+    @Binding var annotations: [MapAnnotationModel]
 
     /// The camera position on the map
     @Binding var mapCameraPosition: MapCameraPosition

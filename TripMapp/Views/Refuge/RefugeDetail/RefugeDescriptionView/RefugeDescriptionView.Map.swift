@@ -10,9 +10,9 @@ import MapKit
 
 extension RefugeDescriptionView {
     struct Map: View {
-        let annotation: RefugesMapView.AnnotationViewModel
+        let annotation: MapAnnotationModel
 
-        init(annotation: RefugesMapView.AnnotationViewModel) {
+        init(annotation: MapAnnotationModel) {
             self.annotation = annotation
         }
 

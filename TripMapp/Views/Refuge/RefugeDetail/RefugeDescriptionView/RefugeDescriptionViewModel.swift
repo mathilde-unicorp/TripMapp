@@ -35,7 +35,7 @@ extension RefugeDescriptionView.ViewModel {
             name: refuge.properties.name,
             note: refuge.properties.note.value,
             url: refuge.properties.link,
-            coordinate: refuge.geometry.coordinated2D,
+            coordinate: refuge.geometry.coordinate2D,
             altitude: refuge.properties.coordinates.altitude,
             accessDescription: refuge.properties.access.value,
             placeId: refuge.properties.id,

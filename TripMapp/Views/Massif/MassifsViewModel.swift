@@ -12,7 +12,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
     // MARK: - UI Properties
 
-    @Published var state: LoadingState<[RefugesInfo.MassifPolygon]> = .idle
+    @Published var state: LoadingState<[MapPolygonModel]> = .idle
 
     // MARK: Private properties
 
@@ -40,8 +40,16 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
             do {
                 let massifs = try await dataProvider.loadMassifs()
+                let polygons = massifs.features.map { massif in
+                    MapPolygonModel(
+                        id: massif.properties.id,
+                        name: massif.properties.name,
+                        coordinates: massif.geometry.coordinates2D,
+                        color: UIColor(hex: massif.properties.colorHexa).swiftUiColor
+                    )
+                }
 
-                self.state = .loaded(massifs.features)
+                self.state = .loaded(polygons)
             } catch {
                 self.state = .failed(error)
             }
