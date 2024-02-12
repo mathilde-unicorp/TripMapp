@@ -24,10 +24,12 @@ extension RefugesInfo {
     struct PointGeometry: Codable {
         let coordinates: [Double]
 
+        // MARK: Computed properties
+
         var latitude: Double { return coordinates[1] }
         var longitude: Double { return coordinates[0] }
 
-        var coordinated2D: CLLocationCoordinate2D {
+        var coordinate2D: CLLocationCoordinate2D {
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
     }
@@ -35,8 +37,12 @@ extension RefugesInfo {
     struct MultiPolygonGeometry: Codable {
         let coordinates: [[[[Double]]]]
 
-        var firstCoordinatesList: [[Double]] {
-            return coordinates[0][0]
+        // MARK: Computed Properties
+
+        var coordinates2D: [CLLocationCoordinate2D] {
+            return coordinates[0][0].map {
+                CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])
+            }
         }
     }
 
