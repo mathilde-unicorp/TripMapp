@@ -10,10 +10,12 @@ import MapKit
 
 struct MassifsMapView: View {
     @Binding var selectedTag: Int?
+    @Binding var mapCameraPosition: MapCameraPosition
+
     let massifs: [MapPolygonModel]
 
     var body: some View {
-        Map(selection: $selectedTag) {
+        Map(position: $mapCameraPosition, selection: $selectedTag) {
             ForEach(massifs, id: \.id) { massif in
                 MapPolygon(coordinates: massif.coordinates)
                     .foregroundStyle(massif.color.opacity(0.5))
@@ -28,12 +30,18 @@ struct MassifsMapView: View {
 
             }
         }
+        .onMapCameraChange(frequency: .onEnd) { mapCamera in
+            mapCameraPosition = .region(mapCamera.region)
+        }
     }
 }
 
 #Preview {
     MassifsMapView(
         selectedTag: .constant(nil),
+        mapCameraPosition: .constant(.region(
+            .init(center: .france, span: .init(latitudeDelta: 10.0, longitudeDelta: 10.0))
+        )),
         massifs: [
             .init(id: 0, name: "Test", coordinates: MockMassifs.massifs.first!.geometry.coordinates2D, color: .green)
         ])

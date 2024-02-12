@@ -26,7 +26,6 @@ final class RefugesInfoDataProvider: ObservableObject {
 }
 
 extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
-
     // -------------------------------------------------------------------------
     // MARK: - Refuges
     // -------------------------------------------------------------------------
@@ -52,29 +51,51 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     }
 
     func loadRefuges(
-        massif: RefugesInfo.Massif = .pyrenees,
-        type: RefugesInfo.PointType? = nil
+        type: RefugesInfo.PointType?,
+        massif: RefugesInfo.MassifId,
+        bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.RefugesLightPointResponse {
-        let massifValue = massif.rawValue
         let typeValue = type?.value ?? "all"
 
         print("Load refuges with point type: \(typeValue)")
 
         let endpoint = RefugesInfoEndpoint(path: "massif", queryItems: [
-            URLQueryItem(name: "massif", value: massifValue.toString),
+            URLQueryItem(name: "massif", value: massif),
             URLQueryItem(name: "type_points", value: typeValue),
-            URLQueryItem(name: "nb_points", value: "100")
+            URLQueryItem(name: "nb_points", value: "100"),
+            URLQueryItem(name: "bbox", value: bbox?.description)
+        ])
+
+        return try await endpoint.get(session: session)
+    }
+
+    func loadRefuges(
+        type: RefugesInfo.PointType?,
+        bbox: RefugesInfo.Bbox
+    ) async throws -> RefugesInfo.RefugesLightPointResponse {
+        let typeValue = type?.value ?? "all"
+
+        print("Load refuges with point type: \(typeValue)")
+
+        let endpoint = RefugesInfoEndpoint(path: "bbox", queryItems: [
+            URLQueryItem(name: "type_points", value: typeValue),
+            URLQueryItem(name: "nb_points", value: "100"),
+            URLQueryItem(name: "bbox", value: bbox.description)
         ])
 
         return try await endpoint.get(session: session)
     }
 
     func loadMassifs(
-        type: RefugesInfo.MassifType
+        type: RefugesInfo.MassifType,
+        massif: RefugesInfo.MassifId?,
+        bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.MassifsResponse {
         let endpoint = RefugesInfoEndpoint(path: "polygones", queryItems: [
+            URLQueryItem(name: "massif", value: massif),
             URLQueryItem(name: "format", value: "geojson"),
-            URLQueryItem(name: "type_polygon", value: type.rawValue.toString)
+            URLQueryItem(name: "type_polygon", value: type.rawValue),
+            URLQueryItem(name: "bbox", value: bbox?.description),
         ])
 
         return try await endpoint.get(session: session)

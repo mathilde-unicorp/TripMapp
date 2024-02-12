@@ -7,12 +7,19 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 class MassifsViewModel: ObservableObject, LoadableObject {
 
     // MARK: - UI Properties
 
     @Published var state: LoadingState<[MapPolygonModel]> = .idle
+    @Published var selectedMassif: Int?
+
+    @Published var mapCameraPosition: MapCameraPosition = .region(
+        .init(center: .france,
+              span: .init(latitudeDelta: 10.0, longitudeDelta: 10.0))
+    )
 
     // MARK: Private properties
 
@@ -39,7 +46,14 @@ class MassifsViewModel: ObservableObject, LoadableObject {
             guard let self = self else { return }
 
             do {
-                let massifs = try await dataProvider.loadMassifs(type: .massif)
+                let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
+
+                let massifs = try await dataProvider.loadMassifs(
+                    type: .zone,
+                    massif: nil,
+                    bbox: bbox
+                )
+
                 let polygons = massifs.features.map { massif in
                     MapPolygonModel(
                         id: massif.properties.id,
@@ -60,6 +74,6 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
     @ViewBuilder
     func createRefugesMapView(for massif: String) -> some View {
-        return Text("Massif \(massif)")
+        Text("Massif \(massif)")
     }
 }

@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MassifsView: View {
 
     @ObservedObject var viewModel: MassifsViewModel
-    @State private var selectedMassif: Int?
+    
 
     var body: some View {
         NavigationStack {
@@ -18,14 +19,18 @@ struct MassifsView: View {
                 source: viewModel,
                 loadingView: ProgressView()
             ) { massifs in
-                MassifsMapView(selectedTag: $selectedMassif, massifs: massifs)
-                    .onChange(of: selectedMassif) {
-                        print(selectedMassif)
-                    }
+                MassifsMapView(
+                    selectedTag: $viewModel.selectedMassif,
+                    mapCameraPosition: $viewModel.mapCameraPosition,
+                    massifs: massifs
+                )
+                .onChange(of: viewModel.selectedMassif) { _, newValue in
+                    print(newValue?.toString ?? "nil")
+                }
+                .onChange(of: viewModel.mapCameraPosition) { _, newValue in
+                    print(newValue)
+                }
             }
-            .navigationDestination(item: $selectedMassif, destination: { massif in
-                viewModel.createRefugesMapView(for: "\(massif)")
-            })
         }
     }
 }

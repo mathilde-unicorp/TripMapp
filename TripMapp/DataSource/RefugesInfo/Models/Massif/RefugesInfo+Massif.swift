@@ -8,20 +8,22 @@
 import Foundation
 
 extension RefugesInfo {
-    enum MassifType: Int {
+    enum MassifType: String {
         /// Local Massifs
-        case massif = 1
+        case massif = "1"
         /// Bigger massifs
-        case zone = 11
+        case zone = "11"
     }
 
-    enum Massif: Int {
-        case pyrenees = 351
-        case alpes = 352
-        case corse = 748
-        case jura = 3307
-        case massifCentral = 50
-        case massifsMeridionnaux = 5053
-        case vosges = 747
+    typealias MassifId = String
+
+    enum DefaultMassifId: String {
+        case pyrenees = "351"
+        case alpes = "352"
+        case corse = "748"
+        case jura = "3307"
+        case massifCentral = "50"
+        case massifsMeridionnaux = "5053"
+        case vosges = "747"
     }
 }

@@ -20,4 +20,9 @@ extension CLLocationCoordinate2D {
         latitude: 44.04703,
         longitude: 6.59309
     )
+
+    static let france = CLLocationCoordinate2D(
+        latitude: 46.1106885,
+        longitude: 2.5911028
+    )
 }

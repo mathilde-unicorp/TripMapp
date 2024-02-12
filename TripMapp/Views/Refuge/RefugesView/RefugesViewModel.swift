@@ -49,8 +49,9 @@ class RefugesViewModel: ObservableObject, LoadableObject {
 
             do {
                 let refuges = try await dataProvider.loadRefuges(
-                    massif: .pyrenees,
-                    type: refugeType?.toRefugesInfoPointType
+                    type: refugeType?.toRefugesInfoPointType,
+                    massif: RefugesInfo.DefaultMassifId.pyrenees.rawValue,
+                    bbox: nil
                 )
 
                 self.state = .loaded(refuges.features)
