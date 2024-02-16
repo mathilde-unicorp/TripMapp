@@ -74,4 +74,15 @@ class AppRouter {
             router: self
         ))
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Massifs
+    // -------------------------------------------------------------------------
+
+    func createMassifsView() -> MassifsView {
+        MassifsView(viewModel: .init(
+            dataProvider: self.refugesInfoDataProvider,
+            router: self)
+        )
+    }
 }

@@ -12,9 +12,9 @@ struct RefugesInfo {
 
     // MARK: - Basic Components of requests
     
-    struct Feature<T: Codable>: Codable {
-        let properties: T
-        let geometry: RefugesInfo.Geometry
+    struct Feature<P: Codable, G: Codable>: Codable {
+        let properties: P
+        let geometry: G
     }
 
     struct NameValueField<T: Codable>: Codable {

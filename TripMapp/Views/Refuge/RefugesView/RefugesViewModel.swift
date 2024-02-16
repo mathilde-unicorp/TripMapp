@@ -43,16 +43,18 @@ class RefugesViewModel: ObservableObject, LoadableObject {
     @MainActor
     func load() {
         self.state = .loading
+
         Task { [weak self] in
             guard let self = self else { return }
 
             do {
                 let refuges = try await dataProvider.loadRefuges(
-                    massif: .pyrenees,
-                    type: refugeType?.toRefugesInfoPointType
+                    type: refugeType?.toRefugesInfoPointType,
+                    massif: RefugesInfo.DefaultMassifId.pyrenees.rawValue,
+                    bbox: nil
                 )
 
-                self.state = .loaded(refuges)
+                self.state = .loaded(refuges.features)
             } catch {
                 self.state = .failed(error)
             }

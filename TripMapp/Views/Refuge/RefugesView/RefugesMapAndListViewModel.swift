@@ -27,7 +27,7 @@ class RefugesMapAndListViewModel: ObservableObject {
 
     @Published var filteredRefuges: [RefugesInfo.LightRefugePoint] = []
 
-    @Published var refugesMapAnnotations: [RefugesMapView.AnnotationViewModel] = []
+    @Published var refugesMapAnnotations: [MapAnnotationModel] = []
 
     @Published var mapCameraPosition: MapCameraPosition = .automatic
 
@@ -74,14 +74,14 @@ class RefugesMapAndListViewModel: ObservableObject {
 
     private func buildRefugesMapAnnotations(
         from refuges: [RefugesInfo.LightRefugePoint]
-    ) -> [RefugesMapView.AnnotationViewModel] {
+    ) -> [MapAnnotationModel] {
         return filteredRefuges.map { refuge in
-            RefugesMapView.AnnotationViewModel(
-                id: refuge.properties.id,
-                name: refuge.properties.name,
-                coordinates: refuge.geometry.coordinated2D,
-                image: refuge.properties.type.icon
-            )
+                .init(
+                    id: refuge.properties.id,
+                    name: refuge.properties.name,
+                    coordinates: refuge.geometry.coordinate2D,
+                    image: refuge.properties.type.icon
+                )
         }
     }
 

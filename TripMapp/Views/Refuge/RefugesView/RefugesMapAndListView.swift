@@ -61,7 +61,7 @@ struct RefugesView_refugesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AppRouter.shared.createRefugesMapAndListView(
-                refuges: MockRefugesInfoDataProvider().refuges.map(\.toLightPoint)
+                refuges: MockRefuges.refuges.map(\.toLightPoint)
             )
         }
     }

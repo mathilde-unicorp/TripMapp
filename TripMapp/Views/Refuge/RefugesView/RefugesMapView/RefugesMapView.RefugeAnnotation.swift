@@ -9,19 +9,6 @@ import SwiftUI
 import MapKit
 
 // -------------------------------------------------------------------------
-// MARK: - View Model
-// -------------------------------------------------------------------------
-
-extension RefugesMapView {
-    struct AnnotationViewModel {
-        let id: RefugeId
-        let name: String
-        let coordinates: CLLocationCoordinate2D
-        let image: Image
-    }
-}
-
-// -------------------------------------------------------------------------
 // MARK: - View
 // -------------------------------------------------------------------------
 

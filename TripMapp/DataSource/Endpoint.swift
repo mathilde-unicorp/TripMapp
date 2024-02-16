@@ -37,6 +37,8 @@ extension Endpoint {
             throw NetworkError.invalidURL(url: self.path)
         }
 
+        print("GET \(url)")
+
         do {
             return try await url.get(session: session)
         } catch {

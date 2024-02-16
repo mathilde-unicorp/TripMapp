@@ -11,7 +11,7 @@ import MapKit
 struct RefugesMapView: View {
 
     /// Annotations to display on the map, representing refuges data
-    @Binding var annotations: [AnnotationViewModel]
+    @Binding var annotations: [MapAnnotationModel]
 
     /// The camera position on the map
     @Binding var mapCameraPosition: MapCameraPosition
@@ -37,19 +37,19 @@ struct RefugesMapView: View {
                 id: 0,
                 name: "Cabane de Clartan",
                 coordinates: .cabaneClartan,
-                image: RefugesInfo.DefaultPointType.refuge.toPointType.icon
+                image: MapPointType.refuge.toRefugesInfoPointType.icon
             ),
             .init(
                 id: 1,
                 name: "Gite de la Colle St Michel",
                 coordinates: .giteDeLaColleStMichel,
-                image: RefugesInfo.DefaultPointType.refuge.toPointType.icon
+                image: MapPointType.refuge.toRefugesInfoPointType.icon
             )
         ]),
         mapCameraPosition: .constant(
             .region(.init(
-                center: .cabaneClartan,
-                span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0)
+                center: .france,
+                span: .init(latitudeDelta: 15.0, longitudeDelta: 15.0)
             ))
         ),
         selectedRefugeId: .constant(nil)

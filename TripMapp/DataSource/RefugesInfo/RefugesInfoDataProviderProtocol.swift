@@ -11,7 +11,19 @@ protocol RefugesInfoDataProviderProtocol {
     func loadRefuge(id: RefugeId) async throws -> RefugesInfo.RefugePoint
 
     func loadRefuges(
-        massif: RefugesInfo.Massif,
-        type: RefugesInfo.PointType?
-    ) async throws -> [RefugesInfo.LightRefugePoint]
+        type: RefugesInfo.PointType?,
+        massif: RefugesInfo.MassifId,
+        bbox: RefugesInfo.Bbox?
+    ) async throws -> RefugesInfo.RefugesLightPointResponse
+
+    func loadRefuges(
+        type: RefugesInfo.PointType?,
+        bbox: RefugesInfo.Bbox
+    ) async throws -> RefugesInfo.RefugesLightPointResponse
+
+    func loadMassifs(
+        type: RefugesInfo.MassifType,
+        massif: RefugesInfo.MassifId?,
+        bbox: RefugesInfo.Bbox?
+    ) async throws -> RefugesInfo.MassifsResponse
 }
