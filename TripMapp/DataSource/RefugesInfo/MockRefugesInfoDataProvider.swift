@@ -17,8 +17,8 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProvid
     }
 
     func loadRefuges(
-        type: RefugesInfo.PointType?,
         massif: RefugesInfo.MassifId,
+        type: RefugesInfo.PointType?,
         bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.RefugesLightPointResponse {
         let lightPoints = MockRefuges.refuges.map { $0.toLightPoint }
@@ -27,7 +27,7 @@ final class MockRefugesInfoDataProvider: ObservableObject, RefugesInfoDataProvid
 
     func loadRefuges(
         type: RefugesInfo.PointType?,
-        bbox: RefugesInfo.Bbox
+        bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.RefugesLightPointResponse {
         let lightPoints = MockRefuges.refuges.map { $0.toLightPoint }
         return .init(features: lightPoints)

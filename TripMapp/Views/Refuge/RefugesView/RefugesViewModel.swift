@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 class RefugesViewModel: ObservableObject, LoadableObject {
 
@@ -20,11 +21,14 @@ class RefugesViewModel: ObservableObject, LoadableObject {
     // MARK: - UI Properties
 
     @Published var state: LoadingState<[RefugesInfo.LightRefugePoint]> = .idle
+    @Published var mapCameraPosition: MapCameraPosition = .region(
+        .init(center: .france,
+              span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0))
+    )
 
     var navigationTitle: String {
         return refugeType?.name.capitalized ?? "All"
     }
-
 
     // MARK: - Init
 
@@ -50,8 +54,7 @@ class RefugesViewModel: ObservableObject, LoadableObject {
             do {
                 let refuges = try await dataProvider.loadRefuges(
                     type: refugeType?.toRefugesInfoPointType,
-                    massif: RefugesInfo.DefaultMassifId.pyrenees.rawValue,
-                    bbox: nil
+                    bbox: .init(mapCameraPosition: mapCameraPosition)
                 )
 
                 self.state = .loaded(refuges.features)
