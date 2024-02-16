@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct RefugesView: View {
 
@@ -14,20 +15,31 @@ struct RefugesView: View {
     var body: some View {
         NavigationView {
             VStack {
-                AsyncContentView(
+                AsyncMapView(
                     source: viewModel,
-                    loadingView: ProgressView()
-                ) { refuges in
-                    viewModel.createRefugesMapAndListView(refuges: refuges)
+                    loadingView: MapProgressView()
+                ) { content in
+                    RefugesMapView.buildMapContent(
+                        annotations: Array(content.annotations)
+                    )
+
+                    // Do not display massifs yet, it's not ready
+                    // MassifsMapView.buildMapContent(
+                    //    massifs: Array(content.polygons)
+                    // )
+                }
+                .sheet(item: $viewModel.selectedItem) { item in
+                    viewModel.createRefugeDetailView(refugeId: item)
                 }
             }
-            .navigationTitle(viewModel.navigationTitle)
         }
     }
 }
 
 struct RefugesView_Previews: PreviewProvider {
     static var previews: some View {
-        AppRouter.shared.createRefugesView(refugeType: .refuge)
+        NavigationStack {
+            AppRouter.shared.createRefugesView(refugeType: nil)
+        }
     }
 }

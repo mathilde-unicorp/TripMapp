@@ -9,26 +9,23 @@ import Foundation
 import SwiftUI
 import MapKit
 
-class RefugesViewModel: ObservableObject, LoadableObject {
-
+class RefugesViewModel: ObservableObject, LoadableMapObject {
     // MARK: Private properties
 
     private let router: AppRouter
     private let dataProvider: RefugesInfoDataProviderProtocol
 
-    private let refugeType: RefugePointType?
-
     // MARK: - UI Properties
 
-    @Published var state: LoadingState<[RefugesInfo.LightRefugePoint]> = .idle
+    @Published var state: LoadingState<MapContentModel> = .idle
     @Published var mapCameraPosition: MapCameraPosition = .region(
         .init(center: .france,
-              span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0))
+              span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0))
     )
+    @Published var selectedItem: Int?
+    @Published var refugeType: RefugePointType?
 
-    var navigationTitle: String {
-        return refugeType?.name.capitalized ?? "All"
-    }
+    private var savedContent = MapContentModel(annotations: [], polygons: [])
 
     // MARK: - Init
 
@@ -52,22 +49,53 @@ class RefugesViewModel: ObservableObject, LoadableObject {
             guard let self = self else { return }
 
             do {
-                let refuges = try await dataProvider.loadRefuges(
-                    type: refugeType?.toRefugesInfoPointType,
-                    bbox: .init(mapCameraPosition: mapCameraPosition)
-                )
+                let refugesAnnotations = try await loadRefugesAnnotations()
+                let massifsPolygons = try await loadMassifsPolygons()
 
-                self.state = .loaded(refuges.features)
+                self.savedContent.insert(annotations: refugesAnnotations)
+                self.savedContent.insert(polygons: massifsPolygons)
+
+                self.state = .loaded(self.savedContent)
             } catch {
                 self.state = .failed(error)
             }
         }
     }
 
-    // MARK: - Router
+    private func loadRefugesAnnotations() async throws -> [MapAnnotationModel] {
+        let refuges = try await dataProvider.loadRefuges(
+            type: refugeType?.toRefugesInfoPointType,
+            bbox: .init(mapCameraPosition: mapCameraPosition)
+        )
 
-    @ViewBuilder
-    func createRefugesMapAndListView(refuges: [RefugesInfo.LightRefugePoint]) -> some View {
-        router.createRefugesMapAndListView(refuges: refuges)
+        let annotations = refuges.features.map {
+            MapAnnotationModel.init(refuge: $0)
+        }
+
+        return annotations
+    }
+
+    private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
+        let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
+
+        let massifs = try await dataProvider.loadMassifs(
+            type: .zone,
+            massif: nil,
+            bbox: bbox
+        )
+
+        let polygons = massifs.features.map {
+            MapPolygonModel(massif: $0)
+        }
+
+        return polygons
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Router
+    // -------------------------------------------------------------------------
+
+    func createRefugeDetailView(refugeId: Int) -> RefugeDetailView {
+        router.createRefugeDetailView(refugeId: refugeId)
     }
 }
