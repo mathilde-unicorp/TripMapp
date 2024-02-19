@@ -26,6 +26,7 @@ final class RefugesInfoDataProvider: ObservableObject {
 }
 
 extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
+
     // -------------------------------------------------------------------------
     // MARK: - Refuges
     // -------------------------------------------------------------------------
@@ -51,8 +52,8 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
     }
 
     func loadRefuges(
-        type: RefugesInfo.PointType?,
         massif: RefugesInfo.MassifId,
+        type: RefugesInfo.PointType?,
         bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.RefugesLightPointResponse {
         let typeValue = type?.value ?? "all"
@@ -71,7 +72,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
 
     func loadRefuges(
         type: RefugesInfo.PointType?,
-        bbox: RefugesInfo.Bbox
+        bbox: RefugesInfo.Bbox?
     ) async throws -> RefugesInfo.RefugesLightPointResponse {
         let typeValue = type?.value ?? "all"
 
@@ -80,7 +81,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
         let endpoint = RefugesInfoEndpoint(path: "bbox", queryItems: [
             URLQueryItem(name: "type_points", value: typeValue),
             URLQueryItem(name: "nb_points", value: "100"),
-            URLQueryItem(name: "bbox", value: bbox.description)
+            URLQueryItem(name: "bbox", value: bbox?.description)
         ])
 
         return try await endpoint.get(session: session)

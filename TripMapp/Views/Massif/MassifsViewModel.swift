@@ -54,13 +54,8 @@ class MassifsViewModel: ObservableObject, LoadableObject {
                     bbox: bbox
                 )
 
-                let polygons = massifs.features.map { massif in
-                    MapPolygonModel(
-                        id: massif.properties.id,
-                        name: massif.properties.name,
-                        coordinates: massif.geometry.coordinates2D,
-                        color: UIColor(hex: massif.properties.colorHexa).swiftUiColor
-                    )
+                let polygons = massifs.features.map {
+                    MapPolygonModel(massif: $0)
                 }
 
                 self.state = .loaded(polygons)

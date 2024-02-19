@@ -20,7 +20,7 @@ extension RefugeDescriptionView {
         let placeId: RefugeId
         let icon: Image
         let accomodations: [RefugeAccomodation]
-        let places: Int
+        let places: Int?
         let mattressPlaces: Int?
     }
 }

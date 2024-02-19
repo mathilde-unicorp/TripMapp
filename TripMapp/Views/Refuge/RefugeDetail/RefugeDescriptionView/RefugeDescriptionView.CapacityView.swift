@@ -11,10 +11,10 @@ extension RefugeDescriptionView {
     struct CapacityView: View {
 
         private let cellSize: CGFloat = 24.0
-        private let places: Int
+        private let places: Int?
         private let mattressPlaces: Int?
 
-        init(places: Int, mattressPlaces: Int?) {
+        init(places: Int?, mattressPlaces: Int?) {
             self.places = places
             self.mattressPlaces = mattressPlaces
         }
@@ -30,6 +30,7 @@ extension RefugeDescriptionView {
 
         var body: some View {
             VStack {
+
                 capacityItem(
                     imageSystemName: "person.2",
                     text: "Places prévues pour dormir",
@@ -51,7 +52,7 @@ extension RefugeDescriptionView {
         }
 
         @ViewBuilder
-        private func capacityItem(imageSystemName: String, text: String, value: Int) -> some View {
+        private func capacityItem(imageSystemName: String, text: String, value: Int?) -> some View {
             HStack {
                 Image(systemName: imageSystemName)
                     .resizable()
@@ -63,7 +64,7 @@ extension RefugeDescriptionView {
 
                 Spacer()
 
-                Text("\(value)")
+                Text("\(value?.toString ?? "Non spécifié")")
                     .font(.headline)
             }
         }
@@ -71,5 +72,5 @@ extension RefugeDescriptionView {
     }
 }
 #Preview {
-    RefugeDescriptionView.CapacityView(places: 10, mattressPlaces: 3)
+    RefugeDescriptionView.CapacityView(places: nil, mattressPlaces: 3)
 }

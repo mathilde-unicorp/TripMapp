@@ -13,8 +13,8 @@ struct ContentView: View {
     private let router: AppRouter = .shared
 
     var body: some View {
-        router.createMassifsView()
-//        router.createRefugesByTypeTabView(tabs: [.refuge, .hut, .bedAndBreakfast])
+//        router.createMassifsView()
+        router.createRefugesView(refugeType: nil)
     }
 }
 

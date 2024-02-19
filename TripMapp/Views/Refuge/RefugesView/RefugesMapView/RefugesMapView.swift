@@ -19,13 +19,27 @@ struct RefugesMapView: View {
     /// Selected refuge annotation on the map
     @Binding var selectedRefugeId: RefugeId?
 
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
+
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedRefugeId) {
-            ForEach(annotations, id: \.id) { refuge in
-                Annotation(refuge.name, coordinate: refuge.coordinates) {
-                    AnnotationView(image: refuge.image)
-                }
+            RefugesMapView.buildMapContent(annotations: annotations)
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Related View Builders
+    // -------------------------------------------------------------------------
+
+    @MapContentBuilder
+    static func buildMapContent(annotations: [MapAnnotationModel]) -> some MapContent {
+        ForEach(annotations, id: \.id) { refuge in
+            Annotation(refuge.name, coordinate: refuge.coordinates) {
+                RefugeAnnotationView(image: refuge.image)
             }
+            .tag(refuge.id)
         }
     }
 }

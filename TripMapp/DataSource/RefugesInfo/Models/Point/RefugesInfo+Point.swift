@@ -49,7 +49,7 @@ extension RefugesInfo {
         }
     }
 
-    typealias Capacity = NameValueField<Int>
+    typealias Capacity = NameValueField<Int?>
 
     typealias Note = NameValueField<String>
 
