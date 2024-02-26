@@ -44,7 +44,7 @@ class AppRouter {
             refugeType: refugeType,
             dataProvider: self.refugesInfoDataProvider,
             router: self
-        ))
+        ), requestLocationViewModel: .init())
     }
 
     func createRefugeDetailView(refugeId: RefugeId) -> RefugeDetailView {

@@ -48,7 +48,7 @@ extension RefugesInfo {
     struct MattressPlaces: Codable {
         let name: String
         let count: Int?
-        let value: String
+        let value: String?
 
         private enum CodingKeys: String, CodingKey {
             case name = "nom"

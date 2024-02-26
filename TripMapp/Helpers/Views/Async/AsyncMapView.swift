@@ -45,6 +45,7 @@ struct AsyncMapView<Source: LoadableMapObject,
                     mapContent(annotations)
                 }
             }
+            .mapStyle(.hybrid)
 
             switch source.state {
             case .idle, .loaded:

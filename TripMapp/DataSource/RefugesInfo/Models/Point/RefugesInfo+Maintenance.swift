@@ -11,7 +11,7 @@ extension RefugesInfo {
 
     struct Maintenance: Codable {
         let valeur: String
-        let id: String
+        let id: String?
 
         private enum CodingKeys: String, CodingKey {
             case valeur, id

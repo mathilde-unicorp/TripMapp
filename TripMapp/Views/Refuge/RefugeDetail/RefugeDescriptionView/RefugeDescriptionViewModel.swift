@@ -42,7 +42,7 @@ extension RefugeDescriptionView.ViewModel {
             icon: refuge.properties.type.icon,
             accomodations: buildAccomodations(from: refuge),
             places: refuge.properties.capacity.value,
-            mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt
+            mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.count
         )
     }
 
