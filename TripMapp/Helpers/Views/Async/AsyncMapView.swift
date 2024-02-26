@@ -46,17 +46,11 @@ struct AsyncMapView<Source: LoadableMapObject,
                 }
             }
             .mapStyle(.hybrid)
-
-            switch source.state {
-            case .idle, .loaded:
-                if shouldShowSearchButton {
-                    MapSearchButton(action: loadMapContent)
-                }
-            case .loading:
-                loadingView
-            case .failed(let error):
-                MapErrorView(error: error, retryHandler: loadMapContent)
+            .mapControls {
+                MapCompass()
             }
+
+            mapStateView()
         }
         .onMapCameraChange { mapCamera in
             source.mapCameraPosition = .region(mapCamera.region)
@@ -69,6 +63,24 @@ struct AsyncMapView<Source: LoadableMapObject,
         }
         .onAppear { loadMapContent() }
     }
+
+    @ViewBuilder
+    private func mapStateView() -> some View {
+        switch source.state {
+        case .idle, .loaded:
+            if shouldShowSearchButton {
+                MapSearchButton(action: loadMapContent)
+            }
+        case .loading:
+            loadingView
+        case .failed(let error):
+            MapErrorView(error: error, retryHandler: loadMapContent)
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Actions
+    // -------------------------------------------------------------------------
 
     private func loadMapContent() {
         withAnimation { self.shouldShowSearchButton = false }
