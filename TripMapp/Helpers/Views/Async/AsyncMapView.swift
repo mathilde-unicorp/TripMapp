@@ -44,17 +44,21 @@ struct AsyncMapView<Source: LoadableMapObject,
                 if let annotations = savedOutput {
                     mapContent(annotations)
                 }
+
+                UserAnnotation()
             }
-            .mapStyle(.hybrid)
+            .mapStyle(.hybrid(elevation: .realistic))
             .mapControls {
-                MapCompass()
+//                MapCompass()
+//                MapPitchToggle()
+                MapUserLocationButton()
             }
 
             mapStateView()
         }
         .onMapCameraChange { mapCamera in
-            source.mapCameraPosition = .region(mapCamera.region)
-            showSearchButton(withDelay: 2.0)
+            source.visibleMapRegion = mapCamera.region
+//            showSearchButton(withDelay: 2.0)
         }
         .onChange(of: source.state) { _, newState in
             if case .loaded(let values) = newState {
@@ -114,13 +118,14 @@ struct AsyncMapView<Source: LoadableMapObject,
 // =============================================================================
 
 
-class MockMapLoadableViewModel: LoadableMapObject { 
+class MockMapLoadableViewModel: LoadableMapObject {
 
     @Published var state: LoadingState<[MapAnnotationModel]> = .idle
     @Published var mapCameraPosition: MapCameraPosition = .region(
         .init(center: .france,
               span: .init(latitudeDelta: 10.0, longitudeDelta: 10.0))
     )
+    @Published var visibleMapRegion: MKCoordinateRegion?
     @Published var selectedItem: Int?
 
     @MainActor

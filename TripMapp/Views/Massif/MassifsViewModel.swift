@@ -40,18 +40,18 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
     @MainActor
     func load() {
+        guard let region = mapCameraPosition.region else { return }
+
         self.state = .loading
 
         Task { [weak self] in
             guard let self = self else { return }
 
             do {
-                let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
-
                 let massifs = try await dataProvider.loadMassifs(
                     type: .zone,
                     massif: nil,
-                    bbox: bbox
+                    bbox: .init(region: region)
                 )
 
                 let polygons = massifs.features.map {

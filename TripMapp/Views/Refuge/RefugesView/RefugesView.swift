@@ -24,29 +24,29 @@ struct RefugesView: View {
                     RefugesMapView.buildMapContent(
                         annotations: Array(content.annotations)
                     )
-
-                    // Display user position
-                    UserAnnotation()
                 }
                 .sheet(item: $viewModel.selectedItem) { item in
                     // Present refuge details when selected
                     viewModel.createRefugeDetailView(refugeId: item)
                 }
 
-                RequestLocationButton() {
-                    requestLocationViewModel.requestLocation()
-                }
-                .onChange(of: requestLocationViewModel.location) { _, updatedLocation in
-                    guard let location = updatedLocation else { return }
-
-                    withAnimation {
-                        viewModel.mapCameraPosition = .region(
-                            .init(center: location, span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0))
-                        )
-
-                        viewModel.load()
-                    }
-                }
+//                RequestLocationButton() {
+//                    requestLocationViewModel.requestLocation()
+//                }
+//                .onChange(of: requestLocationViewModel.location) { _, updatedLocation in
+//                    guard let location = updatedLocation else { return }
+//
+//                    withAnimation {
+//                        viewModel.mapCameraPosition = .region(
+//                            .init(center: location, span: .init(latitudeDelta: 1.0, longitudeDelta: 1.0))
+//                        )
+//
+//                        viewModel.load()
+//                    }
+//                }
+            }
+            .onAppear {
+                requestLocationViewModel.requestLocation()
             }
         }
     }

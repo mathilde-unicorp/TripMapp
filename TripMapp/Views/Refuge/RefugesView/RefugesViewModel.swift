@@ -22,6 +22,8 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
         .init(center: .france,
               span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0))
     )
+    @Published var visibleMapRegion: MKCoordinateRegion?
+
     @Published var selectedItem: Int?
     @Published var refugeType: RefugePointType?
 
@@ -63,9 +65,13 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
     }
 
     private func loadRefugesAnnotations() async throws -> [MapAnnotationModel] {
+        guard let region = visibleMapRegion ?? mapCameraPosition.region else {
+            return []
+        }
+
         let refuges = try await dataProvider.loadRefuges(
             type: refugeType?.toRefugesInfoPointType,
-            bbox: .init(mapCameraPosition: mapCameraPosition)
+            bbox: .init(region: region)
         )
 
         let annotations = refuges.features.map {
@@ -76,12 +82,14 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
     }
 
     private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
-        let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
+        guard let region = visibleMapRegion ?? mapCameraPosition.region else {
+            return []
+        }
 
         let massifs = try await dataProvider.loadMassifs(
             type: .zone,
             massif: nil,
-            bbox: bbox
+            bbox: .init(region: region)
         )
 
         let polygons = massifs.features.map {

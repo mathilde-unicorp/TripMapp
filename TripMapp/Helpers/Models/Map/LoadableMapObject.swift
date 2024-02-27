@@ -14,6 +14,7 @@ protocol LoadableMapObject: ObservableObject {
 
     var state: LoadingState<Output> { get set }
     var mapCameraPosition: MapCameraPosition { get set }
+    var visibleMapRegion: MKCoordinateRegion? { get set }
     var selectedItem: Int? { get set }
 
     @MainActor func load()
