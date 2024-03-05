@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import MapKit
 
-class RefugesViewModel: ObservableObject, LoadableMapObject {
+class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
     private let router: AppRouter
@@ -17,15 +17,15 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
 
     // MARK: - UI Properties
 
-    @Published var state: LoadingState<MapContentModel> = .idle
-    @Published var mapCameraPosition: MapCameraPosition = .region(
-        .init(center: .france,
-              span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0))
-    )
-    @Published var selectedItem: Int?
+    @Published var mapCameraPosition: MapCameraPosition = .automatic
+
+    @Published var mapItemsResults: [MKMapItem] = []
+    @Published var selectedResult: MKMapItem?
+
     @Published var refugeType: RefugePointType?
 
-    private var savedContent = MapContentModel(annotations: [], polygons: [])
+    private var defaultRegion: MKCoordinateRegion = .france
+    var visibleRegion: MKCoordinateRegion?
 
     // MARK: - Init
 
@@ -42,23 +42,18 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
     // MARK: - Requests
 
     @MainActor
-    func load() {
-        self.state = .loading
+    func searchMapItems(query: String, filter: MKPointOfInterestFilter) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = query
+        request.resultTypes = .pointOfInterest
+        request.pointOfInterestFilter = filter
+        request.region = visibleRegion ?? defaultRegion
 
-        Task { [weak self] in
-            guard let self = self else { return }
+        Task {
+            let search = MKLocalSearch(request: request)
+            let response = try? await search.start()
 
-            do {
-                let refugesAnnotations = try await loadRefugesAnnotations()
-                let massifsPolygons = try await loadMassifsPolygons()
-
-                self.savedContent.insert(annotations: refugesAnnotations)
-                self.savedContent.insert(polygons: massifsPolygons)
-
-                self.state = .loaded(self.savedContent)
-            } catch {
-                self.state = .failed(error)
-            }
+            self.mapItemsResults = response?.mapItems ?? []
         }
     }
 
