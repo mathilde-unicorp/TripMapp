@@ -12,16 +12,16 @@ struct RefugesView: View {
     @ObservedObject var viewModel: RefugesViewModel
     @ObservedObject var locationManager: CLLocationManagerObject = .init()
 
+    @State private var selectedResult: MKMapItem?
+    @State private var mapCameraPosition: MapCameraPosition = .automatic
+
     var body: some View {
         NavigationView {
             Map(
-                position: $viewModel.mapCameraPosition,
-                selection: $viewModel.selectedResult
+                position: $mapCameraPosition,
+                selection: $selectedResult
             ) {
                 UserAnnotation()
-
-                Marker("Gite", systemImage: "house", coordinate: .giteDeLaColleStMichel)
-                    .tint(.green)
 
                 ForEach(viewModel.mapItemsResults, id: \.self) { result in
                     Marker(item: result)
@@ -37,23 +37,30 @@ struct RefugesView: View {
             }
             .safeAreaInset(edge: .bottom) {
                 VStack {
-                    if let selectedResult = viewModel.selectedResult {
+                    if let selectedResult = selectedResult {
                         MapItemInfoView(selectedItem: selectedResult)
                             .frame(height: 128)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding([.top, .horizontal])
                     }
 
-                    PointsOfInterestsButtons(
-                        onSelect: { category in
-                            viewModel.searchMapItems(
-                                query: category.defaultQuery,
-                                filter: category.mkPointOfInterestFilter
-                            )
-                        }
-                    )
-                    .setFullWidth(alignment: .center)
-                    .padding(.top)
+                    VStack(spacing: 12.0) {
+                        PointsOfInterestsButtons(
+                            title: "Services",
+                            categories: ServicesPointsOfInterests.allCases,
+                            onSelect: { category in
+                                viewModel.searchMapItems(serviceType: category)
+                            }
+                        )
+
+                        PointsOfInterestsButtons(
+                            title: "Accomodations",
+                            categories: AccomodationsPointsOfInterests.allCases,
+                            onSelect: { accomodationType in
+                                viewModel.searchMapItems(accomodationType: accomodationType)
+                            })
+                    }
+                    .padding()
                 }
                 .background(.thinMaterial)
             }

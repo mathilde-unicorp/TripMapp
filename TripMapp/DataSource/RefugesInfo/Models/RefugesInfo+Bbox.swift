@@ -34,7 +34,10 @@ extension RefugesInfo.Bbox: CustomStringConvertible {
 extension RefugesInfo.Bbox {
     init?(mapCameraPosition: MapCameraPosition) {
         guard let region = mapCameraPosition.region else { return nil }
+        self.init(region: region)
+    }
 
+    init?(region: MKCoordinateRegion) {
         let center = region.center
         let latitudeDiff = region.span.latitudeDelta / 2
         let longitudeDiff = region.span.longitudeDelta / 2

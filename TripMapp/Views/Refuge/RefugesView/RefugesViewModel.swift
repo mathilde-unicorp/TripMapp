@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import MapKit
+import Unicorp_DataTypesLibrary
 
 class RefugesViewModel: ObservableObject {
     // MARK: Private properties
@@ -17,10 +18,7 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var mapCameraPosition: MapCameraPosition = .automatic
-
     @Published var mapItemsResults: [MKMapItem] = []
-    @Published var selectedResult: MKMapItem?
 
     @Published var refugeType: RefugePointType?
 
@@ -42,6 +40,30 @@ class RefugesViewModel: ObservableObject {
     // MARK: - Requests
 
     @MainActor
+    func searchMapItems(serviceType: ServicesPointsOfInterests) {
+        self.searchMapItems(
+            query: serviceType.defaultQuery,
+            filter: serviceType.mkPointOfInterestFilter
+        )
+    }
+
+    @MainActor
+    func searchMapItems(accomodationType: AccomodationsPointsOfInterests) {
+        switch accomodationType {
+        case .refuge:
+            self.searchMapItems(type: .refuge)
+        case .cottage:
+            self.searchMapItems(type: .bedAndBreakfast)
+        case .campground, .hotel:
+            self.searchMapItems(
+                query: accomodationType.defaultQuery,
+                filter: accomodationType.mkPointOfInterestFilter
+            )
+        }
+    }
+
+
+    @MainActor
     func searchMapItems(query: String, filter: MKPointOfInterestFilter) {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
@@ -57,26 +79,29 @@ class RefugesViewModel: ObservableObject {
         }
     }
 
-    private func loadRefugesAnnotations() async throws -> [MapAnnotationModel] {
-        let refuges = try await dataProvider.loadRefuges(
-            type: refugeType?.toRefugesInfoPointType,
-            bbox: .init(mapCameraPosition: mapCameraPosition)
-        )
+    private func searchMapItems(type: RefugesInfo.PointType) {
+        Task {
+            let refuges = try await dataProvider.loadRefuges(
+                type: type,
+                bbox: visibleRegion?.toBbox
+            )
 
-        let annotations = refuges.features.map {
-            MapAnnotationModel.init(refuge: $0)
+            let items = refuges.features.map {
+                var item = MKMapItem(placemark: .init(coordinate: $0.geometry.coordinate2D))
+                item.name = $0.properties.name
+                item.pointOfInterestCategory = .hotel
+                return item
+            }
+
+            self.mapItemsResults = items
         }
-
-        return annotations
     }
 
     private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
-        let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
-
         let massifs = try await dataProvider.loadMassifs(
             type: .zone,
             massif: nil,
-            bbox: bbox
+            bbox: visibleRegion?.toBbox
         )
 
         let polygons = massifs.features.map {

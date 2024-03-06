@@ -8,33 +8,43 @@
 import SwiftUI
 import MapKit
 
-struct PointsOfInterestsButtons: View {
-    var pointsOfInterests: [PointsOfInterestsCategory] = ServicesPointsOfInterests.allCases
-    var onSelect: ((PointsOfInterestsCategory) -> Void)?
+struct PointsOfInterestsButtons<Category: PointsOfInterestsCategory>: View {
+    let title: String?
+    let categories: [Category]
+    let onSelect: ((Category) -> Void)?
 
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(pointsOfInterests, id: \.name) { pointOfInterest in
-                    Button {
-                        onSelect?(pointOfInterest)
-                    } label: {
-                        Label(
-                            title: { Text(pointOfInterest.name).font(.caption) },
-                            icon: { pointOfInterest.image }
-                        )
+        VStack(alignment: .leading) {
+            if let title {
+                Text(title)
+                    .font(.headline)
+            }
+
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(categories, id: \.name) { category in
+                        Button {
+                            onSelect?(category)
+                        } label: {
+                            Label(
+                                title: { Text(category.name).font(.caption) },
+                                icon: { category.image }
+                            )
+                        }
                     }
                 }
+                .buttonStyle(.borderedProminent)
+                .labelStyle(.iconOnly)
             }
-            .buttonStyle(.borderedProminent)
-            .labelStyle(.iconOnly)
+            .scrollIndicators(.hidden)
         }
-        .scrollIndicators(.hidden)
     }
 }
 
 #Preview {
     PointsOfInterestsButtons(
+        title: "Services",
+        categories: ServicesPointsOfInterests.allCases,
         onSelect: { _ in }
     )
 }
