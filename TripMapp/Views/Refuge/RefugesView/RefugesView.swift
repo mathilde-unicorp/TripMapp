@@ -12,22 +12,23 @@ struct RefugesView: View {
     @ObservedObject var viewModel: RefugesViewModel
     @ObservedObject var locationManager: CLLocationManagerObject = .init()
 
-    @State private var selectedResult: MKMapItem?
+    @State private var selectedResult: TripMapMarker?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
+    @State private var openDetailedResult: TripMapMarker?
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Map(
                 position: $mapCameraPosition,
                 selection: $selectedResult
             ) {
                 UserAnnotation()
 
-                ForEach(viewModel.mapItemsResults, id: \.self) { result in
-                    Marker(item: result)
-                }
+                RefugesMapView.build(
+                    mapMarkers: viewModel.mapItemsResults
+                )
             }
-            .mapStyle(.imagery(elevation: .realistic))
+            .mapStyle(.hybrid(elevation: .realistic))
             .mapControls {
                 if locationManager.locationAuthorization.isAuthorized {
                     MapUserLocationButton()
@@ -38,8 +39,7 @@ struct RefugesView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack {
                     if let selectedResult = selectedResult {
-                        MapItemInfoView(selectedItem: selectedResult)
-                            .frame(height: 128)
+                        MapItemInfoView(mapItem: selectedResult)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding([.top, .horizontal])
                     }
@@ -78,25 +78,8 @@ struct RefugesView: View {
 struct RefugesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AppRouter.shared.createRefugesView(refugeType: nil)
+            AppRouter.shared.createRefugesView()
+                .environmentObject(AppRouter.shared) // not the best options for now
         }
     }
 }
-
-
-//                AsyncMapView(
-//                    source: viewModel,
-//                    loadingView: MapProgressView()
-//                ) { content in
-//                    RefugesMapView.buildMapContent(
-//                        annotations: Array(content.annotations)
-//                    )
-//
-//                    // Do not display massifs yet, it's not ready
-//                    // MassifsMapView.buildMapContent(
-//                    //    massifs: Array(content.polygons)
-//                    // )
-//                }
-//                .sheet(item: $viewModel.selectedItem) { item in
-//                    viewModel.createRefugeDetailView(refugeId: item)
-//                }

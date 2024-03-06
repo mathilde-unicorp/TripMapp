@@ -10,21 +10,15 @@ import SwiftUI
 
 extension RefugesInfo {
 
-    // MARK: - Default Values
-
     // MARK: - Point Type Structure
 
     struct PointType: Codable, Hashable {
         let id: Int
         let value: String
-        let iconName: String
+        let image: String
 
-        var icon: Image {
-            if let systemIconName = MapPointType(refugesInfoId: id)?.systemIconName {
-                return Image(systemName: systemIconName)
-            } else {
-                return Image(iconName)
-            }
+        var systemImage: String? {
+            PointTypeById(rawValue: self.id)?.systemImage
         }
 
         // MARK: - Coding Keys
@@ -32,19 +26,62 @@ extension RefugesInfo {
         enum CodingKeys: String, CodingKey {
             case id
             case value = "valeur"
-            case iconName = "icone"
+            case image = "icone"
         }
 
         // MARK: - Default values
 
-        static let crossingPoint = MapPointType.crossingPoint.toRefugesInfoPointType
-        static let refuge = MapPointType.refuge.toRefugesInfoPointType
-        static let summit = MapPointType.summit.toRefugesInfoPointType
-        static let hut = MapPointType.hut.toRefugesInfoPointType
-        static let bedAndBreakfast = MapPointType.bedAndBreakfast.toRefugesInfoPointType
-        static let bivouac = MapPointType.bivouac.toRefugesInfoPointType
-        static let water = MapPointType.water.toRefugesInfoPointType
-        static let lake = MapPointType.lake.toRefugesInfoPointType
+        static let crossingPoint = PointTypeById.crossingPoint.buildPointType()
+        static let refuge = PointTypeById.refuge.buildPointType()
+        static let summit = PointTypeById.summit.buildPointType()
+        static let hut = PointTypeById.hut.buildPointType()
+        static let bedAndBreakfast = PointTypeById.bedAndBreakfast.buildPointType()
+        static let bivouac = PointTypeById.bivouac.buildPointType()
+        static let water = PointTypeById.water.buildPointType()
+        static let lake = PointTypeById.lake.buildPointType()
     }
 
+    // MARK: - Default Values Builder
+
+    /// List of existing (and known) point types on RefugesInfo
+    private enum PointTypeById: Int {
+        case crossingPoint = 3
+        case refuge = 10
+        case summit = 6
+        case hut = 7
+        case bedAndBreakfast = 9
+        case bivouac = 19
+        case water = 23
+        case lake = 16
+
+        var systemImage: String {
+            switch self {
+            case .crossingPoint: return "arrow.up.and.down"
+            case .refuge: return "building.2"
+            case .summit: return "mountain.2"
+            case .hut: return "house"
+            case .bedAndBreakfast: return "bed.double"
+            case .bivouac: return "tent"
+            case .water: return "drop.fill"
+            case .lake: return "water.waves"
+            }
+        }
+
+        var value: String {
+            switch self {
+            case .crossingPoint: return "pt_passage"
+            case .refuge: return "refuge"
+            case .summit: return "sommet"
+            case .hut: return "cabane"
+            case .bedAndBreakfast: return "gite"
+            case .bivouac: return "bivouac"
+            case .water: return "pt_eau"
+            case .lake: return "lac"
+            }
+        }
+
+        func buildPointType() -> PointType {
+            return PointType(id: self.rawValue, value: self.value, image: self.systemImage)
+        }
+    }
 }

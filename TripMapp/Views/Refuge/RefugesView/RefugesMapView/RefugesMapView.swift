@@ -11,7 +11,7 @@ import MapKit
 struct RefugesMapView: View {
 
     /// Annotations to display on the map, representing refuges data
-    @Binding var annotations: [MapAnnotationModel]
+    @Binding var mapMarkers: [TripMapMarker]
 
     /// The camera position on the map
     @Binding var mapCameraPosition: MapCameraPosition
@@ -25,7 +25,7 @@ struct RefugesMapView: View {
 
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedRefugeId) {
-            RefugesMapView.buildMapContent(annotations: annotations)
+            RefugesMapView.build(mapMarkers: mapMarkers)
         }
     }
 
@@ -34,31 +34,42 @@ struct RefugesMapView: View {
     // -------------------------------------------------------------------------
 
     @MapContentBuilder
-    static func buildMapContent(annotations: [MapAnnotationModel]) -> some MapContent {
-        ForEach(annotations, id: \.id) { refuge in
-            Annotation(refuge.name, coordinate: refuge.coordinates) {
-                RefugeAnnotationView(image: refuge.image)
-            }
-            .tag(refuge.id)
+    static func build(mapMarkers: [TripMapMarker]) -> some MapContent {
+        ForEach(mapMarkers, id: \.self) { marker in
+            build(TripMapMarker: marker)
+        }
+    }
+
+    @MapContentBuilder
+    static func build(TripMapMarker: TripMapMarker) -> some MapContent {
+        switch TripMapMarker {
+        case .mkMapItem(let mKMapItem):
+            Marker(item: mKMapItem)
+        case .marker(let model):
+            Marker(
+                model.name,
+                systemImage: model.systemImage,
+                coordinate: model.coordinates
+            )
         }
     }
 }
 
 #Preview {
     RefugesMapView(
-        annotations: .constant([
-            .init(
+        mapMarkers: .constant([
+            .marker(.init(
                 id: 0,
                 name: "Cabane de Clartan",
                 coordinates: .cabaneClartan,
-                image: MapPointType.refuge.toRefugesInfoPointType.icon
-            ),
-            .init(
+                systemImage: "bed.double"
+            )),
+            .marker(.init(
                 id: 1,
                 name: "Gite de la Colle St Michel",
                 coordinates: .giteDeLaColleStMichel,
-                image: MapPointType.refuge.toRefugesInfoPointType.icon
-            )
+                systemImage: "bed.double"
+            ))
         ]),
         mapCameraPosition: .constant(
             .region(.init(

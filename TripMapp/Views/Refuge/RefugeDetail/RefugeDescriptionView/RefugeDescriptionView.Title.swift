@@ -22,7 +22,7 @@ extension RefugeDescriptionView {
         }
 
         init(viewModel: ViewModel) {
-            self.icon = viewModel.icon
+            self.icon = Image(systemName: viewModel.systemImage)
             self.title = viewModel.name
             self.placeId = viewModel.placeId
             self.url = viewModel.url

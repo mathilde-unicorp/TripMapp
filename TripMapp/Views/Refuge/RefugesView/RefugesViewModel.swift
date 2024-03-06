@@ -10,6 +10,22 @@ import SwiftUI
 import MapKit
 import Unicorp_DataTypesLibrary
 
+enum TripMapMarker: Equatable, Hashable {
+    case mkMapItem(MKMapItem)
+    case marker(MapMarkerModel)
+}
+
+extension TripMapMarker: Identifiable {
+    var id: Int {
+        switch self {
+        case .mkMapItem(let item):
+            return item.hash
+        case .marker(let item):
+            return item.id
+        }
+    }
+}
+
 class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
@@ -18,9 +34,7 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var mapItemsResults: [MKMapItem] = []
-
-    @Published var refugeType: RefugePointType?
+    @Published var mapItemsResults: [TripMapMarker] = []
 
     private var defaultRegion: MKCoordinateRegion = .france
     var visibleRegion: MKCoordinateRegion?
@@ -28,11 +42,9 @@ class RefugesViewModel: ObservableObject {
     // MARK: - Init
 
     init(
-        refugeType: RefugePointType?,
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.refugeType = refugeType
         self.dataProvider = dataProvider
         self.router = router
     }
@@ -62,7 +74,6 @@ class RefugesViewModel: ObservableObject {
         }
     }
 
-
     @MainActor
     func searchMapItems(query: String, filter: MKPointOfInterestFilter) {
         let request = MKLocalSearch.Request()
@@ -75,7 +86,9 @@ class RefugesViewModel: ObservableObject {
             let search = MKLocalSearch(request: request)
             let response = try? await search.start()
 
-            self.mapItemsResults = response?.mapItems ?? []
+            self.mapItemsResults = response?.mapItems.map {
+                TripMapMarker.mkMapItem($0)
+            } ?? []
         }
     }
 
@@ -87,10 +100,7 @@ class RefugesViewModel: ObservableObject {
             )
 
             let items = refuges.features.map {
-                var item = MKMapItem(placemark: .init(coordinate: $0.geometry.coordinate2D))
-                item.name = $0.properties.name
-                item.pointOfInterestCategory = .hotel
-                return item
+                TripMapMarker.marker(.init(refuge: $0))
             }
 
             self.mapItemsResults = items
