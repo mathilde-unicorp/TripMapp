@@ -14,7 +14,6 @@ struct RefugesView: View {
 
     @State private var selectedResult: TripMapMarker?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
-    @State private var openDetailedResult: TripMapMarker?
 
     var body: some View {
         NavigationStack {
@@ -39,7 +38,7 @@ struct RefugesView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack {
                     if let selectedResult = selectedResult {
-                        MapItemInfoView(mapItem: selectedResult)
+                        TripMapMarkerInfoView(mapItem: selectedResult)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding([.top, .horizontal])
                     }
