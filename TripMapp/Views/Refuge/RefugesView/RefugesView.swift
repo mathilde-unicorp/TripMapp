@@ -9,28 +9,66 @@ import SwiftUI
 import MapKit
 
 struct RefugesView: View {
-
     @ObservedObject var viewModel: RefugesViewModel
+    @ObservedObject var locationManager: CLLocationManagerObject = .init()
+
+    @State private var selectedResult: TripMapMarker?
+    @State private var mapCameraPosition: MapCameraPosition = .automatic
 
     var body: some View {
-        NavigationView {
-            VStack {
-                AsyncMapView(
-                    source: viewModel,
-                    loadingView: MapProgressView()
-                ) { content in
-                    RefugesMapView.buildMapContent(
-                        annotations: Array(content.annotations)
-                    )
+        NavigationStack {
+            Map(
+                position: $mapCameraPosition,
+                selection: $selectedResult
+            ) {
+                UserAnnotation()
 
-                    // Do not display massifs yet, it's not ready
-                    // MassifsMapView.buildMapContent(
-                    //    massifs: Array(content.polygons)
-                    // )
+                RefugesMapView.build(
+                    mapMarkers: viewModel.mapItemsResults
+                )
+            }
+            .mapStyle(.hybrid(elevation: .realistic))
+            .mapControls {
+                if locationManager.locationAuthorization.isAuthorized {
+                    MapUserLocationButton()
                 }
-                .sheet(item: $viewModel.selectedItem) { item in
-                    viewModel.createRefugeDetailView(refugeId: item)
+                MapCompass()
+                MapScaleView()
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack {
+                    if let selectedResult = selectedResult {
+                        TripMapMarkerInfoView(mapItem: selectedResult)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding([.top, .horizontal])
+                    }
+
+                    VStack(spacing: 12.0) {
+                        PointsOfInterestsButtons(
+                            title: "Services",
+                            categories: ServicesPointsOfInterests.allCases,
+                            onSelect: { category in
+                                viewModel.searchMapItems(serviceType: category)
+                            }
+                        )
+
+                        PointsOfInterestsButtons(
+                            title: "Accomodations",
+                            categories: AccomodationsPointsOfInterests.allCases,
+                            onSelect: { accomodationType in
+                                viewModel.searchMapItems(accomodationType: accomodationType)
+                            })
+                    }
+                    .padding()
                 }
+                .background(.thinMaterial)
+            }
+            .onChange(of: viewModel.mapItemsResults) {
+                // refocus the map automatically on results
+                // position = .automatic
+            }
+            .onMapCameraChange { context in
+                self.viewModel.visibleRegion = context.region
             }
         }
     }
@@ -39,7 +77,8 @@ struct RefugesView: View {
 struct RefugesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AppRouter.shared.createRefugesView(refugeType: nil)
+            AppRouter.shared.createRefugesView()
+                .environmentObject(AppRouter.shared) // not the best options for now
         }
     }
 }

@@ -18,7 +18,7 @@ extension RefugeDescriptionView {
         let altitude: Int
         let accessDescription: String
         let placeId: RefugeId
-        let icon: Image
+        let systemImage: String
         let accomodations: [RefugeAccomodation]
         let places: Int?
         let mattressPlaces: Int?
@@ -39,7 +39,7 @@ extension RefugeDescriptionView.ViewModel {
             altitude: refuge.properties.coordinates.altitude,
             accessDescription: refuge.properties.access.value,
             placeId: refuge.properties.id,
-            icon: refuge.properties.type.icon,
+            systemImage: refuge.properties.type.systemImage ?? "",
             accomodations: buildAccomodations(from: refuge),
             places: refuge.properties.capacity.value,
             mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt
@@ -98,7 +98,6 @@ En voiture
 Le village est situé sur la D908.
 """
         let placeId = 1234
-        let placeIcon = Image(systemName: "tent")
 
         return RefugeDescriptionView.ViewModel(
             name: name,
@@ -108,7 +107,7 @@ Le village est situé sur la D908.
             altitude: 1450,
             accessDescription: access,
             placeId: placeId,
-            icon: placeIcon,
+            systemImage: "tent",
             accomodations: [.blankets, .fireplace, .stove],
             places: 10,
             mattressPlaces: 6

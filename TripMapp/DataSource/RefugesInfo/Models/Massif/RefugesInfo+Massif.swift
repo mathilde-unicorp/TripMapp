@@ -8,6 +8,7 @@
 import Foundation
 
 extension RefugesInfo {
+    /// Id representing a type of massif in RefugesInfo database
     enum MassifType: String {
         /// Local Massifs
         case massif = "1"
@@ -17,7 +18,8 @@ extension RefugesInfo {
 
     typealias MassifId = String
 
-    enum DefaultMassifId: String {
+    /// Id representing a specific massif in RefugesInfo database
+    enum DefaultMassifId: MassifId {
         case pyrenees = "351"
         case alpes = "352"
         case corse = "748"

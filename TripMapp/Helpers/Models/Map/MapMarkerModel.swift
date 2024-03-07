@@ -1,5 +1,5 @@
 //
-//  MapAnnotationModel.swift
+//  MapMarkerModel.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 12/02/2024.
@@ -9,32 +9,32 @@ import Foundation
 import SwiftUI
 import MapKit
 
-struct MapAnnotationModel: Identifiable {
+struct MapMarkerModel: Identifiable {
     let id: Int
     let name: String
     let coordinates: CLLocationCoordinate2D
-    let image: Image
+    let systemImage: String
 }
 
-extension MapAnnotationModel: Equatable {
-    static func == (lhs: MapAnnotationModel, rhs: MapAnnotationModel) -> Bool {
+extension MapMarkerModel: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
-extension MapAnnotationModel: Hashable {
+extension MapMarkerModel: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
-extension MapAnnotationModel {
+extension MapMarkerModel {
     init(refuge: RefugesInfo.LightRefugePoint) {
         self.init(
             id: refuge.properties.id,
             name: refuge.properties.name,
             coordinates: refuge.geometry.coordinate2D,
-            image: refuge.properties.type.icon
+            systemImage: refuge.properties.type.systemImage ?? ""
         )
     }
 }

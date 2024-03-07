@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AppRouter {
+class AppRouter: ObservableObject {
 
     // -------------------------------------------------------------------------
     // MARK: - Data Providers
@@ -39,9 +39,8 @@ class AppRouter {
     // MARK: - Modules
     // -------------------------------------------------------------------------
 
-    func createRefugesView(refugeType: RefugePointType?) -> RefugesView {
+    func createRefugesView() -> RefugesView {
         RefugesView(viewModel: .init(
-            refugeType: refugeType,
             dataProvider: self.refugesInfoDataProvider,
             router: self
         ))

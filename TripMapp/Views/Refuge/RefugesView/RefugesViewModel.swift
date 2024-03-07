@@ -8,8 +8,25 @@
 import Foundation
 import SwiftUI
 import MapKit
+import Unicorp_DataTypesLibrary
 
-class RefugesViewModel: ObservableObject, LoadableMapObject {
+enum TripMapMarker: Equatable, Hashable {
+    case mkMapItem(MKMapItem)
+    case marker(MapMarkerModel)
+}
+
+extension TripMapMarker: Identifiable {
+    var id: Int {
+        switch self {
+        case .mkMapItem(let item):
+            return item.hash
+        case .marker(let item):
+            return item.id
+        }
+    }
+}
+
+class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
     private let router: AppRouter
@@ -17,24 +34,17 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
 
     // MARK: - UI Properties
 
-    @Published var state: LoadingState<MapContentModel> = .idle
-    @Published var mapCameraPosition: MapCameraPosition = .region(
-        .init(center: .france,
-              span: .init(latitudeDelta: 2.0, longitudeDelta: 2.0))
-    )
-    @Published var selectedItem: Int?
-    @Published var refugeType: RefugePointType?
+    @Published var mapItemsResults: [TripMapMarker] = []
 
-    private var savedContent = MapContentModel(annotations: [], polygons: [])
+    private var defaultRegion: MKCoordinateRegion = .france
+    var visibleRegion: MKCoordinateRegion?
 
     // MARK: - Init
 
     init(
-        refugeType: RefugePointType?,
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.refugeType = refugeType
         self.dataProvider = dataProvider
         self.router = router
     }
@@ -42,46 +52,66 @@ class RefugesViewModel: ObservableObject, LoadableMapObject {
     // MARK: - Requests
 
     @MainActor
-    func load() {
-        self.state = .loading
+    func searchMapItems(serviceType: ServicesPointsOfInterests) {
+        self.searchMapItems(
+            query: serviceType.defaultQuery,
+            filter: serviceType.mkPointOfInterestFilter
+        )
+    }
 
-        Task { [weak self] in
-            guard let self = self else { return }
-
-            do {
-                let refugesAnnotations = try await loadRefugesAnnotations()
-                let massifsPolygons = try await loadMassifsPolygons()
-
-                self.savedContent.insert(annotations: refugesAnnotations)
-                self.savedContent.insert(polygons: massifsPolygons)
-
-                self.state = .loaded(self.savedContent)
-            } catch {
-                self.state = .failed(error)
-            }
+    @MainActor
+    func searchMapItems(accomodationType: AccomodationsPointsOfInterests) {
+        switch accomodationType {
+        case .refuge:
+            self.searchMapItems(type: .refuge)
+        case .cottage:
+            self.searchMapItems(type: .bedAndBreakfast)
+        case .campground, .hotel:
+            self.searchMapItems(
+                query: accomodationType.defaultQuery,
+                filter: accomodationType.mkPointOfInterestFilter
+            )
         }
     }
 
-    private func loadRefugesAnnotations() async throws -> [MapAnnotationModel] {
-        let refuges = try await dataProvider.loadRefuges(
-            type: refugeType?.toRefugesInfoPointType,
-            bbox: .init(mapCameraPosition: mapCameraPosition)
-        )
+    @MainActor
+    func searchMapItems(query: String, filter: MKPointOfInterestFilter) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = query
+        request.resultTypes = .pointOfInterest
+        request.pointOfInterestFilter = filter
+        request.region = visibleRegion ?? defaultRegion
 
-        let annotations = refuges.features.map {
-            MapAnnotationModel.init(refuge: $0)
+        Task {
+            let search = MKLocalSearch(request: request)
+            let response = try? await search.start()
+
+            self.mapItemsResults = response?.mapItems.map {
+                TripMapMarker.mkMapItem($0)
+            } ?? []
         }
+    }
 
-        return annotations
+    private func searchMapItems(type: RefugesInfo.PointType) {
+        Task {
+            let refuges = try await dataProvider.loadRefuges(
+                type: type,
+                bbox: visibleRegion?.toBbox
+            )
+
+            let items = refuges.features.map {
+                TripMapMarker.marker(.init(refuge: $0))
+            }
+
+            self.mapItemsResults = items
+        }
     }
 
     private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
-        let bbox = RefugesInfo.Bbox(mapCameraPosition: mapCameraPosition)
-
         let massifs = try await dataProvider.loadMassifs(
             type: .zone,
             massif: nil,
-            bbox: bbox
+            bbox: visibleRegion?.toBbox
         )
 
         let polygons = massifs.features.map {
