@@ -33,7 +33,7 @@ extension RefugeDescriptionView {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 32.0) {
-                Text("Access Information")
+                Text("access_informations_title")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -54,17 +54,17 @@ extension RefugeDescriptionView {
                     Image(systemName: "location.circle.fill")
                         .foregroundColor(.blue)
 
-                    Text("Coordinates")
+                    Text("coordinates_title")
 
                     Spacer()
                 }
                 .font(.headline)
 
                 HStack {
-                    Text("Lat.: \(coordinate.latitude)")
-                    Text("Long.: \(coordinate.longitude)")
+                    Text("latitude_short_description \(coordinate.latitude)")
+                    Text("longitude_short_description \(coordinate.longitude)")
                 }
-                Text("Altitude: \(altitude)m")
+                Text("altitude_description \(altitude)m")
             }
         }
 
@@ -74,7 +74,7 @@ extension RefugeDescriptionView {
                     Image(systemName: "lock.circle.fill")
                         .foregroundColor(.green)
 
-                    Text("Access")
+                    Text("access_title")
 
                     Spacer()
                 }

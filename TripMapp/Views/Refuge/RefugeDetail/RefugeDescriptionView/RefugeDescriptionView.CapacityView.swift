@@ -33,7 +33,7 @@ extension RefugeDescriptionView {
 
                 capacityItem(
                     imageSystemName: "person.2",
-                    text: "Places prévues pour dormir",
+                    text: "sleep_capacity_description", // Places prévues pour dormir
                     value: places
                 )
 
@@ -42,7 +42,7 @@ extension RefugeDescriptionView {
 
                     capacityItem(
                         imageSystemName: "bed.double",
-                        text: "Places sur matelas",
+                        text: "mattress_capacity_description", // Places sur matelas
                         value: mattressPlaces
                     )
                 }
@@ -52,7 +52,11 @@ extension RefugeDescriptionView {
         }
 
         @ViewBuilder
-        private func capacityItem(imageSystemName: String, text: String, value: Int?) -> some View {
+        private func capacityItem(
+            imageSystemName: String,
+            text: LocalizedStringKey,
+            value: Int?
+        ) -> some View {
             HStack {
                 Image(systemName: imageSystemName)
                     .resizable()

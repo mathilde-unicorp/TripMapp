@@ -41,7 +41,7 @@ struct AsyncActionView<Source: ActionableObject,
         source: MockAction(),
         loadingView: ProgressView(),
         content: { source in
-            Button("Tap on me") { source.action() }
+            Button("_example_tap_on_me") { source.action() }
                 .buttonStyle(BorderedProminentButtonStyle())
         }
     )

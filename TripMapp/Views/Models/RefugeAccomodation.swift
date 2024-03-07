@@ -31,15 +31,15 @@ extension RefugeAccomodation {
         }
     }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
-        case .blankets: return "Couvertures"
-        case .fireplace: return "Cheminée"
-        case .missingWall: return "Manque un mur"
-        case .stove: return "Poêle"
-        case .toilets: return "Toilettes"
-        case .water: return "Eau"
-        case .wood: return "Forêt à proximité"
+        case .blankets: return "accommodations.blankets"// "Couvertures"
+        case .fireplace: return "accommodations.fireplace"// "Cheminée"
+        case .missingWall: return "accommodations.missing_wall"//  "Manque un mur"
+        case .stove: return "accommodations.stove" //Poêle"
+        case .toilets: return "accommodations.toilets" //"Toilettes"
+        case .water: return "accommodations.water" //"Eau"
+        case .wood: return "accommodations.wood" //"Forêt à proximité"
         }
     }
 

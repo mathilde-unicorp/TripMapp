@@ -33,6 +33,7 @@
 		58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AD5A592A97C4EC00571534 /* RefugeDescriptionView.swift */; };
 		58AEC8322B9A067900B9005C /* MapMarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AEC8312B9A067900B9005C /* MapMarkerInfoView.swift */; };
 		58AEC8342B9A074000B9005C /* MKMapMarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AEC8332B9A074000B9005C /* MKMapMarkerInfoView.swift */; };
+		58AEC8372B9A1A9D00B9005C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 58AEC8362B9A1A9D00B9005C /* Localizable.xcstrings */; };
 		58B2B8F42A98F745007BFE3F /* RefugeDescriptionView.Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2B8F32A98F745007BFE3F /* RefugeDescriptionView.Title.swift */; };
 		58B2B8F72A98FDC6007BFE3F /* RefugeDescriptionView.InformationsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2B8F62A98FDC6007BFE3F /* RefugeDescriptionView.InformationsTabView.swift */; };
 		58B2B8F92A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2B8F82A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift */; };
@@ -135,6 +136,7 @@
 		58AD5A592A97C4EC00571534 /* RefugeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.swift; sourceTree = "<group>"; };
 		58AEC8312B9A067900B9005C /* MapMarkerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerInfoView.swift; sourceTree = "<group>"; };
 		58AEC8332B9A074000B9005C /* MKMapMarkerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapMarkerInfoView.swift; sourceTree = "<group>"; };
+		58AEC8362B9A1A9D00B9005C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		58B2B8F32A98F745007BFE3F /* RefugeDescriptionView.Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.Title.swift; sourceTree = "<group>"; };
 		58B2B8F62A98FDC6007BFE3F /* RefugeDescriptionView.InformationsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.InformationsTabView.swift; sourceTree = "<group>"; };
 		58B2B8F82A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.AccessTabView.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				58C55C5D29F6DD25008F3A54 /* Assets.xcassets */,
+				58AEC8362B9A1A9D00B9005C /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 58C55C4D29F6DD22008F3A54;
 			packageReferences = (
@@ -707,6 +711,7 @@
 			files = (
 				58C55C6129F6DD25008F3A54 /* Preview Assets.xcassets in Resources */,
 				58C55C5E29F6DD25008F3A54 /* Assets.xcassets in Resources */,
+				58AEC8372B9A1A9D00B9005C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

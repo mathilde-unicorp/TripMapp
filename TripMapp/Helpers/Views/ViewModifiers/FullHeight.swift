@@ -28,9 +28,9 @@ extension View {
 struct FullHeightView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Text("Full height").setFullHeight()
-            Text("Center").setFullHeight(alignment: .center)
-            Text("Bottom").setFullHeight(alignment: .bottom)
+            Text("_example_full_height").setFullHeight()
+            Text("_example_center").setFullHeight(alignment: .center)
+            Text("_example_bottom").setFullHeight(alignment: .bottom)
         }
     }
 }

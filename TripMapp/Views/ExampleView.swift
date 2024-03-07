@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ExampletView: View {
+struct ExampleView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -21,7 +21,7 @@ struct ExampletView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("_example_item_at \(item.timestamp!, formatter: itemFormatter)")
                     } label: {
                         Text(item.timestamp!, formatter: itemFormatter)
                     }
@@ -34,11 +34,11 @@ struct ExampletView: View {
                 }
                 ToolbarItem {
                     Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Label("_example_add_item", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            Text("_example_select_item")
         }
     }
 
@@ -83,7 +83,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ExampletView_Previews: PreviewProvider {
     static var previews: some View {
-        ExampletView()
+        ExampleView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -22,7 +22,7 @@ extension RefugeDescriptionView {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 16.0) {
-                Text("Équipement")
+                Text("equipment_title")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -31,7 +31,7 @@ extension RefugeDescriptionView {
                 AccomodationsView(viewModel: viewModel)
                     .frame(height: 100)
 
-                Text("Informations")
+                Text("informations_title")
                     .font(.title2)
                     .fontWeight(.bold)
 

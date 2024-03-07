@@ -41,7 +41,7 @@ extension RefugeDescriptionView {
                         .frame(height: 24)
                         .foregroundColor(.green)
 
-                    Text("ID: \(placeId.description)")
+                    Text("item_id_description \(placeId.description)")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }
@@ -57,7 +57,7 @@ extension RefugeDescriptionView {
                         UIApplication.shared.open(url)
                     }, label: {
                         Image(systemName: "arrow.up.forward.square")
-                        Text("refuges.info")
+                        Text("source_refuges_info_title")
                     })
                 }
 

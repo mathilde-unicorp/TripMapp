@@ -50,7 +50,7 @@ struct AsyncContentView<Source: LoadableObject,
             loadingView: ProgressView(),
             content: { result in
                 VStack {
-                    Text("result: \(result)")
+                    Text("\(result)")
                 }
             })
     }
