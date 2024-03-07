@@ -11,7 +11,6 @@ import MapKit
 struct MassifsView: View {
 
     @ObservedObject var viewModel: MassifsViewModel
-    
 
     var body: some View {
         NavigationStack {

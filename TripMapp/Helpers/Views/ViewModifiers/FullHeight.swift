@@ -31,8 +31,6 @@ struct FullHeightView_Previews: PreviewProvider {
             Text("Full height").setFullHeight()
             Text("Center").setFullHeight(alignment: .center)
             Text("Bottom").setFullHeight(alignment: .bottom)
-
         }
     }
 }
-

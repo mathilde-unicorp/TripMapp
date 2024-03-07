@@ -58,6 +58,4 @@ class MockAction: ActionableObject {
             self.state = .loaded(Void())
         }
     }
-    
-
 }

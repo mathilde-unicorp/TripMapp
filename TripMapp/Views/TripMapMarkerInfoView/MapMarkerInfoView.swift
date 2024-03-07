@@ -28,7 +28,7 @@ struct MapMarkerInfoView: View {
         }
 //        .frame(height: 38)
         .sheet(item: $openDetailedResult) { item in
-            router.createRefugeDetailView(refugeId: mapItem.id)
+            router.createRefugeDetailView(refugeId: item.id)
         }
     }
 }

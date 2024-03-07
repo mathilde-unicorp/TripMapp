@@ -34,12 +34,12 @@ extension RefugeDescriptionView {
                 Text("Informations")
                     .font(.title2)
                     .fontWeight(.bold)
-                
+
                 Text(viewModel.note)
                     .font(.body)
-                
+
                 Spacer()
-                
+
             }
             .padding()
         }

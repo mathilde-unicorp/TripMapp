@@ -37,13 +37,11 @@ extension RefugeDescriptionView {
                     .font(.title2)
                     .fontWeight(.bold)
 
-
                 coordinatesSection()
 
                 Divider()
 
                 accessSection()
-
 
                 Spacer()
             }
@@ -57,7 +55,7 @@ extension RefugeDescriptionView {
                         .foregroundColor(.blue)
 
                     Text("Coordinates")
-                    
+
                     Spacer()
                 }
                 .font(.headline)

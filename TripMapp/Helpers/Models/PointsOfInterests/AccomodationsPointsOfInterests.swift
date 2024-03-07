@@ -33,11 +33,11 @@ extension AccomodationsPointsOfInterests: PointsOfInterestsCategory {
             return "hotel"
         }
     }
-    
+
     var mkPointOfInterestFilter: MKPointOfInterestFilter {
         return .init(including: mkPointsOfInterestCategory)
     }
-    
+
     var mkPointsOfInterestCategory: [MKPointOfInterestCategory] {
         switch self {
         case .refuge:
@@ -66,7 +66,7 @@ extension AccomodationsPointsOfInterests {
         case .refuge:
             return Image(systemName: "house.fill")
         case .cottage:
-            return Image(systemName:  "bed.double.fill")
+            return Image(systemName: "bed.double.fill")
         case .campground:
             return Image(systemName: "tent.fill")
         case .hotel:

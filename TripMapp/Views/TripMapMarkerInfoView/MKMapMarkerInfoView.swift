@@ -32,7 +32,7 @@ struct MKMapMarkerInfoView: View {
                 getLookAroundScene()
             }
     }
-    
+
     // MARK: - Tools
 
     func getLookAroundScene() {

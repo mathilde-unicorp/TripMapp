@@ -1,0 +1,22 @@
+disabled_rules:
+  - line_length
+identifier_name:
+  allowed_symbols: "_"
+  min_length:
+    warning: 2
+type_name:
+  allowed_symbols: "_"
+nesting:
+  type_level:
+    warning: 3
+    error: 6
+  statement_level:
+    warning: 5
+    error: 10
+
+opt_in_rules:
+    - operator_usage_whitespace
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - conexsante/Resources/Generated

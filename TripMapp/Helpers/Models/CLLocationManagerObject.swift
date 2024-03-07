@@ -18,7 +18,7 @@ class CLLocationManagerObject: NSObject, ObservableObject {
     // -------------------------------------------------------------------------
     // MARK: - Init
     // -------------------------------------------------------------------------
-    
+
     init(locationManager: CLLocationManager = CLLocationManager()) {
         self.locationManager = locationManager
         self.locationAuthorization = locationManager.authorizationStatus
@@ -41,7 +41,6 @@ extension CLLocationManagerObject: CLLocationManagerDelegate {
         case .authorizedWhenInUse:
             // Insert code here of what should happen when Location services are authorized
             locationManager.requestLocation()
-            break
         case .restricted, .denied:
             // Insert code here of what should happen when Location services are NOT authorized
             break

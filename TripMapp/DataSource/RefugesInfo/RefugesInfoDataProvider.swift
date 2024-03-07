@@ -37,7 +37,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
         let endpoint = RefugesInfoEndpoint(path: "point", queryItems: [
             URLQueryItem(name: "id", value: id.toString),
             URLQueryItem(name: "format", value: "geojson"),
-            URLQueryItem(name: "detail", value: "complet"),
+            URLQueryItem(name: "detail", value: "complet")
         ])
 
         let response: RefugesInfo.RefugesPointResponse = try await endpoint.get(
@@ -96,7 +96,7 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "massif", value: massif),
             URLQueryItem(name: "format", value: "geojson"),
             URLQueryItem(name: "type_polygon", value: type.rawValue),
-            URLQueryItem(name: "bbox", value: bbox?.description),
+            URLQueryItem(name: "bbox", value: bbox?.description)
         ])
 
         return try await endpoint.get(session: session)

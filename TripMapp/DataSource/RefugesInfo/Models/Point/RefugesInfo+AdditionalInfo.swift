@@ -44,7 +44,7 @@ extension RefugesInfo {
             case value = "valeur"
         }
     }
-    
+
     struct MattressPlaces: Codable {
         let name: String
         let count: Int?
