@@ -307,7 +307,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Équipement"
+            "value" : "Hébergements"
           }
         }
       }
@@ -424,6 +424,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Équipement"
+          }
+        }
+      }
+    },
+    "hiking_spots.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiking Spots"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En randonnée"
           }
         }
       }
@@ -574,7 +591,8 @@
         }
       }
     },
-    "services_title" : {
+    "services.title" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {

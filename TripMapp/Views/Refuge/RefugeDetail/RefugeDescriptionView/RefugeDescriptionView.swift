@@ -24,6 +24,15 @@ struct RefugeDescriptionView: View {
             }
 
             TabView {
+                // Global Informations
+                ScrollView {
+                    InformationsTabView(viewModel: viewModel)
+                }
+                .tabItem {
+                    Image(systemName: "info.circle")
+                    Text("informations_title")
+                }
+
                 // Access Information
                 ScrollView {
                     AccessTabView(viewModel: viewModel)
@@ -33,14 +42,6 @@ struct RefugeDescriptionView: View {
                     Text("access_title")
                 }
 
-                // Place Information
-                ScrollView {
-                    InformationsTabView(viewModel: viewModel)
-                }
-                .tabItem {
-                    Image(systemName: "info.circle")
-                    Text("informations_title")
-                }
             }
         }
     }

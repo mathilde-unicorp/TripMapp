@@ -28,7 +28,7 @@ extension RefugeDescriptionView {
 
                 CapacityView(viewModel: viewModel)
 
-                AccomodationsView(viewModel: viewModel)
+                EquipmentsView(viewModel: viewModel)
                     .frame(height: 100)
 
                 Text("informations_title")

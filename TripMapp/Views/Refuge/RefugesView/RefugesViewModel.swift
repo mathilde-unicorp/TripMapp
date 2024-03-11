@@ -30,7 +30,7 @@ class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
     private let router: AppRouter
-    private let dataProvider: RefugesInfoDataProviderProtocol
+    private let repository: TripMapItemsRepository
 
     // MARK: - UI Properties
 
@@ -45,81 +45,40 @@ class RefugesViewModel: ObservableObject {
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.dataProvider = dataProvider
+        self.repository = .init(dataProvider: dataProvider)
         self.router = router
     }
 
     // MARK: - Requests
 
-    @MainActor
-    func searchMapItems(serviceType: ServicesPointsOfInterests) {
-        self.searchMapItems(
-            query: serviceType.defaultQuery,
-            filter: serviceType.mkPointOfInterestFilter
-        )
-    }
-
-    @MainActor
-    func searchMapItems(accomodationType: AccomodationsPointsOfInterests) {
-        switch accomodationType {
-        case .refuge:
-            self.searchMapItems(type: .refuge)
-        case .cottage:
-            self.searchMapItems(type: .bedAndBreakfast)
-        case .campground, .hotel:
-            self.searchMapItems(
-                query: accomodationType.defaultQuery,
-                filter: accomodationType.mkPointOfInterestFilter
-            )
-        }
-    }
-
-    @MainActor
-    func searchMapItems(query: String, filter: MKPointOfInterestFilter) {
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = query
-        request.resultTypes = .pointOfInterest
-        request.pointOfInterestFilter = filter
-        request.region = visibleRegion ?? defaultRegion
-
+    @MainActor func searchMapItems(for category: PointsOfInterestsCategory) {
         Task {
-            let search = MKLocalSearch(request: request)
-            let response = try? await search.start()
-
-            self.mapItemsResults = response?.mapItems.map {
-                TripMapMarker.mkMapItem($0)
-            } ?? []
-        }
-    }
-
-    private func searchMapItems(type: RefugesInfo.PointType) {
-        Task {
-            let refuges = try await dataProvider.loadRefuges(
-                type: type,
-                bbox: visibleRegion?.toBbox
+            let markers = try await self.repository.searchMapItems(
+                category: category,
+                region: visibleRegion ?? defaultRegion
             )
 
-            let items = refuges.features.map {
-                TripMapMarker.marker(.init(refuge: $0))
-            }
-
-            self.mapItemsResults = items
+            self.mapItemsResults = markers
         }
     }
 
-    private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
-        let massifs = try await dataProvider.loadMassifs(
-            type: .zone,
-            massif: nil,
-            bbox: visibleRegion?.toBbox
-        )
+    // -------------------------------------------------------------------------
+    // MARK: - Requests
+    // -------------------------------------------------------------------------
 
-        let polygons = massifs.features.map {
-            MapPolygonModel(massif: $0)
-        }
-
-        return polygons
-    }
+//    private func loadMassifsPolygons() async throws -> [MapPolygonModel] {
+//        let massifs = try await dataProvider.loadMassifs(
+//            type: .zone,
+//            massif: nil,
+//            bbox: visibleRegion?.toBbox
+//        )
+//
+//        let polygons = massifs.features.map {
+//            MapPolygonModel(massif: $0)
+//        }
+//
+//        return polygons
+//    }
 
     // -------------------------------------------------------------------------
     // MARK: - Router

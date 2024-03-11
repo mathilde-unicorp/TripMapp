@@ -8,25 +8,25 @@
 import SwiftUI
 
 extension RefugeDescriptionView {
-    struct AccomodationsView: View {
+    struct EquipmentsView: View {
         private let cellSize: CGFloat = 24.0
-        private let expectedAccomodations: [RefugeAccomodation] = RefugeAccomodation.allCases
+        private let expectedEquipments: [RefugeEquipment] = RefugeEquipment.allCases
 
-        private let presentAccomodations: [RefugeAccomodation]
-        private let absentAccomodations: [RefugeAccomodation]
+        private let presentEquipments: [RefugeEquipment]
+        private let absentEquipments: [RefugeEquipment]
 
-        init(accomodations: [RefugeAccomodation]) {
-            self.presentAccomodations = expectedAccomodations.filter { accomodation in
+        init(accomodations: [RefugeEquipment]) {
+            self.presentEquipments = expectedEquipments.filter { accomodation in
                 accomodations.contains(accomodation)
             }
-            self.absentAccomodations = expectedAccomodations.filter { accomodation in
+            self.absentEquipments = expectedEquipments.filter { accomodation in
                 !accomodations.contains(accomodation)
             }
         }
 
         init(viewModel: ViewModel) {
             self.init(
-                accomodations: viewModel.accomodations
+                accomodations: viewModel.equipments
             )
         }
 
@@ -37,19 +37,19 @@ extension RefugeDescriptionView {
         var body: some View {
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(presentAccomodations, id: \.rawValue) { accomodation in
-                        accomodationItem(accomodation, isPresent: true)
+                    ForEach(presentEquipments, id: \.rawValue) { accomodation in
+                        equipmentItem(accomodation, isPresent: true)
                     }
 
-                    ForEach(absentAccomodations, id: \.rawValue) { accomodation in
-                        accomodationItem(accomodation, isPresent: false)
+                    ForEach(absentEquipments, id: \.rawValue) { accomodation in
+                        equipmentItem(accomodation, isPresent: false)
                     }
                 }
             }
         }
 
         @ViewBuilder
-        private func accomodationItem(_ accomodation: RefugeAccomodation, isPresent: Bool) -> some View {
+        private func equipmentItem(_ accomodation: RefugeEquipment, isPresent: Bool) -> some View {
             VStack {
                 Image(systemName: accomodation.imageSystemName)
                     .resizable()
@@ -72,7 +72,7 @@ extension RefugeDescriptionView {
 }
 
 #Preview {
-    RefugeDescriptionView.AccomodationsView(
+    RefugeDescriptionView.EquipmentsView(
         accomodations: [
             //        .fireplace,
             //        .blankets,

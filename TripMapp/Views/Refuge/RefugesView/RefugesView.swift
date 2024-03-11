@@ -45,18 +45,26 @@ struct RefugesView: View {
 
                     VStack(spacing: 12.0) {
                         PointsOfInterestsButtons(
-                            title: "services_title",
+                            title: "hiking_spots.title",
+                            categories: HikingPointsOfInterests.allCases,
+                            onSelect: {
+                                viewModel.searchMapItems(for: $0)
+                            }
+                        )
+
+                        PointsOfInterestsButtons(
+                            title: "services.title",
                             categories: ServicesPointsOfInterests.allCases,
-                            onSelect: { category in
-                                viewModel.searchMapItems(serviceType: category)
+                            onSelect: {
+                                viewModel.searchMapItems(for: $0)
                             }
                         )
 
                         PointsOfInterestsButtons(
                             title: "accommodations.title",
                             categories: AccomodationsPointsOfInterests.allCases,
-                            onSelect: { accomodationType in
-                                viewModel.searchMapItems(accomodationType: accomodationType)
+                            onSelect: {
+                                viewModel.searchMapItems(for: $0)
                             })
                     }
                     .padding()

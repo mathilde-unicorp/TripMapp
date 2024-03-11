@@ -14,49 +14,14 @@ enum AccomodationsPointsOfInterests: String, CaseIterable {
     case cottage
     case campground
     case hotel
-}
-
-// -------------------------------------------------------------------------
-// MARK: - Map
-// -------------------------------------------------------------------------
-
-extension AccomodationsPointsOfInterests: PointsOfInterestsCategory {
-    var defaultQuery: String {
-        switch self {
-        case .refuge:
-            return "refuge"
-        case .cottage:
-            return "gite d'étape"
-        case .campground:
-            return "camping"
-        case .hotel:
-            return "hotel"
-        }
-    }
-
-    var mkPointOfInterestFilter: MKPointOfInterestFilter {
-        return .init(including: mkPointsOfInterestCategory)
-    }
-
-    var mkPointsOfInterestCategory: [MKPointOfInterestCategory] {
-        switch self {
-        case .refuge:
-            return []
-        case .cottage:
-            return []
-        case .campground:
-            return [.campground]
-        case .hotel:
-            return [.hotel]
-        }
-    }
+    case bivouac
 }
 
 // -------------------------------------------------------------------------
 // MARK: - Label
 // -------------------------------------------------------------------------
 
-extension AccomodationsPointsOfInterests {
+extension AccomodationsPointsOfInterests: PointsOfInterestsCategory {
     var name: String {
         return self.rawValue.fromCamelCaseToNaturalWord.capitalized
     }
@@ -68,9 +33,12 @@ extension AccomodationsPointsOfInterests {
         case .cottage:
             return Image(systemName: "bed.double.fill")
         case .campground:
-            return Image(systemName: "tent.fill")
+            return Image(systemName: "tent.2.fill")
         case .hotel:
             return Image(systemName: "building.fill")
+        case .bivouac:
+            return Image(systemName: "tent.fill")
+
         }
     }
 }

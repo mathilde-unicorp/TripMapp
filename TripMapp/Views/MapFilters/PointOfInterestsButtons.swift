@@ -43,7 +43,7 @@ struct PointsOfInterestsButtons<Category: PointsOfInterestsCategory>: View {
 
 #Preview {
     PointsOfInterestsButtons(
-        title: "services_title",
+        title: "services.title",
         categories: ServicesPointsOfInterests.allCases,
         onSelect: { _ in }
     )
