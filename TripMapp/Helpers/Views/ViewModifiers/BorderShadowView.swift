@@ -37,6 +37,6 @@ extension View {
 }
 
 #Preview {
-    Text("Hello, big big big world!\nWelcome home")
+    Text("_example_long_text")
         .borderShadow()
 }

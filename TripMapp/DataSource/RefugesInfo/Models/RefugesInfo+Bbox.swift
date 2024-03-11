@@ -21,7 +21,7 @@ extension RefugesInfo.Bbox: CustomStringConvertible {
     /// BBox description, usable as a query parameter
     var description: String {
         switch self {
-        case .world: 
+        case .world:
             return "world"
         case .coordinates(let west, let south, let east, let north):
             return String(

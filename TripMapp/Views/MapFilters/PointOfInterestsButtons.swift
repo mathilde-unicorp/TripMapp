@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct PointsOfInterestsButtons<Category: PointsOfInterestsCategory>: View {
-    let title: String?
+    let title: LocalizedStringKey?
     let categories: [Category]
     let onSelect: ((Category) -> Void)?
 
@@ -43,7 +43,7 @@ struct PointsOfInterestsButtons<Category: PointsOfInterestsCategory>: View {
 
 #Preview {
     PointsOfInterestsButtons(
-        title: "Services",
+        title: "services_title",
         categories: ServicesPointsOfInterests.allCases,
         onSelect: { _ in }
     )

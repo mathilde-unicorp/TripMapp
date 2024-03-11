@@ -9,7 +9,7 @@ import Foundation
 
 protocol LoadableObject: ObservableObject {
     associatedtype Output
-    
+
     var state: LoadingState<Output> { get }
 
     @MainActor func load()

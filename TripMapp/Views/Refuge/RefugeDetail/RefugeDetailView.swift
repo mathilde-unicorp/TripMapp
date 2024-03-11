@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct RefugeDetailView: View {
 
     // MARK: - Properties

@@ -19,7 +19,7 @@ extension LoadingState: Equatable {
         switch (lhs, rhs) {
         case (.idle, .idle):
             return true
-        case (.loading, .loading): 
+        case (.loading, .loading):
             return true
         default: return false
         }

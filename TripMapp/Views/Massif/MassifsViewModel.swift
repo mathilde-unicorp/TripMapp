@@ -69,6 +69,6 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
     @ViewBuilder
     func createRefugesMapView(for massif: String) -> some View {
-        Text("Massif \(massif)")
+        Text("massif_description \(massif)")
     }
 }

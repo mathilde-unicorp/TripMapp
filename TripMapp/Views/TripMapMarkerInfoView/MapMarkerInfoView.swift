@@ -23,12 +23,12 @@ struct MapMarkerInfoView: View {
             Button(action: {
                 openDetailedResult = mapItem
             }, label: {
-                Text("Open details")
+                Text("open_details_title")
             })
         }
 //        .frame(height: 38)
         .sheet(item: $openDetailedResult) { item in
-            router.createRefugeDetailView(refugeId: mapItem.id)
+            router.createRefugeDetailView(refugeId: item.id)
         }
     }
 }

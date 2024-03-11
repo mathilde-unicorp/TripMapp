@@ -28,9 +28,9 @@ extension View {
 struct FullWidthView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Text("Full width").setFullWidth()
-            Text("Center").setFullWidth(alignment: .center)
-            Text("Trailing").setFullWidth(alignment: .trailing)
+            Text("_example_full_width").setFullWidth()
+            Text("_example_center").setFullWidth(alignment: .center)
+            Text("_example_trailing").setFullWidth(alignment: .trailing)
 
         }
     }

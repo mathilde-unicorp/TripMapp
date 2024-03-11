@@ -36,13 +36,13 @@ struct RefugesMapView: View {
     @MapContentBuilder
     static func build(mapMarkers: [TripMapMarker]) -> some MapContent {
         ForEach(mapMarkers, id: \.self) { marker in
-            build(TripMapMarker: marker)
+            build(mapMarker: marker)
         }
     }
 
     @MapContentBuilder
-    static func build(TripMapMarker: TripMapMarker) -> some MapContent {
-        switch TripMapMarker {
+    static func build(mapMarker: TripMapMarker) -> some MapContent {
+        switch mapMarker {
         case .mkMapItem(let mKMapItem):
             Marker(item: mKMapItem)
         case .marker(let model):

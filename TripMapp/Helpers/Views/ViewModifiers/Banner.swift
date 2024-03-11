@@ -32,7 +32,7 @@ struct Banner_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             VStack {
-                Text("Hello, World !")
+                Text("_example_hello_world")
             }
             .setFullHeight(alignment: .center)
         }

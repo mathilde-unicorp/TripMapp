@@ -11,7 +11,7 @@ import Foundation
 struct RefugesInfo {
 
     // MARK: - Basic Components of requests
-    
+
     struct Feature<P: Codable, G: Codable>: Codable {
         let properties: P
         let geometry: G

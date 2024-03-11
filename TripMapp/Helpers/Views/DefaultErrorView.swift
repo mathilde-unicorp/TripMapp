@@ -14,7 +14,7 @@ struct DefaultErrorView: View {
     var body: some View {
         VStack(spacing: 24.0) {
             VStack {
-                Text("Oops, an error occured.")
+                Text("default_error_description")
                     .font(.title)
 
                 Text("\(error.localizedDescription)")
@@ -23,7 +23,7 @@ struct DefaultErrorView: View {
                     .multilineTextAlignment(.center)
             }
 
-            Button("Retry") { retryHandler() }
+            Button("retry_title") { retryHandler() }
                 .buttonStyle(.borderedProminent)
 
         }.padding()

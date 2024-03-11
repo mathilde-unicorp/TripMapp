@@ -33,7 +33,7 @@ extension RefugesInfo {
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
     }
-    
+
     /// A struct representing a polygon geometry object that conforms to the Codable protocol
     struct MultiPolygonGeometry: Codable {
         let coordinates: [[[[Double]]]]

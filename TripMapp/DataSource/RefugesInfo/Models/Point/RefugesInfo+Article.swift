@@ -8,7 +8,7 @@
 import Foundation
 
 extension RefugesInfo {
-    
+
     struct Article: Codable {
         let demonstrative: String
         let definite: String

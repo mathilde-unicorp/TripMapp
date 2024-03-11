@@ -30,7 +30,7 @@ struct RefugeDescriptionView: View {
                 }
                 .tabItem {
                     Image(systemName: "location.circle")
-                    Text("Access")
+                    Text("access_title")
                 }
 
                 // Place Information
@@ -39,7 +39,7 @@ struct RefugeDescriptionView: View {
                 }
                 .tabItem {
                     Image(systemName: "info.circle")
-                    Text("Information")
+                    Text("informations_title")
                 }
             }
         }

@@ -29,7 +29,7 @@ struct BannerView: View {
     @Binding var isPresented: Bool
     @State var text: String
     @State var bannerType: BannerType
-    
+
     var body: some View {
         if isPresented {
             HStack {
