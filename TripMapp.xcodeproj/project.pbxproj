@@ -10,6 +10,7 @@
 		582087232B72693B00DDC563 /* RefugesMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087222B72693A00DDC563 /* RefugesMapView.swift */; };
 		582087262B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582087252B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift */; };
 		5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5820872B2B7291C500DDC563 /* RefugeDescriptionView.Map.swift */; };
+		582A39A32B9F4D450057FCCD /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A39A22B9F4D450057FCCD /* XCAssets+Generated.swift */; };
 		582C7C3F2B8E312E00745751 /* PointOfInterestsButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582C7C3E2B8E312E00745751 /* PointOfInterestsButtons.swift */; };
 		582E411F2B6295980092AD0E /* Unicorp.DataTypesLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 582E411E2B6295980092AD0E /* Unicorp.DataTypesLibrary */; };
 		584C6EED2B76DB850090D1E0 /* RefugesInfo+MassifsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C6EEC2B76DB850090D1E0 /* RefugesInfo+MassifsResponse.swift */; };
@@ -114,6 +115,7 @@
 		582087222B72693A00DDC563 /* RefugesMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesMapView.swift; sourceTree = "<group>"; };
 		582087252B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+extensions.swift"; sourceTree = "<group>"; };
 		5820872B2B7291C500DDC563 /* RefugeDescriptionView.Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.Map.swift; sourceTree = "<group>"; };
+		582A39A22B9F4D450057FCCD /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		582C7C3E2B8E312E00745751 /* PointOfInterestsButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterestsButtons.swift; sourceTree = "<group>"; };
 		584C6EEC2B76DB850090D1E0 /* RefugesInfo+MassifsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+MassifsResponse.swift"; sourceTree = "<group>"; };
 		584C6EEE2B76DC750090D1E0 /* RefugesInfo+Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Polygon.swift"; sourceTree = "<group>"; };
@@ -231,6 +233,14 @@
 				582087222B72693A00DDC563 /* RefugesMapView.swift */,
 			);
 			path = RefugesMapView;
+			sourceTree = "<group>";
+		};
+		582A39A02B9F48030057FCCD /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				582A39A22B9F4D450057FCCD /* XCAssets+Generated.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		582C7C3D2B8E311A00745751 /* MapFilters */ = {
@@ -581,6 +591,7 @@
 		58FD00662A040771004182B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				582A39A02B9F48030057FCCD /* Generated */,
 				58C55C5D29F6DD25008F3A54 /* Assets.xcassets */,
 				58AEC8362B9A1A9D00B9005C /* Localizable.xcstrings */,
 			);
@@ -604,6 +615,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58C55C7F29F6DD26008F3A54 /* Build configuration list for PBXNativeTarget "TripMapp" */;
 			buildPhases = (
+				582A39A12B9F48490057FCCD /* SwiftGen */,
 				58C55C5229F6DD22008F3A54 /* Sources */,
 				58C55C5329F6DD22008F3A54 /* Frameworks */,
 				58C55C5429F6DD22008F3A54 /* Resources */,
@@ -732,6 +744,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		582A39A12B9F48490057FCCD /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen > /dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		58AEC8352B9A0B7F00B9005C /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -797,6 +828,7 @@
 				58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */,
 				58E4AC322A9E11580099C9E2 /* RefugesViewModel.swift in Sources */,
 				58BDE6062B6D2A97005BFEF3 /* ActionableObject.swift in Sources */,
+				582A39A32B9F4D450057FCCD /* XCAssets+Generated.swift in Sources */,
 				58B2B8F92A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift in Sources */,
 				58AD5A4D2A97BEFE00571534 /* RefugesInfo+Article.swift in Sources */,
 				5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */,

@@ -36,10 +36,10 @@ extension RefugeAccomodation {
         case .blankets: return "accommodations.blankets"// "Couvertures"
         case .fireplace: return "accommodations.fireplace"// "Cheminée"
         case .missingWall: return "accommodations.missing_wall"//  "Manque un mur"
-        case .stove: return "accommodations.stove" //Poêle"
-        case .toilets: return "accommodations.toilets" //"Toilettes"
-        case .water: return "accommodations.water" //"Eau"
-        case .wood: return "accommodations.wood" //"Forêt à proximité"
+        case .stove: return "accommodations.stove"
+        case .toilets: return "accommodations.toilets"
+        case .water: return "accommodations.water"
+        case .wood: return "accommodations.wood"
         }
     }
 
