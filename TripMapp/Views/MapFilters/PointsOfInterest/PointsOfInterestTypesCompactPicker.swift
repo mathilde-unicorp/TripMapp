@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PointsOfInterestTypesOverviewPicker: View {
+struct PointsOfInterestTypesCompactPicker: View {
     @Binding var selectedTypes: Set<POIType>
 
     var defaultTypes: Set<POIType> = .init([.summit, .refuge, .foodstuffProvisions])
@@ -47,5 +47,5 @@ struct PointsOfInterestTypesOverviewPicker: View {
 }
 
 #Preview {
-    PointsOfInterestTypesOverviewPicker(selectedTypes: .constant(.init([.summit, .hotel, .lake])))
+    PointsOfInterestTypesCompactPicker(selectedTypes: .constant(.init([.summit, .hotel, .lake])))
 }

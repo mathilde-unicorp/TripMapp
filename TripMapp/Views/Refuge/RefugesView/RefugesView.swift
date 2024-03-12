@@ -15,7 +15,6 @@ struct RefugesView: View {
     @State private var selectedResult: TripMapMarker?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
-    @State private var isPOITypesSheetVisible: Bool = false
     @State private var selectedPOITypes: Set<PointsOfInterestType> = .init()
 
     var body: some View {
@@ -46,26 +45,9 @@ struct RefugesView: View {
                             .padding([.top, .horizontal])
                     }
 
-                    VStack(alignment: .leading, spacing: 12.0) {
-                        HStack {
-                            Text("points_of_interest.title")
-                                .font(.headline)
-
-                            Spacer()
-
-                            Button("points_of_interest.expand_filters") {
-                                isPOITypesSheetVisible.toggle()
-                            }
-                        }
-                        PointsOfInterestTypesOverviewPicker(selectedTypes: $selectedPOITypes)
-
-                    }
-                    .padding()
+                    PointsOfInterestMapFilterView(selectedTypes: $selectedPOITypes)
                 }
                 .background(.thinMaterial)
-            }
-            .sheet(isPresented: $isPOITypesSheetVisible) {
-                PointsOfInterestTypesPicker(selectedTypes: $selectedPOITypes)
             }
             .onChange(of: selectedPOITypes) { _, selectedTypes in
                 self.viewModel.searchMapItems(of: selectedTypes)
