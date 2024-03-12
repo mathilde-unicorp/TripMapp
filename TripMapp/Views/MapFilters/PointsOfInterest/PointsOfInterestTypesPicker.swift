@@ -10,8 +10,23 @@ import SwiftUI
 struct PointsOfInterestTypesPicker: View {
     @Binding var selectedTypes: Set<PointsOfInterestType>
 
+    /// Local selection avoid the owner of `selectedType` property 
+    /// to be triggered every time the user change its selection on this view
+    @State private var localSelection: Set<PointsOfInterestType>
+
+    /// Single selection is used on the `List` to get notified when the user select an item
     @State private var singleSelection: Int?
+
     @Environment(\.dismiss) private var dismiss
+
+    init(selectedTypes: Binding<Set<PointsOfInterestType>>) {
+        self._selectedTypes = selectedTypes
+        self.localSelection = selectedTypes.wrappedValue
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         NavigationStack {
@@ -29,14 +44,16 @@ struct PointsOfInterestTypesPicker: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("done") {
                         // Done behavior
-                        dismiss()
+                        self.selectedTypes = localSelection
+                        self.dismiss()
                     }
                 }
             }
             .onChange(of: singleSelection) { _, newSelection in
                 if let newSelection = newSelection,
                    let type = PointsOfInterestType(rawValue: newSelection) {
-                    self.selectedTypes.toggle(member: type)
+                    self.localSelection.toggle(member: type)
+                    self.singleSelection = nil
                 }
             }
             .navigationTitle("points_of_interest.title")
@@ -61,7 +78,7 @@ struct PointsOfInterestTypesPicker: View {
 
             Spacer()
 
-            if selectedTypes.contains(type) {
+            if localSelection.contains(type) {
                 Image(systemName: "checkmark")
             }
         }
