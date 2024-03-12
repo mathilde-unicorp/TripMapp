@@ -15,6 +15,8 @@ struct RefugesView: View {
     @State private var selectedResult: TripMapMarker?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
+    @State private var selectedPOITypes: Set<PointsOfInterestType> = .init()
+
     var body: some View {
         NavigationStack {
             Map(
@@ -43,25 +45,12 @@ struct RefugesView: View {
                             .padding([.top, .horizontal])
                     }
 
-                    VStack(spacing: 12.0) {
-                        PointsOfInterestsButtons(
-                            title: "services_title",
-                            categories: ServicesPointsOfInterests.allCases,
-                            onSelect: { category in
-                                viewModel.searchMapItems(serviceType: category)
-                            }
-                        )
-
-                        PointsOfInterestsButtons(
-                            title: "accommodations.title",
-                            categories: AccomodationsPointsOfInterests.allCases,
-                            onSelect: { accomodationType in
-                                viewModel.searchMapItems(accomodationType: accomodationType)
-                            })
-                    }
-                    .padding()
+                    PointsOfInterestMapFilterView(selectedTypes: $selectedPOITypes)
                 }
                 .background(.thinMaterial)
+            }
+            .onChange(of: selectedPOITypes) { _, selectedTypes in
+                self.viewModel.searchMapItems(of: selectedTypes)
             }
             .onChange(of: viewModel.mapItemsResults) {
                 // refocus the map automatically on results

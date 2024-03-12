@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum RefugeAccomodation: Int, CaseIterable {
+enum RefugeEquipment: Int, CaseIterable {
     case missingWall = 0
     case fireplace
     case stove
@@ -18,7 +18,7 @@ enum RefugeAccomodation: Int, CaseIterable {
     case water
 }
 
-extension RefugeAccomodation {
+extension RefugeEquipment {
     var imageSystemName: String {
         switch self {
         case .missingWall: return "squareshape.dotted.split.2x2"

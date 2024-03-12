@@ -19,7 +19,7 @@ extension RefugeDescriptionView {
         let accessDescription: String
         let placeId: RefugeId
         let systemImage: String
-        let accomodations: [RefugeAccomodation]
+        let equipments: [RefugeEquipment]
         let places: Int?
         let mattressPlaces: Int?
     }
@@ -40,13 +40,13 @@ extension RefugeDescriptionView.ViewModel {
             accessDescription: refuge.properties.access.value,
             placeId: refuge.properties.id,
             systemImage: refuge.properties.type.systemImage ?? "",
-            accomodations: buildAccomodations(from: refuge),
+            equipments: buildEquipments(from: refuge),
             places: refuge.properties.capacity.value,
             mattressPlaces: refuge.properties.additionnalInfo.mattressPlaces.value.toInt
         )
     }
 
-    static func buildAccomodations(from refuge: RefugesInfo.RefugePoint) -> [RefugeAccomodation] {
+    static func buildEquipments(from refuge: RefugesInfo.RefugePoint) -> [RefugeEquipment] {
         let additionalInfo = refuge.properties.additionnalInfo
         let hasBlankets = additionalInfo.blankets.value?.toInt?.toBool ?? false
         let missingWall = additionalInfo.missingWall.value?.toInt?.toBool ?? false
@@ -56,17 +56,17 @@ extension RefugeDescriptionView.ViewModel {
         let hasWood = additionalInfo.wood.value?.toInt?.toBool ?? false
         let hasFireplace = additionalInfo.fireplace.value?.toInt?.toBool ?? false
 
-        var accomodations = [RefugeAccomodation]()
+        var equipments = [RefugeEquipment]()
 
-        if hasBlankets { accomodations.append(.blankets) }
-        if missingWall { accomodations.append(.missingWall) }
-        if hasWater { accomodations.append(.water) }
-        if hasToilets { accomodations.append(.toilets) }
-        if hasStove { accomodations.append(.stove) }
-        if hasWood { accomodations.append(.wood) }
-        if hasFireplace { accomodations.append(.fireplace) }
+        if hasBlankets { equipments.append(.blankets) }
+        if missingWall { equipments.append(.missingWall) }
+        if hasWater { equipments.append(.water) }
+        if hasToilets { equipments.append(.toilets) }
+        if hasStove { equipments.append(.stove) }
+        if hasWood { equipments.append(.wood) }
+        if hasFireplace { equipments.append(.fireplace) }
 
-        return accomodations
+        return equipments
     }
 }
 
@@ -108,7 +108,7 @@ Le village est situé sur la D908.
             accessDescription: access,
             placeId: placeId,
             systemImage: "tent",
-            accomodations: [.blankets, .fireplace, .stove],
+            equipments: [.blankets, .fireplace, .stove],
             places: 10,
             mattressPlaces: 6
         )
