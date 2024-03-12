@@ -23,25 +23,44 @@ class TripMapItemsRepository {
     // MARK: - PointsOfInterestsCategory
 
     func searchMapItems(
-        category: PointsOfInterestsCategory,
-        region: MKCoordinateRegion?
+        type: PointsOfInterestType,
+        region: MKCoordinateRegion
     ) async throws -> [TripMapMarker] {
-        if let service = category as? ServicesPointsOfInterests {
-            return try await searchMapItems(serviceType: service, region: region)
-        } else if let hiking = category as? HikingPointsOfInterests {
-            return try await searchMapItems(hikingType: hiking, region: region)
-        } else if let accomodation = category as? AccomodationsPointsOfInterests {
-            return try await searchMapItems(accomodationType: accomodation, region: region)
-        } else {
-            return []
+        let refugesInfoMapItems = try await searchRefugesInfoMapItems(type: type, region: region)
+        let mkLocalSearchMapItems = try await searchMkLocalSearchMapItems(type: type, region: region)
+
+        return refugesInfoMapItems + mkLocalSearchMapItems
+    }
+
+    private func searchRefugesInfoMapItems(
+        type: PointsOfInterestType,
+        region: MKCoordinateRegion
+    ) async throws -> [TripMapMarker] {
+        switch type {
+        case .summit:
+            try await self.refugesInfoSearch(pointType: .summit, region: region)
+        case .waypoint:
+            try await self.refugesInfoSearch(pointType: .crossingPoint, region: region)
+        case .water:
+            try await self.refugesInfoSearch(pointType: .water, region: region)
+        case .lake:
+            try await self.refugesInfoSearch(pointType: .lake, region: region)
+        case .refuge:
+            try await self.refugesInfoSearch(pointType: .refuge, region: region)
+        case .cottage:
+            try await self.refugesInfoSearch(pointType: .bedAndBreakfast, region: region)
+        case .bivouac:
+            try await self.refugesInfoSearch(pointType: .bivouac, region: region)
+        default: []
         }
     }
 
-    private func searchMapItems(
-        serviceType: ServicesPointsOfInterests,
-        region: MKCoordinateRegion?
+    // swiftlint:disable cyclomatic_complexity function_body_length
+    private func searchMkLocalSearchMapItems(
+        type: PointsOfInterestType,
+        region: MKCoordinateRegion
     ) async throws -> [TripMapMarker] {
-        switch serviceType {
+        switch type {
         case .foodstuffProvisions:
             try await self.mkLocalSearch(
                 query: "épicerie", including: [.foodMarket], region: region
@@ -80,40 +99,8 @@ class TripMapItemsRepository {
             )
         case .breakSpot:
             try await self.mkLocalSearch(
-                query: "loisir",
-                including: [.cafe, .brewery, .movieTheater],
-                region: region
+                query: "loisir", including: [.cafe, .brewery, .movieTheater], region: region
             )
-        }
-    }
-
-    private func searchMapItems(
-        hikingType: HikingPointsOfInterests,
-        region: MKCoordinateRegion?
-    ) async throws -> [TripMapMarker] {
-        switch hikingType {
-        case .summit:
-            try await self.refugesInfoSearch(pointType: .summit, region: region)
-        case .waypoints:
-            try await self.refugesInfoSearch(pointType: .crossingPoint, region: region)
-        case .water:
-            try await self.refugesInfoSearch(pointType: .water, region: region)
-        case .lake:
-            try await self.refugesInfoSearch(pointType: .lake, region: region)
-        }
-    }
-
-    private func searchMapItems(
-        accomodationType: AccomodationsPointsOfInterests,
-        region: MKCoordinateRegion?
-    ) async throws -> [TripMapMarker] {
-        switch accomodationType {
-        case .refuge:
-            try await self.refugesInfoSearch(pointType: .refuge, region: region)
-        case .cottage:
-            try await self.refugesInfoSearch(pointType: .bedAndBreakfast, region: region)
-        case .bivouac:
-            try await self.refugesInfoSearch(pointType: .bivouac, region: region)
         case .campground:
             try await self.mkLocalSearch(
                 query: "camping", including: [.campground], region: region
@@ -122,8 +109,10 @@ class TripMapItemsRepository {
             try await self.mkLocalSearch(
                 query: "hotel", including: [.hotel], region: region
             )
+        default: []
         }
     }
+    // swiftlint:enable cyclomatic_complexity function_body_length
 
     // -------------------------------------------------------------------------
     // MARK: - Low level requests
@@ -132,7 +121,7 @@ class TripMapItemsRepository {
     private func mkLocalSearch(
         query: String,
         including categories: [MKPointOfInterestCategory],
-        region: MKCoordinateRegion?
+        region: MKCoordinateRegion
     ) async throws -> [TripMapMarker] {
         return try await mkLocalSearch(
             query: query,
@@ -144,17 +133,14 @@ class TripMapItemsRepository {
     private func mkLocalSearch(
         query: String,
         filter: MKPointOfInterestFilter,
-        region: MKCoordinateRegion?
+        region: MKCoordinateRegion
     ) async throws -> [TripMapMarker] {
         // TODO: I think this one request a dataProvider on its own
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
         request.resultTypes = .pointOfInterest
         request.pointOfInterestFilter = filter
-
-        if let region {
-            request.region = region
-        }
+        request.region = region
 
         let search = MKLocalSearch(request: request)
         let response = try? await search.start()
@@ -168,11 +154,11 @@ class TripMapItemsRepository {
 
     private func refugesInfoSearch(
         pointType: RefugesInfo.PointType,
-        region: MKCoordinateRegion?
+        region: MKCoordinateRegion
     ) async throws -> [TripMapMarker] {
         let refuges = try await dataProvider.loadRefuges(
             type: pointType,
-            bbox: region?.toBbox
+            bbox: region.toBbox
         )
 
         let items = refuges.features.map {

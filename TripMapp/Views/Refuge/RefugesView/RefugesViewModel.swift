@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import MapKit
-import Unicorp_DataTypesLibrary
 
 enum TripMapMarker: Equatable, Hashable {
     case mkMapItem(MKMapItem)
@@ -51,10 +50,26 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - Requests
 
-    @MainActor func searchMapItems(for category: PointsOfInterestsCategory) {
+    @MainActor
+    func searchMapItems(of types: Set<PointsOfInterestType>) {
+        Task {
+            let region = visibleRegion ?? defaultRegion
+            self.mapItemsResults = []
+
+            try await Array(types).concurrentForEach { type in
+                let items = try await self.repository
+                    .searchMapItems(type: type, region: region)
+
+                self.mapItemsResults.append(contentsOf: items)
+            }
+        }
+    }
+
+    @MainActor
+    func searchMapItems(of type: PointsOfInterestType) {
         Task {
             let markers = try await self.repository.searchMapItems(
-                category: category,
+                type: type,
                 region: visibleRegion ?? defaultRegion
             )
 

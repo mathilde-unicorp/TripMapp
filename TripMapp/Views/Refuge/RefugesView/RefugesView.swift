@@ -15,6 +15,9 @@ struct RefugesView: View {
     @State private var selectedResult: TripMapMarker?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
+    @State private var isPOITypesSheetVisible: Bool = false
+    @State private var selectedPOITypes: Set<PointsOfInterestType> = .init()
+
     var body: some View {
         NavigationStack {
             Map(
@@ -43,33 +46,29 @@ struct RefugesView: View {
                             .padding([.top, .horizontal])
                     }
 
-                    VStack(spacing: 12.0) {
-                        PointsOfInterestsButtons(
-                            title: "hiking_spots.title",
-                            categories: HikingPointsOfInterests.allCases,
-                            onSelect: {
-                                viewModel.searchMapItems(for: $0)
-                            }
-                        )
+                    VStack(alignment: .leading, spacing: 12.0) {
+                        HStack {
+                            Text("points_of_interest.title")
+                                .font(.headline)
 
-                        PointsOfInterestsButtons(
-                            title: "services.title",
-                            categories: ServicesPointsOfInterests.allCases,
-                            onSelect: {
-                                viewModel.searchMapItems(for: $0)
-                            }
-                        )
+                            Spacer()
 
-                        PointsOfInterestsButtons(
-                            title: "accommodations.title",
-                            categories: AccomodationsPointsOfInterests.allCases,
-                            onSelect: {
-                                viewModel.searchMapItems(for: $0)
-                            })
+                            Button("points_of_interest.expand_filters") {
+                                isPOITypesSheetVisible.toggle()
+                            }
+                        }
+                        PointsOfInterestTypesOverviewPicker(selectedTypes: $selectedPOITypes)
+
                     }
                     .padding()
                 }
                 .background(.thinMaterial)
+            }
+            .sheet(isPresented: $isPOITypesSheetVisible) {
+                PointsOfInterestTypesPicker(selectedTypes: $selectedPOITypes)
+            }
+            .onChange(of: selectedPOITypes) { _, selectedTypes in
+                self.viewModel.searchMapItems(of: selectedTypes)
             }
             .onChange(of: viewModel.mapItemsResults) {
                 // refocus the map automatically on results
