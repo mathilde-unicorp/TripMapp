@@ -31,6 +31,12 @@ extension RefugesInfo.Bbox: CustomStringConvertible {
     }
 }
 
+extension RefugesInfo.Bbox: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.description == rhs.description
+    }
+}
+
 extension RefugesInfo.Bbox {
     init?(mapCameraPosition: MapCameraPosition) {
         guard let region = mapCameraPosition.region else { return nil }

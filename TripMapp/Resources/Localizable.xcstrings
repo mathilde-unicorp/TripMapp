@@ -942,6 +942,22 @@
         }
       }
     },
+    "refresh_here" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh research here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relancer la recherche ici"
+          }
+        }
+      }
+    },
     "retry_title" : {
       "extractionState" : "manual",
       "localizations" : {

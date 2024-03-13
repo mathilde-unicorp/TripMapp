@@ -17,16 +17,23 @@ struct RefugesMapView: View {
     @Binding var mapCameraPosition: MapCameraPosition
 
     /// Selected refuge annotation on the map
-    @Binding var selectedRefugeId: RefugeId?
+    @Binding var selectedResult: TripMapMarker?
+
+    var scope: Namespace.ID?
 
     // -------------------------------------------------------------------------
     // MARK: - Body
     // -------------------------------------------------------------------------
 
     var body: some View {
-        Map(position: $mapCameraPosition, selection: $selectedRefugeId) {
+        Map(
+            position: $mapCameraPosition,
+            selection: $selectedResult,
+            scope: scope
+        ) {
             RefugesMapView.build(mapMarkers: mapMarkers)
         }
+        .mapStyle(.hybrid(elevation: .realistic))
     }
 
     // -------------------------------------------------------------------------
@@ -77,6 +84,6 @@ struct RefugesMapView: View {
                 span: .init(latitudeDelta: 15.0, longitudeDelta: 15.0)
             ))
         ),
-        selectedRefugeId: .constant(nil)
+        selectedResult: .constant(nil)
     )
 }

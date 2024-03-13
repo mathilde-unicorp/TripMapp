@@ -27,7 +27,6 @@ struct PointsOfInterestMapFilterView: View {
 
             PointsOfInterestTypesCompactPicker(selectedTypes: $selectedTypes)
         }
-        .padding()
         .sheet(isPresented: $isPOITypesSheetVisible) {
             PointsOfInterestTypesPicker(selectedTypes: $selectedTypes)
         }
