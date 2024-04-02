@@ -6,12 +6,19 @@
 //
 
 import Foundation
+import Unicorp_APIBuilder
 
-struct RefugesInfoEndpoint: Endpoint {
-    let scheme: String = "https"
-    let host: String = "refuges.info"
+struct RefugesInfoEndpoint: APIEndpoint {
+    var baseURL: String = "https://refuges.info"
     let defaultPath: String = "/api/"
+
+    var contentType: ContentType = .json
+
+    var headers: RefugesInfoHeader = [:]
+    var body: [String: String]?
 
     var path: String
     var queryItems: [URLQueryItem]
 }
+
+typealias RefugesInfoHeader = [String: String]

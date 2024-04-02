@@ -58,6 +58,7 @@
 		58C55C7029F6DD26008F3A54 /* TripMappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C6F29F6DD26008F3A54 /* TripMappTests.swift */; };
 		58C55C7A29F6DD26008F3A54 /* TripMappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7929F6DD26008F3A54 /* TripMappUITests.swift */; };
 		58C55C7C29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */; };
+		58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 58C779542BA73B260020BF67 /* Unicorp.APIBuilder */; };
 		58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */; };
 		58CFCC992B7A2C0D00D18E4F /* MapPolygonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC982B7A2C0D00D18E4F /* MapPolygonModel.swift */; };
 		58CFCC9B2B7A2C9400D18E4F /* MapMarkerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9A2B7A2C9400D18E4F /* MapMarkerModel.swift */; };
@@ -66,7 +67,6 @@
 		58CFCCA22B7A7BC100D18E4F /* RefugesInfo+Bbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCCA12B7A7BC100D18E4F /* RefugesInfo+Bbox.swift */; };
 		58D338B42B713FF2000D45EC /* RefugesInfoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B32B713FF2000D45EC /* RefugesInfoEndpoint.swift */; };
 		58D338B62B714014000D45EC /* RefugesInfoDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B52B714014000D45EC /* RefugesInfoDataProviderProtocol.swift */; };
-		58D338B82B714027000D45EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D338B72B714027000D45EC /* NetworkError.swift */; };
 		58D46F7F2B73CE180051EA50 /* RefugeEquipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D46F7E2B73CE180051EA50 /* RefugeEquipment.swift */; };
 		58D46F812B73D5530051EA50 /* RefugeDescriptionView.AccomodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D46F802B73D5530051EA50 /* RefugeDescriptionView.AccomodationsView.swift */; };
 		58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugesView.swift */; };
@@ -75,7 +75,6 @@
 		58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695B2A95217800F93FDF /* RefugeCell.swift */; };
 		58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */; };
 		58E4AC322A9E11580099C9E2 /* RefugesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */; };
-		58E8F58C2B63FA4200FAD846 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58B2B63FA4200FAD846 /* Endpoint.swift */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
 		58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
@@ -174,7 +173,6 @@
 		58CFCCA12B7A7BC100D18E4F /* RefugesInfo+Bbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Bbox.swift"; sourceTree = "<group>"; };
 		58D338B32B713FF2000D45EC /* RefugesInfoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoEndpoint.swift; sourceTree = "<group>"; };
 		58D338B52B714014000D45EC /* RefugesInfoDataProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoDataProviderProtocol.swift; sourceTree = "<group>"; };
-		58D338B72B714027000D45EC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		58D46F7E2B73CE180051EA50 /* RefugeEquipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeEquipment.swift; sourceTree = "<group>"; };
 		58D46F802B73D5530051EA50 /* RefugeDescriptionView.AccomodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.AccomodationsView.swift; sourceTree = "<group>"; };
 		58DA69512A951BED00F93FDF /* RefugesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesView.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 		58DA695B2A95217800F93FDF /* RefugeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeCell.swift; sourceTree = "<group>"; };
 		58DA695D2A95266700F93FDF /* RefugesInfo+PointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+PointType.swift"; sourceTree = "<group>"; };
 		58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesViewModel.swift; sourceTree = "<group>"; };
-		58E8F58B2B63FA4200FAD846 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorView.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
@@ -209,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				582E411F2B6295980092AD0E /* Unicorp.DataTypesLibrary in Frameworks */,
+				58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,15 +241,6 @@
 				582A39A22B9F4D450057FCCD /* XCAssets+Generated.swift */,
 			);
 			path = Generated;
-			sourceTree = "<group>";
-		};
-		582A39A72B9F58FD0057FCCD /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				58E8F58B2B63FA4200FAD846 /* Endpoint.swift */,
-				58D338B72B714027000D45EC /* NetworkError.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		582C7C3D2B8E311A00745751 /* MapFilters */ = {
@@ -489,7 +478,6 @@
 		58DA69532A951D3900F93FDF /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				582A39A72B9F58FD0057FCCD /* Network */,
 				58D338B22B713FE5000D45EC /* RefugesInfo */,
 				582A39A82B9F5EB50057FCCD /* TripMapItemsRepository.swift */,
 			);
@@ -639,6 +627,7 @@
 			name = TripMapp;
 			packageProductDependencies = (
 				582E411E2B6295980092AD0E /* Unicorp.DataTypesLibrary */,
+				58C779542BA73B260020BF67 /* Unicorp.APIBuilder */,
 			);
 			productName = TripMapp;
 			productReference = 58C55C5629F6DD22008F3A54 /* TripMapp.app */;
@@ -715,6 +704,7 @@
 			mainGroup = 58C55C4D29F6DD22008F3A54;
 			packageReferences = (
 				582E411D2B6295980092AD0E /* XCRemoteSwiftPackageReference "Unicorp.DataTypesLib" */,
+				58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */,
 			);
 			productRefGroup = 58C55C5729F6DD22008F3A54 /* Products */;
 			projectDirPath = "";
@@ -803,7 +793,6 @@
 				58EFC4942B9765C1009B6A61 /* TripMapMarkerInfoView.swift in Sources */,
 				58AEC8322B9A067900B9005C /* MapMarkerInfoView.swift in Sources */,
 				58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */,
-				58D338B82B714027000D45EC /* NetworkError.swift in Sources */,
 				58EFC4912B976332009B6A61 /* PointsOfInterestType.swift in Sources */,
 				582087262B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift in Sources */,
 				58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */,
@@ -877,7 +866,6 @@
 				58EB4A812A05A2D3001BAE72 /* Banner.swift in Sources */,
 				58B2B9042A99465F007BFE3F /* AppRouter.swift in Sources */,
 				58AD5A532A97C39D00571534 /* MockRefugesInfoDataProvider.swift in Sources */,
-				58E8F58C2B63FA4200FAD846 /* Endpoint.swift in Sources */,
 				58FD00632A04072F004182B6 /* ExampleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1219,6 +1207,14 @@
 				version = 1.0.5;
 			};
 		};
+		58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.APIBuilder.Swift";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1226,6 +1222,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 582E411D2B6295980092AD0E /* XCRemoteSwiftPackageReference "Unicorp.DataTypesLib" */;
 			productName = Unicorp.DataTypesLibrary;
+		};
+		58C779542BA73B260020BF67 /* Unicorp.APIBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */;
+			productName = Unicorp.APIBuilder;
 		};
 /* End XCSwiftPackageProductDependency section */
 

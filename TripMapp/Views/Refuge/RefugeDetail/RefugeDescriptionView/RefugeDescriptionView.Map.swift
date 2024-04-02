@@ -33,7 +33,7 @@ extension RefugeDescriptionView {
             RefugesMapView(
                 mapMarkers: .constant([.marker(marker)]),
                 mapCameraPosition: .constant(.automatic),
-                selectedRefugeId: .constant(nil)
+                selectedResult: .constant(nil)
             )
         }
     }

@@ -25,7 +25,6 @@ class CLLocationManagerObject: NSObject, ObservableObject {
         super.init()
 
         self.locationManager.delegate = self
-
     }
 }
 
