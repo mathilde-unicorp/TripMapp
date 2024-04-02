@@ -1,6 +1,15 @@
 {
-  "originHash" : "ab653153f6b0bd2dbcbab82548b3b2217f02891bb5bd1a8da0d55d858d860fd8",
+  "originHash" : "5c538a3114ccd8b049a1ed8659055c1bb191a118424dfda87fc5bf6637d544b9",
   "pins" : [
+    {
+      "identity" : "unicorp.apibuilder.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mathilde-unicorp/Unicorp.APIBuilder.Swift",
+      "state" : {
+        "revision" : "120de3a256c35bae3ef6f51a23f4d17d330864c2",
+        "version" : "1.0.1"
+      }
+    },
     {
       "identity" : "unicorp.datatypeslib.swift",
       "kind" : "remoteSourceControl",

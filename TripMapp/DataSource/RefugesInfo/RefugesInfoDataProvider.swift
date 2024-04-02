@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Unicorp_APIBuilder
 
 // https://www.refuges.info/api/doc/
 
@@ -40,12 +41,12 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "detail", value: "complet")
         ])
 
-        let response: RefugesInfo.RefugesPointResponse = try await endpoint.get(
-            session: session
-        )
+        let response: RefugesInfo.RefugesPointResponse = try await endpoint
+            .buildURLRequest(requestType: .GET)
+            .send(session: session)
 
         guard let refuge = response.features.first else {
-            throw NetworkError.invalidData
+            throw APIEndpointError.invalidData
         }
 
         return refuge
@@ -67,7 +68,9 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "bbox", value: bbox?.description)
         ])
 
-        return try await endpoint.get(session: session)
+        return try await endpoint
+            .buildURLRequest(requestType: .GET)
+            .send(session: session)
     }
 
     func loadRefuges(
@@ -84,7 +87,9 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "bbox", value: bbox?.description)
         ])
 
-        return try await endpoint.get(session: session)
+        return try await endpoint
+            .buildURLRequest(requestType: .GET)
+            .send(session: session)
     }
 
     func loadMassifs(
@@ -99,6 +104,8 @@ extension RefugesInfoDataProvider: RefugesInfoDataProviderProtocol {
             URLQueryItem(name: "bbox", value: bbox?.description)
         ])
 
-        return try await endpoint.get(session: session)
+        return try await endpoint
+            .buildURLRequest(requestType: .GET)
+            .send(session: session)
     }
 }
