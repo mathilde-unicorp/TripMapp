@@ -30,7 +30,7 @@ extension RefugeDescriptionView {
         // ---------------------------------------------------------------------
 
         var body: some View {
-            RefugesMapView(
+            TripMapView(
                 mapMarkers: .constant([.marker(marker)]),
                 mapCameraPosition: .constant(.automatic),
                 selectedResult: .constant(nil)

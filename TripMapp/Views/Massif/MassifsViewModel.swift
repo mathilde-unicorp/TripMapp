@@ -68,7 +68,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
     // MARK: - Router
 
     @ViewBuilder
-    func createRefugesMapView(for massif: String) -> some View {
+    func createTripMapView(for massif: String) -> some View {
         Text("massif_description \(massif)")
     }
 }

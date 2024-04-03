@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  TripMapView.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 06/02/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct RefugesMapView: View {
+struct TripMapView: View {
 
     /// Annotations to display on the map, representing refuges data
     @Binding var mapMarkers: [TripMapMarker]
@@ -31,39 +31,14 @@ struct RefugesMapView: View {
             selection: $selectedResult,
             scope: scope
         ) {
-            RefugesMapView.build(mapMarkers: mapMarkers)
+            TripMapView.build(mapMarkers: mapMarkers)
         }
         .mapStyle(.hybrid(elevation: .realistic))
-    }
-
-    // -------------------------------------------------------------------------
-    // MARK: - Related View Builders
-    // -------------------------------------------------------------------------
-
-    @MapContentBuilder
-    static func build(mapMarkers: [TripMapMarker]) -> some MapContent {
-        ForEach(mapMarkers, id: \.self) { marker in
-            build(mapMarker: marker)
-        }
-    }
-
-    @MapContentBuilder
-    static func build(mapMarker: TripMapMarker) -> some MapContent {
-        switch mapMarker {
-        case .mkMapItem(let mKMapItem):
-            Marker(item: mKMapItem)
-        case .marker(let model):
-            Marker(
-                model.name,
-                systemImage: model.systemImage,
-                coordinate: model.coordinates
-            )
-        }
     }
 }
 
 #Preview {
-    RefugesMapView(
+    TripMapView(
         mapMarkers: .constant([
             .marker(.init(
                 id: 0,

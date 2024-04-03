@@ -16,26 +16,10 @@ struct MassifsMapView: View {
 
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedTag) {
-            MassifsMapView.buildMapContent(massifs: massifs)
+            TripMapView.build(massifs: massifs)
         }
         .onMapCameraChange(frequency: .onEnd) { mapCamera in
             mapCameraPosition = .region(mapCamera.region)
-        }
-    }
-
-    @MapContentBuilder
-    static func buildMapContent(massifs: [MapPolygonModel]) -> some MapContent {
-        ForEach(massifs, id: \.id) { massif in
-            MapPolygon(coordinates: massif.coordinates)
-                .foregroundStyle(massif.color.opacity(0.5))
-                .stroke(massif.color, lineWidth: 3.0)
-
-            Marker(
-                massif.name,
-                systemImage: "mountain.2",
-                coordinate: massif.coordinates.calculateCentralPoint() ?? .zero
-            )
-            .tint(massif.color)
         }
     }
 }
