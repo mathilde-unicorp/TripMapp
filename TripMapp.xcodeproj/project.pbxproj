@@ -86,7 +86,6 @@
 		58EFC48F2B975E83009B6A61 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EFC48E2B975E83009B6A61 /* String+extensions.swift */; };
 		58EFC4912B976332009B6A61 /* PointsOfInterestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EFC4902B976332009B6A61 /* PointsOfInterestType.swift */; };
 		58EFC4942B9765C1009B6A61 /* TripMapMarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EFC4932B9765C1009B6A61 /* TripMapMarkerInfoView.swift */; };
-		58F485C52BBD920E008673B0 /* Unicorp.GPXReader in Frameworks */ = {isa = PBXBuildFile; productRef = 58F485C42BBD920E008673B0 /* Unicorp.GPXReader */; };
 		58F485C82BBD94CF008673B0 /* PointsOfInterestCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485C72BBD94CF008673B0 /* PointsOfInterestCategory.swift */; };
 		58F485CD2BBD96D0008673B0 /* TripMapView+MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485CC2BBD96D0008673B0 /* TripMapView+MapMarker.swift */; };
 		58F485CF2BBD9767008673B0 /* TripMapView+MapPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485CE2BBD9767008673B0 /* TripMapView+MapPolygon.swift */; };
@@ -94,6 +93,7 @@
 		58F485D42BBDA378008673B0 /* gr70.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 58F485D32BBDA378008673B0 /* gr70.gpx */; };
 		58F485D62BBDA4FF008673B0 /* MapPolylineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485D52BBDA4FF008673B0 /* MapPolylineModel.swift */; };
 		58F485D82BBDA5B9008673B0 /* TripMapView+MapPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485D72BBDA5B9008673B0 /* TripMapView+MapPolyline.swift */; };
+		58F485DB2BBDAB58008673B0 /* Unicorp.GPXFile in Frameworks */ = {isa = PBXBuildFile; productRef = 58F485DA2BBDAB58008673B0 /* Unicorp.GPXFile */; };
 		58FB0AD72BA0BE4A00C649D4 /* PointsOfInterestTypesCompactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB0AD62BA0BE4A00C649D4 /* PointsOfInterestTypesCompactPicker.swift */; };
 		58FB0ADA2BA0C66400C649D4 /* PointsOfInterestMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB0AD92BA0C66400C649D4 /* PointsOfInterestMapFilterView.swift */; };
 		58FD00632A04072F004182B6 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FD00622A04072F004182B6 /* ExampleView.swift */; };
@@ -224,7 +224,7 @@
 			files = (
 				582E411F2B6295980092AD0E /* Unicorp.DataTypesLibrary in Frameworks */,
 				58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */,
-				58F485C52BBD920E008673B0 /* Unicorp.GPXReader in Frameworks */,
+				58F485DB2BBDAB58008673B0 /* Unicorp.GPXFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +654,7 @@
 			packageProductDependencies = (
 				582E411E2B6295980092AD0E /* Unicorp.DataTypesLibrary */,
 				58C779542BA73B260020BF67 /* Unicorp.APIBuilder */,
-				58F485C42BBD920E008673B0 /* Unicorp.GPXReader */,
+				58F485DA2BBDAB58008673B0 /* Unicorp.GPXFile */,
 			);
 			productName = TripMapp;
 			productReference = 58C55C5629F6DD22008F3A54 /* TripMapp.app */;
@@ -732,7 +732,7 @@
 			packageReferences = (
 				582E411D2B6295980092AD0E /* XCRemoteSwiftPackageReference "Unicorp.DataTypesLib" */,
 				58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */,
-				58F485C32BBD920E008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */,
+				58F485D92BBDAB58008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */,
 			);
 			productRefGroup = 58C55C5729F6DD22008F3A54 /* Products */;
 			projectDirPath = "";
@@ -1251,12 +1251,12 @@
 				version = 1.0.1;
 			};
 		};
-		58F485C32BBD920E008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */ = {
+		58F485D92BBDAB58008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.GPXFile.Swift";
 			requirement = {
-				kind = revision;
-				revision = 29442595f9c54f17ae173d1e50613350f0ff6759;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1272,10 +1272,10 @@
 			package = 58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */;
 			productName = Unicorp.APIBuilder;
 		};
-		58F485C42BBD920E008673B0 /* Unicorp.GPXReader */ = {
+		58F485DA2BBDAB58008673B0 /* Unicorp.GPXFile */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 58F485C32BBD920E008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */;
-			productName = Unicorp.GPXReader;
+			package = 58F485D92BBDAB58008673B0 /* XCRemoteSwiftPackageReference "Unicorp.GPXFile" */;
+			productName = Unicorp.GPXFile;
 		};
 /* End XCSwiftPackageProductDependency section */
 

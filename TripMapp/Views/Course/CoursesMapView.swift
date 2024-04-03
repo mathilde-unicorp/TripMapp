@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-import Unicorp_GPXReader
+import Unicorp_GPXFile
 
 struct CoursesMapView: View {
 

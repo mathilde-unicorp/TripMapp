@@ -24,7 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mathilde-unicorp/Unicorp.GPXFile.Swift",
       "state" : {
-        "revision" : "29442595f9c54f17ae173d1e50613350f0ff6759"
+        "revision" : "d422b8fb3a7b148042b6437125d1a9779de0146c",
+        "version" : "0.0.2"
       }
     }
   ],
