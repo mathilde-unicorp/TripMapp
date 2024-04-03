@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 24/04/2023.

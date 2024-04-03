@@ -1,5 +1,5 @@
 {
-  "originHash" : "5c538a3114ccd8b049a1ed8659055c1bb191a118424dfda87fc5bf6637d544b9",
+  "originHash" : "3bba3f9cfe7dc070392560897702c8a06a56d77e650c8e91fa5317a13c0a9399",
   "pins" : [
     {
       "identity" : "unicorp.apibuilder.swift",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "3bad24328d170e476d5a310a95b4740dc9ecede4",
         "version" : "1.0.5"
+      }
+    },
+    {
+      "identity" : "unicorp.gpxfile.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mathilde-unicorp/Unicorp.GPXFile.Swift",
+      "state" : {
+        "revision" : "d422b8fb3a7b148042b6437125d1a9779de0146c",
+        "version" : "0.0.2"
       }
     }
   ],

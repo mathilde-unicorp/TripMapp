@@ -9,29 +9,6 @@ import Foundation
 import MapKit
 import SwiftUI
 
-/// Categories used to group PointsOfInterest Types
-enum PointsOfInterestCategory: Int, CaseIterable {
-    case hiking = 0
-    case service
-    case accommodation
-
-    var title: LocalizedStringKey {
-        switch self {
-        case .hiking: return "hiking_spots.title"
-        case .service: return "services.title"
-        case .accommodation: return "accommodations.title"
-        }
-    }
-
-    var types: [PointsOfInterestType] {
-        return PointsOfInterestType.allCases.filter { $0.category == self }
-    }
-}
-
-extension PointsOfInterestCategory: Identifiable {
-    var id: Int { return rawValue }
-}
-
 typealias POIType = PointsOfInterestType
 
 /// All type of PointsOfInterest that can be search through the app

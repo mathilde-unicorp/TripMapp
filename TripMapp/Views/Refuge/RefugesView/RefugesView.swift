@@ -31,7 +31,7 @@ struct RefugesView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                RefugesMapView(
+                TripMapView(
                     mapMarkers: $viewModel.mapItemsResults,
                     mapCameraPosition: $mapCameraPosition,
                     selectedResult: $selectedResult,
