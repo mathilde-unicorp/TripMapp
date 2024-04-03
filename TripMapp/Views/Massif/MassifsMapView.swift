@@ -16,7 +16,7 @@ struct MassifsMapView: View {
 
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedTag) {
-            TripMapView.build(massifs: massifs)
+            TripMapView.build(polygons: massifs)
         }
         .onMapCameraChange(frequency: .onEnd) { mapCamera in
             mapCameraPosition = .region(mapCamera.region)

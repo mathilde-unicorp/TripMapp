@@ -9,23 +9,11 @@ import Foundation
 import MapKit
 import SwiftUI
 
-struct MapPolygonModel: Identifiable {
+struct MapPolygonModel: Identifiable, Equatable, Hashable {
     let id: Int
     let name: String
     let coordinates: [CLLocationCoordinate2D]
     let color: Color
-}
-
-extension MapPolygonModel: Equatable {
-    static func == (lhs: MapPolygonModel, rhs: MapPolygonModel) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
-extension MapPolygonModel: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 }
 
 extension MapPolygonModel {

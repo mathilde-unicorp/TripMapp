@@ -15,4 +15,5 @@ extension URL {
     static let massifAlpes = URL(string: "https://www.refuges.info/nav/352/zone/Alpes/")!
 
     static let gr66Gpx = Bundle.main.url(forResource: "gr66", withExtension: "gpx")!
+    static let gr70Gpx = Bundle.main.url(forResource: "gr70", withExtension: "gpx")!
 }

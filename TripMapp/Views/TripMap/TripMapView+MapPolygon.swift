@@ -15,30 +15,30 @@ import MapKit
 extension TripMapView {
 
     @MapContentBuilder
-    static func build(massifs: [MapPolygonModel]) -> some MapContent {
-        ForEach(massifs, id: \.id) { massif in
-            build(massif: massif)
+    static func build(polygons: [MapPolygonModel]) -> some MapContent {
+        ForEach(polygons, id: \.id) { polygon in
+            build(polygon: polygon)
         }
     }
 
     @MapContentBuilder
-    static func build(massif: MapPolygonModel) -> some MapContent {
-        MapPolygon(coordinates: massif.coordinates)
-            .foregroundStyle(massif.color.opacity(0.5))
-            .stroke(massif.color, lineWidth: 3.0)
+    static func build(polygon: MapPolygonModel) -> some MapContent {
+        MapPolygon(coordinates: polygon.coordinates)
+            .foregroundStyle(polygon.color.opacity(0.5))
+            .stroke(polygon.color, lineWidth: 3.0)
 
         Marker(
-            massif.name,
+            polygon.name,
             systemImage: "mountain.2",
-            coordinate: massif.coordinates.calculateCentralPoint() ?? .zero
+            coordinate: polygon.coordinates.calculateCentralPoint() ?? .zero
         )
-        .tint(massif.color)
+        .tint(polygon.color)
     }
 }
 
 #Preview {
     Map {
-        TripMapView.build(massifs: [
+        TripMapView.build(polygons: [
             .init(id: 0, name: "Test", coordinates: MockMassifs.massifs.first!.geometry.coordinates2D, color: .green)
         ])
     }

@@ -33,3 +33,10 @@ extension CLLocationCoordinate2D: Equatable {
         && lhs.longitude == rhs.longitude
     }
 }
+
+extension CLLocationCoordinate2D: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(latitude)
+        hasher.combine(longitude)
+    }
+}
