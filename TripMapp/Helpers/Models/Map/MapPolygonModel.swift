@@ -9,20 +9,20 @@ import Foundation
 import MapKit
 import SwiftUI
 
-struct MapPolygonModel: Identifiable, Equatable, Hashable {
-    let id: Int
-    let name: String
-    let coordinates: [CLLocationCoordinate2D]
-    let color: Color
+protocol MapPolygonModel: Identifiable, Equatable, Hashable {
+    var id: UUID { get }
+    var name: String { get set }
+    var coordinates: [CLLocationCoordinate2D] { get set }
+    var color: Color { get set }
 }
 
-extension MapPolygonModel {
-    init(massif: RefugesInfo.MassifPolygon) {
-        self.init(
-            id: massif.properties.id,
-            name: massif.properties.name,
-            coordinates: massif.geometry.coordinates2D,
-            color: UIColor(hex: massif.properties.colorHexa).swiftUiColor
-        )
-    }
-}
+//extension MapPolygonModel {
+//    init(massif: RefugesInfo.MassifPolygon) {
+//        self.init(
+//            id: massif.properties.id,
+//            name: massif.properties.name,
+//            coordinates: massif.geometry.coordinates2D,
+//            color: UIColor(hex: massif.properties.colorHexa).swiftUiColor
+//        )
+//    }
+//}

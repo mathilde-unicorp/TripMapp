@@ -9,9 +9,9 @@ import Foundation
 import MapKit
 import SwiftUI
 
-struct MapPolylineModel: Identifiable, Equatable, Hashable {
-    let id: Int
-    let name: String
-    let coordinates: [CLLocationCoordinate2D]
-    let color: Color
+protocol MapPolylineModel: Identifiable, Equatable, Hashable {
+    var id: UUID { get }
+    var name: String { get set }
+    var coordinates: [CLLocationCoordinate2D] { get set }
+    var color: Color { get set }
 }
