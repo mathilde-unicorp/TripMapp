@@ -8,44 +8,31 @@
 import SwiftUI
 import MapKit
 
-struct MKMapItemMarker: MapMarkerModel {
-    let mkMapItem: MKMapItem
+struct MKMapItemMarker: MapContent {
 
-    var id: Int {
-        return mkMapItem.hash
+    struct ViewModel {
+        let id: UUID = UUID()
+
+        let mkMapItem: MKMapItem
     }
 
-    var name: String {
-        return mkMapItem.name ?? ""
-    }
+    var id: UUID { return viewModel.id }
 
-    var coordinates: CLLocationCoordinate2D {
-        return mkMapItem.placemark.coordinate
-    }
+    let viewModel: ViewModel
 
     // -------------------------------------------------------------------------
-    // MARK: - Init
+    // MARK: - Body
     // -------------------------------------------------------------------------
 
-    init(mkMapItem: MKMapItem) {
-        self.mkMapItem = mkMapItem
-    }
-
-    // -------------------------------------------------------------------------
-    // MARK: - View
-    // -------------------------------------------------------------------------
-
-    @MapContentBuilder
-    func buildMarker() -> some MapContent {
-         Marker(item: mkMapItem)
+    var body: some MapContent {
+        Marker(item: viewModel.mkMapItem)
     }
 }
 
 #Preview {
     Map {
-        MKMapItemMarker(mkMapItem: .init(placemark: .init(
-            coordinate: .cabaneClartan
-        )))
-        .buildMarker()
+        MKMapItemMarker(viewModel: .init(
+            mkMapItem: .init(placemark: .init(coordinate: .cabaneClartan))
+        ))
     }
 }

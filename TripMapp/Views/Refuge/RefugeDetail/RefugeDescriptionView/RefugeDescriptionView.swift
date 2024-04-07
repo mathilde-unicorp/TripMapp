@@ -15,7 +15,7 @@ struct RefugeDescriptionView: View {
     var body: some View {
         VStack {
             ZStack(alignment: .topLeading) {
-                RefugeDescriptionView.Map(viewModel: viewModel)
+                RefugeDescriptionView.AccessMap(marker: viewModel.marker)
                     .frame(height: 300)
 
                 RefugeDescriptionView.Title(viewModel: viewModel)

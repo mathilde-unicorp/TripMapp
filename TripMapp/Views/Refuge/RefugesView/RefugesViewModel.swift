@@ -9,22 +9,6 @@ import Foundation
 import SwiftUI
 import MapKit
 
-enum TripMapMarker: Equatable, Hashable {
-    case mkMapItem(MKMapItem)
-    case marker(MapMarkerModel)
-}
-
-extension TripMapMarker: Identifiable {
-    var id: Int {
-        switch self {
-        case .mkMapItem(let item):
-            return item.hash
-        case .marker(let item):
-            return item.id
-        }
-    }
-}
-
 class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
@@ -33,7 +17,8 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var mapItemsResults: [TripMapMarker] = []
+    @Published var refugesInfoResults: [RefugesInfoMarker.ViewModel] = []
+    @Published var mkMapItemsResults: [MKMapItemMarker.ViewModel] = []
 
     private var defaultRegion: MKCoordinateRegion = .france
     var visibleRegion: MKCoordinateRegion?
@@ -54,26 +39,25 @@ class RefugesViewModel: ObservableObject {
     func searchMapItems(of types: Set<PointsOfInterestType>) {
         Task {
             let region = visibleRegion ?? defaultRegion
-            self.mapItemsResults = []
+            self.refugesInfoResults = []
+            self.mkMapItemsResults = []
 
             try await Array(types).concurrentForEach { type in
                 let items = try await self.repository
                     .searchMapItems(type: type, region: region)
 
-                self.mapItemsResults.append(contentsOf: items)
+                self.refugesInfoResults.append(
+                    contentsOf: items.refugesInfoResults.map {
+                        RefugesInfoMarker.ViewModel(refugeInfoResult: $0)
+                    }
+                )
+
+                self.mkMapItemsResults.append(
+                    contentsOf: items.mkMapItemResults.map {
+                        MKMapItemMarker.ViewModel(mkMapItem: $0)
+                    }
+                )
             }
-        }
-    }
-
-    @MainActor
-    func searchMapItems(of type: PointsOfInterestType) {
-        Task {
-            let markers = try await self.repository.searchMapItems(
-                type: type,
-                region: visibleRegion ?? defaultRegion
-            )
-
-            self.mapItemsResults = markers
         }
     }
 

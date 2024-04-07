@@ -13,7 +13,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
 
     // MARK: - UI Properties
 
-    @Published var state: LoadingState<[MapPolygonModel]> = .idle
+    @Published var state: LoadingState<[RefugesInfoMassifPolygon.ViewModel]> = .idle
     @Published var selectedMassif: Int?
 
     @Published var mapCameraPosition: MapCameraPosition = .region(
@@ -55,7 +55,7 @@ class MassifsViewModel: ObservableObject, LoadableObject {
                 )
 
                 let polygons = massifs.features.map {
-                    MapPolygonModel(massif: $0)
+                    RefugesInfoMassifPolygon.ViewModel(massif: $0)
                 }
 
                 self.state = .loaded(polygons)

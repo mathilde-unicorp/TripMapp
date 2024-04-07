@@ -13,7 +13,7 @@ struct RefugesView: View {
     @ObservedObject var locationManager: CLLocationManagerObject = .init()
 
     @State private var mapPositionHasChanged: Bool = false
-    @State private var selectedResult: TripMapMarker?
+    @State private var selectedResult: UUID?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
     @State private var selectedPOITypes: Set<PointsOfInterestType> = .init()
@@ -31,12 +31,17 @@ struct RefugesView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                TripMapView(
-                    mapMarkers: $viewModel.mapItemsResults,
-                    mapCameraPosition: $mapCameraPosition,
-                    selectedResult: $selectedResult,
+                Map(
+                    position: $mapCameraPosition,
+                    selection: $selectedResult,
                     scope: refugesMap
-                )
+                ) {
+                    SearchPointsOfInterestsLayer(
+                        refugesInfoResults: $viewModel.refugesInfoResults,
+                        mkMapItemsResults: $viewModel.mkMapItemsResults
+                    )
+                }
+                .mapStyle(.hybrid(elevation: .realistic))
                 .mapControls {
                     MapUserLocationButton()
                         .mapControlVisibility(mapUserLocationVisibility)
@@ -44,10 +49,11 @@ struct RefugesView: View {
                     MapScaleView()
                 }
                 .safeAreaInset(edge: .bottom) {
-                    VStack {
+                    VStack(spacing: 16.0) {
                         selectedResultOverview()
                         filtersView()
                     }
+                    .padding()
                     .background(.thinMaterial)
                 }
 
@@ -56,10 +62,10 @@ struct RefugesView: View {
             .onChange(of: selectedPOITypes) { _, selectedTypes in
                 self.searchMapItems(for: selectedTypes)
             }
-            .onChange(of: viewModel.mapItemsResults) {
-                // refocus the map automatically on results
-                // position = .automatic
-            }
+//            .onChange(of: viewModel.mapItemsResults) {
+//                // refocus the map automatically on results
+//                // position = .automatic
+//            }
             .onMapCameraChange { context in
                 let newRegion = context.region
                 if let visibleRegion = self.viewModel.visibleRegion,
@@ -90,16 +96,21 @@ struct RefugesView: View {
     @ViewBuilder
     private func selectedResultOverview() -> some View {
         if let selectedResult = selectedResult {
-            TripMapMarkerInfoView(mapItem: selectedResult)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding([.top, .horizontal])
+            if let refugesInfoMarker = viewModel.refugesInfoResults.first(
+                where: { $0.id == selectedResult }
+            ) {
+                MapMarkerInfoView(mapItem: refugesInfoMarker)
+            } else if let mkMapItemMarker = viewModel.mkMapItemsResults.first(
+                where: { $0.id == selectedResult }
+            ) {
+                MKMapMarkerInfoView(mapItem: mkMapItemMarker.mkMapItem)
+            }
         }
     }
 
     @ViewBuilder
     private func filtersView() -> some View {
         PointsOfInterestMapFilterView(selectedTypes: $selectedPOITypes)
-            .padding()
     }
 
     private func searchMapItems(for types: Set<PointsOfInterestType>) {
@@ -114,8 +125,8 @@ struct RefugesView: View {
 struct RefugesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AppRouter.shared.createRefugesView()
-                .environmentObject(AppRouter.shared) // not the best options for now
+            AppRouter.mock.createRefugesView()
+                .environmentObject(AppRouter.mock) // not the best options for now
         }
     }
 }

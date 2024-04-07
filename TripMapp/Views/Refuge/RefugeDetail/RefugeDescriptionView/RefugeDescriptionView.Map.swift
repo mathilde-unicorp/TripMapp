@@ -9,20 +9,13 @@ import SwiftUI
 import MapKit
 
 extension RefugeDescriptionView {
-    struct Map: View {
-        let marker: MapMarkerModel
+    struct AccessMap: View {
+        let marker: RefugesInfoMarker.ViewModel
 
-        init(marker: MapMarkerModel) {
+        @State private var mapCameraPositon: MapCameraPosition = .automatic
+
+        init(marker: RefugesInfoMarker.ViewModel) {
             self.marker = marker
-        }
-
-        init(viewModel: ViewModel) {
-            self.marker = .init(
-                id: viewModel.placeId,
-                name: "",
-                coordinates: viewModel.coordinate,
-                systemImage: viewModel.systemImage
-            )
         }
 
         // ---------------------------------------------------------------------
@@ -30,15 +23,16 @@ extension RefugeDescriptionView {
         // ---------------------------------------------------------------------
 
         var body: some View {
-            TripMapView(
-                mapMarkers: .constant([.marker(marker)]),
-                mapCameraPosition: .constant(.automatic),
-                selectedResult: .constant(nil)
-            )
+            Map(position: $mapCameraPositon) {
+                RefugesInfoMarker(viewModel: marker)
+            }
+            .mapStyle(.hybrid(elevation: .realistic))
         }
     }
 }
 
 #Preview {
-    RefugeDescriptionView.Map(viewModel: .mock())
+    RefugeDescriptionView.AccessMap(
+        marker: .init(refugeInfoResult: MockRefuges.refuges.first!.toLightPoint)
+    )
 }
