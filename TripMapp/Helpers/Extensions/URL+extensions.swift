@@ -16,4 +16,5 @@ extension URL {
 
     static let gr66Gpx = Bundle.main.url(forResource: "gr66", withExtension: "gpx")!
     static let gr70Gpx = Bundle.main.url(forResource: "gr70", withExtension: "gpx")!
+    static let tourDuLacDesPisesGpx = Bundle.main.url(forResource: "tour-du-lac-des-pises", withExtension: "gpx")!
 }

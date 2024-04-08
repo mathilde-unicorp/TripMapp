@@ -36,10 +36,13 @@ struct RefugesView: View {
                     selection: $selectedResult,
                     scope: refugesMap
                 ) {
-                    SearchPointsOfInterestsLayer(
-                        refugesInfoResults: $viewModel.refugesInfoResults,
-                        mkMapItemsResults: $viewModel.mkMapItemsResults
+                    MarkersLayer(
+                        markers: $viewModel.markers
                     )
+
+                    ForEach(viewModel.courses, id: \.id) {
+                        CourseLayer(viewModel: $0)
+                    }
                 }
                 .mapStyle(.hybrid(elevation: .realistic))
                 .mapControls {
@@ -95,15 +98,13 @@ struct RefugesView: View {
 
     @ViewBuilder
     private func selectedResultOverview() -> some View {
-        if let selectedResult = selectedResult {
-            if let refugesInfoMarker = viewModel.refugesInfoResults.first(
-                where: { $0.id == selectedResult }
-            ) {
-                MapMarkerInfoView(mapItem: refugesInfoMarker)
-            } else if let mkMapItemMarker = viewModel.mkMapItemsResults.first(
-                where: { $0.id == selectedResult }
-            ) {
-                MKMapMarkerInfoView(mapItem: mkMapItemMarker.mkMapItem)
+        if let selectedResult = selectedResult,
+            let marker = viewModel.markers.first(where: { $0.id == selectedResult}) {
+            switch marker.source {
+            case .refugesInfo:
+                MapMarkerInfoView(mapItem: marker)
+            case .mkMap:
+                MKMapMarkerInfoView(mapItem: marker)
             }
         }
     }

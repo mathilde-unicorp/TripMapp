@@ -17,8 +17,9 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var refugesInfoResults: [RefugesInfoMarker.ViewModel] = []
-    @Published var mkMapItemsResults: [MKMapItemMarker.ViewModel] = []
+    @Published var markers: [TripMapMarker.ViewModel] = []
+
+    @Published var courses: [CourseLayer.ViewModel] = []
 
     private var defaultRegion: MKCoordinateRegion = .france
     var visibleRegion: MKCoordinateRegion?
@@ -31,6 +32,12 @@ class RefugesViewModel: ObservableObject {
     ) {
         self.repository = .init(dataProvider: dataProvider)
         self.router = router
+
+        self.courses = [
+            .init(gpxUrl: .gr66Gpx),
+            .init(gpxUrl: .gr70Gpx)
+//            .init(gpxUrl: .tourDuLacDesPisesGpx)
+        ]
     }
 
     // MARK: - Requests
@@ -39,22 +46,22 @@ class RefugesViewModel: ObservableObject {
     func searchMapItems(of types: Set<PointsOfInterestType>) {
         Task {
             let region = visibleRegion ?? defaultRegion
-            self.refugesInfoResults = []
-            self.mkMapItemsResults = []
+
+            self.markers = []
 
             try await Array(types).concurrentForEach { type in
                 let items = try await self.repository
                     .searchMapItems(type: type, region: region)
 
-                self.refugesInfoResults.append(
+                self.markers.append(
                     contentsOf: items.refugesInfoResults.map {
-                        RefugesInfoMarker.ViewModel(refugeInfoResult: $0)
+                        TripMapMarker.ViewModel(refugeInfoResult: $0, type: type)
                     }
                 )
 
-                self.mkMapItemsResults.append(
+                self.markers.append(
                     contentsOf: items.mkMapItemResults.map {
-                        MKMapItemMarker.ViewModel(mkMapItem: $0)
+                        TripMapMarker.ViewModel(mkMapItem: $0, type: type)
                     }
                 )
             }

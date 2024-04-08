@@ -10,11 +10,11 @@ import MapKit
 
 extension RefugeDescriptionView {
     struct AccessMap: View {
-        let marker: RefugesInfoMarker.ViewModel
+        let marker: TripMapMarker.ViewModel
 
         @State private var mapCameraPositon: MapCameraPosition = .automatic
 
-        init(marker: RefugesInfoMarker.ViewModel) {
+        init(marker: TripMapMarker.ViewModel) {
             self.marker = marker
         }
 
@@ -24,7 +24,7 @@ extension RefugeDescriptionView {
 
         var body: some View {
             Map(position: $mapCameraPositon) {
-                RefugesInfoMarker(viewModel: marker)
+                TripMapMarker(viewModel: marker)
             }
             .mapStyle(.hybrid(elevation: .realistic))
         }
@@ -33,6 +33,9 @@ extension RefugeDescriptionView {
 
 #Preview {
     RefugeDescriptionView.AccessMap(
-        marker: .init(refugeInfoResult: MockRefuges.refuges.first!.toLightPoint)
+        marker: .init(
+            refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
+            type: .cottage
+        )
     )
 }

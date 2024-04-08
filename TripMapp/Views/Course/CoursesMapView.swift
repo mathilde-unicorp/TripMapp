@@ -11,20 +11,20 @@ import Unicorp_GPXFile
 
 struct CoursesMapView: View {
 
-    let courses: [GPXCoursePolyline.ViewModel]
+    let courses: [CourseLayer.ViewModel]
 
     @State private var selectedPolyline: Int?
 
     init(gpxURLs: [URL]) {
-        self.courses = gpxURLs.enumerated().compactMap { index, url in
-            GPXCoursePolyline.ViewModel(id: index, gpxURL: url)
+        self.courses = gpxURLs.compactMap { url in
+            CourseLayer.ViewModel(gpxUrl: url)
         }
     }
 
     var body: some View {
         Map(selection: $selectedPolyline) {
             ForEach(courses, id: \.id) {
-                GPXCoursePolyline(viewModel: $0)
+                CourseLayer(viewModel: $0)
             }
         }
         .onChange(of: selectedPolyline) { _, polyline in

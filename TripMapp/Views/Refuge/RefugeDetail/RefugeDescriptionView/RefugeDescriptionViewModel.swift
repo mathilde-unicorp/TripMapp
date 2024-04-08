@@ -14,7 +14,7 @@ extension RefugeDescriptionView {
         let name: String
         let note: String
         let url: URL
-        let marker: RefugesInfoMarker.ViewModel
+        let marker: TripMapMarker.ViewModel
         let coordinate: CLLocationCoordinate2D
         let altitude: Int
         let accessDescription: String
@@ -36,7 +36,7 @@ extension RefugeDescriptionView.ViewModel {
             name: refuge.properties.name,
             note: refuge.properties.note.value,
             url: refuge.properties.link,
-            marker: .init(refugeInfoResult: refuge.toLightPoint),
+            marker: .init(refugeInfoResult: refuge.toLightPoint, type: .refuge), // TODO
             coordinate: refuge.geometry.coordinate2D,
             altitude: refuge.properties.coordinates.altitude,
             accessDescription: refuge.properties.access.value,
