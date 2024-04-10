@@ -8,6 +8,11 @@
 import Foundation
 import MapKit
 
+struct MapItemSearchResults {
+    let refugesInfoResults: [RefugesInfo.LightRefugePoint]
+    let mkMapItemResults: [MKMapItem]
+}
+
 class TripMapItemsRepository {
 
     let dataProvider: RefugesInfoDataProviderProtocol
@@ -20,22 +25,25 @@ class TripMapItemsRepository {
     // MARK: - Requests
     // -------------------------------------------------------------------------
 
-    // MARK: - PointsOfInterestsCategory
+    // MARK: - PointsOfInterestsType
 
     func searchMapItems(
         type: PointsOfInterestType,
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> MapItemSearchResults {
         let refugesInfoMapItems = try await searchRefugesInfoMapItems(type: type, region: region)
         let mkLocalSearchMapItems = try await searchMkLocalSearchMapItems(type: type, region: region)
 
-        return refugesInfoMapItems + mkLocalSearchMapItems
+        return MapItemSearchResults(
+            refugesInfoResults: refugesInfoMapItems,
+            mkMapItemResults: mkLocalSearchMapItems
+        )
     }
 
     private func searchRefugesInfoMapItems(
         type: PointsOfInterestType,
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> [RefugesInfo.LightRefugePoint] {
         switch type {
         case .summit:
             try await self.refugesInfoSearch(pointType: .summit, region: region)
@@ -59,7 +67,7 @@ class TripMapItemsRepository {
     private func searchMkLocalSearchMapItems(
         type: PointsOfInterestType,
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> [MKMapItem] {
         switch type {
         case .foodstuffProvisions:
             try await self.mkLocalSearch(
@@ -122,7 +130,7 @@ class TripMapItemsRepository {
         query: String,
         including categories: [MKPointOfInterestCategory],
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> [MKMapItem] {
         return try await mkLocalSearch(
             query: query,
             filter: .init(including: categories),
@@ -134,7 +142,7 @@ class TripMapItemsRepository {
         query: String,
         filter: MKPointOfInterestFilter,
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> [MKMapItem] {
         // TODO: I think this one request a dataProvider on its own
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
@@ -145,27 +153,19 @@ class TripMapItemsRepository {
         let search = MKLocalSearch(request: request)
         let response = try? await search.start()
 
-        let items = response?.mapItems.map {
-            TripMapMarker.mkMapItem($0)
-        } ?? []
-
-        return items
+        return response?.mapItems ?? []
     }
 
     private func refugesInfoSearch(
         pointType: RefugesInfo.PointType,
         region: MKCoordinateRegion
-    ) async throws -> [TripMapMarker] {
+    ) async throws -> [RefugesInfo.LightRefugePoint] {
         let refuges = try await dataProvider.loadRefuges(
             type: pointType,
             bbox: region.toBbox
         )
 
-        let items = refuges.features.map {
-            TripMapMarker.marker(.init(refuge: $0))
-        }
-
-        return items
+        return refuges.features
     }
 
 }

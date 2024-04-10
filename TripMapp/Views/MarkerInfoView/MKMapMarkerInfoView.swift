@@ -10,7 +10,7 @@ import MapKit
 
 struct MKMapMarkerInfoView: View {
 
-    var mapItem: MKMapItem
+    var mapItem: TripMapMarker.ViewModel
 
     @State private var lookAroundScene: MKLookAroundScene?
 
@@ -19,7 +19,7 @@ struct MKMapMarkerInfoView: View {
             .frame(height: 128)
             .overlay(alignment: .bottomTrailing) {
                 HStack {
-                    Text(mapItem.name ?? "")
+                    Text(mapItem.name)
                 }
                 .font(.caption)
                 .foregroundStyle(.white)
@@ -38,8 +38,10 @@ struct MKMapMarkerInfoView: View {
     func getLookAroundScene() {
         lookAroundScene = nil
 
+        guard case .mkMap(let mkMapItem) = mapItem.source else { return }
+
         Task {
-            let request = MKLookAroundSceneRequest(mapItem: mapItem)
+            let request = MKLookAroundSceneRequest(mapItem: mkMapItem)
             lookAroundScene = try await request.scene
         }
     }
@@ -47,6 +49,7 @@ struct MKMapMarkerInfoView: View {
 
 #Preview {
     MKMapMarkerInfoView(mapItem: .init(
-        placemark: .init(coordinate: .giteDeLaColleStMichel)
+        mkMapItem: .init(placemark: .init(coordinate: .giteDeLaColleStMichel)),
+        type: .cottage
     ))
 }

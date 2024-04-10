@@ -11,34 +11,24 @@ import Unicorp_GPXFile
 
 struct CoursesMapView: View {
 
-    let courses: [MapPolylineModel]
+    let courses: [CourseLayer.ViewModel]
 
     @State private var selectedPolyline: Int?
 
-//
-//    init(gpxURL: URL) {
-//        self.init(gpxURLs: [gpxURL])
-//    }
-//
     init(gpxURLs: [URL]) {
-        self.courses = gpxURLs.enumerated().compactMap { index, url in
-            let parser = GPXParser()
-
-            guard let content = try? parser.parse(gpxFileURL: url) else {
-                return nil
-            }
-
-            let coordinates = content.trackpoints.map { $0.coordinates }
-            return MapPolylineModel(id: index, name: content.name ?? "--", coordinates: coordinates, color: .blue)
+        self.courses = gpxURLs.compactMap { url in
+            CourseLayer.ViewModel(gpxUrl: url)
         }
     }
 
     var body: some View {
         Map(selection: $selectedPolyline) {
-            TripMapView.build(polylines: courses)
+            ForEach(courses, id: \.id) {
+                CourseLayer(viewModel: $0)
+            }
         }
         .onChange(of: selectedPolyline) { _, polyline in
-            print(polyline)
+            print(polyline ?? -1)
         }
     }
 }

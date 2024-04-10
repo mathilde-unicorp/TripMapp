@@ -9,22 +9,6 @@ import Foundation
 import SwiftUI
 import MapKit
 
-enum TripMapMarker: Equatable, Hashable {
-    case mkMapItem(MKMapItem)
-    case marker(MapMarkerModel)
-}
-
-extension TripMapMarker: Identifiable {
-    var id: Int {
-        switch self {
-        case .mkMapItem(let item):
-            return item.hash
-        case .marker(let item):
-            return item.id
-        }
-    }
-}
-
 class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
@@ -33,7 +17,9 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var mapItemsResults: [TripMapMarker] = []
+    @Published var markers: [TripMapMarker.ViewModel] = []
+
+    @Published var courses: [CourseLayer.ViewModel] = []
 
     private var defaultRegion: MKCoordinateRegion = .france
     var visibleRegion: MKCoordinateRegion?
@@ -46,6 +32,12 @@ class RefugesViewModel: ObservableObject {
     ) {
         self.repository = .init(dataProvider: dataProvider)
         self.router = router
+
+        self.courses = [
+            .init(gpxUrl: .gr66Gpx),
+            .init(gpxUrl: .gr70Gpx)
+//            .init(gpxUrl: .tourDuLacDesPisesGpx)
+        ]
     }
 
     // MARK: - Requests
@@ -54,26 +46,25 @@ class RefugesViewModel: ObservableObject {
     func searchMapItems(of types: Set<PointsOfInterestType>) {
         Task {
             let region = visibleRegion ?? defaultRegion
-            self.mapItemsResults = []
+
+            self.markers = []
 
             try await Array(types).concurrentForEach { type in
                 let items = try await self.repository
                     .searchMapItems(type: type, region: region)
 
-                self.mapItemsResults.append(contentsOf: items)
+                self.markers.append(
+                    contentsOf: items.refugesInfoResults.map {
+                        TripMapMarker.ViewModel(refugeInfoResult: $0, type: type)
+                    }
+                )
+
+                self.markers.append(
+                    contentsOf: items.mkMapItemResults.map {
+                        TripMapMarker.ViewModel(mkMapItem: $0, type: type)
+                    }
+                )
             }
-        }
-    }
-
-    @MainActor
-    func searchMapItems(of type: PointsOfInterestType) {
-        Task {
-            let markers = try await self.repository.searchMapItems(
-                type: type,
-                region: visibleRegion ?? defaultRegion
-            )
-
-            self.mapItemsResults = markers
         }
     }
 

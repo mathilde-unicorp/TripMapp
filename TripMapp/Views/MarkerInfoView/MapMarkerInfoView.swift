@@ -9,16 +9,19 @@ import SwiftUI
 
 struct MapMarkerInfoView: View {
 
-    var mapItem: MapMarkerModel
+    var mapItem: TripMapMarker.ViewModel
 
     @EnvironmentObject private var router: AppRouter
 
-    @State private var openDetailedResult: MapMarkerModel?
+    @State private var openDetailedResult: TripMapMarker.ViewModel?
 
     var body: some View {
         VStack(alignment: .leading) {
-            Label(mapItem.name, systemImage: mapItem.systemImage)
-                .font(.headline)
+            Label(
+                mapItem.name,
+                systemImage: mapItem.systemImage
+            )
+            .font(.headline)
 
             Button(action: {
                 openDetailedResult = mapItem
@@ -28,17 +31,19 @@ struct MapMarkerInfoView: View {
         }
 //        .frame(height: 38)
         .sheet(item: $openDetailedResult) { item in
-            router.createRefugeDetailView(refugeId: item.id)
+            if case .refugesInfo(let refugeId) = item.source {
+                router.createRefugeDetailView(refugeId: refugeId)
+            }
         }
     }
 }
 
 #Preview {
-    MapMarkerInfoView(mapItem: .init(
-        id: 0,
-        name: "Gite de la Colle St Michel",
-        coordinates: .giteDeLaColleStMichel,
-        systemImage: "tent")
+    MapMarkerInfoView(
+        mapItem: .init(
+            refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
+            type: .cottage
+        )
     )
     .environmentObject(AppRouter.mock)
 }

@@ -12,11 +12,13 @@ struct MassifsMapView: View {
     @Binding var selectedTag: Int?
     @Binding var mapCameraPosition: MapCameraPosition
 
-    let massifs: [MapPolygonModel]
+    let massifs: [RefugesInfoMassifPolygon.ViewModel]
 
     var body: some View {
         Map(position: $mapCameraPosition, selection: $selectedTag) {
-            TripMapView.build(polygons: massifs)
+            ForEach(massifs, id: \.id) {
+                RefugesInfoMassifPolygon(viewModel: $0)
+            }
         }
         .onMapCameraChange(frequency: .onEnd) { mapCamera in
             mapCameraPosition = .region(mapCamera.region)
@@ -31,6 +33,6 @@ struct MassifsMapView: View {
             .init(center: .france, span: .init(latitudeDelta: 10.0, longitudeDelta: 10.0))
         )),
         massifs: [
-            .init(id: 0, name: "Test", coordinates: MockMassifs.massifs.first!.geometry.coordinates2D, color: .green)
+            .init(massif: MockMassifs.massifs.first!)
         ])
 }
