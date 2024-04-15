@@ -540,6 +540,9 @@
         }
       }
     },
+    "Map" : {
+
+    },
     "massif_description %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -941,6 +944,9 @@
           }
         }
       }
+    },
+    "Projects" : {
+
     },
     "refresh_here" : {
       "localizations" : {
