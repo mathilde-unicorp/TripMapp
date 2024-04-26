@@ -15,43 +15,37 @@ struct TripProjectDetailView: View {
     @State private var showSidebar: Bool = false
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Map {
-
-            }
-            .mapControls {
-                MapUserLocationButton()
-            }
-
+        Map {
+            Marker(coordinate: .cabaneClartan, label: {
+                Label("_example_hello_world", image: "pin")
+            })
+        }
+        .mapControls {
+            MapUserLocationButton()
+        }
+        .overlay(alignment: .topLeading) {
             if !showSidebar {
-                Button("Layers", systemImage: "sidebar.left") {
+                LayersButton {
                     withAnimation { showSidebar = true }
                 }
+                .background(.thickMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 6.0))
+                .shadow(radius: 4)
                 .padding(8.0)
-                .buttonStyle(.borderedProminent)
             } else {
-                List {
-                    Section("Layers") {
-                        Label("Layer 1", systemImage: "arrow.triangle.swap")
-                        Label("Layer 1", systemImage: "arrow.triangle.swap")
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button("", systemImage: "sidebar.left") {
-                            withAnimation { self.showSidebar = false }
-                        }
-                    }
-                }
+                TripProjectLayersView(
+                    project: project,
+                    isPresented: $showSidebar
+                )
                 .frame(width: 300)
             }
         }
         .toolbar {
             ToolbarItem {
                 NavigationLink(destination: {
-                    Text("Edit view")
+                    TripProjectEditView(project: project)
                 }, label: {
-                    Label("Edit", systemImage: "pencil")
+                    Label("edit", systemImage: "pencil")
                 })
             }
         }
@@ -62,6 +56,6 @@ struct TripProjectDetailView: View {
 
 #Preview {
     NavigationStack {
-        TripProjectDetailView(project: .init(name: "Test"))
+        TripProjectDetailView(project: .init(name: "Test", markers: [], traces: [], layers: []))
     }
 }

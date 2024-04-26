@@ -16,12 +16,12 @@ struct HomeView: View {
         TabView {
             HomeMapView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("map", systemImage: "map")
                 }
 
             HomeProjectsView()
-                .tabItem { 
-                    Label("Projects", systemImage: "list.bullet.clipboard")
+                .tabItem {
+                    Label("projects", systemImage: "list.bullet.clipboard")
                 }
         }
 

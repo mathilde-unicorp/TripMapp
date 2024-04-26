@@ -10,4 +10,9 @@ import Foundation
 struct TripProject: Identifiable, Hashable {
     let id: UUID = UUID()
     let name: String
+
+    var markers: [TripMarker] = []
+    var traces: [TripTrace] = []
+
+    var layers: [TripLayer] = []
 }

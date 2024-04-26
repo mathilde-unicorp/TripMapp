@@ -9,8 +9,15 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
+    @State private var showSearchBar: Bool = false
+
     var body: some View {
-        Map {}
+        Map {
+
+        }
+        .overlay(alignment: .bottom) {
+            MapSearchBarSheet()
+        }
     }
 }
 

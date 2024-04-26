@@ -10,10 +10,10 @@ import SwiftUI
 struct HomeProjectsView: View {
 
     @State private var projects = [
-        TripProject(name: "Project 1"),
-        TripProject(name: "Project 2"),
-        TripProject(name: "Project 3"),
-        TripProject(name: "Project 4")
+        TripProject(name: "Project 1", layers: []),
+        TripProject(name: "Project 2", layers: []),
+        TripProject(name: "Project 3", layers: []),
+        TripProject(name: "Project 4", layers: [])
     ]
 
     @State private var selectedProject: TripProject?
@@ -27,12 +27,22 @@ struct HomeProjectsView: View {
             List(projects, selection: $selectedProject) {
                 NavigationLink($0.name, value: $0)
             }
-            .navigationTitle("Projects")
+            .navigationTitle("projects")
+            .toolbar {
+                ToolbarItem {
+                    NavigationLink {
+                        TripProjectCreateView()
+                    } label: {
+                        Label("create", systemImage: "plus")
+                    }
+                }
+            }
         } detail: {
             if let project = selectedProject {
                 TripProjectDetailView(project: project)
             } else {
-                Text("Select a project")
+                Text("project_selection_placeholder")
+
             }
         }
     }
