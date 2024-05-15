@@ -31,6 +31,12 @@
 		585F14822BF4B9110089F7E7 /* TripTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14812BF4B9110089F7E7 /* TripTrace.swift */; };
 		585F14842BF4B9F60089F7E7 /* TripLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14832BF4B9F60089F7E7 /* TripLayer.swift */; };
 		585F14862BF4EB500089F7E7 /* TripProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14852BF4EB500089F7E7 /* TripProjectCreateView.swift */; };
+		585F14882BF4F6180089F7E7 /* TripProject+mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14872BF4F6180089F7E7 /* TripProject+mock.swift */; };
+		585F148B2BF4FC650089F7E7 /* TitledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F148A2BF4FC650089F7E7 /* TitledTextField.swift */; };
+		585F148E2BF4FE170089F7E7 /* ImportedFileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F148D2BF4FE170089F7E7 /* ImportedFileRow.swift */; };
+		585F14902BF5017B0089F7E7 /* ImportFileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F148F2BF5017B0089F7E7 /* ImportFileRow.swift */; };
+		585F14922BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14912BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift */; };
+		585F14952BF50BBC0089F7E7 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14942BF50BBC0089F7E7 /* ImageButton.swift */; };
 		5887DB772BCD8159004241E6 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB762BCD8159004241E6 /* HomeMapView.swift */; };
 		5887DB792BCD8214004241E6 /* HomeProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB782BCD8214004241E6 /* HomeProjectsView.swift */; };
 		5887DB7F2BCD851E004241E6 /* TripProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB7E2BCD851E004241E6 /* TripProject.swift */; };
@@ -156,6 +162,12 @@
 		585F14812BF4B9110089F7E7 /* TripTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTrace.swift; sourceTree = "<group>"; };
 		585F14832BF4B9F60089F7E7 /* TripLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLayer.swift; sourceTree = "<group>"; };
 		585F14852BF4EB500089F7E7 /* TripProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectCreateView.swift; sourceTree = "<group>"; };
+		585F14872BF4F6180089F7E7 /* TripProject+mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripProject+mock.swift"; sourceTree = "<group>"; };
+		585F148A2BF4FC650089F7E7 /* TitledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTextField.swift; sourceTree = "<group>"; };
+		585F148D2BF4FE170089F7E7 /* ImportedFileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedFileRow.swift; sourceTree = "<group>"; };
+		585F148F2BF5017B0089F7E7 /* ImportFileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFileRow.swift; sourceTree = "<group>"; };
+		585F14912BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectAdditionnalInformations.swift; sourceTree = "<group>"; };
+		585F14942BF50BBC0089F7E7 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		5887DB762BCD8159004241E6 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		5887DB782BCD8214004241E6 /* HomeProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectsView.swift; sourceTree = "<group>"; };
 		5887DB7B2BCD84E7004241E6 /* TripProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectDetailView.swift; sourceTree = "<group>"; };
@@ -357,6 +369,33 @@
 			path = TripProjectLayers;
 			sourceTree = "<group>";
 		};
+		585F14892BF4FC420089F7E7 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				585F148A2BF4FC650089F7E7 /* TitledTextField.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		585F148C2BF4FDE30089F7E7 /* TripProjectCreate */ = {
+			isa = PBXGroup;
+			children = (
+				585F14852BF4EB500089F7E7 /* TripProjectCreateView.swift */,
+				585F14912BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift */,
+				585F148D2BF4FE170089F7E7 /* ImportedFileRow.swift */,
+				585F148F2BF5017B0089F7E7 /* ImportFileRow.swift */,
+			);
+			path = TripProjectCreate;
+			sourceTree = "<group>";
+		};
+		585F14932BF50BAC0089F7E7 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				585F14942BF50BBC0089F7E7 /* ImageButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		5887DB712BCD80FE004241E6 /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,10 +429,10 @@
 		5887DB7A2BCD8474004241E6 /* TripProject */ = {
 			isa = PBXGroup;
 			children = (
+				585F148C2BF4FDE30089F7E7 /* TripProjectCreate */,
 				585F147C2BF4A8720089F7E7 /* TripProjectLayers */,
 				5887DB7B2BCD84E7004241E6 /* TripProjectDetailView.swift */,
 				58DEF50F2BDBF2B2007EE569 /* TripProjectEditView.swift */,
-				585F14852BF4EB500089F7E7 /* TripProjectCreateView.swift */,
 			);
 			path = TripProject;
 			sourceTree = "<group>";
@@ -402,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				5887DB7E2BCD851E004241E6 /* TripProject.swift */,
+				585F14872BF4F6180089F7E7 /* TripProject+mock.swift */,
 				585F147F2BF4B89D0089F7E7 /* TripMarker.swift */,
 				585F14812BF4B9110089F7E7 /* TripTrace.swift */,
 				585F14832BF4B9F60089F7E7 /* TripLayer.swift */,
@@ -465,6 +505,8 @@
 		58BDE5FD2B6D29CB005BFEF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				585F14932BF50BAC0089F7E7 /* Button */,
+				585F14892BF4FC420089F7E7 /* Form */,
 				58D9B86E2BC31BED0027D937 /* Map */,
 				58EB4A782A058D6C001BAE72 /* ViewModifiers */,
 				589C733F2B838DCD00747205 /* Async */,
@@ -948,6 +990,7 @@
 				582263172BC57B2C00B22B20 /* TripMapMarker.swift in Sources */,
 				58AD5A4F2A97BF1200571534 /* RefugesInfo+Creator.swift in Sources */,
 				585C05BC2B9770130023B13D /* CLLocationManagerObject.swift in Sources */,
+				585F148E2BF4FE170089F7E7 /* ImportedFileRow.swift in Sources */,
 				5887DB802BCD8654004241E6 /* TripProjectDetailView.swift in Sources */,
 				58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */,
 				584C6EF62B76E6540090D1E0 /* MassifsViewModel.swift in Sources */,
@@ -983,6 +1026,7 @@
 				582A39A92B9F5EB50057FCCD /* TripMapItemsRepository.swift in Sources */,
 				58BDE6062B6D2A97005BFEF3 /* ActionableObject.swift in Sources */,
 				582A39A32B9F4D450057FCCD /* XCAssets+Generated.swift in Sources */,
+				585F14952BF50BBC0089F7E7 /* ImageButton.swift in Sources */,
 				58B2B8F92A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift in Sources */,
 				58AD5A4D2A97BEFE00571534 /* RefugesInfo+Article.swift in Sources */,
 				5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */,
@@ -1000,6 +1044,8 @@
 				585C05C52B9782F50023B13D /* MKCoordinateRegion.swift in Sources */,
 				58EFC48F2B975E83009B6A61 /* String+extensions.swift in Sources */,
 				58C55C5C29F6DD22008F3A54 /* HomeView.swift in Sources */,
+				585F148B2BF4FC650089F7E7 /* TitledTextField.swift in Sources */,
+				585F14902BF5017B0089F7E7 /* ImportFileRow.swift in Sources */,
 				58CFCCA22B7A7BC100D18E4F /* RefugesInfo+Bbox.swift in Sources */,
 				584C6EF42B76E5F40090D1E0 /* MassifsView.swift in Sources */,
 				584C6EED2B76DB850090D1E0 /* RefugesInfo+MassifsResponse.swift in Sources */,
@@ -1007,6 +1053,7 @@
 				585C05BE2B9773840023B13D /* CLAuthorizationStatus+extensions.swift in Sources */,
 				58EB4A852A05A46B001BAE72 /* FullHeight.swift in Sources */,
 				58DEF50E2BDBEAAB007EE569 /* MapSearchBar.swift in Sources */,
+				585F14922BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift in Sources */,
 				58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */,
 				58AD5A422A97BA6D00571534 /* RefugesInfo+LightPoint.swift in Sources */,
 				58C55C6629F6DD25008F3A54 /* TripMapp.xcdatamodeld in Sources */,
@@ -1025,6 +1072,7 @@
 				58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */,
 				585F147B2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift in Sources */,
 				58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */,
+				585F14882BF4F6180089F7E7 /* TripProject+mock.swift in Sources */,
 				58EB4A812A05A2D3001BAE72 /* Banner.swift in Sources */,
 				58B2B9042A99465F007BFE3F /* AppRouter.swift in Sources */,
 				58AD5A532A97C39D00571534 /* MockRefugesInfoDataProvider.swift in Sources */,
