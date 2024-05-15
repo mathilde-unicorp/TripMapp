@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "_example_add_item" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82,6 +85,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toute la largeur"
+          }
+        }
+      }
+    },
+    "_example_gpx_file_name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPX File Name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ficher GPX"
           }
         }
       }
@@ -377,6 +396,22 @@
         }
       }
     },
+    "continue" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer"
+          }
+        }
+      }
+    },
     "coordinates_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -390,6 +425,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coordonnées"
+          }
+        }
+      }
+    },
+    "create" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer"
           }
         }
       }
@@ -427,6 +478,22 @@
         }
       }
     },
+    "edit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier"
+          }
+        }
+      }
+    },
     "equipment_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -457,6 +524,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En randonnée"
+          }
+        }
+      }
+    },
+    "import_external_content" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import external content"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import de fichiers externes"
           }
         }
       }
@@ -523,6 +606,22 @@
         }
       }
     },
+    "layers.button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layers"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couches"
+          }
+        }
+      }
+    },
     "longitude_short_description %lf" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -536,6 +635,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Long: %lf"
+          }
+        }
+      }
+    },
+    "map" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carte"
+          }
+        }
+      }
+    },
+    "map_search_bar.placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search a place, a city, ..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher un lieu, une ville, ..."
           }
         }
       }
@@ -942,6 +1073,102 @@
         }
       }
     },
+    "project_additionnal_informations" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additionnal informations"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informations complémentaires"
+          }
+        }
+      }
+    },
+    "project_name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom du projet"
+          }
+        }
+      }
+    },
+    "project_name_example" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Next Project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre prochain projet"
+          }
+        }
+      }
+    },
+    "project_selection_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez un projet"
+          }
+        }
+      }
+    },
+    "project.new" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau projet"
+          }
+        }
+      }
+    },
+    "projects" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projects"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projets"
+          }
+        }
+      }
+    },
     "refresh_here" : {
       "localizations" : {
         "en" : {
@@ -1021,6 +1248,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "refuges.info"
+          }
+        }
+      }
+    },
+    "start_date" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start date"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date de début"
+          }
+        }
+      }
+    },
+    "start_date_example" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10/04/2025"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10/04/2025"
           }
         }
       }
