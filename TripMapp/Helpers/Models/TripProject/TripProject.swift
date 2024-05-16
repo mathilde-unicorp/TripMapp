@@ -11,6 +11,9 @@ struct TripProject: Identifiable, Hashable {
     let id: UUID = UUID()
     let name: String
 
+    var startDate: Date?
+    var endDate: Date?
+
     var markers: [TripMarker] = []
     var traces: [TripTrace] = []
 

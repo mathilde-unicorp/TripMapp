@@ -14,17 +14,16 @@ struct ImportedFile: Identifiable {
 }
 
 class TripProjectCreateViewModel: ObservableObject {
-
     @Published var name: String = ""
-    
+
     @Published var files: [ImportedFile] = [
         .init(url: URL(string: "local.url")!, name: "File 1"),
         .init(url: URL(string: "local.url")!, name: "File 2")
     ]
-    
+
     @Published var startDate: String = ""
-    
+
     @Published var endDate: String = ""
-    
+
     @Published var notes: String = ""
 }
