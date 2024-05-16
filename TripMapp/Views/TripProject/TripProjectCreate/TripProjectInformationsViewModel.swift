@@ -13,7 +13,7 @@ struct ImportedFile: Identifiable {
     let name: String
 }
 
-class TripProjectCreateViewModel: ObservableObject {
+class TripProjectInformationsViewModel: ObservableObject {
     @Published var name: String = ""
 
     @Published var files: [ImportedFile] = [
@@ -26,4 +26,12 @@ class TripProjectCreateViewModel: ObservableObject {
     @Published var endDate: String = ""
 
     @Published var notes: String = ""
+
+    init(name: String, files: [ImportedFile], startDate: String, endDate: String, notes: String) {
+        self.name = name
+        self.files = files
+        self.startDate = startDate
+        self.endDate = endDate
+        self.notes = notes
+    }
 }

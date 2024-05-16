@@ -10,9 +10,13 @@ import MapKit
 
 struct TripProjectDetailView: View {
 
-    let project: TripProject
-
     @State private var showSidebar: Bool = false
+    @State private var editProject: Bool = false
+    @State var project: TripProject
+
+    init(project: TripProject) {
+        self.project = project
+    }
 
     var body: some View {
         Map {
@@ -22,6 +26,11 @@ struct TripProjectDetailView: View {
         }
         .mapControls {
             MapUserLocationButton()
+        }
+        .overlay(alignment: .bottom) {
+            MapSearchBar()
+                .setFullWidth()
+                .background(.thinMaterial)
         }
         .overlay(alignment: .topLeading) {
             if !showSidebar {
@@ -42,11 +51,12 @@ struct TripProjectDetailView: View {
         }
         .toolbar {
             ToolbarItem {
-                NavigationLink(destination: {
-                    TripProjectEditView(project: project)
-                }, label: {
-                    Label("edit", systemImage: "pencil")
-                })
+                Button("edit") { editProject.toggle() }
+            }
+        }
+        .fullScreenCover(isPresented: $editProject) {
+            NavigationStack {
+                TripProjectInformationsView(project: project)
             }
         }
         .navigationTitle(project.name)
@@ -56,6 +66,8 @@ struct TripProjectDetailView: View {
 
 #Preview {
     NavigationStack {
-        TripProjectDetailView(project: .init(name: "Test", markers: [], traces: [], layers: []))
+        TripProjectDetailView(project:
+            .init(name: "Test", markers: [], traces: [], layers: [])
+        )
     }
 }

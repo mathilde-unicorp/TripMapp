@@ -13,14 +13,24 @@ struct TitledTextField: View {
     @Binding var text: String
 
     var body: some View {
-        HStack {
-            Text(title)
+        GeometryReader { proxy in
+            HStack {
+                Text(title)
+                    .lineLimit(1)
+                    .frame(minWidth: proxy.size.width * 0.3, alignment: .leading)
 
-            TextField(placeholder, text: $text)
+
+                TextField(placeholder, text: $text)
+            }
         }
+
     }
 }
 
 #Preview {
-    TitledTextField(title: "project_name", placeholder: "project_name_example", text: .constant(""))
+    TitledTextField(
+        title: "project",
+        placeholder: "project_name_example",
+        text: .constant("")
+    )
 }

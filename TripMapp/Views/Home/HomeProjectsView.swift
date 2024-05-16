@@ -35,9 +35,9 @@ struct HomeProjectsView: View {
     private func projectsToolbar() -> some ToolbarContent {
         ToolbarItem {
             NavigationLink {
-                TripProjectCreateView()
+                TripProjectDetailView(project: .init(name: "new"))
             } label: {
-                Label("create", systemImage: "plus")
+                Text("project.new")
             }
         }
     }
