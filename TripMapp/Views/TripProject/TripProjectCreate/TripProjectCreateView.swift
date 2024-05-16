@@ -8,54 +8,17 @@
 import SwiftUI
 
 struct TripProjectCreateView: View {
-    var project = TripProject(name: "")
-
     @ObservedObject var viewModel: TripProjectCreateViewModel = .init()
 
     var body: some View {
         GeometryReader { proxy in
             Form {
-                Section {
-                    TitledTextField(
-                        title: "project_name",
-                        placeholder: "project_name_example",
-                        text: $viewModel.name
-                    )
-                } header: {
-                    Image("ProjectImagePlaceholder")
-                        .resizable()
-                        .scaledToFill()
-                        .listRowInsets(EdgeInsets(top: 8, leading: -24, bottom: 8, trailing: -24))
-                        .frame(minHeight: 200.0, idealHeight: proxy.size.height * 0.3)
-                        .clipped()
-                        .padding(.bottom)
-                        .overlay(alignment: .bottomTrailing) {
-                            ImageButton(systemImage: "photo.fill") {
-                            }
-                            .shadow(radius: 10)
-                            .padding(.trailing)
-                            .padding(.bottom, 32.0)
-                        }
-                }
+                TripProjectNameAndImageSection(
+                    name: $viewModel.name,
+                    imageHeight: proxy.size.height * 0.3
+                )
 
-                Section("import_external_content") {
-                    ForEach(viewModel.files) { file in
-                        ImportedFileRow(name: file.name)
-                            .onDelete {
-                                viewModel.files.removeAll { $0.id == file.id }
-                            }
-                    }
-
-                    ImportFileRow {
-                        print("Import a file action")
-                        withAnimation {
-                            viewModel.files.append(.init(
-                                url: URL(string: "local.url")!,
-                                name: "New file \(Int.random(in: 0 ... 10))")
-                            )
-                        }
-                    }
-                }
+                TripProjectImportFileSection(files: $viewModel.files)
 
                 TripProjectAdditionnalInformations(
                     startDate: $viewModel.startDate,
