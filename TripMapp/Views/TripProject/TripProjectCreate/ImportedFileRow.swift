@@ -62,7 +62,7 @@ struct ImportedFileRow: View {
     List {
         ImportedFileRow(name: "File 1", description: "GPX file from device")
             .onDelete { print("delete") }
-        
+
         ImportedFileRow(name: "File 2")
     }
 }
