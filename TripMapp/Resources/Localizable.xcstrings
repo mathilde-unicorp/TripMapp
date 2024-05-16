@@ -90,6 +90,7 @@
       }
     },
     "_example_gpx_file_name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -379,6 +380,12 @@
         }
       }
     },
+    "add_a_file" : {
+
+    },
+    "add_a_file_description" : {
+
+    },
     "altitude_description %lldm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -493,6 +500,12 @@
           }
         }
       }
+    },
+    "end_date" : {
+
+    },
+    "end_date_example" : {
+
     },
     "equipment_title" : {
       "extractionState" : "manual",
@@ -703,6 +716,12 @@
           }
         }
       }
+    },
+    "notes" : {
+
+    },
+    "notes_placeholder" : {
+
     },
     "open_details_title" : {
       "extractionState" : "manual",

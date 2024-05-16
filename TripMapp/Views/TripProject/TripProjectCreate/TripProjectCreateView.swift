@@ -7,27 +7,10 @@
 
 import SwiftUI
 
-struct ImportedFile: Identifiable {
-    let id = UUID()
-    let url: URL
-    let name: String
-}
-
-class CreateProjectViewModel: ObservableObject {
-    @Published var name: String = ""
-    @Published var files: [ImportedFile] = [
-        .init(url: URL(string: "local.url")!, name: "File 1"),
-        .init(url: URL(string: "local.url")!, name: "File 2")
-    ]
-    @Published var startDate: String = ""
-    @Published var endDate: String = ""
-    @Published var notes: String = ""
-}
-
 struct TripProjectCreateView: View {
     var project = TripProject(name: "")
 
-    @ObservedObject var viewModel: CreateProjectViewModel = .init()
+    @ObservedObject var viewModel: TripProjectCreateViewModel = .init()
 
     var body: some View {
         GeometryReader { proxy in
@@ -58,9 +41,9 @@ struct TripProjectCreateView: View {
                 Section("import_external_content") {
                     ForEach(viewModel.files) { file in
                         ImportedFileRow(name: file.name)
-                    }
-                    .onDelete { elements in
-                        elements.forEach { viewModel.files.remove(at: $0) }
+                            .onDelete {
+                                viewModel.files.removeAll { $0.id == file.id }
+                            }
                     }
 
                     ImportFileRow {
@@ -68,7 +51,7 @@ struct TripProjectCreateView: View {
                         withAnimation {
                             viewModel.files.append(.init(
                                 url: URL(string: "local.url")!,
-                                name: "New file")
+                                name: "New file \(Int.random(in: 0 ... 10))")
                             )
                         }
                     }

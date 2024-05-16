@@ -97,6 +97,7 @@
 		58DEF50B2BDBE5A2007EE569 /* TripProjectLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DEF50A2BDBE5A2007EE569 /* TripProjectLayers.swift */; };
 		58DEF50E2BDBEAAB007EE569 /* MapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DEF50D2BDBEAAB007EE569 /* MapSearchBar.swift */; };
 		58DEF5102BDBF2B2007EE569 /* TripProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DEF50F2BDBF2B2007EE569 /* TripProjectEditView.swift */; };
+		58E1B9792BF64B4100192C92 /* TripProjectCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E1B9782BF64B4100192C92 /* TripProjectCreateViewModel.swift */; };
 		58E4AC322A9E11580099C9E2 /* RefugesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */; };
 		58E7D9072BBC5A96005350F2 /* gr66.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 58E7D9062BBC5A96005350F2 /* gr66.gpx */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
@@ -230,6 +231,7 @@
 		58DEF50A2BDBE5A2007EE569 /* TripProjectLayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectLayers.swift; sourceTree = "<group>"; };
 		58DEF50D2BDBEAAB007EE569 /* MapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBar.swift; sourceTree = "<group>"; };
 		58DEF50F2BDBF2B2007EE569 /* TripProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectEditView.swift; sourceTree = "<group>"; };
+		58E1B9782BF64B4100192C92 /* TripProjectCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectCreateViewModel.swift; sourceTree = "<group>"; };
 		58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesViewModel.swift; sourceTree = "<group>"; };
 		58E7D9062BBC5A96005350F2 /* gr66.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gr66.gpx; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				585F14852BF4EB500089F7E7 /* TripProjectCreateView.swift */,
+				58E1B9782BF64B4100192C92 /* TripProjectCreateViewModel.swift */,
 				585F14912BF505F30089F7E7 /* TripProjectAdditionnalInformations.swift */,
 				585F148D2BF4FE170089F7E7 /* ImportedFileRow.swift */,
 				585F148F2BF5017B0089F7E7 /* ImportFileRow.swift */,
@@ -1017,6 +1020,7 @@
 				58B2B9062A995440007BFE3F /* RefugeDetailViewModel.swift in Sources */,
 				589C73472B838F5B00747205 /* BorderShadowView.swift in Sources */,
 				58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */,
+				58E1B9792BF64B4100192C92 /* TripProjectCreateViewModel.swift in Sources */,
 				589AF39D2B75215F00B6669D /* RefugeDescriptionView.CapacityView.swift in Sources */,
 				58FB0AD72BA0BE4A00C649D4 /* PointsOfInterestTypesCompactPicker.swift in Sources */,
 				58DA69582A951F4100F93FDF /* RefugesInfo+Geometry.swift in Sources */,

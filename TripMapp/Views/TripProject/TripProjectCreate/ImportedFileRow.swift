@@ -22,7 +22,7 @@ struct ImportedFileRow: View {
                 .padding(8.0)
                 .background(.blue)
                 .clipShape(Circle())
-                .foregroundStyle(.background)
+                .foregroundStyle(.white)
 
             VStack(alignment: .leading) {
                 Text(name)
@@ -36,11 +36,33 @@ struct ImportedFileRow: View {
             }
         }
     }
+
+    @ViewBuilder
+    func onDelete(action: @escaping () -> Void) -> some View {
+        HStack {
+            self
+
+            Spacer()
+
+            Button {
+                withAnimation { action() }
+            } label: {
+                Image(systemName: "minus")
+                    .padding(8.0)
+                    .background(.red)
+                    .clipShape(Circle())
+                    .foregroundStyle(.white)
+            }
+            .buttonStyle(PlainButtonStyle())
+        }
+    }
 }
 
 #Preview {
     List {
         ImportedFileRow(name: "File 1", description: "GPX file from device")
+            .onDelete { print("delete") }
+        
         ImportedFileRow(name: "File 2")
     }
 }
