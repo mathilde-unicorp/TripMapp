@@ -43,10 +43,9 @@ struct TripProjectInformationsView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("save") {
                     do {
-                        let formatter = DateFormatter()
                         project.name = viewModel.name
-                        project.startDate = formatter.date(from: viewModel.startDate)
-                        project.endDate = formatter.date(from: viewModel.endDate)
+                        project.startDate = viewModel.startDate
+                        project.endDate = viewModel.endDate
                         project.notes = viewModel.notes
 
                         try viewContext.save()

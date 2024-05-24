@@ -535,6 +535,7 @@
       }
     },
     "end_date_example" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1369,6 +1370,7 @@
       }
     },
     "start_date_example" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

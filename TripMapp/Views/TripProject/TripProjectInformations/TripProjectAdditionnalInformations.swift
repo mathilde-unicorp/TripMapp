@@ -8,22 +8,40 @@
 import SwiftUI
 
 struct TripProjectAdditionnalInformations: View {
-    @Binding var startDate: String
-    @Binding var endDate: String
+    @Binding var startDate: Date
+    @Binding var endDate: Date
     @Binding var notes: String
+
+    var endDateRange: ClosedRange<Date> {
+        return startDate ... Date.distantFuture
+    }
 
     var body: some View {
         Section("project_additionnal_informations") {
             FormField("start_date") {
-                TextField("start_date_example", text: $startDate)
+                DatePicker(
+                    "",
+                     selection: $startDate,
+                     displayedComponents: [.date]
+                )
             }
 
             FormField("end_date") {
-                TextField("end_date_example", text: $endDate)
+                DatePicker(
+                    "",
+                     selection: $endDate,
+                     in: endDateRange,
+                     displayedComponents: [.date]
+                )
             }
 
             FormField("notes", axis: .vertical) {
                 TextField("notes_placeholder", text: $notes, axis: .vertical)
+            }
+        }
+        .onChange(of: startDate) {
+            if startDate.isAfter(endDate) {
+                endDate = startDate.adding(days: 1)
             }
         }
     }
@@ -32,8 +50,8 @@ struct TripProjectAdditionnalInformations: View {
 #Preview {
     List {
         TripProjectAdditionnalInformations(
-            startDate: .constant(""),
-            endDate: .constant(""),
+            startDate: .constant(.now),
+            endDate: .constant(.now.adding(days: 7)),
             notes: .constant("")
         )
     }

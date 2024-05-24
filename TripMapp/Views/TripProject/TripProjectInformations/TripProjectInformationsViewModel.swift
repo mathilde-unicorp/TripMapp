@@ -21,17 +21,17 @@ class TripProjectInformationsViewModel: ObservableObject {
         .init(url: URL(string: "local.url")!, name: "File 2")
     ]
 
-    @Published var startDate: String = ""
+    @Published var startDate: Date
 
-    @Published var endDate: String = ""
+    @Published var endDate: Date
 
     @Published var notes: String = ""
 
     init(project: TripProjectEntity) {
         self.name = project.name ?? ""
         self.files = []
-        self.startDate = project.startDate?.formatted() ?? ""
-        self.endDate = project.endDate?.formatted() ?? ""
+        self.startDate = project.startDate ?? .now
+        self.endDate = project.endDate ?? .now.adding(days: 7)
         self.notes = project.notes ?? ""
     }
 }
