@@ -19,13 +19,7 @@ struct TripProjectInformationsView: View {
     init(project: TripProjectEntity) {
         self.project = project
 
-        self.viewModel = .init(
-            name: project.name ?? "",
-            files: [],
-            startDate: project.startDate?.formatted() ?? "",
-            endDate: project.endDate?.formatted() ?? "",
-            notes: project.notes ?? ""
-        )
+        self.viewModel = .init(project: project)
     }
 
     var body: some View {

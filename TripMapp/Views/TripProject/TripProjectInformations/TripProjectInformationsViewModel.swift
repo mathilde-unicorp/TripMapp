@@ -27,11 +27,11 @@ class TripProjectInformationsViewModel: ObservableObject {
 
     @Published var notes: String = ""
 
-    init(name: String, files: [ImportedFile], startDate: String, endDate: String, notes: String) {
-        self.name = name
-        self.files = files
-        self.startDate = startDate
-        self.endDate = endDate
-        self.notes = notes
+    init(project: TripProjectEntity) {
+        self.name = project.name ?? ""
+        self.files = []
+        self.startDate = project.startDate?.formatted() ?? ""
+        self.endDate = project.endDate?.formatted() ?? ""
+        self.notes = project.notes ?? ""
     }
 }

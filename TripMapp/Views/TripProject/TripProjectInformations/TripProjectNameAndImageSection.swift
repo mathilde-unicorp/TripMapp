@@ -14,11 +14,9 @@ struct TripProjectNameAndImageSection: View {
 
     var body: some View {
         Section {
-            TitledTextField(
-                title: "project_name",
-                placeholder: "project_name_example",
-                text: $name
-            )
+            FormField("project_name") {
+                TextField("project_name_example", text: $name)
+            }
         } header: {
             Image("ProjectImagePlaceholder")
                 .resizable()

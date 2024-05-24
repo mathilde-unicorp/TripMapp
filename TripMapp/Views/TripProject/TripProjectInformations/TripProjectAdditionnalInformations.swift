@@ -14,31 +14,27 @@ struct TripProjectAdditionnalInformations: View {
 
     var body: some View {
         Section("project_additionnal_informations") {
-            TitledTextField(
-                title: "start_date",
-                placeholder: "start_date_example",
-                text: $startDate
-            )
+            FormField("start_date") {
+                TextField("start_date_example", text: $startDate)
+            }
 
-            TitledTextField(
-                title: "end_date",
-                placeholder: "end_date_example",
-                text: $endDate
-            )
+            FormField("end_date") {
+                TextField("end_date_example", text: $endDate)
+            }
 
-            TitledTextField(
-                title: "notes",
-                placeholder: "notes_placeholder",
-                text: $notes
-            )
+            FormField("notes", axis: .vertical) {
+                TextField("notes_placeholder", text: $notes, axis: .vertical)
+            }
         }
     }
 }
 
 #Preview {
-    TripProjectAdditionnalInformations(
-        startDate: .constant(""),
-        endDate: .constant(""),
-        notes: .constant("")
-    )
+    List {
+        TripProjectAdditionnalInformations(
+            startDate: .constant(""),
+            endDate: .constant(""),
+            notes: .constant("")
+        )
+    }
 }
