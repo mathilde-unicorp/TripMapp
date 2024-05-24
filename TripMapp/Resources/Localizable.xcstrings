@@ -89,22 +89,6 @@
         }
       }
     },
-    "_example_gpx_file_name" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPX File Name"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ficher GPX"
-          }
-        }
-      }
-    },
     "_example_hello_world" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -379,6 +363,38 @@
         }
       }
     },
+    "add_a_file" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a file"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un fichier"
+          }
+        }
+      }
+    },
+    "add_a_file_description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import a GPX file, a Fit file (Garmin), ..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer un fichier GPX, un Fit File (Garmin), ..."
+          }
+        }
+      }
+    },
     "altitude_description %lldm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -396,7 +412,11 @@
         }
       }
     },
+    "cancel" : {
+
+    },
     "continue" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -430,6 +450,7 @@
       }
     },
     "create" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -462,6 +483,9 @@
         }
       }
     },
+    "delete" : {
+
+    },
     "done" : {
       "localizations" : {
         "en" : {
@@ -490,6 +514,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier"
+          }
+        }
+      }
+    },
+    "end_date" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End Date"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date de fin"
+          }
+        }
+      }
+    },
+    "end_date_example" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10/05/2025"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10/05/2025"
           }
         }
       }
@@ -700,6 +756,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Places sur matelas"
+          }
+        }
+      }
+    },
+    "notes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        }
+      }
+    },
+    "notes_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add some general informations here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter des informations"
           }
         }
       }
@@ -1073,6 +1161,9 @@
         }
       }
     },
+    "project" : {
+
+    },
     "project_additionnal_informations" : {
       "localizations" : {
         "en" : {
@@ -1136,6 +1227,9 @@
           }
         }
       }
+    },
+    "project.edit" : {
+
     },
     "project.new" : {
       "localizations" : {
@@ -1201,6 +1295,9 @@
           }
         }
       }
+    },
+    "save" : {
+
     },
     "services.title" : {
       "extractionState" : "manual",

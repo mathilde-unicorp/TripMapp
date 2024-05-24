@@ -9,7 +9,12 @@ import Foundation
 
 struct TripProject: Identifiable, Hashable {
     let id: UUID = UUID()
-    let name: String
+    var name: String
+
+    var startDate: Date?
+    var endDate: Date?
+
+    var notes: String = ""
 
     var markers: [TripMarker] = []
     var traces: [TripTrace] = []
