@@ -12,11 +12,8 @@ struct TripProjectDetailView: View {
 
     @State private var showSidebar: Bool = false
     @State private var editProject: Bool = false
-    @State var project: TripProject
 
-    init(project: TripProject) {
-        self.project = project
-    }
+    @ObservedObject var project: TripProjectEntity
 
     var body: some View {
         Map {
@@ -43,7 +40,7 @@ struct TripProjectDetailView: View {
                 .padding(8.0)
             } else {
                 TripProjectLayersView(
-                    project: project,
+                    project: TripProject(name: project.name ?? ""),
                     isPresented: $showSidebar
                 )
                 .frame(width: 300)
@@ -59,15 +56,22 @@ struct TripProjectDetailView: View {
                 TripProjectInformationsView(project: project)
             }
         }
-        .navigationTitle(project.name)
+        .navigationTitle(project.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        TripProjectDetailView(project:
-            .init(name: "Test", markers: [], traces: [], layers: [])
+        TripProjectDetailView(
+            project: TripProjectEntity(
+                context: PersistenceController.preview.container.viewContext,
+                name: "Test"
+            )
+        )
+        .environment(
+            \.managedObjectContext,
+             PersistenceController.preview.container.viewContext
         )
     }
 }

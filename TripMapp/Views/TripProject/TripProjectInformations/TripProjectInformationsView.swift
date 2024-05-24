@@ -9,21 +9,22 @@ import SwiftUI
 
 struct TripProjectInformationsView: View {
 
-    @State var project: TripProject
+    @ObservedObject var project: TripProjectEntity
 
     @ObservedObject private var viewModel: TripProjectInformationsViewModel
 
+    @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) private var dismiss
 
-    init(project: TripProject) {
+    init(project: TripProjectEntity) {
         self.project = project
 
         self.viewModel = .init(
-            name: project.name,
+            name: project.name ?? "",
             files: [],
             startDate: project.startDate?.formatted() ?? "",
             endDate: project.endDate?.formatted() ?? "",
-            notes: project.notes
+            notes: project.notes ?? ""
         )
     }
 
@@ -31,7 +32,7 @@ struct TripProjectInformationsView: View {
         GeometryReader { proxy in
             Form {
                 TripProjectNameAndImageSection(
-                    name: $project.name,
+                    name: $viewModel.name,
                     imageHeight: proxy.size.height * 0.3
                 )
 
@@ -46,7 +47,22 @@ struct TripProjectInformationsView: View {
         }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("save") {}
+                Button("save") {
+                    do {
+                        let formatter = DateFormatter()
+                        project.name = viewModel.name
+                        project.startDate = formatter.date(from: viewModel.startDate)
+                        project.endDate = formatter.date(from: viewModel.endDate)
+                        project.notes = viewModel.notes
+
+                        try viewContext.save()
+                        dismiss()
+                    } catch {
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+
+                    }
+                }
             }
 
             ToolbarItem(placement: .cancellationAction) {
@@ -59,6 +75,13 @@ struct TripProjectInformationsView: View {
 
 #Preview {
     NavigationStack {
-        TripProjectInformationsView(project: TripProject(name: ""))
+        TripProjectInformationsView(project: TripProjectEntity(
+            context: PersistenceController.preview.container.viewContext,
+            name: "Nouveau projet"
+        ))
+        .environment(
+            \.managedObjectContext,
+             PersistenceController.preview.container.viewContext
+        )
     }
 }

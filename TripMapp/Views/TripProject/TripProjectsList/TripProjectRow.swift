@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TripProjectRow: View {
 
-    let project: TripProject
+    var project: TripProjectEntity
 
     var body: some View {
         HStack {
@@ -20,9 +20,9 @@ struct TripProjectRow: View {
                 .clipped()
 
             VStack(alignment: .leading) {
-                Text(project.name)
+                Text(project.name ?? "")
                     .font(.body)
-
+//
                 if let startDate = project.startDate {
                     Text(startDate.formatted())
                         .font(.caption)
@@ -35,6 +35,11 @@ struct TripProjectRow: View {
 
 #Preview {
     List {
-        TripProjectRow(project: .init(name: "Test Project", startDate: .now))
+        TripProjectRow(
+            project: TripProjectEntity(
+                context: PersistenceController.preview.container.viewContext,
+                name: "Project 1"
+            )
+        )
     }
 }

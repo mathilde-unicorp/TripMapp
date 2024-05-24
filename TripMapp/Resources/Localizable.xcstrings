@@ -412,7 +412,11 @@
         }
       }
     },
+    "cancel" : {
+
+    },
     "continue" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -446,6 +450,7 @@
       }
     },
     "create" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -477,6 +482,9 @@
           }
         }
       }
+    },
+    "delete" : {
+
     },
     "done" : {
       "localizations" : {
@@ -1153,6 +1161,9 @@
         }
       }
     },
+    "project" : {
+
+    },
     "project_additionnal_informations" : {
       "localizations" : {
         "en" : {
@@ -1216,6 +1227,9 @@
           }
         }
       }
+    },
+    "project.edit" : {
+
     },
     "project.new" : {
       "localizations" : {
@@ -1281,6 +1295,9 @@
           }
         }
       }
+    },
+    "save" : {
+
     },
     "services.title" : {
       "extractionState" : "manual",

@@ -19,7 +19,6 @@ struct TitledTextField: View {
                     .lineLimit(1)
                     .frame(minWidth: proxy.size.width * 0.3, alignment: .leading)
 
-
                 TextField(placeholder, text: $text)
             }
         }
