@@ -27,6 +27,7 @@ struct TripProjectNameAndImageSection: View {
                 .padding(.bottom)
                 .overlay(alignment: .bottomTrailing) {
                     ImageButton(systemImage: "photo.fill") {
+                        print("select among many others")
                     }
                     .shadow(radius: 10)
                     .padding(.trailing)

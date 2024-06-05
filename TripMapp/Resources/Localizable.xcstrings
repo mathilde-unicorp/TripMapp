@@ -413,21 +413,17 @@
       }
     },
     "cancel" : {
-
-    },
-    "continue" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continue"
+            "value" : "Cancel"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuer"
+            "value" : "Annuler"
           }
         }
       }
@@ -445,23 +441,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coordonnées"
-          }
-        }
-      }
-    },
-    "create" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créer"
           }
         }
       }
@@ -484,7 +463,20 @@
       }
     },
     "delete" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        }
+      }
     },
     "done" : {
       "localizations" : {
@@ -534,23 +526,6 @@
         }
       }
     },
-    "end_date_example" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "10/05/2025"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "10/05/2025"
-          }
-        }
-      }
-    },
     "equipment_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -569,7 +544,20 @@
       }
     },
     "hello" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonjour"
+          }
+        }
+      }
     },
     "hiking_spots.title" : {
       "extractionState" : "manual",
@@ -1166,7 +1154,20 @@
       }
     },
     "project" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projet"
+          }
+        }
+      }
     },
     "project_additionnal_informations" : {
       "localizations" : {
@@ -1233,7 +1234,20 @@
       }
     },
     "project.edit" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier le projet"
+          }
+        }
+      }
     },
     "project.new" : {
       "localizations" : {
@@ -1301,7 +1315,20 @@
       }
     },
     "save" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer"
+          }
+        }
+      }
     },
     "services.title" : {
       "extractionState" : "manual",
@@ -1365,23 +1392,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date de début"
-          }
-        }
-      }
-    },
-    "start_date_example" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "10/04/2025"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "10/04/2025"
           }
         }
       }

@@ -38,24 +38,11 @@ struct TripProjectInformationsView: View {
                     notes: $viewModel.notes
                 )
             }
+            .scrollDismissesKeyboard(.interactively)
         }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("save") {
-                    do {
-                        project.name = viewModel.name
-                        project.startDate = viewModel.startDate
-                        project.endDate = viewModel.endDate
-                        project.notes = viewModel.notes
-
-                        try viewContext.save()
-                        dismiss()
-                    } catch {
-                        let nsError = error as NSError
-                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-
-                    }
-                }
+                Button("save") { saveProject() }
             }
 
             ToolbarItem(placement: .cancellationAction) {
@@ -63,6 +50,25 @@ struct TripProjectInformationsView: View {
             }
         }
         .navigationTitle("project.edit")
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Actions
+    // -------------------------------------------------------------------------
+
+    private func saveProject() {
+        do {
+            project.name = viewModel.name
+            project.startDate = viewModel.startDate
+            project.endDate = viewModel.endDate
+            project.notes = viewModel.notes
+
+            try viewContext.save()
+            dismiss()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
 
