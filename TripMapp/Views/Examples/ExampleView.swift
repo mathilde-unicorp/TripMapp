@@ -12,18 +12,26 @@ struct ExampleView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+        sortDescriptors: [NSSortDescriptor(keyPath: \TripProjectEntity.name, ascending: true)],
+        animation: .default
+    )
+
+    private var items: FetchedResults<TripProjectEntity>
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("_example_item_at \(item.timestamp!, formatter: itemFormatter)")
+                        VStack {
+                            Text(item.name ?? "")
+
+                            Button("delete") {
+                                viewContext.delete(item)
+                            }
+                        }
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.startDate ?? .now, formatter: itemFormatter)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -44,8 +52,8 @@ struct ExampleView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = TripProjectEntity(context: viewContext)
+            newItem.name = "New Project"
 
             do {
                 try viewContext.save()

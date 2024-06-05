@@ -10,9 +10,10 @@ import MapKit
 
 struct TripProjectDetailView: View {
 
-    let project: TripProject
-
     @State private var showSidebar: Bool = false
+    @State private var editProject: Bool = false
+
+    @ObservedObject var project: TripProjectEntity
 
     var body: some View {
         Map {
@@ -22,6 +23,11 @@ struct TripProjectDetailView: View {
         }
         .mapControls {
             MapUserLocationButton()
+        }
+        .overlay(alignment: .bottom) {
+            MapSearchBar()
+                .setFullWidth()
+                .background(.thinMaterial)
         }
         .overlay(alignment: .topLeading) {
             if !showSidebar {
@@ -34,7 +40,7 @@ struct TripProjectDetailView: View {
                 .padding(8.0)
             } else {
                 TripProjectLayersView(
-                    project: project,
+                    project: TripProject(name: project.name ?? ""),
                     isPresented: $showSidebar
                 )
                 .frame(width: 300)
@@ -42,20 +48,30 @@ struct TripProjectDetailView: View {
         }
         .toolbar {
             ToolbarItem {
-                NavigationLink(destination: {
-                    TripProjectEditView(project: project)
-                }, label: {
-                    Label("edit", systemImage: "pencil")
-                })
+                Button("edit") { editProject.toggle() }
             }
         }
-        .navigationTitle(project.name)
+        .fullScreenCover(isPresented: $editProject) {
+            NavigationStack {
+                TripProjectInformationsView(project: project)
+            }
+        }
+        .navigationTitle(project.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        TripProjectDetailView(project: .init(name: "Test", markers: [], traces: [], layers: []))
+        TripProjectDetailView(
+            project: TripProjectEntity(
+                context: PersistenceController.preview.container.viewContext,
+                name: "Test"
+            )
+        )
+        .environment(
+            \.managedObjectContext,
+             PersistenceController.preview.container.viewContext
+        )
     }
 }

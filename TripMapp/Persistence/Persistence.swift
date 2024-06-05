@@ -13,9 +13,9 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+
+        for index in 0 ..< 10 {
+            let newItem = TripProjectEntity(context: viewContext, name: "Project \(index)")
         }
         do {
             try viewContext.save()
@@ -30,11 +30,17 @@ struct PersistenceController {
 
     let container: NSPersistentContainer
 
+    // -------------------------------------------------------------------------
+    // MARK: - Init
+    // -------------------------------------------------------------------------
+
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "TripMapp")
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -51,6 +57,7 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
