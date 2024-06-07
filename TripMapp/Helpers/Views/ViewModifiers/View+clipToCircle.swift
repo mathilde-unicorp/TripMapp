@@ -10,7 +10,6 @@ import SwiftUI
 extension View {
     func clipToCircle(backgroundColor: Color) -> some View {
         return self
-            .padding()
             .background(backgroundColor)
             .clipShape(Circle())
     }

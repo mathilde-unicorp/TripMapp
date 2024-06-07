@@ -10,9 +10,13 @@ import SwiftUI
 struct MapSearchBarSheet: View {
     var body: some View {
         VStack {
+            Spacer()
+
             MapSearchBar()
                 .background(.thinMaterial)
-                .clipShape(UnevenRoundedRectangle(cornerRadii: .init(topLeading: 20.0, topTrailing: 20.0)))
+                .clipShape(UnevenRoundedRectangle(
+                    cornerRadii: .init(topLeading: 20.0, topTrailing: 20.0)
+                ))
         }
     }
 }

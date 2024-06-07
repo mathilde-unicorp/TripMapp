@@ -8,18 +8,34 @@
 import SwiftUI
 
 struct PointsOfInterestTypesPicker: View {
-    @Binding var selectedTypes: Set<PointsOfInterestType>
+    @Binding var selectedTypes: [PointsOfInterestType]
+
+    @Environment(\.dismiss) private var dismiss
+
+    @Environment(\.managedObjectContext) private var viewContext
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private properties
+    // -------------------------------------------------------------------------
+
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id, order: .forward)],
+        animation: .default
+    )
+    private var savedPointsOfInterestsTypeEntity: FetchedResults<PointsOfInterestTypeEntity>
+
+    private var defaultDisplayedTypes: [POIType] {
+        savedPointsOfInterestsTypeEntity.compactMap(\.toPointOfInterestType)
+    }
 
     /// Local selection avoid the owner of `selectedType` property 
     /// to be triggered every time the user change its selection on this view
-    @State private var localSelection: Set<PointsOfInterestType>
+    @State private var localSelection: [PointsOfInterestType]
 
     /// Single selection is used on the `List` to get notified when the user select an item
     @State private var singleSelection: Int?
 
-    @Environment(\.dismiss) private var dismiss
-
-    init(selectedTypes: Binding<Set<PointsOfInterestType>>) {
+    init(selectedTypes: Binding<[PointsOfInterestType]>) {
         self._selectedTypes = selectedTypes
         self.localSelection = selectedTypes.wrappedValue
     }
@@ -36,8 +52,16 @@ struct PointsOfInterestTypesPicker: View {
                     .font(.caption)
                     .listRowBackground(Color.systemBackground)
 
-                ForEach(PointsOfInterestCategory.allCases) { category in
-                    pointsOfInterestTypeList(for: category)
+                pointsOfInterestTypeList(
+                    title: "favorites",
+                    types: defaultDisplayedTypes
+                )
+
+                ForEach(POIType.Category.allCases) { category in
+                    pointsOfInterestTypeList(
+                        title: category.title,
+                        types: category.types
+                    )
                 }
             }
             .toolbar {
@@ -52,8 +76,10 @@ struct PointsOfInterestTypesPicker: View {
             .onChange(of: singleSelection) { _, newSelection in
                 if let newSelection = newSelection,
                    let type = PointsOfInterestType(rawValue: newSelection) {
-                    self.localSelection.toggle(member: type)
-                    self.singleSelection = nil
+                    withAnimation {
+                        self.localSelection.toggle(element: type)
+                        self.singleSelection = nil
+                    }
                 }
             }
             .navigationTitle("points_of_interest.title")
@@ -62,10 +88,11 @@ struct PointsOfInterestTypesPicker: View {
 
     @ViewBuilder
     private func pointsOfInterestTypeList(
-        for category: PointsOfInterestCategory
+        title: LocalizedStringKey,
+        types: [POIType]
     ) -> some View {
-        Section(category.title) {
-            ForEach(category.types) {
+        Section(title) {
+            ForEach(types) {
                 pointsOfInterestTypeRow(type: $0)
             }
         }
@@ -73,20 +100,28 @@ struct PointsOfInterestTypesPicker: View {
 
     @ViewBuilder
     private func pointsOfInterestTypeRow(type: PointsOfInterestType) -> some View {
+        let isSelected = localSelection.contains(type)
+
         HStack {
-            Label(type.title, systemImage: type.systemImage)
+            Label(
+                title: { Text(type.title) },
+                icon: {
+                    Image(systemName: type.systemImage)
+                        .foregroundStyle(isSelected ? type.color : .secondary)
+                }
+            )
 
             Spacer()
 
-            if localSelection.contains(type) {
-                Image(systemName: "checkmark")
+            if isSelected {
+                Image(systemName: "eye")
             }
         }
     }
 }
 
 #Preview {
-    PointsOfInterestTypesPicker(selectedTypes: .constant(.init([
-        PointsOfInterestType.summit
-    ])))
+    PointsOfInterestTypesPicker(
+        selectedTypes: .constant(.init([.summit]))
+    )
 }

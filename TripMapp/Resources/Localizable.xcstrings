@@ -543,6 +543,9 @@
         }
       }
     },
+    "favorites" : {
+
+    },
     "hello" : {
       "localizations" : {
         "en" : {
@@ -918,13 +921,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Foodstuff provision"
+            "value" : "Foodstuffs"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Magasin d'alimentation"
+            "state" : "needs_review",
+            "value" : "Alimentation"
           }
         }
       }
@@ -1014,13 +1017,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Public transport"
+            "value" : "Transports"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transport public"
+            "value" : "Transports"
           }
         }
       }
@@ -1078,12 +1081,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sports provision"
+            "value" : "Sports shop"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Magasin de sport"
           }
         }
@@ -1346,6 +1349,9 @@
           }
         }
       }
+    },
+    "show_more" : {
+
     },
     "sleep_capacity_description" : {
       "localizations" : {

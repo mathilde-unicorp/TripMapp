@@ -16,7 +16,7 @@ struct RefugesView: View {
     @State private var selectedResult: UUID?
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
-    @State private var selectedPOITypes: Set<PointsOfInterestType> = .init()
+    @State private var selectedPOITypes: [PointsOfInterestType] = []
 
     @Namespace private var refugesMap
 
@@ -63,7 +63,7 @@ struct RefugesView: View {
                 refreshButton()
             }
             .onChange(of: selectedPOITypes) { _, selectedTypes in
-                self.searchMapItems(for: selectedTypes)
+                self.searchMapItems(for: .init(selectedTypes))
             }
 //            .onChange(of: viewModel.mapItemsResults) {
 //                // refocus the map automatically on results
@@ -85,7 +85,7 @@ struct RefugesView: View {
     private func refreshButton() -> some View {
         if mapPositionHasChanged {
             Button(action: {
-                self.searchMapItems(for: selectedPOITypes)
+                self.searchMapItems(for: .init(selectedPOITypes))
             }, label: {
                 Label("refresh_here", systemImage: "arrow.clockwise")
             })
@@ -115,7 +115,7 @@ struct RefugesView: View {
     }
 
     private func searchMapItems(for types: Set<PointsOfInterestType>) {
-        self.viewModel.searchMapItems(of: selectedPOITypes)
+        self.viewModel.searchMapItems(of: .init(selectedPOITypes))
 
         withAnimation {
             self.mapPositionHasChanged = false

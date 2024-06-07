@@ -24,7 +24,6 @@ struct HomeView: View {
                     Label("projects", systemImage: "list.bullet.clipboard")
                 }
         }
-        .background(.ultraThickMaterial)
     }
 }
 

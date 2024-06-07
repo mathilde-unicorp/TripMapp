@@ -10,37 +10,26 @@ import MapKit
 
 struct MapSearchBar: View {
 
-    @State var searchText: String = ""
+    @State private var selectedPOITypes: [POIType] = []
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 16.0) {
             SearchBarButton(placeholder: "map_search_bar.placeholder") {
                 // open research
             }
+            .padding(.vertical)
 
-            HStack {
-                VStack {
-                    Button(
-                        "points_of_interest.refuge",
-                        systemImage: "house.fill",
-                        action: {}
-                    )
-                    .buttonStyle(BorderedProminentButtonStyle())
-                    .foregroundStyle(.white)
-                }
-
-                Button(
-                    "points_of_interest.refuge",
-                    systemImage: "house.fill",
-                    action: {}
-                )
-            }
+            MapSearchPOITypeSection(selectedTypes: $selectedPOITypes)
         }
         .padding()
-        .setFullWidth()
     }
 }
 
 #Preview {
     MapSearchBar()
+        .environment(
+            \.managedObjectContext,
+             PersistenceController.preview.container.viewContext
+        )
+
 }

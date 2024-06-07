@@ -87,7 +87,7 @@ enum PointsOfInterestType: Int, CaseIterable {
         }
     }
 
-    var category: PointsOfInterestCategory {
+    var category: PointsOfInterestType.Category {
         switch self {
         case .summit, .waypoint, .water, .lake:
             return .hiking
@@ -109,6 +109,10 @@ enum PointsOfInterestType: Int, CaseIterable {
                 .bivouac:
             return .accommodation
         }
+    }
+
+    var color: Color {
+        return category.color
     }
 }
 
