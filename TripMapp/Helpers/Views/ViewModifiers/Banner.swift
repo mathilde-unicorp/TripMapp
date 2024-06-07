@@ -7,24 +7,13 @@
 
 import SwiftUI
 
-struct Banner: ViewModifier {
-
-    @Binding var isPresented: Bool
-
-    var text: String
-    var bannerType: BannerType
-
-    func body(content: Content) -> some View {
-        ZStack(alignment: .top) {
-            content
-            BannerView(isPresented: $isPresented, text: text, bannerType: bannerType)
-        }
-    }
-}
-
 extension View {
+    /// Display a banner over the top of the current view, displaying a message using the `type`.
+    /// It can be dismissed manually of with a timeout (which i don't recommend)
     func banner(isPresented: Binding<Bool>, text: String, type: BannerType, timeout: Double? = nil) -> some View {
-        modifier(Banner(isPresented: isPresented, text: text, bannerType: type))
+        self.overlay(alignment: .top) {
+            BannerView(isPresented: isPresented, text: text, bannerType: type)
+        }
     }
 }
 
