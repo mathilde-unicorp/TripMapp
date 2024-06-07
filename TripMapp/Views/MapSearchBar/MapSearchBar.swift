@@ -14,16 +14,9 @@ struct MapSearchBar: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-
-                Text("map_search_bar.placeholder")
-                    .setFullWidth()
+            SearchBarButton(placeholder: "map_search_bar.placeholder") {
+                // open research
             }
-            .foregroundStyle(.secondary)
-            .padding(8.0)
-            .background(.thickMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 25.0))
 
             HStack {
                 VStack {
