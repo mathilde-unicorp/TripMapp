@@ -46,6 +46,11 @@ struct MapSearchPOITypeSection: View {
                     displayedTypes: defaultDisplayedTypes,
                     selectedTypes: $selectedTypes
                 )
+
+                if defaultDisplayedTypes.isEmpty {
+                    Text("map_search_bar.point_of_interests.empty")
+                        .font(.caption)
+                }
             }
             .padding()
             .background(.thickMaterial)

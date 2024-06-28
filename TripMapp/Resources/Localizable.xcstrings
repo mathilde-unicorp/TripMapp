@@ -763,6 +763,22 @@
         }
       }
     },
+    "map_search_bar.point_of_interests.empty" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select point of interests to research on map by clicking \"Show More\". You also can set favorites to display here by default."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez des points d'intérêts à rechercher sur la carte en cliquant sur \"Voir Plus\". Vous pouvez aussi choisir des favoris qui s'afficheront ici par défaut."
+          }
+        }
+      }
+    },
     "massif_description %@" : {
       "extractionState" : "manual",
       "localizations" : {
