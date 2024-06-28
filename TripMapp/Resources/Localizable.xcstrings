@@ -395,6 +395,9 @@
         }
       }
     },
+    "add_to_favorites" : {
+
+    },
     "altitude_description %lldm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -542,9 +545,6 @@
           }
         }
       }
-    },
-    "favorites" : {
-
     },
     "hello" : {
       "localizations" : {
@@ -926,7 +926,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Alimentation"
           }
         }
@@ -976,6 +976,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laverie"
+          }
+        }
+      }
+    },
+    "points_of_interest.legend.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change your parameters by \"swiping\" items to the left."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier vos paramètres en \"swipant\" vers la gauche sur chaque item."
+          }
+        }
+      }
+    },
+    "points_of_interest.legend.favorites" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite items are displayed as a quick search on the main map"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherchez rapidement vos items favoris sur la carte principale"
           }
         }
       }
@@ -1086,7 +1120,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Magasin de sport"
           }
         }
@@ -1300,6 +1334,9 @@
         }
       }
     },
+    "remove_from_favorites" : {
+
+    },
     "retry_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1351,7 +1388,20 @@
       }
     },
     "show_more" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show More"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir plus"
+          }
+        }
+      }
     },
     "sleep_capacity_description" : {
       "localizations" : {

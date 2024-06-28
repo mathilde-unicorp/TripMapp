@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct PointsOfInterestTypesPicker: View {
     @Binding var selectedTypes: [PointsOfInterestType]
@@ -48,14 +49,7 @@ struct PointsOfInterestTypesPicker: View {
         NavigationStack {
             List(selection: $singleSelection) {
 
-                Text("points_of_interest.description")
-                    .font(.caption)
-                    .listRowBackground(Color.systemBackground)
-
-                pointsOfInterestTypeList(
-                    title: "favorites",
-                    types: defaultDisplayedTypes
-                )
+                listDescription()
 
                 ForEach(POIType.Category.allCases) { category in
                     pointsOfInterestTypeList(
@@ -84,6 +78,19 @@ struct PointsOfInterestTypesPicker: View {
             }
             .navigationTitle("points_of_interest.title")
         }
+        .onDisappear {
+            print("onDisappear")
+        }
+    }
+
+    @ViewBuilder
+    private func listDescription() -> some View {
+        VStack(alignment: .leading) {
+            Text("points_of_interest.description")
+        }
+        .font(.caption)
+        .listRowBackground(Color.systemBackground)
+
     }
 
     @ViewBuilder
@@ -100,7 +107,8 @@ struct PointsOfInterestTypesPicker: View {
 
     @ViewBuilder
     private func pointsOfInterestTypeRow(type: PointsOfInterestType) -> some View {
-        let isSelected = localSelection.contains(type)
+        let isSelected = isSelected(type: type)
+        let isFavorite = isFavorite(type: type)
 
         HStack {
             Label(
@@ -111,11 +119,64 @@ struct PointsOfInterestTypesPicker: View {
                 }
             )
 
+            if isFavorite {
+                Image(systemName: "star.circle")
+                    .foregroundStyle(.yellow)
+            }
+
             Spacer()
 
             if isSelected {
                 Image(systemName: "eye")
             }
+        }
+        .swipeActions {
+            if isFavorite {
+                Button("remove_from_favorites", systemImage: "star.slash.fill", action: {
+                    print("remove from favorites")
+                    removeFromFavorite(type: type)
+                })
+                .foregroundStyle(.yellow)
+                .tint(.systemBackground)
+            } else {
+                Button("add_to_favorites", systemImage: "star.fill", action: {
+                    print("add to favorites")
+                    addToFavorite(type: type)
+                })
+                .tint(.yellow)
+            }
+        }
+    }
+
+    private func isSelected(type: PointsOfInterestType) -> Bool {
+        return localSelection.contains(type)
+    }
+
+    private func isFavorite(type: PointsOfInterestType) -> Bool {
+        return defaultDisplayedTypes.contains(type)
+    }
+
+    private func addToFavorite(type: PointsOfInterestType) {
+        do {
+            _ = PointsOfInterestTypeEntity(context: viewContext, pointsOfInterestType: type)
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+
+    private func removeFromFavorite(type: PointsOfInterestType) {
+        do {
+            guard let savedEntity = savedPointsOfInterestsTypeEntity.first(where: { $0.id == type.id }) else {
+                print("ouups??")
+                return
+            }
+            viewContext.delete(savedEntity)
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }
@@ -123,5 +184,8 @@ struct PointsOfInterestTypesPicker: View {
 #Preview {
     PointsOfInterestTypesPicker(
         selectedTypes: .constant(.init([.summit]))
+    ).environment(
+        \.managedObjectContext,
+         PersistenceController.preview.container.viewContext
     )
 }
