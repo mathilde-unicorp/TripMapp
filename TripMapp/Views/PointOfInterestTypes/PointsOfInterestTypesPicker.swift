@@ -23,22 +23,18 @@ struct PointsOfInterestTypesPicker: View {
         sortDescriptors: [SortDescriptor(\.id, order: .forward)],
         animation: .default
     )
-    private var savedPointsOfInterestsTypeEntity: FetchedResults<PointsOfInterestTypeEntity>
-
-    private var defaultDisplayedTypes: [POIType] {
-        savedPointsOfInterestsTypeEntity.compactMap(\.toPointOfInterestType)
-    }
+    private var favoritesPOITypes: FetchedResults<PointsOfInterestTypeEntity>
 
     /// Local selection avoid the owner of `selectedType` property 
     /// to be triggered every time the user change its selection on this view
-    @State private var localSelection: [PointsOfInterestType]
+    @State private var localSelectionForMapDisplay: [PointsOfInterestType]
 
     /// Single selection is used on the `List` to get notified when the user select an item
-    @State private var singleSelection: Int?
+    @State private var listSingleSelection: Int?
 
     init(selectedTypes: Binding<[PointsOfInterestType]>) {
         self._selectedTypes = selectedTypes
-        self.localSelection = selectedTypes.wrappedValue
+        self.localSelectionForMapDisplay = selectedTypes.wrappedValue
     }
 
     // -------------------------------------------------------------------------
@@ -47,12 +43,12 @@ struct PointsOfInterestTypesPicker: View {
 
     var body: some View {
         NavigationStack {
-            List(selection: $singleSelection) {
+            List(selection: $listSingleSelection) {
 
                 listDescription()
 
                 ForEach(POIType.Category.allCases) { category in
-                    pointsOfInterestTypeList(
+                    pointsOfInterestTypeSection(
                         title: category.title,
                         types: category.types
                     )
@@ -60,26 +56,24 @@ struct PointsOfInterestTypesPicker: View {
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("done") {
-                        // Done behavior
-                        self.selectedTypes = localSelection
-                        self.dismiss()
-                    }
+                    Button("done") { self.dismiss() }
                 }
             }
-            .onChange(of: singleSelection) { _, newSelection in
+            .onChange(of: listSingleSelection) { _, newSelection in
                 if let newSelection = newSelection,
                    let type = PointsOfInterestType(rawValue: newSelection) {
                     withAnimation {
-                        self.localSelection.toggle(element: type)
-                        self.singleSelection = nil
+                        self.localSelectionForMapDisplay.toggle(element: type)
+                        self.listSingleSelection = nil
                     }
                 }
             }
             .navigationTitle("points_of_interest.title")
         }
         .onDisappear {
-            print("onDisappear")
+            withAnimation {
+                self.selectedTypes = localSelectionForMapDisplay
+            }
         }
     }
 
@@ -94,71 +88,76 @@ struct PointsOfInterestTypesPicker: View {
     }
 
     @ViewBuilder
-    private func pointsOfInterestTypeList(
+    private func pointsOfInterestTypeSection(
         title: LocalizedStringKey,
         types: [POIType]
     ) -> some View {
         Section(title) {
-            ForEach(types) {
-                pointsOfInterestTypeRow(type: $0)
+            ForEach(types) { type in
+                pointOfInterestTypeRow(
+                    type: type,
+                    isSelectedForMapDisplay: isSelectedForMapDisplay(type: type),
+                    isFavorite: isFavorite(type: type)
+                )
             }
         }
     }
 
     @ViewBuilder
-    private func pointsOfInterestTypeRow(type: PointsOfInterestType) -> some View {
-        let isSelected = isSelected(type: type)
-        let isFavorite = isFavorite(type: type)
-
-        HStack {
-            Label(
-                title: { Text(type.title) },
-                icon: {
-                    Image(systemName: type.systemImage)
-                        .foregroundStyle(isSelected ? type.color : .secondary)
-                }
-            )
-
-            if isFavorite {
-                Image(systemName: "star.circle")
-                    .foregroundStyle(.yellow)
-            }
-
-            Spacer()
-
-            if isSelected {
-                Image(systemName: "eye")
+    private func pointOfInterestTypeRow(
+        type: PointsOfInterestType,
+        isSelectedForMapDisplay: Bool,
+        isFavorite: Bool
+    ) -> some View {
+        PointsOfInterestTypeRow(
+            type: type,
+            isFavorite: isFavorite,
+            isSelectedForMapDisplay: isSelectedForMapDisplay
+        )
+        .swipeActions {
+            FavoriteButton(isFavorite: isFavorite) {
+                isFavorite ? removeFromFavorite(type: type) : addToFavorite(type: type)
             }
         }
-        .swipeActions {
-            if isFavorite {
-                Button("remove_from_favorites", systemImage: "star.slash.fill", action: {
-                    print("remove from favorites")
-                    removeFromFavorite(type: type)
-                })
-                .foregroundStyle(.yellow)
-                .tint(.systemBackground)
-            } else {
-                Button("add_to_favorites", systemImage: "star.fill", action: {
-                    print("add to favorites")
-                    addToFavorite(type: type)
-                })
-                .tint(.yellow)
+        .contextMenu {
+            FavoriteButton(isFavorite: isFavorite) {
+                isFavorite ? removeFromFavorite(type: type) : addToFavorite(type: type)
+            }
+
+            ShowingOnMapButton(isShowingOnMap: isSelectedForMapDisplay) {
+                localSelectionForMapDisplay.toggle(element: type)
             }
         }
     }
 
-    private func isSelected(type: PointsOfInterestType) -> Bool {
-        return localSelection.contains(type)
+    // -------------------------------------------------------------------------
+    // MARK: - Tools
+    // -------------------------------------------------------------------------
+
+    private func isSelectedForMapDisplay(type: PointsOfInterestType) -> Bool {
+        return localSelectionForMapDisplay.contains(type)
     }
 
     private func isFavorite(type: PointsOfInterestType) -> Bool {
-        return defaultDisplayedTypes.contains(type)
+        return favoritesPOITypes.contains { $0.id == type.id }
     }
+
+    private func favoritePOITypeEntity(
+        from type: PointsOfInterestType
+    ) -> PointsOfInterestTypeEntity? {
+        return favoritesPOITypes.first(where: { $0.id == type.id })
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Database saving
+    // -------------------------------------------------------------------------
 
     private func addToFavorite(type: PointsOfInterestType) {
         do {
-            _ = PointsOfInterestTypeEntity(context: viewContext, pointsOfInterestType: type)
+            _ = PointsOfInterestTypeEntity(
+                context: viewContext,
+                pointsOfInterestType: type
+            )
             try viewContext.save()
         } catch {
             let nsError = error as NSError
@@ -168,10 +167,11 @@ struct PointsOfInterestTypesPicker: View {
 
     private func removeFromFavorite(type: PointsOfInterestType) {
         do {
-            guard let savedEntity = savedPointsOfInterestsTypeEntity.first(where: { $0.id == type.id }) else {
-                print("ouups??")
+            guard let savedEntity = favoritePOITypeEntity(from: type) else {
+                print("Entity not found ! :(")
                 return
             }
+
             viewContext.delete(savedEntity)
             try viewContext.save()
         } catch {
@@ -184,5 +184,6 @@ struct PointsOfInterestTypesPicker: View {
 #Preview {
     PointsOfInterestTypesPicker(
         selectedTypes: .constant(.init([.summit]))
-    ).environment(\.managedObjectContext, .previewViewContext)
+    )
+    .environment(\.managedObjectContext, .previewViewContext)
 }

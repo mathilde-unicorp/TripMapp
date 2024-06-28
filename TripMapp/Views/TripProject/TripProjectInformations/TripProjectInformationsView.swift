@@ -75,10 +75,7 @@ struct TripProjectInformationsView: View {
 
     private func saveProject() {
         do {
-            projectEntity.name = localProject.name
-            projectEntity.startDate = localProject.startDate
-            projectEntity.endDate = localProject.endDate
-            projectEntity.notes = localProject.notes
+            projectEntity.update(with: localProject)
 
             try viewContext.save()
             dismiss()

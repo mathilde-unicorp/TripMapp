@@ -21,10 +21,12 @@ struct MapSearchPOITypeSection: View {
         sortDescriptors: [SortDescriptor(\.id, order: .forward)],
         animation: .default
     )
-    private var savedPointsOfInterestsTypeEntity: FetchedResults<PointsOfInterestTypeEntity>
+    private var savedPOITypeEntity: FetchedResults<PointsOfInterestTypeEntity>
 
     private var defaultDisplayedTypes: [POIType] {
-        savedPointsOfInterestsTypeEntity.compactMap(\.toPointOfInterestType)
+        let savedPOIType = savedPOITypeEntity.compactMap(\.toPointOfInterestType)
+
+        return selectedTypes.merge(with: savedPOIType)
     }
 
     @State private var shouldShowPOITypesList: Bool = false
@@ -41,23 +43,9 @@ struct MapSearchPOITypeSection: View {
 
             VStack(alignment: .leading) {
                 MapSearchPOITypePicker(
-                    displayedTypes: defaultDisplayedTypes.merge(with: selectedTypes),
+                    displayedTypes: defaultDisplayedTypes,
                     selectedTypes: $selectedTypes
                 )
-
-//                ForEach(POIType.Category.allCases) { category in
-//                    VStack(alignment: .leading) {
-//                        Text(category.title)
-//                            .font(.headline)
-//                            .foregroundStyle(.secondary)
-//
-//                        MapSearchPOITypePicker(
-//                            displayedTypes: category.types,
-//                            selectedTypes: $selectedTypes
-//                        )
-//                    }
-//                    .padding(.bottom)
-//                }
             }
             .padding()
             .background(.thickMaterial)
