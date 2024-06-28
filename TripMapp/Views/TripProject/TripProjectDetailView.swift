@@ -65,13 +65,10 @@ struct TripProjectDetailView: View {
     NavigationStack {
         TripProjectDetailView(
             project: TripProjectEntity(
-                context: PersistenceController.preview.container.viewContext,
+                context: .previewViewContext,
                 name: "Test"
             )
         )
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
+        .environment(\.managedObjectContext, .previewViewContext)
     }
 }

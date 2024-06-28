@@ -68,8 +68,5 @@ struct HomeProjectsView: View {
 
 #Preview {
     HomeProjectsView()
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
+        .environment(\.managedObjectContext, .previewViewContext)
 }

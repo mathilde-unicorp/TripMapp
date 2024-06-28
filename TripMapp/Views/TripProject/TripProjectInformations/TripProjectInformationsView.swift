@@ -75,12 +75,8 @@ struct TripProjectInformationsView: View {
 #Preview {
     NavigationStack {
         TripProjectInformationsView(project: TripProjectEntity(
-            context: PersistenceController.preview.container.viewContext,
+            context: .previewViewContext,
             name: "Nouveau projet"
         ))
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
-    }
+    }.environment(\.managedObjectContext, .previewViewContext)
 }

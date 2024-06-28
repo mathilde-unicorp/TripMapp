@@ -27,9 +27,6 @@ struct MapSearchBar: View {
 
 #Preview {
     MapSearchBar()
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
+        .environment(\.managedObjectContext, .previewViewContext)
 
 }

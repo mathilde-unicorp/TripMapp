@@ -48,9 +48,6 @@ struct TripProjectsList: View {
 #Preview {
     NavigationStack {
         TripProjectsList(selectedProject: .constant(nil))
-            .environment(
-                \.managedObjectContext,
-                 PersistenceController.preview.container.viewContext
-            )
     }
+    .environment(\.managedObjectContext, .previewViewContext)
 }

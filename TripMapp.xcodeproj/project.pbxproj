@@ -92,6 +92,7 @@
 		58D684252C133C55001379A0 /* MapSearchPOITypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D684242C133C55001379A0 /* MapSearchPOITypePicker.swift */; };
 		58D684272C134675001379A0 /* UIWindow+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D684262C134675001379A0 /* UIWindow+extensions.swift */; };
 		58D684292C13468C001379A0 /* UIScreen+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D684282C13468C001379A0 /* UIScreen+extensions.swift */; };
+		58D983E22C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D983E12C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift */; };
 		58D9B8742BC3262A0027D937 /* CoursePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D9B8732BC3262A0027D937 /* CoursePolyline.swift */; };
 		58D9B8762BC328B40027D937 /* RefugesInfoMassifPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D9B8752BC328B40027D937 /* RefugesInfoMassifPolygon.swift */; };
 		58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugesView.swift */; };
@@ -240,6 +241,7 @@
 		58D684242C133C55001379A0 /* MapSearchPOITypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPOITypePicker.swift; sourceTree = "<group>"; };
 		58D684262C134675001379A0 /* UIWindow+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+extensions.swift"; sourceTree = "<group>"; };
 		58D684282C13468C001379A0 /* UIScreen+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+extensions.swift"; sourceTree = "<group>"; };
+		58D983E12C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+PersistenceController.swift"; sourceTree = "<group>"; };
 		58D9B8732BC3262A0027D937 /* CoursePolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePolyline.swift; sourceTree = "<group>"; };
 		58D9B8752BC328B40027D937 /* RefugesInfoMassifPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoMassifPolygon.swift; sourceTree = "<group>"; };
 		58DA69512A951BED00F93FDF /* RefugesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesView.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 				58F90E632C008A3200B6930B /* Models */,
 				58C55C6229F6DD25008F3A54 /* PersistenceController.swift */,
 				58E15C412C2C5403004E2431 /* PersistenceController+preview.swift */,
+				58D983E12C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift */,
 				58C55C6429F6DD25008F3A54 /* TripMapp.xcdatamodeld */,
 			);
 			path = Persistence;
@@ -1139,6 +1142,7 @@
 				58D684272C134675001379A0 /* UIWindow+extensions.swift in Sources */,
 				5843D6122BC44E50007E738D /* CourseLayer.swift in Sources */,
 				5887DB772BCD8159004241E6 /* HomeMapView.swift in Sources */,
+				58D983E22C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift in Sources */,
 				58E15C402C2C5247004E2431 /* PointsOfInterestTypeEntity+extensions.swift in Sources */,
 				58C55C5A29F6DD22008F3A54 /* TripMappApp.swift in Sources */,
 				58F485C82BBD94CF008673B0 /* PointsOfInterestType+Category.swift in Sources */,

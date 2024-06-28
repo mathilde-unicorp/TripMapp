@@ -75,8 +75,5 @@ struct MapSearchPOITypeSection: View {
             .padding()
     }
     .background(.thinMaterial)
-    .environment(
-        \.managedObjectContext,
-         PersistenceController.preview.container.viewContext
-    )
+    .environment(\.managedObjectContext, .previewViewContext)
 }

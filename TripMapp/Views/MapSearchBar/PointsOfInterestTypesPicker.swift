@@ -184,8 +184,5 @@ struct PointsOfInterestTypesPicker: View {
 #Preview {
     PointsOfInterestTypesPicker(
         selectedTypes: .constant(.init([.summit]))
-    ).environment(
-        \.managedObjectContext,
-         PersistenceController.preview.container.viewContext
-    )
+    ).environment(\.managedObjectContext, .previewViewContext)
 }
