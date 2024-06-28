@@ -9,10 +9,10 @@ import SwiftUI
 
 struct PointsOfInterestTypesCompactPicker: View {
     /// Set of types to display as selected (e.g. they are displayed on the map)
-    @Binding var selectedTypes: Set<POIType>
+    @Binding var selectedTypes: [POIType]
 
     /// Default types to display even if they are not selected yet
-    var defaultTypes: Set<POIType> = .init([.summit, .refuge, .foodstuffProvisions])
+    var defaultTypes: [POIType] = [.summit, .refuge, .foodstuffProvisions]
 
     // -------------------------------------------------------------------------
     // MARK: - Private UI
@@ -54,7 +54,7 @@ struct PointsOfInterestTypesCompactPicker: View {
     @ViewBuilder
     private func pointsOfInterestButton(type: PointsOfInterestType) -> some View {
         Button {
-            self.selectedTypes.toggle(member: type)
+            self.selectedTypes.toggle(element: type)
         } label: {
             Label(
                 title: { Text(type.title).font(.caption) },

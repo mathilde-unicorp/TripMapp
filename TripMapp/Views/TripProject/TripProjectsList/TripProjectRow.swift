@@ -37,7 +37,7 @@ struct TripProjectRow: View {
     List {
         TripProjectRow(
             project: TripProjectEntity(
-                context: PersistenceController.preview.container.viewContext,
+                context: .previewViewContext,
                 name: "Project 1"
             )
         )

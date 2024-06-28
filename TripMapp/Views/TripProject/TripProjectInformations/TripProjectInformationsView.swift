@@ -9,33 +9,50 @@ import SwiftUI
 
 struct TripProjectInformationsView: View {
 
-    @ObservedObject var project: TripProjectEntity
+    @ObservedObject private var projectEntity: TripProjectEntity
 
-    @ObservedObject private var viewModel: TripProjectInformationsViewModel
+    // -------------------------------------------------------------------------
+    // MARK: - Local items
+    // -------------------------------------------------------------------------
+
+    @ObservedObject private var localProject: TripProject
+
+    @State var files: [ImportedFile] = [
+        .init(url: URL(string: "local.url")!, name: "File 1"),
+        .init(url: URL(string: "local.url")!, name: "File 2")
+    ]
 
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) private var dismiss
 
-    init(project: TripProjectEntity) {
-        self.project = project
+    // -------------------------------------------------------------------------
+    // MARK: - Initialization
+    // -------------------------------------------------------------------------
 
-        self.viewModel = .init(project: project)
+    init(projectEntity: TripProjectEntity) {
+        self.projectEntity = projectEntity
+
+        self.localProject = .init(entity: projectEntity)
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         GeometryReader { proxy in
             Form {
                 TripProjectNameAndImageSection(
-                    name: $viewModel.name,
+                    name: $localProject.name,
                     imageHeight: proxy.size.height * 0.3
                 )
 
-                TripProjectImportFileSection(files: $viewModel.files)
+                TripProjectImportFileSection(files: $files)
 
                 TripProjectAdditionnalInformations(
-                    startDate: $viewModel.startDate,
-                    endDate: $viewModel.endDate,
-                    notes: $viewModel.notes
+                    startDate: $localProject.startDate,
+                    endDate: $localProject.endDate,
+                    notes: $localProject.notes
                 )
             }
             .scrollDismissesKeyboard(.interactively)
@@ -58,10 +75,7 @@ struct TripProjectInformationsView: View {
 
     private func saveProject() {
         do {
-            project.name = viewModel.name
-            project.startDate = viewModel.startDate
-            project.endDate = viewModel.endDate
-            project.notes = viewModel.notes
+            projectEntity.update(with: localProject)
 
             try viewContext.save()
             dismiss()
@@ -74,13 +88,10 @@ struct TripProjectInformationsView: View {
 
 #Preview {
     NavigationStack {
-        TripProjectInformationsView(project: TripProjectEntity(
-            context: PersistenceController.preview.container.viewContext,
+        TripProjectInformationsView(projectEntity: TripProjectEntity(
+            context: .previewViewContext,
             name: "Nouveau projet"
         ))
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
+        .environment(\.managedObjectContext, .previewViewContext)
     }
 }

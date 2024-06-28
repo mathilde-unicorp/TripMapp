@@ -2,22 +2,34 @@
 //  TripProject.swift
 //  TripMapp
 //
-//  Created by Ressier Mathilde on 15/04/2024.
+//  Created by Ressier Mathilde on 28/06/2024.
 //
 
 import Foundation
 
-struct TripProject: Identifiable, Hashable {
-    let id: UUID = UUID()
-    var name: String
+class TripProject: ObservableObject {
+    @Published var name: String = ""
 
-    var startDate: Date?
-    var endDate: Date?
+    @Published var startDate: Date
+    @Published var endDate: Date
 
-    var notes: String = ""
+    @Published var notes: String = ""
 
-    var markers: [TripMarker] = []
-    var traces: [TripTrace] = []
+    // -------------------------------------------------------------------------
+    // MARK: - Initialization
+    // -------------------------------------------------------------------------
 
-    var layers: [TripLayer] = []
+    init(name: String, startDate: Date, endDate: Date, notes: String) {
+        self.name = name
+        self.startDate = startDate
+        self.endDate = endDate
+        self.notes = notes
+    }
+
+    init(entity: TripProjectEntity) {
+        self.name = entity.name ?? ""
+        self.startDate = entity.startDate ?? .now
+        self.endDate = entity.endDate ?? .now.adding(days: 7)
+        self.notes = entity.notes ?? ""
+    }
 }

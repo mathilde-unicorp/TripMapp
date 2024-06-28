@@ -24,16 +24,12 @@ struct HomeView: View {
                     Label("projects", systemImage: "list.bullet.clipboard")
                 }
         }
-        .background(.ultraThickMaterial)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environment(
-                \.managedObjectContext,
-                 PersistenceController.preview.container.viewContext
-            )
+            .environment(\.managedObjectContext, .previewViewContext)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TripProjectLayersView: View {
-    let project: TripProject
+    let project: LegacyTripProject
 
     @Binding var isPresented: Bool
 
@@ -65,7 +65,7 @@ struct TripProjectLayersView: View {
 
 #Preview {
     TripProjectLayersView(
-        project: TripProject(
+        project: LegacyTripProject(
             name: "Test",
             markers: [],
             traces: [],

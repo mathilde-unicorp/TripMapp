@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PointsOfInterestMapFilterView: View {
-    @Binding var selectedTypes: Set<PointsOfInterestType>
+    @Binding var selectedTypes: [PointsOfInterestType]
 
     @State private var isPOITypesSheetVisible: Bool = false
 
@@ -34,5 +34,5 @@ struct PointsOfInterestMapFilterView: View {
 }
 
 #Preview {
-    PointsOfInterestMapFilterView(selectedTypes: .constant(.init()))
+    PointsOfInterestMapFilterView(selectedTypes: .constant([]))
 }

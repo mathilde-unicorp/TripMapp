@@ -24,4 +24,15 @@ extension TripProjectEntity {
         self.id = UUID()
         self.name = name
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Update
+    // -------------------------------------------------------------------------
+
+    func update(with project: TripProject) {
+        self.name = project.name
+        self.startDate = project.startDate
+        self.endDate = project.endDate
+        self.notes = project.notes
+    }
 }

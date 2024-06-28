@@ -13,10 +13,10 @@ struct TripProjectsList: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(sortDescriptors: [
-        .init(keyPath: \TripProjectEntity.name, ascending: true)
-    ], animation: .default)
-
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.name, order: .forward)],
+        animation: .default
+    )
     private var projects: FetchedResults<TripProjectEntity>
 
     var body: some View {
@@ -48,9 +48,6 @@ struct TripProjectsList: View {
 #Preview {
     NavigationStack {
         TripProjectsList(selectedProject: .constant(nil))
-            .environment(
-                \.managedObjectContext,
-                 PersistenceController.preview.container.viewContext
-            )
     }
+    .environment(\.managedObjectContext, .previewViewContext)
 }

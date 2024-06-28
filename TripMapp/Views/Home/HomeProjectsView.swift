@@ -26,7 +26,7 @@ struct HomeProjectsView: View {
                 }
         } detail: {
             if let project = selectedProject {
-                TripProjectDetailView(project: project)
+                TripProjectDetailView(projectEntity: project)
             } else {
                 Text("project_selection_placeholder")
             }
@@ -68,8 +68,5 @@ struct HomeProjectsView: View {
 
 #Preview {
     HomeProjectsView()
-        .environment(
-            \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
-        )
+        .environment(\.managedObjectContext, .previewViewContext)
 }

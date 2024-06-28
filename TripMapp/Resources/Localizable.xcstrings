@@ -395,6 +395,22 @@
         }
       }
     },
+    "add_to_favorites" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter aux favoris"
+          }
+        }
+      }
+    },
     "altitude_description %lldm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -427,6 +443,12 @@
           }
         }
       }
+    },
+    "Click" : {
+
+    },
+    "Click Me" : {
+
     },
     "coordinates_title" : {
       "extractionState" : "manual",
@@ -559,6 +581,22 @@
         }
       }
     },
+    "hide_on_map" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide on map"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne plus afficher sur la carte"
+          }
+        }
+      }
+    },
     "hiking_spots.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -669,6 +707,12 @@
           }
         }
       }
+    },
+    "Long Press" : {
+
+    },
+    "Long Press Me" : {
+
     },
     "longitude_short_description %lf" : {
       "extractionState" : "manual",
@@ -886,13 +930,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select one or many type of points of interests you want to display on the map."
+            "value" : "Select one or many type of points of interests you want to search on the map."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choisissez le ou les types de points d'intérêts que vous souhaitez afficher sur la carte."
+            "value" : "Choisissez le ou les types de points d'intérêts que vous souhaitez rechercher sur la carte."
           }
         }
       }
@@ -918,13 +962,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Foodstuff provision"
+            "value" : "Foodstuffs"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Magasin d'alimentation"
+            "value" : "Alimentation"
           }
         }
       }
@@ -1014,13 +1058,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Public transport"
+            "value" : "Transports"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transport public"
+            "value" : "Transports"
           }
         }
       }
@@ -1078,7 +1122,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sports provision"
+            "value" : "Sports shop"
           }
         },
         "fr" : {
@@ -1297,6 +1341,22 @@
         }
       }
     },
+    "remove_from_favorites" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer des favoris"
+          }
+        }
+      }
+    },
     "retry_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1343,6 +1403,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Services"
+          }
+        }
+      }
+    },
+    "show_more" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show More"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir plus"
+          }
+        }
+      }
+    },
+    "show_on_map" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show on map"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher sur la carte"
           }
         }
       }
@@ -1395,6 +1487,12 @@
           }
         }
       }
+    },
+    "Swipe" : {
+
+    },
+    "Swipe Me" : {
+
     }
   },
   "version" : "1.0"

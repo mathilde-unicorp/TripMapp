@@ -25,11 +25,15 @@ struct TripProjectNameAndImageSection: View {
                 .frame(minHeight: 200.0, idealHeight: imageHeight)
                 .clipped()
                 .padding(.bottom)
-                .overlay(alignment: .bottomTrailing) {
-                    ImageButton(systemImage: "photo.fill") {
+                .overlay(alignment: .center) {
+                    Button(action: {
                         print("select among many others")
-                    }
-                    .shadow(radius: 10)
+                    }, label: {
+                        Image(systemName: "photo.fill")
+                            .clipToCircle(backgroundColor: .blue)
+                            .foregroundStyle(.white)
+                            .shadow(radius: 10)
+                    })
                     .padding(.trailing)
                     .padding(.bottom, 32.0)
                 }
@@ -38,5 +42,5 @@ struct TripProjectNameAndImageSection: View {
 }
 
 #Preview {
-    TripProjectNameAndImageSection(name: .constant(""), imageHeight: 300.0)
+    TripProjectNameAndImageSection(name: .constant(""), imageHeight: 200.0)
 }
