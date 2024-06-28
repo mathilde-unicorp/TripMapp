@@ -34,6 +34,13 @@ enum PointsOfInterestType: Int, CaseIterable {
     case campground
     case hotel
     case bivouac
+}
+
+// =============================================================================
+// MARK: - Computed Properties
+// =============================================================================
+
+extension PointsOfInterestType {
 
     var title: LocalizedStringKey {
         switch self {

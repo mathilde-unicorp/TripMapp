@@ -13,7 +13,7 @@ struct TripProjectDetailView: View {
     @State private var showSidebar: Bool = false
     @State private var editProject: Bool = false
 
-    @ObservedObject var project: TripProjectEntity
+    @ObservedObject var projectEntity: TripProjectEntity
 
     var body: some View {
         Map {
@@ -40,7 +40,7 @@ struct TripProjectDetailView: View {
                 .padding(8.0)
             } else {
                 TripProjectLayersView(
-                    project: TripProject(name: project.name ?? ""),
+                    project: LegacyTripProject(name: projectEntity.name ?? ""),
                     isPresented: $showSidebar
                 )
                 .frame(width: 300)
@@ -53,10 +53,10 @@ struct TripProjectDetailView: View {
         }
         .fullScreenCover(isPresented: $editProject) {
             NavigationStack {
-                TripProjectInformationsView(project: project)
+                TripProjectInformationsView(projectEntity: projectEntity)
             }
         }
-        .navigationTitle(project.name ?? "")
+        .navigationTitle(projectEntity.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -64,7 +64,7 @@ struct TripProjectDetailView: View {
 #Preview {
     NavigationStack {
         TripProjectDetailView(
-            project: TripProjectEntity(
+            projectEntity: TripProjectEntity(
                 context: .previewViewContext,
                 name: "Test"
             )
