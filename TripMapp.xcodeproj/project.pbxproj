@@ -25,7 +25,6 @@
 		585C05BC2B9770130023B13D /* CLLocationManagerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C05BB2B9770130023B13D /* CLLocationManagerObject.swift */; };
 		585C05BE2B9773840023B13D /* CLAuthorizationStatus+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C05BD2B9773840023B13D /* CLAuthorizationStatus+extensions.swift */; };
 		585C05C52B9782F50023B13D /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C05C42B9782F50023B13D /* MKCoordinateRegion.swift */; };
-		585F147B2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F147A2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift */; };
 		585F147E2BF4A8820089F7E7 /* LayersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F147D2BF4A8820089F7E7 /* LayersButton.swift */; };
 		585F14802BF4B89D0089F7E7 /* TripMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F147F2BF4B89D0089F7E7 /* TripMarker.swift */; };
 		585F14822BF4B9110089F7E7 /* TripTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585F14812BF4B9110089F7E7 /* TripTrace.swift */; };
@@ -41,6 +40,7 @@
 		5887DB792BCD8214004241E6 /* HomeProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB782BCD8214004241E6 /* HomeProjectsView.swift */; };
 		5887DB7F2BCD851E004241E6 /* LegacyTripProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB7E2BCD851E004241E6 /* LegacyTripProject.swift */; };
 		5887DB802BCD8654004241E6 /* TripProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887DB7B2BCD84E7004241E6 /* TripProjectDetailView.swift */; };
+		5899736F2C32E972000A3F70 /* TripMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5899736E2C32E972000A3F70 /* TripMap.swift */; };
 		589AF39D2B75215F00B6669D /* RefugeDescriptionView.CapacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AF39C2B75215F00B6669D /* RefugeDescriptionView.CapacityView.swift */; };
 		589C73472B838F5B00747205 /* View+borderShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589C73462B838F5B00747205 /* View+borderShadow.swift */; };
 		58AD5A422A97BA6D00571534 /* RefugesInfo+LightPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AD5A412A97BA6D00571534 /* RefugesInfo+LightPoint.swift */; };
@@ -79,6 +79,8 @@
 		58C55C7A29F6DD26008F3A54 /* TripMappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7929F6DD26008F3A54 /* TripMappUITests.swift */; };
 		58C55C7C29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */; };
 		58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 58C779542BA73B260020BF67 /* Unicorp.APIBuilder */; };
+		58CE763E2C343C6F00C0FC1B /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CE763D2C343C6F00C0FC1B /* MapSearchView.swift */; };
+		58CE76402C343D0D00C0FC1B /* RefreshMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */; };
 		58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */; };
 		58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */; };
 		58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9F2B7A79E800D18E4F /* MockMassifs.swift */; };
@@ -97,7 +99,7 @@
 		58D983E72C2F072A006F7568 /* PointsOfInterestTypeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D983E62C2F072A006F7568 /* PointsOfInterestTypeRow.swift */; };
 		58D983EC2C2F16DF006F7568 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D983EB2C2F16DF006F7568 /* FavoriteButton.swift */; };
 		58D983EE2C2F17A8006F7568 /* ShowingOnMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D983ED2C2F17A8006F7568 /* ShowingOnMapButton.swift */; };
-		58D9B8742BC3262A0027D937 /* CoursePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D9B8732BC3262A0027D937 /* CoursePolyline.swift */; };
+		58D9B8742BC3262A0027D937 /* TripMapPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D9B8732BC3262A0027D937 /* TripMapPolyline.swift */; };
 		58D9B8762BC328B40027D937 /* RefugesInfoMassifPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D9B8752BC328B40027D937 /* RefugesInfoMassifPolygon.swift */; };
 		58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69512A951BED00F93FDF /* RefugesView.swift */; };
 		58DA69562A951E3100F93FDF /* RefugesInfo+Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA69552A951E3100F93FDF /* RefugesInfo+Feature.swift */; };
@@ -117,6 +119,9 @@
 		58E1B9822BF65D4000192C92 /* TripProjectNameAndImageSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E1B9812BF65D4000192C92 /* TripProjectNameAndImageSection.swift */; };
 		58E4AC322A9E11580099C9E2 /* RefugesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */; };
 		58E7D9072BBC5A96005350F2 /* gr66.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 58E7D9062BBC5A96005350F2 /* gr66.gpx */; };
+		58E87A8F2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */; };
+		58E87A912C342D5500F3D8AB /* PolylinesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */; };
+		58E87A932C34330100F3D8AB /* TripMapContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A922C34330100F3D8AB /* TripMapContent.swift */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
 		58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
@@ -176,7 +181,6 @@
 		585C05BB2B9770130023B13D /* CLLocationManagerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerObject.swift; sourceTree = "<group>"; };
 		585C05BD2B9773840023B13D /* CLAuthorizationStatus+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLAuthorizationStatus+extensions.swift"; sourceTree = "<group>"; };
 		585C05C42B9782F50023B13D /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
-		585F147A2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBarSheet.swift; sourceTree = "<group>"; };
 		585F147D2BF4A8820089F7E7 /* LayersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayersButton.swift; sourceTree = "<group>"; };
 		585F147F2BF4B89D0089F7E7 /* TripMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMarker.swift; sourceTree = "<group>"; };
 		585F14812BF4B9110089F7E7 /* TripTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTrace.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		5887DB782BCD8214004241E6 /* HomeProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectsView.swift; sourceTree = "<group>"; };
 		5887DB7B2BCD84E7004241E6 /* TripProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectDetailView.swift; sourceTree = "<group>"; };
 		5887DB7E2BCD851E004241E6 /* LegacyTripProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTripProject.swift; sourceTree = "<group>"; };
+		5899736E2C32E972000A3F70 /* TripMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMap.swift; sourceTree = "<group>"; };
 		589AF39C2B75215F00B6669D /* RefugeDescriptionView.CapacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugeDescriptionView.CapacityView.swift; sourceTree = "<group>"; };
 		589C73462B838F5B00747205 /* View+borderShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+borderShadow.swift"; sourceTree = "<group>"; };
 		58AD5A412A97BA6D00571534 /* RefugesInfo+LightPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+LightPoint.swift"; sourceTree = "<group>"; };
@@ -232,6 +237,8 @@
 		58C55C7529F6DD26008F3A54 /* TripMappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripMappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C55C7929F6DD26008F3A54 /* TripMappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITests.swift; sourceTree = "<group>"; };
 		58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		58CE763D2C343C6F00C0FC1B /* MapSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
+		58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshMapButton.swift; sourceTree = "<group>"; };
 		58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassifsMapView.swift; sourceTree = "<group>"; };
 		58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRefuges.swift; sourceTree = "<group>"; };
 		58CFCC9F2B7A79E800D18E4F /* MockMassifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMassifs.swift; sourceTree = "<group>"; };
@@ -250,7 +257,7 @@
 		58D983E62C2F072A006F7568 /* PointsOfInterestTypeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsOfInterestTypeRow.swift; sourceTree = "<group>"; };
 		58D983EB2C2F16DF006F7568 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		58D983ED2C2F17A8006F7568 /* ShowingOnMapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowingOnMapButton.swift; sourceTree = "<group>"; };
-		58D9B8732BC3262A0027D937 /* CoursePolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePolyline.swift; sourceTree = "<group>"; };
+		58D9B8732BC3262A0027D937 /* TripMapPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapPolyline.swift; sourceTree = "<group>"; };
 		58D9B8752BC328B40027D937 /* RefugesInfoMassifPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesInfoMassifPolygon.swift; sourceTree = "<group>"; };
 		58DA69512A951BED00F93FDF /* RefugesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesView.swift; sourceTree = "<group>"; };
 		58DA69552A951E3100F93FDF /* RefugesInfo+Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RefugesInfo+Feature.swift"; sourceTree = "<group>"; };
@@ -270,6 +277,9 @@
 		58E1B9812BF65D4000192C92 /* TripProjectNameAndImageSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectNameAndImageSection.swift; sourceTree = "<group>"; };
 		58E4AC312A9E11580099C9E2 /* RefugesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefugesViewModel.swift; sourceTree = "<group>"; };
 		58E7D9062BBC5A96005350F2 /* gr66.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gr66.gpx; sourceTree = "<group>"; };
+		58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripMapPolyline+ViewModel.swift"; sourceTree = "<group>"; };
+		58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylinesLayer.swift; sourceTree = "<group>"; };
+		58E87A922C34330100F3D8AB /* TripMapContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapContent.swift; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorView.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
@@ -349,7 +359,8 @@
 		5843D60E2BC44E2A007E738D /* Polylines */ = {
 			isa = PBXGroup;
 			children = (
-				58D9B8732BC3262A0027D937 /* CoursePolyline.swift */,
+				58D9B8732BC3262A0027D937 /* TripMapPolyline.swift */,
+				58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */,
 			);
 			path = Polylines;
 			sourceTree = "<group>";
@@ -366,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				5843D60B2BC43B8F007E738D /* MarkersLayer.swift */,
+				58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */,
 				5843D6112BC44E50007E738D /* CourseLayer.swift */,
 			);
 			path = Layers;
@@ -627,6 +639,15 @@
 			path = TripMappUITests;
 			sourceTree = "<group>";
 		};
+		58CE763C2C343C5A00C0FC1B /* MapSearch */ = {
+			isa = PBXGroup;
+			children = (
+				58DEF50C2BDBEA8C007EE569 /* MapSearchBar */,
+				58CE763D2C343C6F00C0FC1B /* MapSearchView.swift */,
+			);
+			path = MapSearch;
+			sourceTree = "<group>";
+		};
 		58CFCC9C2B7A79CE00D18E4F /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +711,9 @@
 				5843D60F2BC44E33007E738D /* Polygons */,
 				5843D60E2BC44E2A007E738D /* Polylines */,
 				5843D60D2BC44E24007E738D /* Markers */,
+				5899736E2C32E972000A3F70 /* TripMap.swift */,
+				58E87A922C34330100F3D8AB /* TripMapContent.swift */,
+				58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -742,7 +766,6 @@
 			children = (
 				58D684212C1337B0001379A0 /* MapSearchPOIType */,
 				58DEF50D2BDBEAAB007EE569 /* MapSearchBar.swift */,
-				585F147A2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift */,
 			);
 			path = MapSearchBar;
 			sourceTree = "<group>";
@@ -846,8 +869,8 @@
 		58FD00642A040757004182B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58CE763C2C343C5A00C0FC1B /* MapSearch */,
 				58D983E82C2F141E006F7568 /* PointOfInterestTypes */,
-				58DEF50C2BDBEA8C007EE569 /* MapSearchBar */,
 				5887DB7A2BCD8474004241E6 /* TripProject */,
 				5887DB752BCD812C004241E6 /* Home */,
 				5887DB722BCD810E004241E6 /* Examples */,
@@ -1083,6 +1106,7 @@
 				58DA695E2A95266700F93FDF /* RefugesInfo+PointType.swift in Sources */,
 				58EFC4912B976332009B6A61 /* PointsOfInterestType.swift in Sources */,
 				58D983EC2C2F16DF006F7568 /* FavoriteButton.swift in Sources */,
+				58E87A8F2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift in Sources */,
 				582087262B726AFF00DDC563 /* CLLocationCoordinate2D+extensions.swift in Sources */,
 				58DA69522A951BED00F93FDF /* RefugesView.swift in Sources */,
 				58AD5A512A97BF2500571534 /* RefugesInfo+DateInfo.swift in Sources */,
@@ -1112,11 +1136,13 @@
 				58D983E52C2EFC09006F7568 /* TripProject.swift in Sources */,
 				584C6EEF2B76DC750090D1E0 /* RefugesInfo+Polygon.swift in Sources */,
 				58FD006D2A041310004182B6 /* RefugesInfo+Point.swift in Sources */,
+				58CE763E2C343C6F00C0FC1B /* MapSearchView.swift in Sources */,
 				58BDE6022B6D29FA005BFEF3 /* LoadingState.swift in Sources */,
 				58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */,
 				58D338B42B713FF2000D45EC /* RefugesInfoEndpoint.swift in Sources */,
 				58E1B97C2BF64BFF00192C92 /* TripProjectRow.swift in Sources */,
 				58EB4A7E2A05A1AA001BAE72 /* BannerView.swift in Sources */,
+				58E87A932C34330100F3D8AB /* TripMapContent.swift in Sources */,
 				58FD00682A04089C004182B6 /* RefugeDetailView.swift in Sources */,
 				58B2B8F42A98F745007BFE3F /* RefugeDescriptionView.Title.swift in Sources */,
 				585F14822BF4B9110089F7E7 /* TripTrace.swift in Sources */,
@@ -1124,6 +1150,7 @@
 				58FD006B2A040AAE004182B6 /* RefugesInfoDataProvider.swift in Sources */,
 				58B2B9062A995440007BFE3F /* RefugeDetailViewModel.swift in Sources */,
 				589C73472B838F5B00747205 /* View+borderShadow.swift in Sources */,
+				58CE76402C343D0D00C0FC1B /* RefreshMapButton.swift in Sources */,
 				58DA695C2A95217800F93FDF /* RefugeCell.swift in Sources */,
 				58E1B9792BF64B4100192C92 /* ImportedFile.swift in Sources */,
 				589AF39D2B75215F00B6669D /* RefugeDescriptionView.CapacityView.swift in Sources */,
@@ -1141,12 +1168,13 @@
 				58AD5A4D2A97BEFE00571534 /* RefugesInfo+Article.swift in Sources */,
 				5820872C2B7291C500DDC563 /* RefugeDescriptionView.Map.swift in Sources */,
 				58C55C6329F6DD25008F3A54 /* PersistenceController.swift in Sources */,
+				58E87A912C342D5500F3D8AB /* PolylinesLayer.swift in Sources */,
 				58F485D22BBD9C60008673B0 /* CoursesMapView.swift in Sources */,
 				58D9B8762BC328B40027D937 /* RefugesInfoMassifPolygon.swift in Sources */,
 				58B2B8F72A98FDC6007BFE3F /* RefugeDescriptionView.InformationsTabView.swift in Sources */,
 				58BDE6042B6D2A32005BFEF3 /* AsyncActionView.swift in Sources */,
 				58E15C422C2C5403004E2431 /* PersistenceController+preview.swift in Sources */,
-				58D9B8742BC3262A0027D937 /* CoursePolyline.swift in Sources */,
+				58D9B8742BC3262A0027D937 /* TripMapPolyline.swift in Sources */,
 				58D46F7F2B73CE180051EA50 /* RefugeEquipment.swift in Sources */,
 				5887DB792BCD8214004241E6 /* HomeProjectsView.swift in Sources */,
 				58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */,
@@ -1157,6 +1185,7 @@
 				58C55C5C29F6DD22008F3A54 /* HomeView.swift in Sources */,
 				585F148B2BF4FC650089F7E7 /* FormField.swift in Sources */,
 				585F14902BF5017B0089F7E7 /* ImportFileRow.swift in Sources */,
+				5899736F2C32E972000A3F70 /* TripMap.swift in Sources */,
 				58D684252C133C55001379A0 /* MapSearchPOITypePicker.swift in Sources */,
 				58E15C442C2C56A8004E2431 /* MapSearchPOITypeSection.swift in Sources */,
 				58CFCCA22B7A7BC100D18E4F /* RefugesInfo+Bbox.swift in Sources */,
@@ -1189,7 +1218,6 @@
 				58D684232C133BB0001379A0 /* MapSearchPOITypeButton.swift in Sources */,
 				58AD5A492A97BE9200571534 /* RefugesInfo+Description.swift in Sources */,
 				58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */,
-				585F147B2BF4A4AD0089F7E7 /* MapSearchBarSheet.swift in Sources */,
 				58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */,
 				585F14882BF4F6180089F7E7 /* LegacyTripProject+mock.swift in Sources */,
 				58EB4A812A05A2D3001BAE72 /* View+banner.swift in Sources */,

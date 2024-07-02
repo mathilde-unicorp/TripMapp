@@ -18,6 +18,7 @@ struct TripMapMarker: MapContent {
             systemImage: viewModel.systemImage,
             coordinate: viewModel.coordinates
         )
+        .tint(viewModel.color)
     }
 }
 

@@ -22,14 +22,7 @@ struct MarkersLayer: MapContent {
 #Preview {
     Map {
         MarkersLayer(
-            markers: .constant([
-                .init(refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
-                      type: .cottage),
-                .init(mkMapItem: .init(placemark: .init(coordinate: .france)),
-                      type: .waypoint),
-                .init(mkMapItem: .init(placemark: .init(coordinate: .giteDeLaColleStMichel)),
-                      type: .hotel)
-            ])
+            markers: .constant(TripMapMarker.ViewModel.mocks)
         )
     }
 }

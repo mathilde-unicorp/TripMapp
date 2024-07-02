@@ -14,7 +14,7 @@ struct CourseLayer: MapContent {
     struct ViewModel {
         let id: UUID
         let name: String
-        let polyline: CoursePolyline.ViewModel
+        let polyline: TripMapPolyline.ViewModel
         let markers: [TripMapMarker.ViewModel]
 
         init(gpxUrl: URL) {
@@ -31,14 +31,48 @@ struct CourseLayer: MapContent {
             }
 
             self.name = content.name ?? "--"
+
+            // Build Polyline
+
             self.polyline = .init(
                 color: .blue,
                 coordinates: content.trackpoints.map { $0.coordinates }
             )
-            self.markers = content.waypoints.map {
-                .init(mkMapItem: .init(placemark: .init(coordinate: $0.coordinates)),
-                      type: .waypoint)
+
+            // Build Markers
+
+            var tempMarkers = content.waypoints.map {
+                TripMapMarker.ViewModel(
+                    mkMapItem: .init(placemark: .init(coordinate: $0.coordinates)),
+                    type: .waypoint
+                )
             }
+
+            if let polylineStart = polyline.coordinates.first {
+                let marker = TripMapMarker.ViewModel(
+                    source: .custom,
+                    name: "Départ de \(name)",
+                    coordinates: polylineStart,
+                    systemImage: "flag.fill",
+                    color: .label
+                )
+
+                tempMarkers.append(marker)
+            }
+
+            if let polylineEnd = polyline.coordinates.last {
+                let marker = TripMapMarker.ViewModel(
+                    source: .custom,
+                    name: "Arrivée de \(name)",
+                    coordinates: polylineEnd,
+                    systemImage: "flag.checkered",
+                    color: .label
+                )
+
+                tempMarkers.append(marker)
+            }
+
+            self.markers = tempMarkers
         }
     }
 
@@ -49,13 +83,7 @@ struct CourseLayer: MapContent {
     // -------------------------------------------------------------------------
 
     var body: some MapContent {
-        CoursePolyline(viewModel: viewModel.polyline)
-
-        if let firstCoordinates = viewModel.polyline.coordinates.first {
-            Marker(coordinate: firstCoordinates) {
-                Label(viewModel.name, systemImage: "figure.walk")
-            }
-        }
+        TripMapPolyline(viewModel: viewModel.polyline)
 
         MarkersLayer(markers: .constant(viewModel.markers))
     }
@@ -63,6 +91,6 @@ struct CourseLayer: MapContent {
 
 #Preview {
     Map {
-        CourseLayer(viewModel: .init(gpxUrl: .gr66Gpx))
+        CourseLayer(viewModel: .init(gpxUrl: .gr70Gpx))
     }
 }

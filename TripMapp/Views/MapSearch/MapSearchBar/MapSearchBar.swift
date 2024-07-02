@@ -10,7 +10,7 @@ import MapKit
 
 struct MapSearchBar: View {
 
-    @State private var selectedPOITypes: [POIType] = []
+    @Binding var selectedPOITypes: [POIType]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
@@ -25,8 +25,18 @@ struct MapSearchBar: View {
     }
 }
 
-#Preview {
-    MapSearchBar()
-        .environment(\.managedObjectContext, .previewViewContext)
+struct MapSearchBar_Previews: PreviewProvider {
 
+    struct ContainerView: View {
+        @State private var selectedPOITypes: [POIType] = []
+
+        var body: some View {
+            MapSearchBar(selectedPOITypes: $selectedPOITypes)
+        }
+    }
+
+    static var previews: some View {
+        ContainerView()
+            .environment(\.managedObjectContext, .previewViewContext)
+    }
 }

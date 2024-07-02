@@ -9,23 +9,9 @@ import SwiftUI
 import MapKit
 import Unicorp_GPXFile
 
-struct CoursePolyline: MapContent {
-
-    struct ViewModel {
-        let id: UUID
-        let color: Color
-        let coordinates: [CLLocationCoordinate2D]
-
-        init(color: Color, coordinates: [CLLocationCoordinate2D]) {
-            self.id = UUID()
-            self.color = color
-            self.coordinates = coordinates
-        }
-    }
+struct TripMapPolyline: MapContent {
 
     let viewModel: ViewModel
-
-    var id: UUID { return viewModel.id }
 
     // -------------------------------------------------------------------------
     // MARK: - Body
@@ -40,9 +26,6 @@ struct CoursePolyline: MapContent {
 
 #Preview {
     Map {
-        CoursePolyline(viewModel: .init(
-            color: .blue,
-            coordinates: MockMassifs.massifs.first!.geometry.coordinates2D
-        ))
+        TripMapPolyline(viewModel: TripMapPolyline.ViewModel.mocks.first!)
     }
 }

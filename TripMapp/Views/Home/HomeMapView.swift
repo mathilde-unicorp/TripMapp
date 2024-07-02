@@ -9,18 +9,13 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
-    @State private var showSearchBar: Bool = false
-
     var body: some View {
-        Map {
-
-        }
-        .overlay(alignment: .bottom) {
-            MapSearchBarSheet()
-        }
+        AppRouter.shared.createRefugesView()
+            .environmentObject(AppRouter.shared) // Temp with the current way of working of refuges view
     }
 }
 
 #Preview {
     HomeMapView()
+        .environment(\.managedObjectContext, .previewViewContext)
 }

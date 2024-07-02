@@ -33,11 +33,11 @@ class RefugesViewModel: ObservableObject {
         self.repository = .init(dataProvider: dataProvider)
         self.router = router
 
-        self.courses = [
-            .init(gpxUrl: .gr66Gpx),
-            .init(gpxUrl: .gr70Gpx)
+//        self.courses = [
+//            .init(gpxUrl: .gr66Gpx),
+//            .init(gpxUrl: .gr70Gpx)
 //            .init(gpxUrl: .tourDuLacDesPisesGpx)
-        ]
+//        ]
     }
 
     // MARK: - Requests
