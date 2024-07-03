@@ -42,8 +42,8 @@ struct CourseLayer: MapContent {
             // Build Markers
 
             var tempMarkers = content.waypoints.map {
-                TripMapMarker.ViewModel(
-                    mkMapItem: .init(placemark: .init(coordinate: $0.coordinates)),
+                TripMapMarker.ViewModel.build(
+                    from: .init(placemark: .init(coordinate: $0.coordinates)),
                     type: .waypoint
                 )
             }

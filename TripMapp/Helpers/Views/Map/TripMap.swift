@@ -11,7 +11,7 @@ import MapKit
 struct TripMap<TripMapContentView: MapContent>: View {
 
     @Binding var visibleRegion: MKCoordinateRegion?
-    @Binding var selectedItem: UUID?
+    @Binding var selectedItem: String?
 
     @MapContentBuilder var mapContentBuilder: () -> TripMapContentView
 
@@ -53,7 +53,6 @@ struct TripMap<TripMapContentView: MapContent>: View {
             let newRegion = context.region
 
             if self.visibleRegion != newRegion {
-//                withAnimation { self.shouldShowRefreshButton = true }
                 self.visibleRegion = newRegion
             }
         }
@@ -62,10 +61,9 @@ struct TripMap<TripMapContentView: MapContent>: View {
 
 struct TripMap_Previews: PreviewProvider {
 
-    //A view which will wraps the actual view and holds state variable.
     struct ContainerView: View {
         @State private var visibleRegion: MKCoordinateRegion?
-        @State private var selectedItem: UUID?
+        @State private var selectedItem: String?
 
         var body: some View {
             TripMap(

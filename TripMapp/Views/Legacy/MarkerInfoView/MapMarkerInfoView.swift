@@ -39,11 +39,6 @@ struct MapMarkerInfoView: View {
 }
 
 #Preview {
-    MapMarkerInfoView(
-        mapItem: .init(
-            refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
-            type: .cottage
-        )
-    )
-    .environmentObject(AppRouter.mock)
+    MapMarkerInfoView(mapItem: .mocks.first!)
+        .environmentObject(AppRouter.mock)
 }

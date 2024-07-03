@@ -18,7 +18,7 @@ extension TripMapMarker {
     }
 
     struct ViewModel: Identifiable, Equatable {
-        let id: UUID
+        let id: String
         let source: Source
         let name: String
         let coordinates: CLLocationCoordinate2D
@@ -39,12 +39,9 @@ extension TripMapMarker.ViewModel {
 
 extension TripMapMarker.ViewModel {
     static var mocks: [Self] = [
-        .init(refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
-              type: .cottage),
-        .init(mkMapItem: .init(placemark: .init(coordinate: .france)),
-              type: .waypoint),
-        .init(mkMapItem: .init(placemark: .init(coordinate: .giteDeLaColleStMichel)),
-              type: .hotel)
+        .build(from: MockRefuges.refuges.first!.toLightPoint, type: .cottage),
+        .build(from: MKMapItem(placemark: .init(coordinate: .france)), type: .waypoint),
+        .build(from: MKMapItem(placemark: .init(coordinate: .giteDeLaColleStMichel)), type: .hotel)
     ]
 }
 
@@ -61,37 +58,59 @@ extension TripMapMarker.ViewModel {
         systemImage: String,
         color: Color
     ) {
-        self.id = UUID()
+        self.id = UUID().uuidString
         self.source = source
         self.name = name
         self.coordinates = coordinates
         self.systemImage = systemImage
         self.color = color
     }
+}
 
-    init(
-        refugeInfoResult result: RefugesInfo.LightRefugePoint,
+// =============================================================================
+// MARK: - Builders
+// =============================================================================
+
+extension TripMapMarker.ViewModel {
+
+    static func build(
+        from refugeInfoResult: RefugesInfo.LightRefugePoint,
         type: PointsOfInterestType
-    ) {
-        self.init(
-            source: .refugesInfo(refugeId: result.properties.id),
-            name: result.properties.name,
-            coordinates: result.geometry.coordinate2D,
+    ) -> Self {
+        .init(
+            id: "\(refugeInfoResult.properties.id)",
+            source: .refugesInfo(refugeId: refugeInfoResult.properties.id),
+            name: refugeInfoResult.properties.name,
+            coordinates: refugeInfoResult.geometry.coordinate2D,
             systemImage: type.systemImage,
             color: type.color
         )
     }
 
-    init(
-        mkMapItem: MKMapItem,
+    static func build(
+        from mkMapItem: MKMapItem,
         type: PointsOfInterestType
-    ) {
-        self.init(
+    ) -> Self {
+        .init(
             source: .mkMap(item: mkMapItem),
             name: mkMapItem.name ?? "??",
             coordinates: mkMapItem.placemark.coordinate,
             systemImage: type.systemImage,
             color: type.color
         )
+    }
+
+    static func buildMarkers(
+        from refugeInfoResults: [RefugesInfo.LightRefugePoint],
+        type: PointsOfInterestType
+    ) -> [Self] {
+        return refugeInfoResults.map { .build(from: $0, type: type) }
+    }
+
+    static func buildMarkers(
+        from mkMapItems: [MKMapItem],
+        type: PointsOfInterestType
+    ) -> [Self] {
+        return mkMapItems.map { .build(from: $0, type: type) }
     }
 }

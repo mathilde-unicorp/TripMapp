@@ -8,16 +8,11 @@
 import Foundation
 import MapKit
 
-struct MapItemSearchResults {
-    let refugesInfoResults: [RefugesInfo.LightRefugePoint]
-    let mkMapItemResults: [MKMapItem]
-}
-
 class TripMapItemsRepository {
 
     let dataProvider: RefugesInfoDataProviderProtocol
 
-    init(dataProvider: RefugesInfoDataProviderProtocol) {
+    init(dataProvider: RefugesInfoDataProviderProtocol = RefugesInfoDataProvider()) {
         self.dataProvider = dataProvider
     }
 
@@ -27,40 +22,48 @@ class TripMapItemsRepository {
 
     // MARK: - PointsOfInterestsType
 
+    /// Search map items that matches the different pointOfInterest types in the given region
+    func searchMapItems(
+        types: [PointsOfInterestType],
+        region: MKCoordinateRegion
+    ) async throws -> MapItemResultsByPOIType {
+        var results: MapItemResultsByPOIType = [:]
+
+        try await types.concurrentForEach { type in
+            let items = try await self.searchMapItems(type: type, region: region)
+            results.insert(results: items, for: type)
+        }
+
+        return results
+    }
+
+    /// Search map items that matches the pointOfInterest type in the given region
     func searchMapItems(
         type: PointsOfInterestType,
         region: MKCoordinateRegion
-    ) async throws -> MapItemSearchResults {
+    ) async throws -> MapItemResults {
         let refugesInfoMapItems = try await searchRefugesInfoMapItems(type: type, region: region)
         let mkLocalSearchMapItems = try await searchMkLocalSearchMapItems(type: type, region: region)
 
-        return MapItemSearchResults(
+        return MapItemResults(
             refugesInfoResults: refugesInfoMapItems,
             mkMapItemResults: mkLocalSearchMapItems
         )
     }
 
+    // =============================================================================
+    // MARK: - Private methods
+    // =============================================================================
+
     private func searchRefugesInfoMapItems(
         type: PointsOfInterestType,
         region: MKCoordinateRegion
     ) async throws -> [RefugesInfo.LightRefugePoint] {
-        switch type {
-        case .summit:
-            try await self.refugesInfoSearch(pointType: .summit, region: region)
-        case .waypoint:
-            try await self.refugesInfoSearch(pointType: .crossingPoint, region: region)
-        case .water:
-            try await self.refugesInfoSearch(pointType: .water, region: region)
-        case .lake:
-            try await self.refugesInfoSearch(pointType: .lake, region: region)
-        case .refuge:
-            try await self.refugesInfoSearch(pointType: .refuge, region: region)
-        case .cottage:
-            try await self.refugesInfoSearch(pointType: .bedAndBreakfast, region: region)
-        case .bivouac:
-            try await self.refugesInfoSearch(pointType: .bivouac, region: region)
-        default: []
+        guard let refugesInfoPointType = type.toRefugesInfoPointType else {
+            return []
         }
+
+        return try await self.refugesInfoSearch(pointType: refugesInfoPointType, region: region)
     }
 
     // swiftlint:disable cyclomatic_complexity function_body_length

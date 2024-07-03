@@ -12,17 +12,20 @@ struct RefugesView: View {
     @ObservedObject var viewModel: RefugesViewModel
     @ObservedObject var locationManager: CLLocationManagerObject = .init()
 
-    @State private var selectedResult: UUID?
+    @State private var selectedResult: String?
     @State private var selectedPOITypes: [PointsOfInterestType] = []
 
     var body: some View {
-        MapSearchView(
-            visibleRegion: $viewModel.visibleRegion,
-            markers: $viewModel.markers,
-            polylines: .constant([]),
+        SearchableMap(
+            searchOnRegion: $viewModel.visibleRegion,
             selectedItem: $selectedResult,
             onRefreshResult: {
                 self.searchMapItems(for: .init(selectedPOITypes))
+            }, mapContent: {
+                TripMapContent(
+                    markers: $viewModel.markers,
+                    polylines: .constant([])
+                )
             }
         )
         .safeAreaInset(edge: .bottom) {
@@ -38,6 +41,7 @@ struct RefugesView: View {
         }
         .onChange(of: selectedPOITypes) { _, selectedTypes in
             self.searchMapItems(for: .init(selectedTypes))
+
         }
     }
 

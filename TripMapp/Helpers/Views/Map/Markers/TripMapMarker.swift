@@ -24,8 +24,8 @@ struct TripMapMarker: MapContent {
 
 #Preview {
     Map {
-        TripMapMarker(viewModel: .init(
-            refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
+        TripMapMarker(viewModel: .build(
+            from: MockRefuges.refuges.first!.toLightPoint,
             type: .cottage
         ))
     }
