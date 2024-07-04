@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+/// A Map configured for the current usages of the application
 struct TripMap<TripMapContentView: MapContent>: View {
 
     @Binding var visibleRegion: MKCoordinateRegion?

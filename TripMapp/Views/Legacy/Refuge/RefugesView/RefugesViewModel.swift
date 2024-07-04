@@ -30,7 +30,7 @@ class RefugesViewModel: ObservableObject {
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.repository = .init(dataProvider: dataProvider)
+        self.repository = .shared
         self.router = router
 
 //        self.courses = [

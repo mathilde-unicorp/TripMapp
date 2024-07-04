@@ -9,9 +9,17 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
+    @State private var selectedPOITypes: [PointsOfInterestType] = []
+
     var body: some View {
-        AppRouter.shared.createRefugesView()
-            .environmentObject(AppRouter.shared) // Temp with the current way of working of refuges view
+        MapSearchByPOITypeView(
+            searchPOITypes: $selectedPOITypes,
+            dataSource: .init(mapItemsRepository: .mock)
+        )
+        .safeAreaInset(edge: .bottom) {
+            MapSearchBar(selectedPOITypes: $selectedPOITypes)
+                .background(.thinMaterial)
+        }
     }
 }
 

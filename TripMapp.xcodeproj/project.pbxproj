@@ -81,7 +81,10 @@
 		58C55C7A29F6DD26008F3A54 /* TripMappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7929F6DD26008F3A54 /* TripMappUITests.swift */; };
 		58C55C7C29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */; };
 		58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 58C779542BA73B260020BF67 /* Unicorp.APIBuilder */; };
-		58CE763E2C343C6F00C0FC1B /* SearchableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CE763D2C343C6F00C0FC1B /* SearchableMap.swift */; };
+		58CB12082C36C895007AD11A /* MapSearchByPOITypeView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB12072C36C895007AD11A /* MapSearchByPOITypeView+ViewModel.swift */; };
+		58CB120C2C36D3C9007AD11A /* MapLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB120B2C36D3C9007AD11A /* MapLoadingIndicator.swift */; };
+		58CB120F2C36E037007AD11A /* MapSearchPOITypePicker2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB120E2C36E037007AD11A /* MapSearchPOITypePicker2.swift */; };
+		58CB12112C36E047007AD11A /* MapSearchPOITypeButton2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB12102C36E047007AD11A /* MapSearchPOITypeButton2.swift */; };
 		58CE76402C343D0D00C0FC1B /* RefreshMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */; };
 		58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */; };
 		58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */; };
@@ -241,7 +244,10 @@
 		58C55C7529F6DD26008F3A54 /* TripMappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripMappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C55C7929F6DD26008F3A54 /* TripMappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITests.swift; sourceTree = "<group>"; };
 		58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		58CE763D2C343C6F00C0FC1B /* SearchableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMap.swift; sourceTree = "<group>"; };
+		58CB12072C36C895007AD11A /* MapSearchByPOITypeView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapSearchByPOITypeView+ViewModel.swift"; sourceTree = "<group>"; };
+		58CB120B2C36D3C9007AD11A /* MapLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLoadingIndicator.swift; sourceTree = "<group>"; };
+		58CB120E2C36E037007AD11A /* MapSearchPOITypePicker2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPOITypePicker2.swift; sourceTree = "<group>"; };
+		58CB12102C36E047007AD11A /* MapSearchPOITypeButton2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPOITypeButton2.swift; sourceTree = "<group>"; };
 		58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshMapButton.swift; sourceTree = "<group>"; };
 		58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassifsMapView.swift; sourceTree = "<group>"; };
 		58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRefuges.swift; sourceTree = "<group>"; };
@@ -450,6 +456,8 @@
 			isa = PBXGroup;
 			children = (
 				58D6841B2C12F2C2001379A0 /* SearchBarButton.swift */,
+				58D983ED2C2F17A8006F7568 /* ShowingOnMapButton.swift */,
+				58D983EB2C2F16DF006F7568 /* FavoriteButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -614,7 +622,7 @@
 		58C55C5829F6DD22008F3A54 /* TripMapp */ = {
 			isa = PBXGroup;
 			children = (
-				58DA69532A951D3900F93FDF /* DataSource */,
+				58DA69532A951D3900F93FDF /* Data */,
 				58FD00722A0415FD004182B6 /* Helpers */,
 				58FD00652A040762004182B6 /* Persistence */,
 				58FD00642A040757004182B6 /* Views */,
@@ -651,12 +659,38 @@
 			path = TripMappUITests;
 			sourceTree = "<group>";
 		};
+		58CB12092C36CC3D007AD11A /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				58D338B22B713FE5000D45EC /* RefugesInfo */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		58CB120A2C36CC47007AD11A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				58A306162C358A9100381EE4 /* Models */,
+				582A39A82B9F5EB50057FCCD /* TripMapItemsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		58CB120D2C36E010007AD11A /* MapSearchPOITypePicker2 */ = {
+			isa = PBXGroup;
+			children = (
+				58CB120E2C36E037007AD11A /* MapSearchPOITypePicker2.swift */,
+				58CB12102C36E047007AD11A /* MapSearchPOITypeButton2.swift */,
+			);
+			path = MapSearchPOITypePicker2;
+			sourceTree = "<group>";
+		};
 		58CE763C2C343C5A00C0FC1B /* MapSearch */ = {
 			isa = PBXGroup;
 			children = (
 				58DEF50C2BDBEA8C007EE569 /* MapSearchBar */,
-				58CE763D2C343C6F00C0FC1B /* SearchableMap.swift */,
 				58A306142C357AA700381EE4 /* MapSearchByPOITypeView.swift */,
+				58CB12072C36C895007AD11A /* MapSearchByPOITypeView+ViewModel.swift */,
 			);
 			path = MapSearch;
 			sourceTree = "<group>";
@@ -683,15 +717,15 @@
 			path = RefugesInfo;
 			sourceTree = "<group>";
 		};
-		58D684212C1337B0001379A0 /* MapSearchPOIType */ = {
+		58D684212C1337B0001379A0 /* MapSearchPOITypePicker */ = {
 			isa = PBXGroup;
 			children = (
+				58D684242C133C55001379A0 /* MapSearchPOITypePicker.swift */,
 				58E15C432C2C56A8004E2431 /* MapSearchPOITypeSection.swift */,
 				58E15C3D2C2C4F40004E2431 /* MapSearchPOITypeSectionHeader.swift */,
 				58D684222C133BB0001379A0 /* MapSearchPOITypeButton.swift */,
-				58D684242C133C55001379A0 /* MapSearchPOITypePicker.swift */,
 			);
-			path = MapSearchPOIType;
+			path = MapSearchPOITypePicker;
 			sourceTree = "<group>";
 		};
 		58D983E32C2EFB39006F7568 /* Legacy */ = {
@@ -709,8 +743,6 @@
 		58D983E82C2F141E006F7568 /* PointOfInterestTypes */ = {
 			isa = PBXGroup;
 			children = (
-				58D983ED2C2F17A8006F7568 /* ShowingOnMapButton.swift */,
-				58D983EB2C2F16DF006F7568 /* FavoriteButton.swift */,
 				582A39AC2B9F63A00057FCCD /* PointsOfInterestTypesPicker.swift */,
 				58D983E62C2F072A006F7568 /* PointsOfInterestTypeRow.swift */,
 			);
@@ -727,6 +759,7 @@
 				5899736E2C32E972000A3F70 /* TripMap.swift */,
 				58E87A922C34330100F3D8AB /* TripMapContent.swift */,
 				58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */,
+				58CB120B2C36D3C9007AD11A /* MapLoadingIndicator.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -752,14 +785,13 @@
 			path = RefugesView;
 			sourceTree = "<group>";
 		};
-		58DA69532A951D3900F93FDF /* DataSource */ = {
+		58DA69532A951D3900F93FDF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				58A306162C358A9100381EE4 /* Models */,
-				58D338B22B713FE5000D45EC /* RefugesInfo */,
-				582A39A82B9F5EB50057FCCD /* TripMapItemsRepository.swift */,
+				58CB120A2C36CC47007AD11A /* Repositories */,
+				58CB12092C36CC3D007AD11A /* DataProviders */,
 			);
-			path = DataSource;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		58DA69542A951E2100F93FDF /* Models */ = {
@@ -778,7 +810,8 @@
 		58DEF50C2BDBEA8C007EE569 /* MapSearchBar */ = {
 			isa = PBXGroup;
 			children = (
-				58D684212C1337B0001379A0 /* MapSearchPOIType */,
+				58CB120D2C36E010007AD11A /* MapSearchPOITypePicker2 */,
+				58D684212C1337B0001379A0 /* MapSearchPOITypePicker */,
 				58DEF50D2BDBEAAB007EE569 /* MapSearchBar.swift */,
 			);
 			path = MapSearchBar;
@@ -1128,6 +1161,7 @@
 				582A39AD2B9F63A00057FCCD /* PointsOfInterestTypesPicker.swift in Sources */,
 				58D983EE2C2F17A8006F7568 /* ShowingOnMapButton.swift in Sources */,
 				58D983E72C2F072A006F7568 /* PointsOfInterestTypeRow.swift in Sources */,
+				58CB12082C36C895007AD11A /* MapSearchByPOITypeView+ViewModel.swift in Sources */,
 				582263172BC57B2C00B22B20 /* TripMapMarker.swift in Sources */,
 				58E1B9802BF65BC800192C92 /* TripProjectImportFileSection.swift in Sources */,
 				58AD5A4F2A97BF1200571534 /* RefugesInfo+Creator.swift in Sources */,
@@ -1141,6 +1175,7 @@
 				58B2B9082A995506007BFE3F /* RefugeLoadingView.swift in Sources */,
 				58B2B8FB2A9900A5007BFE3F /* RefugeDescriptionViewModel.swift in Sources */,
 				58DEF50B2BDBE5A2007EE569 /* TripProjectLayers.swift in Sources */,
+				58CB120F2C36E037007AD11A /* MapSearchPOITypePicker2.swift in Sources */,
 				58DA69562A951E3100F93FDF /* RefugesInfo+Feature.swift in Sources */,
 				58AD5A472A97BE4300571534 /* RefugesInfo+Maintenance.swift in Sources */,
 				58D6841C2C12F2C2001379A0 /* SearchBarButton.swift in Sources */,
@@ -1151,7 +1186,6 @@
 				58D983E52C2EFC09006F7568 /* TripProject.swift in Sources */,
 				584C6EEF2B76DC750090D1E0 /* RefugesInfo+Polygon.swift in Sources */,
 				58FD006D2A041310004182B6 /* RefugesInfo+Point.swift in Sources */,
-				58CE763E2C343C6F00C0FC1B /* SearchableMap.swift in Sources */,
 				58BDE6022B6D29FA005BFEF3 /* LoadingState.swift in Sources */,
 				58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */,
 				58D338B42B713FF2000D45EC /* RefugesInfoEndpoint.swift in Sources */,
@@ -1164,6 +1198,7 @@
 				58F90E672C00D64A00B6930B /* View+onDeviceRotate.swift in Sources */,
 				58FD006B2A040AAE004182B6 /* RefugesInfoDataProvider.swift in Sources */,
 				58B2B9062A995440007BFE3F /* RefugeDetailViewModel.swift in Sources */,
+				58CB120C2C36D3C9007AD11A /* MapLoadingIndicator.swift in Sources */,
 				589C73472B838F5B00747205 /* View+borderShadow.swift in Sources */,
 				58A306152C357AA700381EE4 /* MapSearchByPOITypeView.swift in Sources */,
 				58CE76402C343D0D00C0FC1B /* RefreshMapButton.swift in Sources */,
@@ -1194,6 +1229,7 @@
 				58D46F7F2B73CE180051EA50 /* RefugeEquipment.swift in Sources */,
 				5887DB792BCD8214004241E6 /* HomeProjectsView.swift in Sources */,
 				58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */,
+				58CB12112C36E047007AD11A /* MapSearchPOITypeButton2.swift in Sources */,
 				58E1B9822BF65D4000192C92 /* TripProjectNameAndImageSection.swift in Sources */,
 				58D46F812B73D5530051EA50 /* RefugeDescriptionView.AccomodationsView.swift in Sources */,
 				585C05C52B9782F50023B13D /* MKCoordinateRegion.swift in Sources */,
@@ -1580,7 +1616,7 @@
 			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift";
 			requirement = {
 				kind = revision;
-				revision = 8f2e3de6d16baa3e585441532ac84c01933e1267;
+				revision = f1ac40c3a9ddf26c053dc30b49f7b2748935a5f5;
 			};
 		};
 		58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */ = {

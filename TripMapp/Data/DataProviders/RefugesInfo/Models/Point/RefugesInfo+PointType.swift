@@ -57,7 +57,6 @@ extension RefugesInfo.PointType {
 // MARK: - Private - Default values builder
 // =============================================================================
 
-
 extension RefugesInfo.PointType {
 
     /// List of existing (and known) point types on RefugesInfo

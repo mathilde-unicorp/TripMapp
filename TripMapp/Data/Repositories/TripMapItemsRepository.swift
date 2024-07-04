@@ -8,12 +8,52 @@
 import Foundation
 import MapKit
 
-class TripMapItemsRepository {
+// =============================================================================
+// MARK: - Repository Index
+// =============================================================================
 
-    let dataProvider: RefugesInfoDataProviderProtocol
+protocol TripMapItemsRepositoryProtocol {
 
-    init(dataProvider: RefugesInfoDataProviderProtocol = RefugesInfoDataProvider()) {
-        self.dataProvider = dataProvider
+    /// Search map items that matches the different pointOfInterest types in the given region
+    func searchMapItems(
+        types: [PointsOfInterestType],
+        region: MKCoordinateRegion
+    ) async throws -> MapItemResultsByPOIType
+
+    /// Search map items that matches the pointOfInterest type in the given region
+    func searchMapItems(
+        type: PointsOfInterestType,
+        region: MKCoordinateRegion
+    ) async throws -> MapItemResults
+
+}
+
+// =============================================================================
+// MARK: - Repository
+// =============================================================================
+
+final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProtocol {
+
+    // -------------------------------------------------------------------------
+    // MARK: - Static properties
+    // -------------------------------------------------------------------------
+
+    static let shared = TripMapItemsRepository(
+        refugesInfoDataProvider: RefugesInfoDataProvider()
+    )
+
+    static let mock = TripMapItemsRepository(
+        refugesInfoDataProvider: MockRefugesInfoDataProvider()
+    )
+
+    // -------------------------------------------------------------------------
+    // MARK: - Init
+    // -------------------------------------------------------------------------
+
+    private let refugesInfoDataProvider: RefugesInfoDataProviderProtocol
+
+    private init(refugesInfoDataProvider: RefugesInfoDataProviderProtocol) {
+        self.refugesInfoDataProvider = refugesInfoDataProvider
     }
 
     // -------------------------------------------------------------------------
@@ -163,7 +203,7 @@ class TripMapItemsRepository {
         pointType: RefugesInfo.PointType,
         region: MKCoordinateRegion
     ) async throws -> [RefugesInfo.LightRefugePoint] {
-        let refuges = try await dataProvider.loadRefuges(
+        let refuges = try await refugesInfoDataProvider.loadRefuges(
             type: pointType,
             bbox: region.toBbox
         )

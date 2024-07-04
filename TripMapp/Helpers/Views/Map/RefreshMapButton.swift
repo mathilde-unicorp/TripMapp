@@ -21,6 +21,30 @@ struct RefreshMapButton: View {
     }
 }
 
+struct RefreshMapButtonModifier: ViewModifier {
+
+    @Binding var shouldShowRefreshButton: Bool
+
+    var onRefresh: () -> Void
+
+    func body(content: Content) -> some View {
+        content.overlay(alignment: .top) {
+            if shouldShowRefreshButton {
+                RefreshMapButton(action: onRefresh)
+            }
+        }
+    }
+}
+
+extension View {
+    func mapRefreshable(isVisible: Binding<Bool>, onRefresh: @escaping () -> Void) -> some View {
+        self.modifier(RefreshMapButtonModifier(
+            shouldShowRefreshButton: isVisible,
+            onRefresh: onRefresh
+        ))
+    }
+}
+
 #Preview {
     RefreshMapButton { print("refresh") }
 }

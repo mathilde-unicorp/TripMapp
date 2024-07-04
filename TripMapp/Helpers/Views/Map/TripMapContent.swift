@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+/// A MapContent with classic items for the current usages of the application
 struct TripMapContent: MapContent {
 
     @Binding var markers: [TripMapMarker.ViewModel]

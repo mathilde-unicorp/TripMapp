@@ -16,33 +16,34 @@ struct RefugesView: View {
     @State private var selectedPOITypes: [PointsOfInterestType] = []
 
     var body: some View {
-        SearchableMap(
-            searchOnRegion: $viewModel.visibleRegion,
-            selectedItem: $selectedResult,
-            onRefreshResult: {
-                self.searchMapItems(for: .init(selectedPOITypes))
-            }, mapContent: {
-                TripMapContent(
-                    markers: $viewModel.markers,
-                    polylines: .constant([])
-                )
-            }
-        )
-        .safeAreaInset(edge: .bottom) {
-            VStack {
-                selectedResultOverview()
-                    .padding()
-
-                if selectedResult == nil {
-                    MapSearchBar(selectedPOITypes: $selectedPOITypes)
-                }
-            }
-            .background(.thinMaterial)
-        }
-        .onChange(of: selectedPOITypes) { _, selectedTypes in
-            self.searchMapItems(for: .init(selectedTypes))
-
-        }
+        EmptyView()
+//        SearchableTripMap(
+//            searchOnRegion: $viewModel.visibleRegion,
+//            selectedItem: $selectedResult,
+//            onRefreshResult: {
+//                self.searchMapItems(for: .init(selectedPOITypes))
+//            }, mapContent: {
+//                TripMapContent(
+//                    markers: $viewModel.markers,
+//                    polylines: .constant([])
+//                )
+//            }
+//        )
+//        .safeAreaInset(edge: .bottom) {
+//            VStack {
+//                selectedResultOverview()
+//                    .padding()
+//
+//                if selectedResult == nil {
+//                    MapSearchBar(selectedPOITypes: $selectedPOITypes)
+//                }
+//            }
+//            .background(.thinMaterial)
+//        }
+//        .onChange(of: selectedPOITypes) { _, selectedTypes in
+//            self.searchMapItems(for: .init(selectedTypes))
+//
+//        }
     }
 
     @ViewBuilder

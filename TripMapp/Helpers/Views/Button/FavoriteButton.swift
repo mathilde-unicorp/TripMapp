@@ -22,7 +22,6 @@ struct FavoriteButton: View {
 
     var body: some View {
         Button(buttonTitle, systemImage: buttonImage, action: action)
-//            .foregroundStyle(.yellow)
             .tint(.yellow)
     }
 }
