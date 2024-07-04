@@ -52,7 +52,7 @@ struct RefugesView: View {
             let marker = viewModel.markers.first(where: { $0.id == selectedResult}) {
             switch marker.source {
             case .refugesInfo:
-                MapMarkerInfoView(mapItem: marker)
+                DefaultMapMarkerInfoView(mapItem: marker)
             case .mkMap:
                 MKMapMarkerInfoView(mapItem: marker)
             case .custom:

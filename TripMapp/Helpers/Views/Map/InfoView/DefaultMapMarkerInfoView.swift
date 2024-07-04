@@ -1,5 +1,5 @@
 //
-//  MapMarkerInfoView.swift
+//  DefaultMapMarkerInfoView.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 07/03/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MapMarkerInfoView: View {
+struct DefaultMapMarkerInfoView: View {
 
     var mapItem: TripMapMarker.ViewModel
 
@@ -39,6 +39,6 @@ struct MapMarkerInfoView: View {
 }
 
 #Preview {
-    MapMarkerInfoView(mapItem: .mocks.first!)
+    DefaultMapMarkerInfoView(mapItem: .mocks.first!)
         .environmentObject(AppRouter.mock)
 }

@@ -18,30 +18,12 @@ struct HomeMapView: View {
             selectedMarker: $selectedMarker,
             dataSource: .init(mapItemsRepository: .shared)
         )
-        .safeAreaInset(edge: .bottom) {
-            VStack {
-                TestView(selectedMarker: $selectedMarker)
-
-                MapSearchBar(selectedPOITypes: $selectedPOITypes)
-            }
-            .background(.thinMaterial)
+        .overlay(alignment: .bottom) {
+            TripMapMarkerInfoView(selectedMarker: $selectedMarker)
         }
-    }
-}
-
-struct TestView: View {
-    @Binding var selectedMarker: TripMapMarker.ViewModel?
-
-    var body: some View {
-        if let selectedMarker {
-            switch selectedMarker.source {
-            case .refugesInfo:
-                MapMarkerInfoView(mapItem: selectedMarker)
-            case .mkMap:
-                MKMapMarkerInfoView(mapItem: selectedMarker)
-            case .custom:
-                EmptyView()
-            }
+        .safeAreaInset(edge: .bottom) {
+            MapSearchBar(selectedPOITypes: $selectedPOITypes)
+                .background(.thinMaterial)
         }
     }
 }
