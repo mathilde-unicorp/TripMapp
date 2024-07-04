@@ -14,7 +14,7 @@ struct HomeMapView: View {
     var body: some View {
         MapSearchByPOITypeView(
             searchPOITypes: $selectedPOITypes,
-            dataSource: .init(mapItemsRepository: .mock)
+            dataSource: .init(mapItemsRepository: .shared)
         )
         .safeAreaInset(edge: .bottom) {
             MapSearchBar(selectedPOITypes: $selectedPOITypes)

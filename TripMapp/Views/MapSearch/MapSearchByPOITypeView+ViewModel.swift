@@ -21,6 +21,8 @@ class MapSearchByPOITypeDataSource: ObservableObject {
 
     private let defaultRegion: MKCoordinateRegion = .france
 
+    private var searchTask: Task<Void, Never>?
+
     // -------------------------------------------------------------------------
     // MARK: - Init
     // -------------------------------------------------------------------------
@@ -40,8 +42,11 @@ class MapSearchByPOITypeDataSource: ObservableObject {
     ) {
         self.loadingState = .loading
 
-        Task {
-            let region = region ?? defaultRegion
+        self.searchTask?.cancel()
+        self.searchTask = Task.detached(priority: .background) { [weak self] in
+            guard let self = self else { return }
+
+            let region = region ?? self.defaultRegion
 
             do {
                 let items = try await self.mapItemsRepository

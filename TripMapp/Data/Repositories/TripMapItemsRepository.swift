@@ -67,14 +67,19 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
         types: [PointsOfInterestType],
         region: MKCoordinateRegion
     ) async throws -> MapItemResultsByPOIType {
-        var results: MapItemResultsByPOIType = [:]
-
-        try await types.concurrentForEach { type in
+        let concurrentResults = try await types.concurrentMap { type in
             let items = try await self.searchMapItems(type: type, region: region)
-            results.insert(results: items, for: type)
+            return [type: items]
         }
 
-        return results
+        // Concurrent results returns an array, we need to flatten it.
+        let otherResult = concurrentResults.reduce(into: MapItemResultsByPOIType()) { result, item in
+            item.keys.forEach { key in
+                result[key] = item[key]
+            }
+        }
+
+        return otherResult
     }
 
     /// Search map items that matches the pointOfInterest type in the given region
