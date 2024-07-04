@@ -12,10 +12,11 @@ struct MapSearchByPOITypeView: View {
 
     /// Points Of Interest Types to search on the map
     @Binding var searchPOITypes: [POIType]
+    @Binding var selectedMarker: TripMapMarker.ViewModel?
 
     @ObservedObject var dataSource: MapSearchByPOITypeDataSource
 
-    @State private var selectedItem: String?
+    @State private var localSelectedItem: String?
     @State private var searchOnRegion: MKCoordinateRegion?
     @State private var shouldShowRefreshButton: Bool = false
 
@@ -25,9 +26,11 @@ struct MapSearchByPOITypeView: View {
 
     init(
         searchPOITypes: Binding<[POIType]>,
+        selectedMarker: Binding<TripMapMarker.ViewModel?>,
         dataSource: MapSearchByPOITypeDataSource = .init(mapItemsRepository: .shared)
     ) {
         self._searchPOITypes = searchPOITypes
+        self._selectedMarker = selectedMarker
         self.dataSource = dataSource
     }
 
@@ -38,7 +41,7 @@ struct MapSearchByPOITypeView: View {
     var body: some View {
         TripMap(
             visibleRegion: $searchOnRegion,
-            selectedItem: $selectedItem
+            selectedItem: $localSelectedItem
         ) {
             MarkersLayer(markers: $dataSource.searchResults)
         }
@@ -59,6 +62,9 @@ struct MapSearchByPOITypeView: View {
 
             withAnimation { self.shouldShowRefreshButton = true }
         }
+        .onChange(of: localSelectedItem) { _, newSelectedItem in
+            onSelectedItemChanged(newSelectedItem)
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -75,11 +81,22 @@ struct MapSearchByPOITypeView: View {
             )
         }
     }
+
+    private func onSelectedItemChanged(_ newSelectedItem: String?) {
+        let marker = self.dataSource.searchResults.first(where: {
+            $0.id == newSelectedItem
+        })
+
+        withAnimation {
+            self.selectedMarker = marker
+        }
+    }
 }
 
 #Preview {
     MapSearchByPOITypeView(
         searchPOITypes: .constant([.refuge, .foodstuffProvisions]),
+        selectedMarker: .constant(nil),
         dataSource: .init(mapItemsRepository: .mock)
     )
 }
