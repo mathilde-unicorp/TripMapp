@@ -20,6 +20,7 @@ struct SearchBarButton: View {
 
                 Text(placeholder)
                     .setFullWidth()
+                    .lineLimit(1)
             }
             .padding(8.0)
             .background(.background)

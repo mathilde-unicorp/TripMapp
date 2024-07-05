@@ -799,6 +799,22 @@
         }
       }
     },
+    "map_search_bar.short_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rechercher..."
+          }
+        }
+      }
+    },
     "massif_description %@" : {
       "extractionState" : "manual",
       "localizations" : {

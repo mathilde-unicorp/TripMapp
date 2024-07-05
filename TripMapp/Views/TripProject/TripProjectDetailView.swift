@@ -26,9 +26,12 @@ struct TripProjectDetailView: View {
             MapUserLocationButton()
         }
         .overlay(alignment: .bottom) {
-            MapSearchBar(selectedPOITypes: .constant([]))
-                .setFullWidth()
-                .background(.thinMaterial)
+            MapSearchBar(
+                selectedPOITypes: .constant([]),
+                searchBarSize: .constant(.medium)
+            )
+            .setFullWidth()
+            .background(.thinMaterial)
         }
         .overlay(alignment: .topLeading) {
             if !showSidebar {

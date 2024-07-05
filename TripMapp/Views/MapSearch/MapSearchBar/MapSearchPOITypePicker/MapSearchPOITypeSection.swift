@@ -11,7 +11,10 @@ struct MapSearchPOITypeSection: View {
 
     @Binding var selectedTypes: [POIType]
 
+    let sectionSize: SearchBarSize
+
     @Environment(\.managedObjectContext) private var viewContext
+
 
     // -------------------------------------------------------------------------
     // MARK: - Private properties
@@ -36,6 +39,16 @@ struct MapSearchPOITypeSection: View {
     // -------------------------------------------------------------------------
 
     var body: some View {
+        switch sectionSize {
+        case .reduced:
+            reducedPOITypeSection()
+        case .medium:
+            mediumPOITypeSection()
+        }
+    }
+
+    @ViewBuilder
+    private func mediumPOITypeSection() -> some View {
         VStack {
             MapSearchPOITypeSectionHeader(onShowMore: {
                 shouldShowPOITypesList = true
@@ -60,6 +73,14 @@ struct MapSearchPOITypeSection: View {
             PointsOfInterestTypesPicker(selectedTypes: $selectedTypes)
         }
     }
+
+    @ViewBuilder
+    private func reducedPOITypeSection() -> some View {
+        SmallMapSearchPOITypePicker(
+            displayedTypes: defaultDisplayedTypes,
+            selectedTypes: $selectedTypes
+        )
+    }
 }
 
 struct MapSearchPOITypeSection_Previews: PreviewProvider {
@@ -69,8 +90,11 @@ struct MapSearchPOITypeSection_Previews: PreviewProvider {
 
         var body: some View {
             ScrollView {
-                MapSearchPOITypeSection(selectedTypes: $selectedTypes)
-                    .padding()
+                MapSearchPOITypeSection(
+                    selectedTypes: $selectedTypes,
+                    sectionSize: .medium
+                )
+                .padding()
             }
             .background(.thinMaterial)
             .environment(\.managedObjectContext, .previewViewContext)

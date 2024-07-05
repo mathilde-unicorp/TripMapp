@@ -161,7 +161,7 @@ struct PointsOfInterestTypesPicker: View {
             print("Entity not found ! :(")
             return
         }
-        
+
         viewContext.deletePointsOfInterestTypeEntity(savedEntity)
     }
 }
