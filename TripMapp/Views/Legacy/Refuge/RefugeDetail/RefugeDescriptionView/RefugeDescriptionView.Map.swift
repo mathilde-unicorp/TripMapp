@@ -32,10 +32,5 @@ extension RefugeDescriptionView {
 }
 
 #Preview {
-    RefugeDescriptionView.AccessMap(
-        marker: .init(
-            refugeInfoResult: MockRefuges.refuges.first!.toLightPoint,
-            type: .cottage
-        )
-    )
+    RefugeDescriptionView.AccessMap(marker: .mocks.first!)
 }

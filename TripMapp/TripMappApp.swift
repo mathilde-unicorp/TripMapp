@@ -15,6 +15,7 @@ struct TripMappApp: App {
         WindowGroup {
             HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(AppRouter.shared)
         }
     }
 }

@@ -12,18 +12,16 @@ extension PointsOfInterestTypeEntity {
     var toPointOfInterestType: POIType? {
         POIType(rawValue: Int(self.id))
     }
-}
 
-// =============================================================================
-// MARK: - Initialization
-// =============================================================================
+    // -------------------------------------------------------------------------
+    // MARK: - Fetch Requests
+    // -------------------------------------------------------------------------
 
-extension PointsOfInterestTypeEntity {
-    convenience init(
-        context: NSManagedObjectContext,
-        pointsOfInterestType: POIType
-    ) {
-        self.init(context: context)
-        self.id = Int64(pointsOfInterestType.id)
+    static var allPointsOfInterestTypes: NSFetchRequest<PointsOfInterestTypeEntity> {
+        let request = PointsOfInterestTypeEntity.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \PointsOfInterestTypeEntity.id, ascending: true)
+        ]
+        return request
     }
 }

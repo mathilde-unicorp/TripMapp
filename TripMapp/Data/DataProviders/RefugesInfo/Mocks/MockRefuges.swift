@@ -11,7 +11,7 @@ struct MockRefuges {
 
     static let refuges: [RefugesInfo.RefugePoint] = [
         RefugesInfo.RefugePoint(properties: .init(
-            id: 0,
+            id: Int.random(in: 0...100),
             link: URL(string: "https://www.refuges.info/point/3776/cabane-non-gardee/Cabane-pastorale-de-Clartan/")!,
             name: "Cabane pastorale de Clartan",
             symbol: "Crossing",

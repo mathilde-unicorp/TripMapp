@@ -36,6 +36,28 @@ enum PointsOfInterestType: Int, CaseIterable {
     case bivouac
 }
 
+extension PointsOfInterestType: Identifiable {
+    var id: Int { return rawValue }
+}
+
+// -------------------------------------------------------------------------
+// MARK: - PointsOfInterestType + RefugesInfo
+// -------------------------------------------------------------------------
+extension PointsOfInterestType {
+    var toRefugesInfoPointType: RefugesInfo.PointType? {
+        switch self {
+        case .summit: return .summit
+        case .waypoint: return .crossingPoint
+        case .water: return .water
+        case .lake: return .lake
+        case .refuge: return .refuge
+        case .cottage: return .bedAndBreakfast
+        case .bivouac: return .bivouac
+        default: return nil
+        }
+    }
+}
+
 // =============================================================================
 // MARK: - Computed Properties
 // =============================================================================
@@ -121,8 +143,4 @@ extension PointsOfInterestType {
     var color: Color {
         return category.color
     }
-}
-
-extension PointsOfInterestType: Identifiable {
-    var id: Int { return rawValue }
 }

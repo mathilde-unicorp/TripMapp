@@ -28,31 +28,47 @@ extension RefugesInfo {
             case value = "valeur"
             case image = "icone"
         }
-
-        // MARK: - Default values
-
-        static let crossingPoint = PointTypeById.crossingPoint.buildPointType()
-        static let refuge = PointTypeById.refuge.buildPointType()
-        static let summit = PointTypeById.summit.buildPointType()
-        static let hut = PointTypeById.hut.buildPointType()
-        static let bedAndBreakfast = PointTypeById.bedAndBreakfast.buildPointType()
-        static let bivouac = PointTypeById.bivouac.buildPointType()
-        static let water = PointTypeById.water.buildPointType()
-        static let lake = PointTypeById.lake.buildPointType()
     }
+}
 
-    // MARK: - Default Values Builder
+// =============================================================================
+// MARK: - Default values
+// =============================================================================
+
+extension RefugesInfo.PointType {
+
+    // Make an easy usable list of point type that can be used with autocompletion :)
+
+    static let crossingPoint = PointTypeById.crossingPoint.buildPointType()
+    static let refuge = PointTypeById.refuge.buildPointType()
+    static let summit = PointTypeById.summit.buildPointType()
+    static let hut = PointTypeById.hut.buildPointType()
+    static let bedAndBreakfast = PointTypeById.bedAndBreakfast.buildPointType()
+    static let bivouac = PointTypeById.bivouac.buildPointType()
+    static let water = PointTypeById.water.buildPointType()
+    static let lake = PointTypeById.lake.buildPointType()
+
+    static let allTypes = RefugesInfo.PointType.PointTypeById.allCases.map {
+        $0.buildPointType()
+    }
+}
+
+// =============================================================================
+// MARK: - Private - Default values builder
+// =============================================================================
+
+extension RefugesInfo.PointType {
 
     /// List of existing (and known) point types on RefugesInfo
-    private enum PointTypeById: Int {
+    private enum PointTypeById: Int, CaseIterable {
         case crossingPoint = 3
-        case refuge = 10
         case summit = 6
         case hut = 7
         case bedAndBreakfast = 9
+        case refuge = 10
+        case lake = 16
         case bivouac = 19
         case water = 23
-        case lake = 16
 
         var systemImage: String {
             switch self {
@@ -80,8 +96,8 @@ extension RefugesInfo {
             }
         }
 
-        func buildPointType() -> PointType {
-            return PointType(id: self.rawValue, value: self.value, image: self.systemImage)
+        func buildPointType() -> RefugesInfo.PointType {
+            return .init(id: self.rawValue, value: self.value, image: self.systemImage)
         }
     }
 }

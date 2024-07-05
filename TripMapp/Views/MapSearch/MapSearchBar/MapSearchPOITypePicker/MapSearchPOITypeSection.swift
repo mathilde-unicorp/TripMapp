@@ -18,15 +18,15 @@ struct MapSearchPOITypeSection: View {
     // -------------------------------------------------------------------------
 
     @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id, order: .forward)],
-        animation: .default
+        fetchRequest: PointsOfInterestTypeEntity.allPointsOfInterestTypes,
+        transaction: .init(animation: .default)
     )
     private var savedPOITypeEntity: FetchedResults<PointsOfInterestTypeEntity>
 
     private var defaultDisplayedTypes: [POIType] {
         let savedPOIType = savedPOITypeEntity.compactMap(\.toPointOfInterestType)
 
-        return selectedTypes.merge(with: savedPOIType)
+        return selectedTypes.merged(with: savedPOIType)
     }
 
     @State private var shouldShowPOITypesList: Bool = false
@@ -62,11 +62,22 @@ struct MapSearchPOITypeSection: View {
     }
 }
 
-#Preview {
-    ScrollView {
-        MapSearchPOITypeSection(selectedTypes: .constant([.summit, .water]))
-            .padding()
+struct MapSearchPOITypeSection_Previews: PreviewProvider {
+
+    struct ContainerView: View {
+        @State private var selectedTypes: [POIType] = [.summit, .water]
+
+        var body: some View {
+            ScrollView {
+                MapSearchPOITypeSection(selectedTypes: $selectedTypes)
+                    .padding()
+            }
+            .background(.thinMaterial)
+            .environment(\.managedObjectContext, .previewViewContext)
+        }
     }
-    .background(.thinMaterial)
-    .environment(\.managedObjectContext, .previewViewContext)
+
+    static var previews: some View {
+        ContainerView()
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TripProjectRow: View {
 
@@ -22,7 +23,7 @@ struct TripProjectRow: View {
             VStack(alignment: .leading) {
                 Text(project.name ?? "")
                     .font(.body)
-//
+
                 if let startDate = project.startDate {
                     Text(startDate.formatted())
                         .font(.caption)
@@ -36,10 +37,8 @@ struct TripProjectRow: View {
 #Preview {
     List {
         TripProjectRow(
-            project: TripProjectEntity(
-                context: .previewViewContext,
-                name: "Project 1"
-            )
+            project: NSManagedObjectContext.previewViewContext
+                .createTripProjectEntity(name: "Project 1")!
         )
     }
 }

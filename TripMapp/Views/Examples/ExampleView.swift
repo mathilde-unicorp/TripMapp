@@ -11,10 +11,7 @@ import CoreData
 struct ExampleView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \TripProjectEntity.name, ascending: true)],
-        animation: .default
-    )
+    @FetchRequest(fetchRequest: TripProjectEntity.allProjectsRequest)
 
     private var items: FetchedResults<TripProjectEntity>
 

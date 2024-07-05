@@ -14,9 +14,10 @@ struct TripProjectsList: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.name, order: .forward)],
-        animation: .default
+        fetchRequest: TripProjectEntity.allProjectsRequest,
+        transaction: .init(animation: .default)
     )
+
     private var projects: FetchedResults<TripProjectEntity>
 
     var body: some View {

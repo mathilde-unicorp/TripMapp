@@ -9,18 +9,26 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
-    @State private var showSearchBar: Bool = false
+    @State private var selectedPOITypes: [PointsOfInterestType] = []
+    @State private var selectedMarker: TripMapMarker.ViewModel?
 
     var body: some View {
-        Map {
-
-        }
+        MapSearchByPOITypeView(
+            searchPOITypes: $selectedPOITypes,
+            selectedMarker: $selectedMarker,
+            dataSource: .init(mapItemsRepository: .shared)
+        )
         .overlay(alignment: .bottom) {
-            MapSearchBarSheet()
+            TripMapMarkerInfoView(selectedMarker: $selectedMarker)
+        }
+        .safeAreaInset(edge: .bottom) {
+            MapSearchBar(selectedPOITypes: $selectedPOITypes)
+                .background(.thinMaterial)
         }
     }
 }
 
 #Preview {
     HomeMapView()
+        .environment(\.managedObjectContext, .previewViewContext)
 }

@@ -30,14 +30,14 @@ class RefugesViewModel: ObservableObject {
         dataProvider: RefugesInfoDataProviderProtocol,
         router: AppRouter
     ) {
-        self.repository = .init(dataProvider: dataProvider)
+        self.repository = .shared
         self.router = router
 
-        self.courses = [
-            .init(gpxUrl: .gr66Gpx),
-            .init(gpxUrl: .gr70Gpx)
+//        self.courses = [
+//            .init(gpxUrl: .gr66Gpx),
+//            .init(gpxUrl: .gr70Gpx)
 //            .init(gpxUrl: .tourDuLacDesPisesGpx)
-        ]
+//        ]
     }
 
     // MARK: - Requests
@@ -47,24 +47,11 @@ class RefugesViewModel: ObservableObject {
         Task {
             let region = visibleRegion ?? defaultRegion
 
-            self.markers = []
+            let items = try await self.repository
+                .searchMapItems(types: Array(types), region: region)
 
-            try await Array(types).concurrentForEach { type in
-                let items = try await self.repository
-                    .searchMapItems(type: type, region: region)
-
-                self.markers.append(
-                    contentsOf: items.refugesInfoResults.map {
-                        TripMapMarker.ViewModel(refugeInfoResult: $0, type: type)
-                    }
-                )
-
-                self.markers.append(
-                    contentsOf: items.mkMapItemResults.map {
-                        TripMapMarker.ViewModel(mkMapItem: $0, type: type)
-                    }
-                )
-            }
+            let newMarkers = items.toTripMapMarkerViewModels()
+            self.markers = newMarkers
         }
     }
 

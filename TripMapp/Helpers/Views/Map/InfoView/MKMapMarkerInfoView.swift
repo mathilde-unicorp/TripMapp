@@ -48,8 +48,5 @@ struct MKMapMarkerInfoView: View {
 }
 
 #Preview {
-    MKMapMarkerInfoView(mapItem: .init(
-        mkMapItem: .init(placemark: .init(coordinate: .giteDeLaColleStMichel)),
-        type: .cottage
-    ))
+    MKMapMarkerInfoView(mapItem: .mocks.first!)
 }
