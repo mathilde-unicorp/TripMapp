@@ -123,6 +123,22 @@
         }
       }
     },
+    "_example_long_press_me" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long Press Me"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long Press Me"
+          }
+        }
+      }
+    },
     "_example_long_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -153,6 +169,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir un élément"
+          }
+        }
+      }
+    },
+    "_example_swipe_me" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe Me"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe Me"
           }
         }
       }
@@ -444,12 +476,6 @@
         }
       }
     },
-    "Click" : {
-
-    },
-    "Click Me" : {
-
-    },
     "coordinates_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -708,12 +734,6 @@
         }
       }
     },
-    "Long Press" : {
-
-    },
-    "Long Press Me" : {
-
-    },
     "longitude_short_description %lf" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -946,13 +966,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select one or many type of points of interests you want to search on the map."
+            "value" : "Tap on the type of points of interests you want to search on the map.\n\nSwipe on the types you want to save as favorites to keep them constantly accessible on the map."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choisissez le ou les types de points d'intérêts que vous souhaitez rechercher sur la carte."
+            "value" : "Tapez sur les types de points d'intérêts que vous souhaitez rechercher sur la carte.\n\nSwipez sur ceux que vous souhaitez garder en favoris pour les avoir constamment à disposition sur la carte."
           }
         }
       }
@@ -1503,12 +1523,6 @@
           }
         }
       }
-    },
-    "Swipe" : {
-
-    },
-    "Swipe Me" : {
-
     }
   },
   "version" : "1.0"

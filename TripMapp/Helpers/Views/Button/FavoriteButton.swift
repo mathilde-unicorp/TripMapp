@@ -28,16 +28,16 @@ struct FavoriteButton: View {
 
 #Preview {
     List {
-        Menu("Click Me") {
+        Menu("_example_tap_on_me") {
             FavoriteButton(isFavorite: true, action: {})
         }
 
-        Text("Long Press Me")
+        Text("_example_long_press_me")
             .contextMenu {
                 FavoriteButton(isFavorite: true, action: {})
             }
 
-        Text("Swipe Me")
+        Text("_example_swipe_me")
             .swipeActions {
                 FavoriteButton(isFavorite: true, action: {})
             }

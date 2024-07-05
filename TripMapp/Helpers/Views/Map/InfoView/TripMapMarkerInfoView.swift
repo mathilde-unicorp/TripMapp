@@ -23,6 +23,7 @@ struct TripMapMarkerInfoView: View {
             }
             .background(.thinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10.0))
+            .padding()
         }
     }
 }
