@@ -53,7 +53,7 @@ struct MapSearchPOITypeSection: View {
                 }
             }
             .padding()
-            .background(.thickMaterial)
+            .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
         }
         .sheet(isPresented: $shouldShowPOITypesList) {

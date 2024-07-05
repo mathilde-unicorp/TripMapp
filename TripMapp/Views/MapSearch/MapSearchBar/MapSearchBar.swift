@@ -17,7 +17,6 @@ struct MapSearchBar: View {
             SearchBarButton(placeholder: "map_search_bar.placeholder") {
                 // open research
             }
-            .padding(.vertical)
 
             MapSearchPOITypeSection(selectedTypes: $selectedPOITypes)
         }
@@ -32,6 +31,7 @@ struct MapSearchBar_Previews: PreviewProvider {
 
         var body: some View {
             MapSearchBar(selectedPOITypes: $selectedPOITypes)
+                .background(.thinMaterial)
         }
     }
 

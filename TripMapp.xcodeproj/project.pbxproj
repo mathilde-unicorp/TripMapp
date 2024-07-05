@@ -467,7 +467,6 @@
 		5887DB712BCD80FE004241E6 /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
-				58EFC4922B97658C009B6A61 /* MarkerInfoView */,
 				58F485D02BBD9BFB008673B0 /* Course */,
 				582C7C3D2B8E311A00745751 /* MapFilters */,
 				584C6EF12B76E58B0090D1E0 /* Massif */,
@@ -871,13 +870,6 @@
 				58F485C72BBD94CF008673B0 /* PointsOfInterestType+Category.swift */,
 			);
 			path = PointsOfInterests;
-			sourceTree = "<group>";
-		};
-		58EFC4922B97658C009B6A61 /* MarkerInfoView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MarkerInfoView;
 			sourceTree = "<group>";
 		};
 		58F485CA2BBD9629008673B0 /* Refuge */ = {
