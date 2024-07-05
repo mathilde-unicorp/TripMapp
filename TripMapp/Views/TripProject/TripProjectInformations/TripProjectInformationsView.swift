@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TripProjectInformationsView: View {
 
@@ -74,24 +75,17 @@ struct TripProjectInformationsView: View {
     // -------------------------------------------------------------------------
 
     private func saveProject() {
-        do {
-            projectEntity.update(with: localProject)
-
-            try viewContext.save()
-            dismiss()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        viewContext.update(entity: projectEntity, with: localProject)
+        dismiss()
     }
 }
 
 #Preview {
     NavigationStack {
-        TripProjectInformationsView(projectEntity: TripProjectEntity(
-            context: .previewViewContext,
-            name: "Nouveau projet"
-        ))
+        TripProjectInformationsView(
+            projectEntity: NSManagedObjectContext.previewViewContext
+                .createTripProjectEntity(name: "Project 1")!
+        )
         .environment(\.managedObjectContext, .previewViewContext)
     }
 }

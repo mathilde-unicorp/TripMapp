@@ -18,8 +18,8 @@ struct MapSearchPOITypeSection: View {
     // -------------------------------------------------------------------------
 
     @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id, order: .forward)],
-        animation: .default
+        fetchRequest: PointsOfInterestTypeEntity.allPointsOfInterestTypes,
+        transaction: .init(animation: .default)
     )
     private var savedPOITypeEntity: FetchedResults<PointsOfInterestTypeEntity>
 

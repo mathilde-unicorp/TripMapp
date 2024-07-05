@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreData
 
 struct TripProjectDetailView: View {
 
@@ -64,10 +65,8 @@ struct TripProjectDetailView: View {
 #Preview {
     NavigationStack {
         TripProjectDetailView(
-            projectEntity: TripProjectEntity(
-                context: .previewViewContext,
-                name: "Test"
-            )
+            projectEntity: NSManagedObjectContext.previewViewContext
+                .createTripProjectEntity(name: "Project 1")!
         )
         .environment(\.managedObjectContext, .previewViewContext)
     }

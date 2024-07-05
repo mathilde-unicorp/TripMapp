@@ -20,8 +20,8 @@ struct PointsOfInterestTypesPicker: View {
     // -------------------------------------------------------------------------
 
     @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id, order: .forward)],
-        animation: .default
+        fetchRequest: PointsOfInterestTypeEntity.allPointsOfInterestTypes,
+        transaction: .init(animation: .default)
     )
     private var favoritesPOITypes: FetchedResults<PointsOfInterestTypeEntity>
 
@@ -153,31 +153,16 @@ struct PointsOfInterestTypesPicker: View {
     // -------------------------------------------------------------------------
 
     private func addToFavorite(type: PointsOfInterestType) {
-        do {
-            _ = PointsOfInterestTypeEntity(
-                context: viewContext,
-                pointsOfInterestType: type
-            )
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        viewContext.createPointsOfInterestTypeEntity(type: type)
     }
 
     private func removeFromFavorite(type: PointsOfInterestType) {
-        do {
-            guard let savedEntity = favoritePOITypeEntity(from: type) else {
-                print("Entity not found ! :(")
-                return
-            }
-
-            viewContext.delete(savedEntity)
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        guard let savedEntity = favoritePOITypeEntity(from: type) else {
+            print("Entity not found ! :(")
+            return
         }
+        
+        viewContext.deletePointsOfInterestTypeEntity(savedEntity)
     }
 }
 

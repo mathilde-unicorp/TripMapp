@@ -9,35 +9,28 @@ import CoreData
 
 extension PersistenceController {
 
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
+    static var preview = PersistenceController(inMemory: true)
 
-        generateTripProjectEntity(viewContext: viewContext)
-        generatePointsOfInterestsEntity(viewContext: viewContext)
-
+    func generateInMemoryContent() {
         do {
-            try viewContext.save()
+            try generateTripProjectEntities()
+            try generatePointsOfInterestsEntities()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
-
-    private static func generateTripProjectEntity(viewContext: NSManagedObjectContext) {
-        for index in 0 ..< 10 {
-            _ = TripProjectEntity(context: viewContext, name: "Project \(index)")
+            print("CANNOT CREATE PREVIEW CONTENT ON PERSISTENCE CONTROLLER: \(error)")
         }
     }
 
-    private static func generatePointsOfInterestsEntity(viewContext: NSManagedObjectContext) {
+    private func generateTripProjectEntities() throws {
+        for index in 0 ..< 10 {
+            context.createTripProjectEntity(name: "Project \(index)")
+        }
+    }
+
+    private func generatePointsOfInterestsEntities() throws {
         let poiTypes: [POIType] = [.foodstuffProvisions, .refuge, .water, .campground]
 
         for poiType in poiTypes {
-            _ = PointsOfInterestTypeEntity(context: viewContext, pointsOfInterestType: poiType)
+            context.createPointsOfInterestTypeEntity(type: poiType)
         }
     }
 }
