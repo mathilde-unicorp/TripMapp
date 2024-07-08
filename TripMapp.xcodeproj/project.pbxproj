@@ -1640,7 +1640,7 @@
 			repositoryURL = "https://github.com/mathilde-unicorp/Unicorp.DataTypesLib.Swift";
 			requirement = {
 				kind = revision;
-				revision = f1ac40c3a9ddf26c053dc30b49f7b2748935a5f5;
+				revision = 3392585ab678efaabee4c88745a80a9119b30c6b;
 			};
 		};
 		58C779532BA73B260020BF67 /* XCRemoteSwiftPackageReference "Unicorp.APIBuilder" */ = {
