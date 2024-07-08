@@ -16,7 +16,7 @@ extension MapSearchBar {
         }
     }
 
-    @ViewBuilder 
+    @ViewBuilder
     func searchBarSized() -> some View {
         VStack(alignment: .leading, spacing: 16.0) {
             HStack {

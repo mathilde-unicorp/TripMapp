@@ -15,7 +15,6 @@ struct MapSearchPOITypeSection: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
-
     // -------------------------------------------------------------------------
     // MARK: - Private properties
     // -------------------------------------------------------------------------
