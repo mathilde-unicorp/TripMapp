@@ -86,6 +86,6 @@ struct TripProjectInformationsView: View {
             projectEntity: NSManagedObjectContext.previewViewContext
                 .createTripProjectEntity(name: "Project 1")!
         )
-        .environment(\.managedObjectContext, .previewViewContext)
+        .configureEnvironmentForPreview()
     }
 }

@@ -50,5 +50,5 @@ struct TripProjectsList: View {
     NavigationStack {
         TripProjectsList(selectedProject: .constant(nil))
     }
-    .environment(\.managedObjectContext, .previewViewContext)
+    .configureEnvironmentForPreview()
 }

@@ -161,7 +161,7 @@ struct PointsOfInterestTypesPicker: View {
             print("Entity not found ! :(")
             return
         }
-        
+
         viewContext.deletePointsOfInterestTypeEntity(savedEntity)
     }
 }
@@ -170,5 +170,5 @@ struct PointsOfInterestTypesPicker: View {
     PointsOfInterestTypesPicker(
         selectedTypes: .constant(.init([.summit]))
     )
-    .environment(\.managedObjectContext, .previewViewContext)
+    .configureEnvironmentForPreview()
 }

@@ -9,34 +9,41 @@ import SwiftUI
 import MapKit
 
 struct MapSearchBar: View {
-
     @Binding var selectedPOITypes: [POIType]
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16.0) {
-            SearchBarButton(placeholder: "map_search_bar.placeholder") {
-                // open research
-            }
-            .padding(.vertical)
+    @Binding var searchBarSize: SearchBarSize
 
-            MapSearchPOITypeSection(selectedTypes: $selectedPOITypes)
-        }
-        .padding()
+    var body: some View {
+        searchBarSized()
+            .padding()
+            .padding(.top, 8.0) // Let some padding for the search bar slider
+            .overlay(alignment: .top) {
+                MapSearchBarSizeSlider(searchBarSize: $searchBarSize)
+            }
     }
 }
+
+// =============================================================================
+// MARK: - Preview
+// =============================================================================
 
 struct MapSearchBar_Previews: PreviewProvider {
 
     struct ContainerView: View {
         @State private var selectedPOITypes: [POIType] = []
+        @State private var searchBarSize: SearchBarSize = .medium
 
         var body: some View {
-            MapSearchBar(selectedPOITypes: $selectedPOITypes)
+            MapSearchBar(
+                selectedPOITypes: $selectedPOITypes,
+                searchBarSize: $searchBarSize
+            )
+            .background(.thinMaterial)
         }
     }
 
     static var previews: some View {
         ContainerView()
-            .environment(\.managedObjectContext, .previewViewContext)
+            .configureEnvironmentForPreview()
     }
 }

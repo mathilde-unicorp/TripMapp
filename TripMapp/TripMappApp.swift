@@ -9,13 +9,53 @@ import SwiftUI
 
 @main
 struct TripMappApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     let persistenceController = PersistenceController.shared
+    let appRouter = AppRouter.shared
+    let appSettings = AppSettings.shared
 
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(AppRouter.shared)
+                .configureEnvironment(
+                    persistenceController: persistenceController,
+                    appRouter: appRouter
+                )
+                .onAppear {
+                    self.setupApplication()
+                }
         }
+    }
+
+    private func setupApplication() {
+        if self.appSettings.shouldSetupFavoritePOITypes {
+            self.persistenceController.setupDefaultFavoritePOITypes()
+            self.appSettings.shouldSetupFavoritePOITypes = false
+        }
+    }
+}
+
+// =============================================================================
+// MARK: - App Environment
+// =============================================================================
+
+extension View {
+
+    func configureEnvironment(
+        persistenceController: PersistenceController,
+        appRouter: AppRouter
+    ) -> some View {
+        self
+            .environment(\.managedObjectContext, persistenceController.context)
+            .environmentObject(appRouter) // TODO: TEMP
+    }
+
+    func configureEnvironmentForPreview() -> some View {
+        self
+            .configureEnvironment(
+                persistenceController: .preview,
+                appRouter: .mock
+            )
     }
 }

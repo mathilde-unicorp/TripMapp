@@ -77,6 +77,6 @@ struct RefugesView_Previews: PreviewProvider {
             AppRouter.mock.createRefugesView()
         }
         .environmentObject(AppRouter.mock) // not the best options for now
-        .environment(\.managedObjectContext, .previewViewContext)
+        .configureEnvironmentForPreview()
     }
 }

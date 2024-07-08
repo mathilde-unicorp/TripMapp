@@ -11,6 +11,8 @@ struct MapSearchPOITypeSection: View {
 
     @Binding var selectedTypes: [POIType]
 
+    let sectionSize: SearchBarSize
+
     @Environment(\.managedObjectContext) private var viewContext
 
     // -------------------------------------------------------------------------
@@ -36,6 +38,16 @@ struct MapSearchPOITypeSection: View {
     // -------------------------------------------------------------------------
 
     var body: some View {
+        switch sectionSize {
+        case .reduced:
+            reducedPOITypeSection()
+        case .medium:
+            mediumPOITypeSection()
+        }
+    }
+
+    @ViewBuilder
+    private func mediumPOITypeSection() -> some View {
         VStack {
             MapSearchPOITypeSectionHeader(onShowMore: {
                 shouldShowPOITypesList = true
@@ -53,12 +65,20 @@ struct MapSearchPOITypeSection: View {
                 }
             }
             .padding()
-            .background(.thickMaterial)
+            .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
         }
         .sheet(isPresented: $shouldShowPOITypesList) {
             PointsOfInterestTypesPicker(selectedTypes: $selectedTypes)
         }
+    }
+
+    @ViewBuilder
+    private func reducedPOITypeSection() -> some View {
+        SmallMapSearchPOITypePicker(
+            displayedTypes: defaultDisplayedTypes,
+            selectedTypes: $selectedTypes
+        )
     }
 }
 
@@ -69,11 +89,14 @@ struct MapSearchPOITypeSection_Previews: PreviewProvider {
 
         var body: some View {
             ScrollView {
-                MapSearchPOITypeSection(selectedTypes: $selectedTypes)
-                    .padding()
+                MapSearchPOITypeSection(
+                    selectedTypes: $selectedTypes,
+                    sectionSize: .medium
+                )
+                .padding()
             }
             .background(.thinMaterial)
-            .environment(\.managedObjectContext, .previewViewContext)
+            .configureEnvironmentForPreview()
         }
     }
 

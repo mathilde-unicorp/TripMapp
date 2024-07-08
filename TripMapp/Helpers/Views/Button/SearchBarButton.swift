@@ -20,9 +20,10 @@ struct SearchBarButton: View {
 
                 Text(placeholder)
                     .setFullWidth()
+                    .lineLimit(1)
             }
             .padding(8.0)
-            .background(.thickMaterial)
+            .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
         }
         .foregroundStyle(.secondary)
@@ -33,4 +34,6 @@ struct SearchBarButton: View {
     SearchBarButton(placeholder: "map_search_bar.placeholder") {
         print("tap search bar")
     }
+    .padding()
+    .background(.thickMaterial)
 }

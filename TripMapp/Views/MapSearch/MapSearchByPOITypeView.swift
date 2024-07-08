@@ -73,6 +73,8 @@ struct MapSearchByPOITypeView: View {
 
     private func refreshMapResults() {
         withAnimation {
+            self.localSelectedItem = nil
+
             self.shouldShowRefreshButton = false
 
             self.dataSource.searchMapItems(
@@ -83,12 +85,16 @@ struct MapSearchByPOITypeView: View {
     }
 
     private func onSelectedItemChanged(_ newSelectedItem: String?) {
-        let marker = self.dataSource.searchResults.first(where: {
-            $0.id == newSelectedItem
-        })
+        var newMarker: TripMapMarker.ViewModel?
+
+        if let markerId = newSelectedItem {
+            newMarker = self.dataSource.searchResults.first(keyPath: \.id, equals: markerId)
+        } else {
+            newMarker = nil
+        }
 
         withAnimation {
-            self.selectedMarker = marker
+            self.selectedMarker = newMarker
         }
     }
 }

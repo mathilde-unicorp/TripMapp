@@ -54,5 +54,5 @@ struct HomeProjectsView: View {
 
 #Preview {
     HomeProjectsView()
-        .environment(\.managedObjectContext, .previewViewContext)
+        .configureEnvironmentForPreview()
 }

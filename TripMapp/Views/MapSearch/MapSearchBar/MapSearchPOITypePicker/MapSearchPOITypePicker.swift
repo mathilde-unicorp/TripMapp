@@ -32,6 +32,7 @@ struct MapSearchPOITypePicker: View {
                             withAnimation { selectedTypes.toggle(element: type) }
                         }
                     )
+                    .id(type.id)
                 }
             }
         }
