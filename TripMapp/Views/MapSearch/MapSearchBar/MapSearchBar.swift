@@ -44,6 +44,6 @@ struct MapSearchBar_Previews: PreviewProvider {
 
     static var previews: some View {
         ContainerView()
-            .environment(\.managedObjectContext, .previewViewContext)
+            .configureEnvironmentForPreview()
     }
 }

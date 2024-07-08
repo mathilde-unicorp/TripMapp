@@ -60,5 +60,5 @@ extension MapSearchBar {
         .padding()
     }
     .background(Color.secondarySystemBackground)
-    .environment(\.managedObjectContext, .previewViewContext)
+    .configureEnvironmentForPreview()
 }

@@ -96,7 +96,7 @@ struct MapSearchPOITypeSection_Previews: PreviewProvider {
                 .padding()
             }
             .background(.thinMaterial)
-            .environment(\.managedObjectContext, .previewViewContext)
+            .configureEnvironmentForPreview()
         }
     }
 

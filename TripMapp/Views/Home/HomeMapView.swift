@@ -29,5 +29,5 @@ struct HomeMapView: View {
 
 #Preview {
     HomeMapView()
-        .environment(\.managedObjectContext, .previewViewContext)
+        .configureEnvironmentForPreview()
 }

@@ -170,5 +170,5 @@ struct PointsOfInterestTypesPicker: View {
     PointsOfInterestTypesPicker(
         selectedTypes: .constant(.init([.summit]))
     )
-    .environment(\.managedObjectContext, .previewViewContext)
+    .configureEnvironmentForPreview()
 }
