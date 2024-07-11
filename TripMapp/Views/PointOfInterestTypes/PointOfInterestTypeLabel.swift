@@ -1,13 +1,13 @@
 //
-//  SmallMapSearchPOITypeButton.swift
+//  PointsOfInterestTypeLabel.swift
 //  TripMapp
 //
-//  Created by Ressier Mathilde on 05/07/2024.
+//  Created by Ressier Mathilde on 11/07/2024.
 //
 
 import SwiftUI
 
-struct SmallMapSearchPOITypeButton: View {
+struct PointOfInterestTypeLabel: View {
     let systemImage: String
     let title: LocalizedStringKey
     let selectedColor: Color
@@ -15,10 +15,8 @@ struct SmallMapSearchPOITypeButton: View {
 
     var isSelected: Bool
 
-    let action: () -> Void
-
     private var backgroundColor: Color {
-        isSelected ? selectedColor : .systemBackground
+        isSelected ? selectedColor : .secondarySystemBackground
     }
 
     private var imageColor: Color {
@@ -37,52 +35,50 @@ struct SmallMapSearchPOITypeButton: View {
         systemImage: String,
         title: LocalizedStringKey,
         selectedColor: Color,
-        isSelected: Bool,
-        action: @escaping () -> Void
+        isSelected: Bool
     ) {
         self.systemImage = systemImage
         self.title = title
         self.selectedColor = selectedColor
         self.isSelected = isSelected
-        self.action = action
     }
 
     init(
         poiType: POIType,
-        isSelected: Bool,
-        action: @escaping () -> Void
+        isSelected: Bool
     ) {
         self.systemImage = poiType.systemImage
         self.title = poiType.title
         self.selectedColor = poiType.color
         self.isSelected = isSelected
-        self.action = action
     }
 
-    // -------------------------------------------------------------------------
-    // MARK: - Body
-    // -------------------------------------------------------------------------
-
     var body: some View {
-        Button {
-            action()
-        } label: {
+        VStack(alignment: .center) {
             Image(systemName: systemImage)
                 .resizable()
                 .scaledToFit()
                 .frame(width: imageSize, height: imageSize)
-                .padding(8.0)
+                .padding(16.0)
                 .clipToCircle(backgroundColor: backgroundColor)
                 .foregroundStyle(imageColor)
-        }
-    }
 
+            Text(title)
+                .lineLimit(2)
+                .minimumScaleFactor(0.6)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(textColor)
+                .font(.caption)
+        }
+
+        .frame(width: 60)
+    }
 }
 
 #Preview {
-    SmallMapSearchPOITypeButton(
-        poiType: .refuge,
-        isSelected: true,
-        action: {}
-    )
+    HStack {
+        PointOfInterestTypeLabel(poiType: .refuge, isSelected: true)
+        PointOfInterestTypeLabel(poiType: .foodstuffProvisions, isSelected: false)
+        PointOfInterestTypeLabel(poiType: .sportsProvisions, isSelected: false)
+    }
 }

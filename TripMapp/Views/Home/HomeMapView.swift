@@ -14,7 +14,7 @@ struct HomeMapView: View {
     @State private var searchBarSize: SearchBarSize = .medium
 
     var body: some View {
-        MapSearchByPOITypeView(
+        TripMapSearch(
             searchPOITypes: $searchPOITypes,
             selectedMarker: $selectedMarker,
             dataSource: .init(mapItemsRepository: .shared)

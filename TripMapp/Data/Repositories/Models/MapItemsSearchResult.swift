@@ -23,7 +23,7 @@ struct MapItemResults {
 
     func toTripMapMarkerViewModels(type: POIType) -> [TripMapMarker.ViewModel] {
         let refugesInfoMarkers = TripMapMarker.ViewModel
-            .buildMarkers(from: refugesInfoResults, type: type)
+            .buildMarkers(from: refugesInfoResults)
 
         let mkMapItemsMarkers = TripMapMarker.ViewModel
             .buildMarkers(from: mkMapItemResults, type: type)

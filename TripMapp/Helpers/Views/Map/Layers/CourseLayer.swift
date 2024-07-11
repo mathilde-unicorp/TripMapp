@@ -52,6 +52,7 @@ struct CourseLayer: MapContent {
                 let marker = TripMapMarker.ViewModel(
                     source: .custom,
                     name: "Départ de \(name)",
+                    shortDescription: "",
                     coordinates: polylineStart,
                     systemImage: "flag.fill",
                     color: .label
@@ -64,6 +65,7 @@ struct CourseLayer: MapContent {
                 let marker = TripMapMarker.ViewModel(
                     source: .custom,
                     name: "Arrivée de \(name)",
+                    shortDescription: "",
                     coordinates: polylineEnd,
                     systemImage: "flag.checkered",
                     color: .label

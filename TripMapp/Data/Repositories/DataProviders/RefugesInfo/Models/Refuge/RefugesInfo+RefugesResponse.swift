@@ -40,7 +40,9 @@ extension RefugesInfo.RefugePoint {
             properties: .init(
                 id: self.properties.id,
                 name: self.properties.name,
-                type: self.properties.type
+                type: self.properties.type,
+                coordinates: .init(altitude: self.properties.coordinates.altitude),
+                capacity: self.properties.capacity
             ),
             geometry: self.geometry
         )

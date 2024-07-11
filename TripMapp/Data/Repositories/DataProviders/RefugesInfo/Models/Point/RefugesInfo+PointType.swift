@@ -31,6 +31,12 @@ extension RefugesInfo {
     }
 }
 
+extension RefugesInfo.PointType: Equatable {
+    static func == (lhs: RefugesInfo.PointType, rhs: RefugesInfo.PointType) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 // =============================================================================
 // MARK: - Default values
 // =============================================================================

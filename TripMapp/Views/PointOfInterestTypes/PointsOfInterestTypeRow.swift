@@ -21,13 +21,18 @@ struct PointsOfInterestTypeRow: View {
             Label {
                 Text(type.title)
             } icon: {
-                Image(systemName: type.systemImage)
-                    .foregroundStyle(labelImageColor)
-            }
-
-            if isFavorite {
-                Image(systemName: "star.circle")
-                    .foregroundStyle(.yellow)
+                PointOfInterestTypeImage(
+                    poiType: type,
+                    isSelected: isSelectedForMapDisplay
+                )
+                .overlay(alignment: .bottomTrailing) {
+                    if isFavorite {
+                        Image(systemName: "star.circle")
+                            .foregroundStyle(Color.yellow)
+                            .clipToCircle(backgroundColor: .systemGroupedBackground)
+                            .padding(-8)
+                    }
+                }
             }
 
             Spacer()
@@ -45,6 +50,18 @@ struct PointsOfInterestTypeRow: View {
             type: .refuge,
             isFavorite: true,
             isSelectedForMapDisplay: true
+        )
+
+        PointsOfInterestTypeRow(
+            type: .bivouac,
+            isFavorite: true,
+            isSelectedForMapDisplay: false
+        )
+
+        PointsOfInterestTypeRow(
+            type: .hotel,
+            isFavorite: false,
+            isSelectedForMapDisplay: false
         )
     }
 }

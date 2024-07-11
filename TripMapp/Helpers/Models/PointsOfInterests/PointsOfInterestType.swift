@@ -29,10 +29,11 @@ enum PointsOfInterestType: Int, CaseIterable {
     case restroom
     case breakSpot
 
+    case hotel
     case refuge
     case cottage
+    case hut
     case campground
-    case hotel
     case bivouac
 }
 
@@ -44,6 +45,15 @@ extension PointsOfInterestType: Identifiable {
 // MARK: - PointsOfInterestType + RefugesInfo
 // -------------------------------------------------------------------------
 extension PointsOfInterestType {
+    /// Init PointOfInterest type with a RefugesInfo.PointType value
+    init?(refugesInfoPointType: RefugesInfo.PointType) {
+        if let value = PointsOfInterestType.allCases.first(where: {
+            $0.toRefugesInfoPointType == refugesInfoPointType
+        }) {
+            self = value
+        } else { return nil }
+    }
+
     var toRefugesInfoPointType: RefugesInfo.PointType? {
         switch self {
         case .summit: return .summit
@@ -53,6 +63,7 @@ extension PointsOfInterestType {
         case .refuge: return .refuge
         case .cottage: return .bedAndBreakfast
         case .bivouac: return .bivouac
+        case .hut: return .hut
         default: return nil
         }
     }
@@ -87,6 +98,7 @@ extension PointsOfInterestType {
         case .campground: return "points_of_interest.campground"
         case .hotel: return "points_of_interest.hotel"
         case .bivouac: return "points_of_interest.bivouac"
+        case .hut: return "points_of_interest.hut"
         }
     }
 
@@ -108,11 +120,12 @@ extension PointsOfInterestType {
         case .restroom: return "figure.dress.line.vertical.figure"
         case .breakSpot: return "cup.and.saucer.fill"
 
-        case .refuge: return "house.fill"
-        case .cottage: return "bed.double.fill"
+        case .refuge: return "building.fill"
+        case .cottage: return "house.and.flag.fill"
         case .campground: return "tent.2.fill"
-        case .hotel: return "building.fill"
+        case .hotel: return "bed.double.fill"
         case .bivouac: return "tent.fill"
+        case .hut: return "house.fill"
         }
     }
 
@@ -135,7 +148,8 @@ extension PointsOfInterestType {
                 .cottage,
                 .campground,
                 .hotel,
-                .bivouac:
+                .bivouac,
+                .hut:
             return .accommodation
         }
     }

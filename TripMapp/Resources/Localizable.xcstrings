@@ -443,6 +443,22 @@
         }
       }
     },
+    "add_to_project" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter à un project"
+          }
+        }
+      }
+    },
     "altitude_description %lldm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -809,8 +825,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rechercher..."
+            "state" : "translated",
+            "value" : "Rechercher ..."
           }
         }
       }
@@ -1037,6 +1053,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hôtel"
+          }
+        }
+      }
+    },
+    "points_of_interest.hut" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hut"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cabane"
           }
         }
       }

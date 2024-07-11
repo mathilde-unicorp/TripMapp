@@ -8,13 +8,13 @@
 import SwiftUI
 import MapKit
 
-struct MapSearchByPOITypeView: View {
+struct TripMapSearch: View {
 
     /// Points Of Interest Types to search on the map
     @Binding var searchPOITypes: [POIType]
     @Binding var selectedMarker: TripMapMarker.ViewModel?
 
-    @ObservedObject var dataSource: MapSearchByPOITypeDataSource
+    @ObservedObject var dataSource: TripMapSearchDataSource
 
     @State private var localSelectedItem: String?
     @State private var searchOnRegion: MKCoordinateRegion?
@@ -27,7 +27,7 @@ struct MapSearchByPOITypeView: View {
     init(
         searchPOITypes: Binding<[POIType]>,
         selectedMarker: Binding<TripMapMarker.ViewModel?>,
-        dataSource: MapSearchByPOITypeDataSource = .init(mapItemsRepository: .shared)
+        dataSource: TripMapSearchDataSource = .init(mapItemsRepository: .shared)
     ) {
         self._searchPOITypes = searchPOITypes
         self._selectedMarker = selectedMarker
@@ -100,7 +100,7 @@ struct MapSearchByPOITypeView: View {
 }
 
 #Preview {
-    MapSearchByPOITypeView(
+    TripMapSearch(
         searchPOITypes: .constant([.refuge, .foodstuffProvisions]),
         selectedMarker: .constant(nil),
         dataSource: .init(mapItemsRepository: .mock)

@@ -13,16 +13,21 @@ struct TripMapMarkerInfoView: View {
     var body: some View {
         if let selectedMarker {
             VStack {
-                switch selectedMarker.source {
-                case .mkMap:
-                    MKMapMarkerInfoView(mapItem: selectedMarker)
-                case .refugesInfo, .custom:
-                    DefaultMapMarkerInfoView(mapItem: selectedMarker)
-                        .padding()
-                }
+                TripMapMarkerLocationOverview(mapItem: $selectedMarker)
+
+                TripMapMarkerInfoOverview(mapItem: selectedMarker)
+                    .padding()
             }
             .background(.thinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10.0))
+            .overlay(alignment: .topTrailing) {
+                Button("", systemImage: "xmark.circle.fill") {
+                    withAnimation { self.selectedMarker = nil }
+                }
+                .foregroundStyle(.secondary)
+                .shadow(color: .systemBackground, radius: 5)
+                .padding(.top, 8.0)
+            }
             .padding()
         }
     }
