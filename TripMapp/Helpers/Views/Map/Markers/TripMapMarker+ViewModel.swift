@@ -21,6 +21,7 @@ extension TripMapMarker {
         let id: String
         let source: Source
         let name: String
+        let shortDescription: String
         let coordinates: CLLocationCoordinate2D
         let systemImage: String
         let color: Color
@@ -39,7 +40,7 @@ extension TripMapMarker.ViewModel {
 
 extension TripMapMarker.ViewModel {
     static var mocks: [Self] = [
-        .build(from: MockRefuges.refuges.first!.toLightPoint, type: .cottage),
+        .build(from: MockRefuges.refuges.first!.toLightPoint),
         .build(from: MKMapItem(placemark: .init(coordinate: .france)), type: .waypoint),
         .build(from: MKMapItem(placemark: .init(coordinate: .giteDeLaColleStMichel)), type: .hotel)
     ]
@@ -54,6 +55,7 @@ extension TripMapMarker.ViewModel {
     init(
         source: TripMapMarker.Source,
         name: String,
+        shortDescription: String,
         coordinates: CLLocationCoordinate2D,
         systemImage: String,
         color: Color
@@ -61,6 +63,7 @@ extension TripMapMarker.ViewModel {
         self.id = UUID().uuidString
         self.source = source
         self.name = name
+        self.shortDescription = shortDescription
         self.coordinates = coordinates
         self.systemImage = systemImage
         self.color = color
@@ -74,17 +77,40 @@ extension TripMapMarker.ViewModel {
 extension TripMapMarker.ViewModel {
 
     static func build(
-        from refugeInfoResult: RefugesInfo.LightRefugePoint,
-        type: PointsOfInterestType
+        from refugeInfoResult: RefugesInfo.LightRefugePoint
     ) -> Self {
-        .init(
+        let type = PointsOfInterestType(refugesInfoPointType: refugeInfoResult.properties.type) ?? .refuge
+
+        return .init(
             id: "\(refugeInfoResult.properties.id)",
             source: .refugesInfo(refugeId: refugeInfoResult.properties.id),
             name: refugeInfoResult.properties.name,
+            shortDescription: shortDescription(from: refugeInfoResult, type: type),
             coordinates: refugeInfoResult.geometry.coordinate2D,
             systemImage: type.systemImage,
             color: type.color
         )
+    }
+
+    private static func shortDescription(
+        from refugeInfoResult: RefugesInfo.LightRefugePoint,
+        type: PointsOfInterestType
+    ) -> String {
+        let altitude = refugeInfoResult.properties.coordinates.altitude
+        let altitudeDesc = String(localized: "altitude_description \(altitude)m")
+
+        var capacityDesc: String = ""
+        if let capacity = refugeInfoResult.properties.capacity {
+            capacityDesc = "\(capacity.name): \(capacity.value?.toString ?? "--")"
+        }
+
+        switch type {
+        case .summit, .waypoint, .water, .lake:
+            return altitudeDesc
+        case .refuge, .cottage, .hut, .campground, .bivouac:
+            return [altitudeDesc, capacityDesc].joined(separator: "\n")
+        default: return ""
+        }
     }
 
     static func build(
@@ -94,6 +120,7 @@ extension TripMapMarker.ViewModel {
         .init(
             source: .mkMap(item: mkMapItem),
             name: mkMapItem.name ?? "??",
+            shortDescription: mkMapItem.placemark.shortLocationAddress,
             coordinates: mkMapItem.placemark.coordinate,
             systemImage: type.systemImage,
             color: type.color
@@ -101,10 +128,9 @@ extension TripMapMarker.ViewModel {
     }
 
     static func buildMarkers(
-        from refugeInfoResults: [RefugesInfo.LightRefugePoint],
-        type: PointsOfInterestType
+        from refugeInfoResults: [RefugesInfo.LightRefugePoint]
     ) -> [Self] {
-        return refugeInfoResults.map { .build(from: $0, type: type) }
+        return refugeInfoResults.map { .build(from: $0) }
     }
 
     static func buildMarkers(

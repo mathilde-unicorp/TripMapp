@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class MapSearchByPOITypeDataSource: ObservableObject {
+class TripMapSearchDataSource: ObservableObject {
 
     let mapItemsRepository: TripMapItemsRepository
 
