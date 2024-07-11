@@ -40,13 +40,14 @@ struct SmallMapSearchPOITypePicker: View {
         HStack(alignment: .center) {
             HStack(alignment: .top, spacing: 4.0) {
                 ForEach(displayedTypes) { type in
-                    SmallMapSearchPOITypeButton(
-                        poiType: type,
-                        isSelected: selectedTypes.contains(type),
-                        action: {
-                            withAnimation { selectedTypes.toggle(element: type) }
-                        }
-                    )
+                    Button(action: {
+                        withAnimation { selectedTypes.toggle(element: type) }
+                    }, label: {
+                        PointOfInterestTypeImage(
+                            poiType: type,
+                            isSelected: selectedTypes.contains(type)
+                        )
+                    })
                     .id(type.id)
                 }
             }

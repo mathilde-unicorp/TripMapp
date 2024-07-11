@@ -25,13 +25,14 @@ struct MapSearchPOITypePicker: View {
         ScrollView(.horizontal) {
             HStack(alignment: .top) {
                 ForEach(displayedTypes) { type in
-                    MapSearchPOITypeButton(
-                        poiType: type,
-                        isSelected: selectedTypes.contains(type),
-                        action: {
-                            withAnimation { selectedTypes.toggle(element: type) }
-                        }
-                    )
+                    Button(action: {
+                        withAnimation { selectedTypes.toggle(element: type) }
+                    }, label: {
+                        PointOfInterestTypeLabel(
+                            poiType: type,
+                            isSelected: selectedTypes.contains(type)
+                        )
+                    })
                     .id(type.id)
                 }
             }

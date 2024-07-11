@@ -120,10 +120,10 @@ extension PointsOfInterestType {
         case .restroom: return "figure.dress.line.vertical.figure"
         case .breakSpot: return "cup.and.saucer.fill"
 
-        case .refuge: return "house.lodge.fill"
-        case .cottage: return "bed.double.fill"
+        case .refuge: return "building.fill"
+        case .cottage: return "house.and.flag.fill"
         case .campground: return "tent.2.fill"
-        case .hotel: return "building.fill"
+        case .hotel: return "bed.double.fill"
         case .bivouac: return "tent.fill"
         case .hut: return "house.fill"
         }
