@@ -12,7 +12,10 @@ extension PersistenceController {
         let tripPointTypes: [TripPointType] = [.summit, .foodstuffProvisions, .publicTransport, .refuge]
 
         for tripPointType in tripPointTypes {
-            context.createTripPointTypeEntity(type: tripPointType)
+            TripPointTypeEntity(context: context)
+                .setup(type: tripPointType)
         }
+
+        try? context.save()
     }
 }

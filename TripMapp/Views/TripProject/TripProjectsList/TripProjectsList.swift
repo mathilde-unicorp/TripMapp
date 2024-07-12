@@ -33,16 +33,13 @@ struct TripProjectsList: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { projects[$0] }.forEach(viewContext.delete)
+            offsets.map { projects[$0] }
+                .forEach { viewContext.deleteTripProject($0) }
 
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                print("Got error on deleting objects \(nsError), \(nsError.userInfo)")
-            }
+            try? viewContext.save()
         }
     }
+
 }
 
 #Preview {

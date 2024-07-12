@@ -153,7 +153,10 @@ struct TripPointTypesPicker: View {
     // -------------------------------------------------------------------------
 
     private func addToFavorite(type: TripPointType) {
-        viewContext.createTripPointTypeEntity(type: type)
+        TripPointTypeEntity(context: viewContext)
+            .setup(type: type)
+
+        try? viewContext.save()
     }
 
     private func removeFromFavorite(type: TripPointType) {
@@ -162,7 +165,9 @@ struct TripPointTypesPicker: View {
             return
         }
 
-        viewContext.deleteTripPointTypeEntity(savedEntity)
+        viewContext.delete(savedEntity)
+
+        try? viewContext.save()
     }
 }
 

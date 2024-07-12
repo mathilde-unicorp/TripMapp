@@ -233,6 +233,9 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "access_informations_title" : {
       "extractionState" : "manual",
       "localizations" : {

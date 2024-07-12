@@ -14,6 +14,28 @@ extension TripPointTypeEntity {
     @NSManaged public var id: Int16
 
     // -------------------------------------------------------------------------
+    // MARK: - Computed Properties
+    // -------------------------------------------------------------------------
+
+    /// Convert entity to a TripPointType
+    var tripPointType: TripPointType? {
+        TripPointType(rawValue: Int(self.id))
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Update
+    // -------------------------------------------------------------------------
+
+    @discardableResult
+    func setup(type: TripPointType) -> Self {
+        self.id = Int16(type.id)
+        return self
+    }
+}
+
+extension TripPointTypeEntity {
+
+    // -------------------------------------------------------------------------
     // MARK: - Fetch Requests
     // -------------------------------------------------------------------------
 
@@ -29,14 +51,6 @@ extension TripPointTypeEntity {
         return request
     }
 
-    // -------------------------------------------------------------------------
-    // MARK: - Computed Properties
-    // -------------------------------------------------------------------------
-
-    /// Convert entity to a TripPointType
-    var tripPointType: TripPointType? {
-        TripPointType(rawValue: Int(self.id))
-    }
 }
 
 extension TripPointTypeEntity: Identifiable {

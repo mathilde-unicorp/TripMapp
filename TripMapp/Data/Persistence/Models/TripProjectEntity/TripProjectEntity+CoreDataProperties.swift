@@ -11,12 +11,54 @@ import CoreData
 
 extension TripProjectEntity {
 
-    @NSManaged public var endDate: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var notes: String?
     @NSManaged public var startDate: Date?
+    @NSManaged public var endDate: Date?
+    @NSManaged public var notes: String?
     @NSManaged public var point: NSSet?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Computed Properties
+    // -------------------------------------------------------------------------
+
+    public var points: [TripPointEntity] {
+        let set = point as? Set<TripPointEntity> ?? []
+
+        return set.sorted { $0.position < $1.position }
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Update object
+    // -------------------------------------------------------------------------
+
+    /// First setup of the entity with a name and optionnaly a start and end date
+    @discardableResult
+    func setup(
+        name: String,
+        startDate: Date? = nil,
+        endDate: Date? = nil
+    ) -> Self {
+        self.id = UUID()
+        self.name = name
+        self.startDate = startDate
+        self.endDate = endDate
+
+        return self
+    }
+
+    /// Update the entity with values from `TripProject` object
+    @discardableResult
+    func update(with project: TripProject) -> Self {
+        self.name = project.name
+        self.startDate = project.startDate
+        self.endDate = project.endDate
+        self.notes = project.notes
+        return self
+    }
+}
+
+extension TripProjectEntity {
 
     // -------------------------------------------------------------------------
     // MARK: - Fetch Requests
@@ -35,19 +77,13 @@ extension TripProjectEntity {
         return request
     }
 
-    // -------------------------------------------------------------------------
-    // MARK: - Computed Properties
-    // -------------------------------------------------------------------------
-
-    public var points: [TripPointEntity] {
-        let set = point as? Set<TripPointEntity> ?? []
-
-        return set.sorted { $0.id < $1.id }
-    }
 }
 
-// MARK: Generated accessors for point
 extension TripProjectEntity {
+
+    // -------------------------------------------------------------------------
+    // MARK: - Generated accessors for point
+    // -------------------------------------------------------------------------
 
     @objc(addPointObject:)
     @NSManaged public func addToPoint(_ value: TripPointEntity)
