@@ -1,5 +1,5 @@
 //
-//  MapSearchPOITypePicker.swift
+//  MapSearchTripPointTypePicker.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 07/06/2024.
@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct MapSearchPOITypePicker: View {
+struct MapSearchTripPointTypePicker: View {
 
-    let displayedTypes: [POIType]
+    let displayedTypes: [TripPointType]
 
-    @Binding var selectedTypes: [POIType]
+    @Binding var selectedTypes: [TripPointType]
 
     init(
-        displayedTypes: [POIType] = POIType.allCases,
-        selectedTypes: Binding<[POIType]>
+        displayedTypes: [TripPointType] = TripPointType.allCases,
+        selectedTypes: Binding<[TripPointType]>
     ) {
         self.displayedTypes = displayedTypes
         self._selectedTypes = selectedTypes
@@ -28,8 +28,8 @@ struct MapSearchPOITypePicker: View {
                     Button(action: {
                         withAnimation { selectedTypes.toggle(element: type) }
                     }, label: {
-                        PointOfInterestTypeLabel(
-                            poiType: type,
+                        TripPointTypeLabel(
+                            tripPointType: type,
                             isSelected: selectedTypes.contains(type)
                         )
                     })
@@ -42,18 +42,18 @@ struct MapSearchPOITypePicker: View {
 
 #Preview {
     VStack {
-        MapSearchPOITypePicker(
-            displayedTypes: POIType.Category.accommodation.types,
+        MapSearchTripPointTypePicker(
+            displayedTypes: TripPointType.Category.accommodation.types,
             selectedTypes: .constant([.hotel])
         )
 
-        MapSearchPOITypePicker(
-            displayedTypes: POIType.Category.service.types,
+        MapSearchTripPointTypePicker(
+            displayedTypes: TripPointType.Category.service.types,
             selectedTypes: .constant([.foodstuffProvisions])
         )
 
-        MapSearchPOITypePicker(
-            displayedTypes: POIType.Category.hiking.types,
+        MapSearchTripPointTypePicker(
+            displayedTypes: TripPointType.Category.hiking.types,
             selectedTypes: .constant([.summit])
         )
     }

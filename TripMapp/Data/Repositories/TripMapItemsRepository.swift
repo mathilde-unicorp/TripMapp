@@ -16,13 +16,13 @@ protocol TripMapItemsRepositoryProtocol {
 
     /// Search map items that matches the different pointOfInterest types in the given region
     func searchMapItems(
-        types: [PointsOfInterestType],
+        types: [TripPointType],
         region: MKCoordinateRegion
-    ) async throws -> MapItemResultsByPOIType
+    ) async throws -> MapItemResultsByTripPointType
 
     /// Search map items that matches the pointOfInterest type in the given region
     func searchMapItems(
-        type: PointsOfInterestType,
+        type: TripPointType,
         region: MKCoordinateRegion
     ) async throws -> MapItemResults
 
@@ -64,16 +64,16 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
 
     /// Search map items that matches the different pointOfInterest types in the given region
     func searchMapItems(
-        types: [PointsOfInterestType],
+        types: [TripPointType],
         region: MKCoordinateRegion
-    ) async throws -> MapItemResultsByPOIType {
+    ) async throws -> MapItemResultsByTripPointType {
         let concurrentResults = try await types.concurrentMap { type in
             let items = try await self.searchMapItems(type: type, region: region)
             return [type: items]
         }
 
         // Concurrent results returns an array, we need to flatten it.
-        let otherResult = concurrentResults.reduce(into: MapItemResultsByPOIType()) { result, item in
+        let otherResult = concurrentResults.reduce(into: MapItemResultsByTripPointType()) { result, item in
             item.keys.forEach { key in
                 result[key] = item[key]
             }
@@ -84,7 +84,7 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
 
     /// Search map items that matches the pointOfInterest type in the given region
     func searchMapItems(
-        type: PointsOfInterestType,
+        type: TripPointType,
         region: MKCoordinateRegion
     ) async throws -> MapItemResults {
         let refugesInfoMapItems = try await searchRefugesInfoMapItems(type: type, region: region)
@@ -101,7 +101,7 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
     // =============================================================================
 
     private func searchRefugesInfoMapItems(
-        type: PointsOfInterestType,
+        type: TripPointType,
         region: MKCoordinateRegion
     ) async throws -> [RefugesInfo.LightRefugePoint] {
         guard let refugesInfoPointType = type.toRefugesInfoPointType else {
@@ -113,7 +113,7 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
 
     // swiftlint:disable cyclomatic_complexity function_body_length
     private func searchMkLocalSearchMapItems(
-        type: PointsOfInterestType,
+        type: TripPointType,
         region: MKCoordinateRegion
     ) async throws -> [MKMapItem] {
         switch type {

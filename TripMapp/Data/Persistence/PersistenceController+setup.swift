@@ -8,11 +8,11 @@
 import Foundation
 
 extension PersistenceController {
-    func setupDefaultFavoritePOITypes() {
-        let poiTypes: [POIType] = [.summit, .foodstuffProvisions, .publicTransport, .refuge]
+    func setupDefaultFavoriteTripPointTypes() {
+        let tripPointTypes: [TripPointType] = [.summit, .foodstuffProvisions, .publicTransport, .refuge]
 
-        for poiType in poiTypes {
-            context.createPointsOfInterestTypeEntity(type: poiType)
+        for tripPointType in tripPointTypes {
+            context.createTripPointTypeEntity(type: tripPointType)
         }
     }
 }

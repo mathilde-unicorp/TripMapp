@@ -27,7 +27,7 @@ struct TripProjectDetailView: View {
         }
         .overlay(alignment: .bottom) {
             MapSearchBar(
-                selectedPOITypes: .constant([]),
+                selectedTripPointTypes: .constant([]),
                 searchBarSize: .constant(.medium)
             )
             .setFullWidth()

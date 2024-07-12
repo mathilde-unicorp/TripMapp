@@ -10,11 +10,11 @@ import CoreData
 extension NSManagedObjectContext {
 
     @discardableResult
-    func createPointsOfInterestTypeEntity(
-        type: POIType
-    ) -> PointsOfInterestTypeEntity? {
-        let entity = PointsOfInterestTypeEntity(context: self)
-        entity.id = Int64(type.id)
+    func createTripPointTypeEntity(
+        type: TripPointType
+    ) -> TripPointTypeEntity? {
+        let entity = TripPointTypeEntity(context: self)
+        entity.id = Int16(type.id)
 
         do {
             try self.save()
@@ -25,8 +25,8 @@ extension NSManagedObjectContext {
         }
     }
 
-    func deletePointsOfInterestTypeEntity(
-        _ entity: PointsOfInterestTypeEntity
+    func deleteTripPointTypeEntity(
+        _ entity: TripPointTypeEntity
     ) {
         do {
             self.delete(entity)

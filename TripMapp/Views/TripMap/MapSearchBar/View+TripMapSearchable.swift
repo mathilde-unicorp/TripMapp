@@ -10,7 +10,7 @@ import MapKit
 
 struct MapSearchableModifier: ViewModifier {
 
-    @Binding var selectedPOITypes: [PointsOfInterestType]
+    @Binding var selectedTripPointTypes: [TripPointType]
     @Binding var searchBarSize: SearchBarSize
     @Binding var selectedMarker: TripMapMarker.ViewModel?
 
@@ -21,7 +21,7 @@ struct MapSearchableModifier: ViewModifier {
                     TripMapMarkerInfoView(selectedMarker: $selectedMarker)
 
                     MapSearchBar(
-                        selectedPOITypes: $selectedPOITypes,
+                        selectedTripPointTypes: $selectedTripPointTypes,
                         searchBarSize: $searchBarSize
                     )
                     .background(.thickMaterial)
@@ -41,12 +41,12 @@ extension View {
 
     /// Add a search bar and an overview for markers selected on the map
     func tripMapSearchable(
-        searchPOITypes: Binding<[PointsOfInterestType]>,
+        searchTripPointTypes: Binding<[TripPointType]>,
         selectedMapMarker: Binding<TripMapMarker.ViewModel?>,
         searchBarSize: Binding<SearchBarSize> = .constant(.medium)
     ) -> some View {
         self.modifier(MapSearchableModifier(
-            selectedPOITypes: searchPOITypes,
+            selectedTripPointTypes: searchTripPointTypes,
             searchBarSize: searchBarSize,
             selectedMarker: selectedMapMarker
         ))
@@ -57,7 +57,7 @@ extension View {
     Map {
 
     }.tripMapSearchable(
-        searchPOITypes: .constant([.refuge]),
+        searchTripPointTypes: .constant([.refuge]),
         selectedMapMarker: .constant(nil),
         searchBarSize: .constant(.medium)
     )

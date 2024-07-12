@@ -26,16 +26,16 @@ extension MapSearchBar {
 
                 // this organization seems a bit repetitive but it's the only way I found to keep the animation of the search bar between the two sizes
                 if searchBarSize == .reduced {
-                    MapSearchPOITypeSection(
-                        selectedTypes: $selectedPOITypes,
+                    MapSearchTripPointTypeSection(
+                        selectedTypes: $selectedTripPointTypes,
                         sectionSize: searchBarSize
                     )
                 }
             }
 
             if searchBarSize == .medium {
-                MapSearchPOITypeSection(
-                    selectedTypes: $selectedPOITypes,
+                MapSearchTripPointTypeSection(
+                    selectedTypes: $selectedTripPointTypes,
                     sectionSize: searchBarSize
                 )
             }
@@ -46,7 +46,7 @@ extension MapSearchBar {
 #Preview {
     VStack {
         MapSearchBar(
-            selectedPOITypes: .constant([]),
+            selectedTripPointTypes: .constant([]),
             searchBarSize: .constant(.medium)
         )
         .padding()
@@ -54,7 +54,7 @@ extension MapSearchBar {
         Divider()
 
         MapSearchBar(
-            selectedPOITypes: .constant([]),
+            selectedTripPointTypes: .constant([]),
             searchBarSize: .constant(.reduced)
         )
         .padding()

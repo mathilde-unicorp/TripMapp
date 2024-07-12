@@ -29,9 +29,9 @@ struct TripMappApp: App {
     }
 
     private func setupApplication() {
-        if self.appSettings.shouldSetupFavoritePOITypes {
-            self.persistenceController.setupDefaultFavoritePOITypes()
-            self.appSettings.shouldSetupFavoritePOITypes = false
+        if self.appSettings.shouldSetupFavoriteTripPointTypes {
+            self.persistenceController.setupDefaultFavoriteTripPointTypes()
+            self.appSettings.shouldSetupFavoriteTripPointTypes = false
         }
     }
 }

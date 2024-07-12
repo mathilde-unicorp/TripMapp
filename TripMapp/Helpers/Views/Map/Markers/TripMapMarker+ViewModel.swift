@@ -79,7 +79,7 @@ extension TripMapMarker.ViewModel {
     static func build(
         from refugeInfoResult: RefugesInfo.LightRefugePoint
     ) -> Self {
-        let type = PointsOfInterestType(refugesInfoPointType: refugeInfoResult.properties.type) ?? .refuge
+        let type = TripPointType(refugesInfoPointType: refugeInfoResult.properties.type) ?? .refuge
 
         return .init(
             id: "\(refugeInfoResult.properties.id)",
@@ -94,7 +94,7 @@ extension TripMapMarker.ViewModel {
 
     private static func shortDescription(
         from refugeInfoResult: RefugesInfo.LightRefugePoint,
-        type: PointsOfInterestType
+        type: TripPointType
     ) -> String {
         let altitude = refugeInfoResult.properties.coordinates.altitude
         let altitudeDesc = String(localized: "altitude_description \(altitude)m")
@@ -115,7 +115,7 @@ extension TripMapMarker.ViewModel {
 
     static func build(
         from mkMapItem: MKMapItem,
-        type: PointsOfInterestType
+        type: TripPointType
     ) -> Self {
         .init(
             source: .mkMap(item: mkMapItem),
@@ -135,7 +135,7 @@ extension TripMapMarker.ViewModel {
 
     static func buildMarkers(
         from mkMapItems: [MKMapItem],
-        type: PointsOfInterestType
+        type: TripPointType
     ) -> [Self] {
         return mkMapItems.map { .build(from: $0, type: type) }
     }

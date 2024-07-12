@@ -13,7 +13,7 @@ struct RefugesView: View {
     @ObservedObject var locationManager: CLLocationManagerObject = .init()
 
     @State private var selectedResult: String?
-    @State private var selectedPOITypes: [PointsOfInterestType] = []
+    @State private var selectedTripPointTypes: [TripPointType] = []
 
     var body: some View {
         EmptyView()
@@ -21,7 +21,7 @@ struct RefugesView: View {
 //            searchOnRegion: $viewModel.visibleRegion,
 //            selectedItem: $selectedResult,
 //            onRefreshResult: {
-//                self.searchMapItems(for: .init(selectedPOITypes))
+//                self.searchMapItems(for: .init(selectedTripPointTypes))
 //            }, mapContent: {
 //                TripMapContent(
 //                    markers: $viewModel.markers,
@@ -35,12 +35,12 @@ struct RefugesView: View {
 //                    .padding()
 //
 //                if selectedResult == nil {
-//                    MapSearchBar(selectedPOITypes: $selectedPOITypes)
+//                    MapSearchBar(selectedTripPointTypes: $selectedTripPointTypes)
 //                }
 //            }
 //            .background(.thinMaterial)
 //        }
-//        .onChange(of: selectedPOITypes) { _, selectedTypes in
+//        .onChange(of: selectedTripPointTypes) { _, selectedTypes in
 //            self.searchMapItems(for: .init(selectedTypes))
 //
 //        }
@@ -56,11 +56,11 @@ struct RefugesView: View {
 
     @ViewBuilder
     private func filtersView() -> some View {
-        PointsOfInterestMapFilterView(selectedTypes: $selectedPOITypes)
+        PointsOfInterestMapFilterView(selectedTypes: $selectedTripPointTypes)
     }
 
-    private func searchMapItems(for types: Set<PointsOfInterestType>) {
-        self.viewModel.searchMapItems(of: .init(selectedPOITypes))
+    private func searchMapItems(for types: Set<TripPointType>) {
+        self.viewModel.searchMapItems(of: .init(selectedTripPointTypes))
     }
 }
 

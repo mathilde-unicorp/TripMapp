@@ -1,5 +1,5 @@
 //
-//  PointOfInterestTypeImage.swift
+//  TripPointTypeImage.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 11/07/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PointOfInterestTypeImage: View {
+struct TripPointTypeImage: View {
     let systemImage: String
     let title: LocalizedStringKey
     let selectedColor: Color
@@ -44,12 +44,12 @@ struct PointOfInterestTypeImage: View {
     }
 
     init(
-        poiType: POIType,
+        tripPointType: TripPointType,
         isSelected: Bool
     ) {
-        self.systemImage = poiType.systemImage
-        self.title = poiType.title
-        self.selectedColor = poiType.color
+        self.systemImage = tripPointType.systemImage
+        self.title = tripPointType.title
+        self.selectedColor = tripPointType.color
         self.isSelected = isSelected
     }
 
@@ -70,8 +70,8 @@ struct PointOfInterestTypeImage: View {
 
 #Preview {
     VStack {
-        PointOfInterestTypeImage(poiType: .refuge, isSelected: false)
-        PointOfInterestTypeImage(poiType: .refuge, isSelected: true)
+        TripPointTypeImage(tripPointType: .refuge, isSelected: false)
+        TripPointTypeImage(tripPointType: .refuge, isSelected: true)
     }
     .padding()
     .background(Color.secondarySystemBackground)

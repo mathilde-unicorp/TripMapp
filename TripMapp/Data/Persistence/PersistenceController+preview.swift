@@ -27,10 +27,10 @@ extension PersistenceController {
     }
 
     private func generatePointsOfInterestsEntities() throws {
-        let poiTypes: [POIType] = [.foodstuffProvisions, .refuge, .water, .campground]
+        let tripPointTypes: [TripPointType] = [.foodstuffProvisions, .refuge, .water, .campground]
 
-        for poiType in poiTypes {
-            context.createPointsOfInterestTypeEntity(type: poiType)
+        for tripPointType in tripPointTypes {
+            context.createTripPointTypeEntity(type: tripPointType)
         }
     }
 }

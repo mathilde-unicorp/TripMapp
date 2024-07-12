@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PointsOfInterestMapFilterView: View {
-    @Binding var selectedTypes: [PointsOfInterestType]
+    @Binding var selectedTypes: [TripPointType]
 
-    @State private var isPOITypesSheetVisible: Bool = false
+    @State private var isTripPointTypesSheetVisible: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12.0) {
@@ -21,14 +21,14 @@ struct PointsOfInterestMapFilterView: View {
                 Spacer()
 
                 Button("points_of_interest.expand_filters") {
-                    isPOITypesSheetVisible.toggle()
+                    isTripPointTypesSheetVisible.toggle()
                 }
             }
 
-            PointsOfInterestTypesCompactPicker(selectedTypes: $selectedTypes)
+            TripPointTypesCompactPicker(selectedTypes: $selectedTypes)
         }
-        .sheet(isPresented: $isPOITypesSheetVisible) {
-            PointsOfInterestTypesPicker(selectedTypes: $selectedTypes)
+        .sheet(isPresented: $isTripPointTypesSheetVisible) {
+            TripPointTypesPicker(selectedTypes: $selectedTypes)
         }
     }
 }

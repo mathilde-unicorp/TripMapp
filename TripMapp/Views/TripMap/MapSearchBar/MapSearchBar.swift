@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapSearchBar: View {
-    @Binding var selectedPOITypes: [POIType]
+    @Binding var selectedTripPointTypes: [TripPointType]
 
     @Binding var searchBarSize: SearchBarSize
 
@@ -30,12 +30,12 @@ struct MapSearchBar: View {
 struct MapSearchBar_Previews: PreviewProvider {
 
     struct ContainerView: View {
-        @State private var selectedPOITypes: [POIType] = []
+        @State private var selectedTripPointTypes: [TripPointType] = []
         @State private var searchBarSize: SearchBarSize = .medium
 
         var body: some View {
             MapSearchBar(
-                selectedPOITypes: $selectedPOITypes,
+                selectedTripPointTypes: $selectedTripPointTypes,
                 searchBarSize: $searchBarSize
             )
             .background(.thinMaterial)

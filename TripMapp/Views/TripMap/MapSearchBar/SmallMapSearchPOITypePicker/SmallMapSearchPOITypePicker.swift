@@ -1,5 +1,5 @@
 //
-//  SmallMapSearchPOITypePicker.swift
+//  SmallMapSearchTripPointTypePicker.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 05/07/2024.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct SmallMapSearchPOITypePicker: View {
+struct SmallMapSearchTripPointTypePicker: View {
 
     /// All the types that should be displayed on the picker
-    let displayedTypes: [POIType]
+    let displayedTypes: [TripPointType]
 
     /// The current types selection on displayed types
-    @Binding var selectedTypes: [POIType]
+    @Binding var selectedTypes: [TripPointType]
 
     private let shouldShowEllipsis: Bool
 
@@ -22,8 +22,8 @@ struct SmallMapSearchPOITypePicker: View {
     // -------------------------------------------------------------------------
 
     init(
-        displayedTypes allDisplayedTypes: [POIType] = POIType.allCases,
-        selectedTypes: Binding<[POIType]>
+        displayedTypes allDisplayedTypes: [TripPointType] = TripPointType.allCases,
+        selectedTypes: Binding<[TripPointType]>
     ) {
         // Keep only the 3 first of displayed types
         self.displayedTypes = Array(allDisplayedTypes.prefix(3))
@@ -43,8 +43,8 @@ struct SmallMapSearchPOITypePicker: View {
                     Button(action: {
                         withAnimation { selectedTypes.toggle(element: type) }
                     }, label: {
-                        PointOfInterestTypeImage(
-                            poiType: type,
+                        TripPointTypeImage(
+                            tripPointType: type,
                             isSelected: selectedTypes.contains(type)
                         )
                     })
@@ -65,8 +65,8 @@ struct SmallMapSearchPOITypePicker: View {
 }
 
 #Preview {
-    SmallMapSearchPOITypePicker(
-        displayedTypes: POIType.Category.accommodation.types,
+    SmallMapSearchTripPointTypePicker(
+        displayedTypes: TripPointType.Category.accommodation.types,
         selectedTypes: .constant([.cottage])
     )
     .padding()

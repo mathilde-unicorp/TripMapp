@@ -1,5 +1,5 @@
 //
-//  MapSearchPOITypeSection.swift
+//  MapSearchTripPointTypeSection.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 26/06/2024.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MapSearchPOITypeSection: View {
+struct MapSearchTripPointTypeSection: View {
 
-    @Binding var selectedTypes: [POIType]
+    @Binding var selectedTypes: [TripPointType]
 
     let sectionSize: SearchBarSize
 
@@ -20,18 +20,18 @@ struct MapSearchPOITypeSection: View {
     // -------------------------------------------------------------------------
 
     @FetchRequest(
-        fetchRequest: PointsOfInterestTypeEntity.allPointsOfInterestTypes,
+        fetchRequest: TripPointTypeEntity.sortedFetchRequest(),
         transaction: .init(animation: .default)
     )
-    private var savedPOITypeEntity: FetchedResults<PointsOfInterestTypeEntity>
+    private var savedTripPointTypeEntity: FetchedResults<TripPointTypeEntity>
 
-    private var defaultDisplayedTypes: [POIType] {
-        let savedPOIType = savedPOITypeEntity.compactMap(\.toPointOfInterestType)
+    private var defaultDisplayedTypes: [TripPointType] {
+        let savedTripPointType = savedTripPointTypeEntity.compactMap(\.tripPointType)
 
-        return selectedTypes.merged(with: savedPOIType)
+        return selectedTypes.merged(with: savedTripPointType)
     }
 
-    @State private var shouldShowPOITypesList: Bool = false
+    @State private var shouldShowTripPointTypesList: Bool = false
 
     // -------------------------------------------------------------------------
     // MARK: - Body
@@ -40,21 +40,21 @@ struct MapSearchPOITypeSection: View {
     var body: some View {
         switch sectionSize {
         case .reduced:
-            reducedPOITypeSection()
+            reducedTripPointTypeSection()
         case .medium:
-            mediumPOITypeSection()
+            mediumTripPointTypeSection()
         }
     }
 
     @ViewBuilder
-    private func mediumPOITypeSection() -> some View {
+    private func mediumTripPointTypeSection() -> some View {
         VStack {
-            MapSearchPOITypeSectionHeader(onShowMore: {
-                shouldShowPOITypesList = true
+            MapSearchTripPointTypeSectionHeader(onShowMore: {
+                shouldShowTripPointTypesList = true
             })
 
             VStack(alignment: .leading) {
-                MapSearchPOITypePicker(
+                MapSearchTripPointTypePicker(
                     displayedTypes: defaultDisplayedTypes,
                     selectedTypes: $selectedTypes
                 )
@@ -68,28 +68,28 @@ struct MapSearchPOITypeSection: View {
             .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
         }
-        .sheet(isPresented: $shouldShowPOITypesList) {
-            PointsOfInterestTypesPicker(selectedTypes: $selectedTypes)
+        .sheet(isPresented: $shouldShowTripPointTypesList) {
+            TripPointTypesPicker(selectedTypes: $selectedTypes)
         }
     }
 
     @ViewBuilder
-    private func reducedPOITypeSection() -> some View {
-        SmallMapSearchPOITypePicker(
+    private func reducedTripPointTypeSection() -> some View {
+        SmallMapSearchTripPointTypePicker(
             displayedTypes: defaultDisplayedTypes,
             selectedTypes: $selectedTypes
         )
     }
 }
 
-struct MapSearchPOITypeSection_Previews: PreviewProvider {
+struct MapSearchTripPointTypeSection_Previews: PreviewProvider {
 
     struct ContainerView: View {
-        @State private var selectedTypes: [POIType] = [.summit, .water]
+        @State private var selectedTypes: [TripPointType] = [.summit, .water]
 
         var body: some View {
             ScrollView {
-                MapSearchPOITypeSection(
+                MapSearchTripPointTypeSection(
                     selectedTypes: $selectedTypes,
                     sectionSize: .medium
                 )

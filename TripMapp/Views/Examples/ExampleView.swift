@@ -11,7 +11,7 @@ import CoreData
 struct ExampleView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(fetchRequest: TripProjectEntity.allProjectsRequest)
+    @FetchRequest(fetchRequest: TripProjectEntity.sortedFetchRequest())
 
     private var items: FetchedResults<TripProjectEntity>
 

@@ -9,10 +9,8 @@ import Foundation
 import MapKit
 import SwiftUI
 
-typealias POIType = PointsOfInterestType
-
 /// All type of PointsOfInterest that can be search through the app
-enum PointsOfInterestType: Int, CaseIterable {
+enum TripPointType: Int, CaseIterable {
     case summit = 0
     case waypoint
     case water
@@ -37,17 +35,17 @@ enum PointsOfInterestType: Int, CaseIterable {
     case bivouac
 }
 
-extension PointsOfInterestType: Identifiable {
+extension TripPointType: Identifiable {
     var id: Int { return rawValue }
 }
 
 // -------------------------------------------------------------------------
-// MARK: - PointsOfInterestType + RefugesInfo
+// MARK: - TripPointType + RefugesInfo
 // -------------------------------------------------------------------------
-extension PointsOfInterestType {
+extension TripPointType {
     /// Init PointOfInterest type with a RefugesInfo.PointType value
     init?(refugesInfoPointType: RefugesInfo.PointType) {
-        if let value = PointsOfInterestType.allCases.first(where: {
+        if let value = TripPointType.allCases.first(where: {
             $0.toRefugesInfoPointType == refugesInfoPointType
         }) {
             self = value
@@ -73,7 +71,7 @@ extension PointsOfInterestType {
 // MARK: - Computed Properties
 // =============================================================================
 
-extension PointsOfInterestType {
+extension TripPointType {
 
     var title: LocalizedStringKey {
         switch self {
@@ -129,7 +127,7 @@ extension PointsOfInterestType {
         }
     }
 
-    var category: PointsOfInterestType.Category {
+    var category: TripPointType.Category {
         switch self {
         case .summit, .waypoint, .water, .lake:
             return .hiking

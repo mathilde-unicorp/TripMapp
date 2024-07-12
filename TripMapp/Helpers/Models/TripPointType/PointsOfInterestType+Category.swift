@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension PointsOfInterestType {
+extension TripPointType {
     /// Categories used to group PointsOfInterest Types
     enum Category: Int, CaseIterable {
         case hiking = 0
@@ -17,7 +17,7 @@ extension PointsOfInterestType {
     }
 }
 
-extension PointsOfInterestType.Category {
+extension TripPointType.Category {
     var title: LocalizedStringKey {
         switch self {
         case .hiking: return "hiking_spots.title"
@@ -37,10 +37,10 @@ extension PointsOfInterestType.Category {
         }
     }
 
-    var types: [POIType] {
-        return POIType.allCases.filter { $0.category == self }
+    var types: [TripPointType] {
+        return TripPointType.allCases.filter { $0.category == self }
     }
 }
-extension PointsOfInterestType.Category: Identifiable {
+extension TripPointType.Category: Identifiable {
     var id: Int { return rawValue }
 }
