@@ -11,13 +11,24 @@ struct TripProjectsPicker: View {
 
     @Binding var selectedProject: TripProjectEntity?
 
+    var mapItemToAdd: TripMapMarker.ViewModel?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
         fetchRequest: TripProjectEntity.sortedFetchRequest(),
         transaction: .init(animation: .default)
     )
+
     private var projects: FetchedResults<TripProjectEntity>
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         List(selection: $selectedProject) {
@@ -39,18 +50,41 @@ struct TripProjectsPicker: View {
 
     @ViewBuilder
     private func projectRow(_ project: TripProjectEntity) -> some View {
+        let isMapItemAlreadyAdded = isMapItemAlreadyAdded(in: project)
+
         VStack(alignment: .leading) {
             TripProjectRow(project: project)
 
-//            Spacer()
+            HStack {
+                Text("markers_count \(project.points.count)")
 
-            Text("markers_count \(project.points.count)")
-                .font(.caption)
+                if isMapItemAlreadyAdded {
+                    Text("marker_already_added")
+                }
+            }
+            .font(.caption)
+        }
+        .selectionDisabled(isMapItemAlreadyAdded)
+        .opacity(isMapItemAlreadyAdded ? 0.5 : 1.0)
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Tools
+    // -------------------------------------------------------------------------
+
+    private func isMapItemAlreadyAdded(in project: TripProjectEntity) -> Bool {
+        if let mapItemToAdd {
+            return project.contains(marker: mapItemToAdd)
+        } else {
+            return false
         }
     }
 }
 
 #Preview {
-    TripProjectsPicker(selectedProject: .constant(nil))
-        .configureEnvironmentForPreview()
+    TripProjectsPicker(
+        selectedProject: .constant(nil),
+        mapItemToAdd: .mocks.first!
+    )
+    .configureEnvironmentForPreview()
 }

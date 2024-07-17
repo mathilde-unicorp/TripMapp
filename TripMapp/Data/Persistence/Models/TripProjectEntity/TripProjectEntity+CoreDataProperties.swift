@@ -25,7 +25,13 @@ extension TripProjectEntity {
     public var points: [TripPointEntity] {
         let set = point as? Set<TripPointEntity> ?? []
 
-        return set.sorted { $0.position < $1.position }
+        return set.sorted {
+            if $0.position == $1.position {
+                return ($0.name ?? "") < ($1.name ?? "")
+            } else {
+                return $0.position < $1.position
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -55,6 +61,18 @@ extension TripProjectEntity {
         self.endDate = project.endDate
         self.notes = project.notes
         return self
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Methods
+    // -------------------------------------------------------------------------
+
+    func contains(point: TripPointEntity) -> Bool {
+        self.points.contains { $0.asSameSourcePoint(as: point) }
+    }
+
+    func contains(marker: TripMapMarker.ViewModel) -> Bool {
+        return self.points.contains { $0.asSameSourcePoint(as: marker) }
     }
 }
 

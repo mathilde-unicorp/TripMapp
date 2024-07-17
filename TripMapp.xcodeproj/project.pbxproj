@@ -148,6 +148,7 @@
 		58E87A8F2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */; };
 		58E87A912C342D5500F3D8AB /* PolylinesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */; };
 		58E87A932C34330100F3D8AB /* TripMapContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A922C34330100F3D8AB /* TripMapContent.swift */; };
+		58E89EDF2C491690009FA21B /* UIApplication+sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
 		58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
@@ -331,6 +332,7 @@
 		58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripMapPolyline+ViewModel.swift"; sourceTree = "<group>"; };
 		58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylinesLayer.swift; sourceTree = "<group>"; };
 		58E87A922C34330100F3D8AB /* TripMapContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapContent.swift; sourceTree = "<group>"; };
+		58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+sounds.swift"; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorView.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				58EFC48E2B975E83009B6A61 /* String+extensions.swift */,
 				58D684262C134675001379A0 /* UIWindow+extensions.swift */,
 				58D684282C13468C001379A0 /* UIScreen+extensions.swift */,
+				58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1399,6 +1402,7 @@
 				58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */,
 				585F14882BF4F6180089F7E7 /* LegacyTripProject+mock.swift in Sources */,
 				58EB4A812A05A2D3001BAE72 /* View+banner.swift in Sources */,
+				58E89EDF2C491690009FA21B /* UIApplication+sounds.swift in Sources */,
 				58CBF7132C383054009D6538 /* View+TripMapSearchable.swift in Sources */,
 				58E15C3E2C2C4F40004E2431 /* MapSearchPOITypeSectionHeader.swift in Sources */,
 				58B2B9042A99465F007BFE3F /* AppRouter.swift in Sources */,

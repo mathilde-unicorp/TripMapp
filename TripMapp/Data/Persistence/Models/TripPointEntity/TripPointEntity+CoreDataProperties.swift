@@ -8,12 +8,13 @@
 
 import Foundation
 import CoreData
+import MapKit
 
 extension TripPointEntity {
 
     @NSManaged public var id: UUID?
-    @NSManaged public var latitude: Float
-    @NSManaged public var longitude: Float
+    @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
     @NSManaged public var name: String?
     @NSManaged public var source: String?
     @NSManaged public var type: Int16
@@ -57,9 +58,16 @@ extension TripPointEntity {
     }
 
     @discardableResult
-    func setupLocation(latitude: CGFloat, longitude: CGFloat) -> Self {
-        self.latitude = Float(latitude)
-        self.longitude = Float(latitude)
+    func setupLocation(latitude: Double, longitude: Double) -> Self {
+        self.latitude = latitude
+        self.longitude = longitude
+        return self
+    }
+
+    @discardableResult
+    func setupLocation(coordinates: CLLocationCoordinate2D) -> Self {
+        self.latitude = coordinates.latitude
+        self.longitude = coordinates.longitude
         return self
     }
 
@@ -67,6 +75,38 @@ extension TripPointEntity {
     func update(position: Int16) -> Self {
         self.position = position
         return self
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Methods
+    // -------------------------------------------------------------------------
+
+    func asSameSourcePoint(as otherPoint: TripPointEntity) -> Bool {
+        if self.source != otherPoint.source {
+            return false
+        }
+
+        if let sourceId, let otherSourceId = otherPoint.sourceId {
+            return otherSourceId != sourceId
+        }
+
+        return false
+    }
+
+    func asSameSourcePoint(as marker: TripMapMarker.ViewModel) -> Bool {
+        guard self.source == marker.source.tripPointSource.rawValue else {
+            return false
+        }
+
+        // Compare sourceIds if there are presents
+        if let sourceId, let otherSourceId = marker.source.sourceId {
+            return otherSourceId == sourceId
+        }
+
+        // When no source id, compare name and locations to avoid duplicated content
+        return self.name == marker.name
+        && String(format: "%.6f", self.latitude) == String(format: "%.6f", marker.coordinates.latitude)
+        && String(format: "%.6f", self.longitude) == String(format: "%.6f", marker.coordinates.longitude)
     }
 }
 

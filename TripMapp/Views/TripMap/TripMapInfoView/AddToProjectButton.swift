@@ -49,7 +49,10 @@ struct AddToProjectButton: View {
                     .font(.headline)
                     .padding()
 
-                TripProjectsPicker(selectedProject: $selectedProject)
+                TripProjectsPicker(
+                    selectedProject: $selectedProject,
+                    mapItemToAdd: mapItem
+                )
             }
         }
         .onChange(of: selectedProject) { _, project in
@@ -60,6 +63,8 @@ struct AddToProjectButton: View {
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                UIApplication.play(sound: .workoutSavedHaptic)
+
                 withAnimation {
                     self.addingState = .added
                 }
@@ -84,10 +89,8 @@ struct AddToProjectButton: View {
                 source: mapItem.source.tripPointSource,
                 sourceId: mapItem.source.sourceId
             )
-            .setupLocation(
-                latitude: mapItem.coordinates.latitude,
-                longitude: mapItem.coordinates.latitude
-            )
+            .setupLocation(coordinates: mapItem.coordinates)
+            .update(position: (project.points.last?.position ?? 0) + 1)
             .addToProject(project)
 
         try? viewContext.save()
