@@ -857,6 +857,22 @@
         }
       }
     },
+    "markers_count %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld markers"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld marqueurs"
+          }
+        }
+      }
+    },
     "massif_description %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1440,13 +1456,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select the project where you want to Integrate the current point"
+            "value" : "Select the project where you want to save the current point."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selectionnez le project dans lequel vous souhaitez enregistrer le point"
+            "value" : "Sélectionnez le project dans lequel vous souhaitez enregistrer le point."
           }
         }
       }

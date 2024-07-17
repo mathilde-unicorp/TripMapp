@@ -27,13 +27,25 @@ struct TripProjectsPicker: View {
 
             Section("projects") {
                 ForEach(projects, id: \.self) { project in
-                    TripProjectRow(project: project)
+                    projectRow(project)
                 }
             }
         }
         .listStyle(.plain)
         .onAppear {
             self.selectedProject = nil
+        }
+    }
+
+    @ViewBuilder
+    private func projectRow(_ project: TripProjectEntity) -> some View {
+        VStack(alignment: .leading) {
+            TripProjectRow(project: project)
+
+//            Spacer()
+
+            Text("markers_count \(project.points.count)")
+                .font(.caption)
         }
     }
 }
