@@ -10,4 +10,5 @@ import Foundation
 enum TripPointSource: String {
     case refugesInfo
     case mkMapItem
+    case custom
 }

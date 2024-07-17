@@ -36,16 +36,21 @@ extension TripPointEntity {
 
     /// First setup of the entity
     @discardableResult
-    func setup(name: String, type: TripPointType) -> Self {
+    func setup(name: String, type: TripPointType?) -> Self {
         self.id = UUID()
         self.name = name
-        self.type = Int16(type.id)
         self.position = 0
+
+        if let type {
+            self.type = Int16(type.id)
+        } else {
+            self.type = -1
+        }
         return self
     }
 
     @discardableResult
-    func setup(source: TripPointSource, sourceId: String) -> Self {
+    func setup(source: TripPointSource, sourceId: String?) -> Self {
         self.source = source.rawValue
         self.sourceId = sourceId
         return self

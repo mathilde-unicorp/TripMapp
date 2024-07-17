@@ -35,4 +35,5 @@ struct TripMapMarkerInfoView: View {
 
 #Preview {
     TripMapMarkerInfoView(selectedMarker: .constant(.mocks.first!))
+        .configureEnvironmentForPreview()
 }

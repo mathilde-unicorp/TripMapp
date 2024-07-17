@@ -234,7 +234,14 @@
       }
     },
     "%lld" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "access_informations_title" : {
       "extractionState" : "manual",
@@ -458,6 +465,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter à un project"
+          }
+        }
+      }
+    },
+    "added_to_project" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well added !"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouté !"
           }
         }
       }
@@ -1408,6 +1431,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Projets"
+          }
+        }
+      }
+    },
+    "projects.select_to_add_point.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select the project where you want to Integrate the current point"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selectionnez le project dans lequel vous souhaitez enregistrer le point"
           }
         }
       }

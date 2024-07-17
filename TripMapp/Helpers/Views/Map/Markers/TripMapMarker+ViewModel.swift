@@ -15,6 +15,22 @@ extension TripMapMarker {
         case refugesInfo(refugeId: RefugeId)
         case mkMap(item: MKMapItem)
         case custom
+
+        var tripPointSource: TripPointSource {
+            switch self {
+            case .refugesInfo: return .refugesInfo
+            case .mkMap: return .mkMapItem
+            case .custom: return .custom
+            }
+        }
+
+        var sourceId: String? {
+            switch self {
+            case .refugesInfo(let refugeId):
+                return refugeId.toString
+            default: return nil
+            }
+        }
     }
 
     struct ViewModel: Identifiable, Equatable {
@@ -25,6 +41,9 @@ extension TripMapMarker {
         let coordinates: CLLocationCoordinate2D
         let systemImage: String
         let color: Color
+
+        let pointType: TripPointType?
+
     }
 }
 
@@ -58,7 +77,8 @@ extension TripMapMarker.ViewModel {
         shortDescription: String,
         coordinates: CLLocationCoordinate2D,
         systemImage: String,
-        color: Color
+        color: Color,
+        pointType: TripPointType? = nil
     ) {
         self.id = UUID().uuidString
         self.source = source
@@ -67,6 +87,7 @@ extension TripMapMarker.ViewModel {
         self.coordinates = coordinates
         self.systemImage = systemImage
         self.color = color
+        self.pointType = pointType
     }
 }
 
@@ -88,7 +109,8 @@ extension TripMapMarker.ViewModel {
             shortDescription: shortDescription(from: refugeInfoResult, type: type),
             coordinates: refugeInfoResult.geometry.coordinate2D,
             systemImage: type.systemImage,
-            color: type.color
+            color: type.color,
+            pointType: type
         )
     }
 
@@ -123,7 +145,8 @@ extension TripMapMarker.ViewModel {
             shortDescription: mkMapItem.placemark.shortLocationAddress,
             coordinates: mkMapItem.placemark.coordinate,
             systemImage: type.systemImage,
-            color: type.color
+            color: type.color,
+            pointType: type
         )
     }
 

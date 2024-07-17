@@ -103,6 +103,8 @@
 		58CBF71A2C3BF636009D6538 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF7192C3BF636009D6538 /* AppSettings.swift */; };
 		58CBF71C2C3C0F42009D6538 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF71B2C3C0F42009D6538 /* AppDelegate.swift */; };
 		58CBF71E2C3C16B7009D6538 /* PersistenceController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF71D2C3C16B7009D6538 /* PersistenceController+setup.swift */; };
+		58CDB73F2C47F70D003C614C /* TripProjectsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB73E2C47F70D003C614C /* TripProjectsPicker.swift */; };
+		58CDB7412C47FBA2003C614C /* AddToProjectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB7402C47FBA2003C614C /* AddToProjectButton.swift */; };
 		58CE76402C343D0D00C0FC1B /* RefreshMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */; };
 		58CFCC972B7A24C200D18E4F /* MassifsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */; };
 		58CFCC9E2B7A79DC00D18E4F /* MockRefuges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */; };
@@ -284,6 +286,8 @@
 		58CBF7192C3BF636009D6538 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		58CBF71B2C3C0F42009D6538 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58CBF71D2C3C16B7009D6538 /* PersistenceController+setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+setup.swift"; sourceTree = "<group>"; };
+		58CDB73E2C47F70D003C614C /* TripProjectsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProjectsPicker.swift; sourceTree = "<group>"; };
+		58CDB7402C47FBA2003C614C /* AddToProjectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToProjectButton.swift; sourceTree = "<group>"; };
 		58CE763F2C343D0D00C0FC1B /* RefreshMapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshMapButton.swift; sourceTree = "<group>"; };
 		58CFCC962B7A24C200D18E4F /* MassifsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassifsMapView.swift; sourceTree = "<group>"; };
 		58CFCC9D2B7A79DC00D18E4F /* MockRefuges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRefuges.swift; sourceTree = "<group>"; };
@@ -682,6 +686,7 @@
 				58BE8F512C37D6D900DC8EC6 /* TripMapMarkerInfoView.swift */,
 				58AEC8312B9A067900B9005C /* TripMapMarkerInfoOverview.swift */,
 				58AEC8332B9A074000B9005C /* TripMapMarkerLocationOverview.swift */,
+				58CDB7402C47FBA2003C614C /* AddToProjectButton.swift */,
 			);
 			path = TripMapInfoView;
 			sourceTree = "<group>";
@@ -919,6 +924,7 @@
 			children = (
 				58E1B97B2BF64BFF00192C92 /* TripProjectRow.swift */,
 				58E1B97D2BF6505D00192C92 /* TripProjectsList.swift */,
+				58CDB73E2C47F70D003C614C /* TripProjectsPicker.swift */,
 			);
 			path = TripProjectsList;
 			sourceTree = "<group>";
@@ -1323,6 +1329,7 @@
 				582A39A92B9F5EB50057FCCD /* TripMapItemsRepository.swift in Sources */,
 				58BDE6062B6D2A97005BFEF3 /* ActionableObject.swift in Sources */,
 				582A39A32B9F4D450057FCCD /* XCAssets+Generated.swift in Sources */,
+				58CDB73F2C47F70D003C614C /* TripProjectsPicker.swift in Sources */,
 				585F14952BF50BBC0089F7E7 /* View+clipToCircle.swift in Sources */,
 				58B2B8F92A98FE3A007BFE3F /* RefugeDescriptionView.AccessTabView.swift in Sources */,
 				58AD5A4D2A97BEFE00571534 /* RefugesInfo+Article.swift in Sources */,
@@ -1374,6 +1381,7 @@
 				5843D6122BC44E50007E738D /* CourseLayer.swift in Sources */,
 				58BE8F5B2C37FC3500DC8EC6 /* MapSearchBarSizeSlider.swift in Sources */,
 				5887DB772BCD8159004241E6 /* HomeMapView.swift in Sources */,
+				58CDB7412C47FBA2003C614C /* AddToProjectButton.swift in Sources */,
 				58D983E22C2EF807006F7568 /* NSManagedObjectContext+PersistenceController.swift in Sources */,
 				58CBF71C2C3C0F42009D6538 /* AppDelegate.swift in Sources */,
 				58C55C5A29F6DD22008F3A54 /* TripMappApp.swift in Sources */,

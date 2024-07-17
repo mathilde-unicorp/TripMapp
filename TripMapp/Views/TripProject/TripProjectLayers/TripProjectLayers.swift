@@ -15,7 +15,15 @@ struct TripProjectLayersView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
+    // -------------------------------------------------------------------------
+    // MARK: - Private Properties
+    // -------------------------------------------------------------------------
+
     @State private var points: [TripPointEntity] = []
+
+    // -------------------------------------------------------------------------
+    // MARK: - Initialization
+    // -------------------------------------------------------------------------
 
     init(isPresented: Binding<Bool>, project: TripProjectEntity) {
         self._isPresented = isPresented
@@ -28,16 +36,7 @@ struct TripProjectLayersView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                LayersButton {
-                    withAnimation { isPresented = false }
-                }
-
-                Spacer()
-
-                EditButton()
-            }
-            .padding(8.0)
+            customToolbar()
 
             List {
                 ForEach(points, id: \.id) { item in
@@ -55,6 +54,20 @@ struct TripProjectLayersView: View {
         .onChange(of: project.points) { _, newValue in
             self.points = newValue
         }
+    }
+
+    @ViewBuilder
+    private func customToolbar() -> some View {
+        HStack {
+            LayersButton {
+                withAnimation { isPresented = false }
+            }
+
+            Spacer()
+
+            EditButton()
+        }
+        .padding(8.0)
     }
 
     @ViewBuilder
