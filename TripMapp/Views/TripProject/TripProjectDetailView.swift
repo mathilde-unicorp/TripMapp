@@ -18,9 +18,15 @@ struct TripProjectDetailView: View {
 
     var body: some View {
         Map {
-            Marker(coordinate: .cabaneClartan, label: {
-                Label("_example_hello_world", image: "pin")
-            })
+            ForEach(projectEntity.points, id: \.self) { point in
+                Marker(coordinate: CLLocationCoordinate2D(
+                    latitude: point.latitude,
+                    longitude: point.longitude
+                ) , label: {
+                    Label(point.name ?? "", systemImage: "mappin")
+                })
+            }
+
         }
         .mapControls {
             MapUserLocationButton()

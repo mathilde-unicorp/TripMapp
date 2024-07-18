@@ -84,10 +84,16 @@ struct TripProjectLayersView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { points[$0] }
-                .forEach { viewContext.delete($0) }
+            let deletePoints = offsets.map { points[$0] }
+            deletePoints.forEach { viewContext.delete($0) }
+
+            // Update project points position with the new points position after deletion
+            project.points.enumerated().forEach { index, point in
+                point.update(position: Int16(index))
+            }
 
             try? viewContext.save()
+            self.points = project.points
         }
     }
 
@@ -96,9 +102,9 @@ struct TripProjectLayersView: View {
         toOffset destination: Int
     ) {
         var currentPoints = self.points
-
         currentPoints.move(fromOffsets: source, toOffset: destination)
 
+        // Update project points position with the new moved positions
         project.points.forEach { point in
             let index = currentPoints.firstIndex(of: point)!
             point.update(position: Int16(index))
