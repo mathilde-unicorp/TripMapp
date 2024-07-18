@@ -1,5 +1,5 @@
 //
-//  PointsOfInterestTypesOverviewPicker.swift
+//  TripPointTypesOverviewPicker.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 12/03/2024.
@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct PointsOfInterestTypesCompactPicker: View {
+struct TripPointTypesCompactPicker: View {
     /// Set of types to display as selected (e.g. they are displayed on the map)
-    @Binding var selectedTypes: [POIType]
+    @Binding var selectedTypes: [TripPointType]
 
     /// Default types to display even if they are not selected yet
-    var defaultTypes: [POIType] = [.summit, .refuge, .foodstuffProvisions]
+    var defaultTypes: [TripPointType] = [.summit, .refuge, .foodstuffProvisions]
 
     // -------------------------------------------------------------------------
     // MARK: - Private UI
     // -------------------------------------------------------------------------
 
     /// Display only default types that are not yet selected
-    private var defaultTypesDisplayed: [POIType] {
+    private var defaultTypesDisplayed: [TripPointType] {
         return Array(defaultTypes)
             .filterWithout { selectedTypes.contains($0) } // Remove types that are selected
             .sorted(by: { $0.id < $1.id }) // ensure they are always displayed on the same order
     }
 
     /// Display selected types
-    private var selectedTypesDisplayed: [POIType] {
+    private var selectedTypesDisplayed: [TripPointType] {
         return Array(selectedTypes)
             .sorted(by: { $0.id < $1.id }) // ensure they are always displayed on the same order
     }
@@ -52,7 +52,7 @@ struct PointsOfInterestTypesCompactPicker: View {
     }
 
     @ViewBuilder
-    private func pointsOfInterestButton(type: PointsOfInterestType) -> some View {
+    private func pointsOfInterestButton(type: TripPointType) -> some View {
         Button {
             self.selectedTypes.toggle(element: type)
         } label: {
@@ -65,5 +65,5 @@ struct PointsOfInterestTypesCompactPicker: View {
 }
 
 #Preview {
-    PointsOfInterestTypesCompactPicker(selectedTypes: .constant(.init([.summit, .hotel, .lake])))
+    TripPointTypesCompactPicker(selectedTypes: .constant(.init([.summit, .hotel, .lake])))
 }

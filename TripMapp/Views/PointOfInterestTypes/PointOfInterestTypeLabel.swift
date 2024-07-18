@@ -1,5 +1,5 @@
 //
-//  PointsOfInterestTypeLabel.swift
+//  TripPointTypeLabel.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 11/07/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PointOfInterestTypeLabel: View {
+struct TripPointTypeLabel: View {
     let systemImage: String
     let title: LocalizedStringKey
     let selectedColor: Color
@@ -44,12 +44,12 @@ struct PointOfInterestTypeLabel: View {
     }
 
     init(
-        poiType: POIType,
+        tripPointType: TripPointType,
         isSelected: Bool
     ) {
-        self.systemImage = poiType.systemImage
-        self.title = poiType.title
-        self.selectedColor = poiType.color
+        self.systemImage = tripPointType.systemImage
+        self.title = tripPointType.title
+        self.selectedColor = tripPointType.color
         self.isSelected = isSelected
     }
 
@@ -77,8 +77,8 @@ struct PointOfInterestTypeLabel: View {
 
 #Preview {
     HStack {
-        PointOfInterestTypeLabel(poiType: .refuge, isSelected: true)
-        PointOfInterestTypeLabel(poiType: .foodstuffProvisions, isSelected: false)
-        PointOfInterestTypeLabel(poiType: .sportsProvisions, isSelected: false)
+        TripPointTypeLabel(tripPointType: .refuge, isSelected: true)
+        TripPointTypeLabel(tripPointType: .foodstuffProvisions, isSelected: false)
+        TripPointTypeLabel(tripPointType: .sportsProvisions, isSelected: false)
     }
 }

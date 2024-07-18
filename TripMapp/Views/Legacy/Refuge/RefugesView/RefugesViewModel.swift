@@ -43,7 +43,7 @@ class RefugesViewModel: ObservableObject {
     // MARK: - Requests
 
     @MainActor
-    func searchMapItems(of types: Set<PointsOfInterestType>) {
+    func searchMapItems(of types: Set<TripPointType>) {
         Task {
             let region = visibleRegion ?? defaultRegion
 

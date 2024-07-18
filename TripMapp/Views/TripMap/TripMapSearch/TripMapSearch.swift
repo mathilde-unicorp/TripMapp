@@ -11,7 +11,7 @@ import MapKit
 struct TripMapSearch: View {
 
     /// Points Of Interest Types to search on the map
-    @Binding var searchPOITypes: [POIType]
+    @Binding var searchTripPointTypes: [TripPointType]
     @Binding var selectedMarker: TripMapMarker.ViewModel?
 
     @ObservedObject var dataSource: TripMapSearchDataSource
@@ -25,11 +25,11 @@ struct TripMapSearch: View {
     // -------------------------------------------------------------------------
 
     init(
-        searchPOITypes: Binding<[POIType]>,
+        searchTripPointTypes: Binding<[TripPointType]>,
         selectedMarker: Binding<TripMapMarker.ViewModel?>,
         dataSource: TripMapSearchDataSource = .init(mapItemsRepository: .shared)
     ) {
-        self._searchPOITypes = searchPOITypes
+        self._searchTripPointTypes = searchTripPointTypes
         self._selectedMarker = selectedMarker
         self.dataSource = dataSource
     }
@@ -52,7 +52,7 @@ struct TripMapSearch: View {
         .overlay(alignment: .top) {
             MapLoadingIndicator(loadingState: $dataSource.loadingState)
         }
-        .onChange(of: searchPOITypes) { _, _ in
+        .onChange(of: searchTripPointTypes) { _, _ in
             // When the PointOfInterest types selected changed, update the map results
             self.refreshMapResults()
         }
@@ -78,7 +78,7 @@ struct TripMapSearch: View {
             self.shouldShowRefreshButton = false
 
             self.dataSource.searchMapItems(
-                ofTypes: searchPOITypes,
+                ofTypes: searchTripPointTypes,
                 on: searchOnRegion
             )
         }
@@ -101,7 +101,7 @@ struct TripMapSearch: View {
 
 #Preview {
     TripMapSearch(
-        searchPOITypes: .constant([.refuge, .foodstuffProvisions]),
+        searchTripPointTypes: .constant([.refuge, .foodstuffProvisions]),
         selectedMarker: .constant(nil),
         dataSource: .init(mapItemsRepository: .mock)
     )

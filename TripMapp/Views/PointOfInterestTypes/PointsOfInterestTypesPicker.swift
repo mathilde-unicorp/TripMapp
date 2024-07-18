@@ -8,8 +8,8 @@
 import SwiftUI
 import CoreData
 
-struct PointsOfInterestTypesPicker: View {
-    @Binding var selectedTypes: [PointsOfInterestType]
+struct TripPointTypesPicker: View {
+    @Binding var selectedTypes: [TripPointType]
 
     @Environment(\.dismiss) private var dismiss
 
@@ -20,19 +20,19 @@ struct PointsOfInterestTypesPicker: View {
     // -------------------------------------------------------------------------
 
     @FetchRequest(
-        fetchRequest: PointsOfInterestTypeEntity.allPointsOfInterestTypes,
+        fetchRequest: TripPointTypeEntity.sortedFetchRequest(),
         transaction: .init(animation: .default)
     )
-    private var favoritesPOITypes: FetchedResults<PointsOfInterestTypeEntity>
+    private var favoritesTripPointTypes: FetchedResults<TripPointTypeEntity>
 
     /// Local selection avoid the owner of `selectedType` property 
     /// to be triggered every time the user change its selection on this view
-    @State private var localSelectionForMapDisplay: [PointsOfInterestType]
+    @State private var localSelectionForMapDisplay: [TripPointType]
 
     /// Single selection is used on the `List` to get notified when the user select an item
     @State private var listSingleSelection: Int?
 
-    init(selectedTypes: Binding<[PointsOfInterestType]>) {
+    init(selectedTypes: Binding<[TripPointType]>) {
         self._selectedTypes = selectedTypes
         self.localSelectionForMapDisplay = selectedTypes.wrappedValue
     }
@@ -47,7 +47,7 @@ struct PointsOfInterestTypesPicker: View {
 
                 listDescription()
 
-                ForEach(POIType.Category.allCases) { category in
+                ForEach(TripPointType.Category.allCases) { category in
                     pointsOfInterestTypeSection(
                         title: category.title,
                         types: category.types
@@ -61,7 +61,7 @@ struct PointsOfInterestTypesPicker: View {
             }
             .onChange(of: listSingleSelection) { _, newSelection in
                 if let newSelection = newSelection,
-                   let type = PointsOfInterestType(rawValue: newSelection) {
+                   let type = TripPointType(rawValue: newSelection) {
                     withAnimation {
                         self.localSelectionForMapDisplay.toggle(element: type)
                         self.listSingleSelection = nil
@@ -90,7 +90,7 @@ struct PointsOfInterestTypesPicker: View {
     @ViewBuilder
     private func pointsOfInterestTypeSection(
         title: LocalizedStringKey,
-        types: [POIType]
+        types: [TripPointType]
     ) -> some View {
         Section(title) {
             ForEach(types) { type in
@@ -105,11 +105,11 @@ struct PointsOfInterestTypesPicker: View {
 
     @ViewBuilder
     private func pointOfInterestTypeRow(
-        type: PointsOfInterestType,
+        type: TripPointType,
         isSelectedForMapDisplay: Bool,
         isFavorite: Bool
     ) -> some View {
-        PointsOfInterestTypeRow(
+        TripPointTypeRow(
             type: type,
             isFavorite: isFavorite,
             isSelectedForMapDisplay: isSelectedForMapDisplay
@@ -134,40 +134,45 @@ struct PointsOfInterestTypesPicker: View {
     // MARK: - Tools
     // -------------------------------------------------------------------------
 
-    private func isSelectedForMapDisplay(type: PointsOfInterestType) -> Bool {
+    private func isSelectedForMapDisplay(type: TripPointType) -> Bool {
         return localSelectionForMapDisplay.contains(type)
     }
 
-    private func isFavorite(type: PointsOfInterestType) -> Bool {
-        return favoritesPOITypes.contains { $0.id == type.id }
+    private func isFavorite(type: TripPointType) -> Bool {
+        return favoritesTripPointTypes.contains { $0.id == type.id }
     }
 
-    private func favoritePOITypeEntity(
-        from type: PointsOfInterestType
-    ) -> PointsOfInterestTypeEntity? {
-        return favoritesPOITypes.first(where: { $0.id == type.id })
+    private func favoriteTripPointTypeEntity(
+        from type: TripPointType
+    ) -> TripPointTypeEntity? {
+        return favoritesTripPointTypes.first(where: { $0.id == type.id })
     }
 
     // -------------------------------------------------------------------------
     // MARK: - Database saving
     // -------------------------------------------------------------------------
 
-    private func addToFavorite(type: PointsOfInterestType) {
-        viewContext.createPointsOfInterestTypeEntity(type: type)
+    private func addToFavorite(type: TripPointType) {
+        TripPointTypeEntity(context: viewContext)
+            .setup(type: type)
+
+        try? viewContext.save()
     }
 
-    private func removeFromFavorite(type: PointsOfInterestType) {
-        guard let savedEntity = favoritePOITypeEntity(from: type) else {
+    private func removeFromFavorite(type: TripPointType) {
+        guard let savedEntity = favoriteTripPointTypeEntity(from: type) else {
             print("Entity not found ! :(")
             return
         }
 
-        viewContext.deletePointsOfInterestTypeEntity(savedEntity)
+        viewContext.delete(savedEntity)
+
+        try? viewContext.save()
     }
 }
 
 #Preview {
-    PointsOfInterestTypesPicker(
+    TripPointTypesPicker(
         selectedTypes: .constant(.init([.summit]))
     )
     .configureEnvironmentForPreview()

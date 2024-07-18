@@ -1,5 +1,5 @@
 //
-//  MapSearchByPOITypeView+ViewModel.swift
+//  MapSearchByTripPointTypeView+ViewModel.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 04/07/2024.
@@ -37,7 +37,7 @@ class TripMapSearchDataSource: ObservableObject {
 
     @MainActor
     func searchMapItems(
-        ofTypes types: [PointsOfInterestType],
+        ofTypes types: [TripPointType],
         on region: MKCoordinateRegion?
     ) {
         self.loadingState = .loading

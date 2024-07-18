@@ -21,7 +21,7 @@ struct MapItemResults {
     // MARK: - Conversion methods
     // -------------------------------------------------------------------------
 
-    func toTripMapMarkerViewModels(type: POIType) -> [TripMapMarker.ViewModel] {
+    func toTripMapMarkerViewModels(type: TripPointType) -> [TripMapMarker.ViewModel] {
         let refugesInfoMarkers = TripMapMarker.ViewModel
             .buildMarkers(from: refugesInfoResults)
 
@@ -33,19 +33,19 @@ struct MapItemResults {
 }
 
 // =============================================================================
-// MARK: - MapItemResultsByPOIType
+// MARK: - MapItemResultsByTripPointType
 // =============================================================================
 
 /// Group results of map items search by the type searched
-typealias MapItemResultsByPOIType = [POIType: MapItemResults]
+typealias MapItemResultsByTripPointType = [TripPointType: MapItemResults]
 
-extension MapItemResultsByPOIType {
+extension MapItemResultsByTripPointType {
 
     // -------------------------------------------------------------------------
     // MARK: - Mutating methods
     // -------------------------------------------------------------------------
 
-    mutating func insert(results: MapItemResults, for type: POIType) {
+    mutating func insert(results: MapItemResults, for type: TripPointType) {
         self[type] = results
     }
 
@@ -54,8 +54,8 @@ extension MapItemResultsByPOIType {
     // -------------------------------------------------------------------------
 
     func toTripMapMarkerViewModels() -> [TripMapMarker.ViewModel] {
-        self.keys.map { poiType -> [TripMapMarker.ViewModel] in
-            return self[poiType]?.toTripMapMarkerViewModels(type: poiType) ?? []
+        self.keys.map { tripPointType -> [TripMapMarker.ViewModel] in
+            return self[tripPointType]?.toTripMapMarkerViewModels(type: tripPointType) ?? []
         }.flatMap { $0 }
     }
 }

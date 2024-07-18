@@ -1,5 +1,5 @@
 //
-//  MapSearchPOITypeSectionHeader.swift
+//  MapSearchTripPointTypeSectionHeader.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 26/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MapSearchPOITypeSectionHeader: View {
+struct MapSearchTripPointTypeSectionHeader: View {
     var onShowMore: () -> Void
 
     var body: some View {
@@ -24,5 +24,5 @@ struct MapSearchPOITypeSectionHeader: View {
 }
 
 #Preview {
-    MapSearchPOITypeSectionHeader(onShowMore: { print("show more") })
+    MapSearchTripPointTypeSectionHeader(onShowMore: { print("show more") })
 }

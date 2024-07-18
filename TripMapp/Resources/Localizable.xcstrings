@@ -233,6 +233,16 @@
         }
       }
     },
+    "%lld" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
     "access_informations_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -455,6 +465,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter à un project"
+          }
+        }
+      }
+    },
+    "added_to_project" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well added !"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouté !"
           }
         }
       }
@@ -827,6 +853,62 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher ..."
+          }
+        }
+      }
+    },
+    "marker_already_added" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "| Marker already added in the project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "| Le marqueur a déjà été ajouté dans le projet"
+          }
+        }
+      }
+    },
+    "markers_count %lld" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld marker"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld markers"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld marqueur"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld marqueurs"
+                }
+              }
+            }
           }
         }
       }
@@ -1405,6 +1487,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Projets"
+          }
+        }
+      }
+    },
+    "projects.select_to_add_point.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select the project where you want to save the current point."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez le project dans lequel vous souhaitez enregistrer le point."
           }
         }
       }

@@ -1,5 +1,5 @@
 //
-//  PointsOfInterestTypeRow.swift
+//  TripPointTypeRow.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 28/06/2024.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct PointsOfInterestTypeRow: View {
-    let type: POIType
+struct TripPointTypeRow: View {
+    let type: TripPointType
     let isFavorite: Bool
     let isSelectedForMapDisplay: Bool
 
@@ -21,8 +21,8 @@ struct PointsOfInterestTypeRow: View {
             Label {
                 Text(type.title)
             } icon: {
-                PointOfInterestTypeImage(
-                    poiType: type,
+                TripPointTypeImage(
+                    tripPointType: type,
                     isSelected: isSelectedForMapDisplay
                 )
                 .overlay(alignment: .bottomTrailing) {
@@ -46,19 +46,19 @@ struct PointsOfInterestTypeRow: View {
 
 #Preview {
     List {
-        PointsOfInterestTypeRow(
+        TripPointTypeRow(
             type: .refuge,
             isFavorite: true,
             isSelectedForMapDisplay: true
         )
 
-        PointsOfInterestTypeRow(
+        TripPointTypeRow(
             type: .bivouac,
             isFavorite: true,
             isSelectedForMapDisplay: false
         )
 
-        PointsOfInterestTypeRow(
+        TripPointTypeRow(
             type: .hotel,
             isFavorite: false,
             isSelectedForMapDisplay: false

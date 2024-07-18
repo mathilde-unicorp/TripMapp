@@ -8,69 +8,121 @@
 import SwiftUI
 
 struct TripProjectLayersView: View {
-    let project: LegacyTripProject
 
     @Binding var isPresented: Bool
 
-    @State private var isExpanded: Bool = true
+    @ObservedObject private var project: TripProjectEntity
+
+    @Environment(\.managedObjectContext) private var viewContext
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private Properties
+    // -------------------------------------------------------------------------
+
+    @State private var points: [TripPointEntity] = []
+
+    // -------------------------------------------------------------------------
+    // MARK: - Initialization
+    // -------------------------------------------------------------------------
+
+    init(isPresented: Binding<Bool>, project: TripProjectEntity) {
+        self._isPresented = isPresented
+        self.project = project
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                LayersButton {
-                    withAnimation { isPresented = false }
-                }
-                .padding(8.0)
-
-                Spacer()
-
-                Button("", systemImage: "ellipsis.circle") {
-                    // additionnal informations
-                }
-            }
+            customToolbar()
 
             List {
-                ForEach(project.layers) { layer in
-                    Section(isExpanded: $isExpanded) {
-                        ForEach(layer.items, id: \.self) { item in
-                            Label(item.description, systemImage: "arrow.triangle.swap")
-                        }
-
-                    } header: {
-                        HStack {
-                            Button {
-                                withAnimation { isExpanded.toggle() }
-                            } label: {
-                                Text(layer.name)
-                                Spacer()
-                                Image(systemName: isExpanded ? "chevron.down" : "chevron.up")
-                            }
-                            .foregroundStyle(.primary)
-                            .font(.headline)
-                        }
-                    }
+                ForEach(points, id: \.id) { item in
+                    pointRow(item)
                 }
-//                Section(isExpanded: $isExpanded) {
-//                    Label("Road 1", systemImage: "arrow.triangle.swap")
-//                    Label("Point 1", systemImage: "mappin")
-//                    Label("Refuge 2", systemImage: "house.fill")
-//                } header: {
-//                }
+                .onDelete { deleteItems(offsets: $0) }
+                .onMove { moveItems(fromOffsets: $0, toOffset: $1) }
             }
             .listStyle(.plain)
         }
         .background(.background)
+        .onAppear {
+            self.points = self.project.points
+        }
+        .onChange(of: project.points) { _, newValue in
+            self.points = newValue
+        }
+    }
+
+    @ViewBuilder
+    private func customToolbar() -> some View {
+        HStack {
+            LayersButton {
+                withAnimation { isPresented = false }
+            }
+
+            Spacer()
+
+            EditButton()
+        }
+        .padding(8.0)
+    }
+
+    @ViewBuilder
+    private func pointRow(_ item: TripPointEntity) -> some View {
+        Label(
+            item.name ?? "--",
+            systemImage: item.tripPointType?.systemImage ?? "mappin"
+        )
+    }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Actions
+    // -------------------------------------------------------------------------
+
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            let deletePoints = offsets.map { points[$0] }
+            deletePoints.forEach { viewContext.delete($0) }
+
+            // Update project points position with the new points position after deletion
+            project.points.enumerated().forEach { index, point in
+                point.update(position: Int16(index))
+            }
+
+            try? viewContext.save()
+            self.points = project.points
+        }
+    }
+
+    private func moveItems(
+        fromOffsets source: IndexSet,
+        toOffset destination: Int
+    ) {
+        var currentPoints = self.points
+        currentPoints.move(fromOffsets: source, toOffset: destination)
+
+        // Update project points position with the new moved positions
+        project.points.forEach { point in
+            let index = currentPoints.firstIndex(of: point)!
+            point.update(position: Int16(index))
+        }
+
+        try? viewContext.save()
+        self.points = project.points
     }
 }
 
+// =============================================================================
+// MARK: - Preview
+// =============================================================================
+
 #Preview {
     TripProjectLayersView(
-        project: LegacyTripProject(
-            name: "Test",
-            markers: [],
-            traces: [],
-            layers: [.init(name: "Layer 1", items: [UUID(), UUID()])]
-        ),
-        isPresented: .constant(true)
+        isPresented: .constant(true),
+        project: .previewExample
     )
+    .configureEnvironmentForPreview()
 }

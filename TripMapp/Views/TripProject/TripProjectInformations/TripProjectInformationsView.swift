@@ -75,17 +75,17 @@ struct TripProjectInformationsView: View {
     // -------------------------------------------------------------------------
 
     private func saveProject() {
-        viewContext.update(entity: projectEntity, with: localProject)
-        dismiss()
+        self.projectEntity.update(with: self.localProject)
+
+        try? self.viewContext.save()
+
+        self.dismiss()
     }
 }
 
 #Preview {
     NavigationStack {
-        TripProjectInformationsView(
-            projectEntity: NSManagedObjectContext.previewViewContext
-                .createTripProjectEntity(name: "Project 1")!
-        )
-        .configureEnvironmentForPreview()
+        TripProjectInformationsView(projectEntity: .previewExample)
+            .configureEnvironmentForPreview()
     }
 }

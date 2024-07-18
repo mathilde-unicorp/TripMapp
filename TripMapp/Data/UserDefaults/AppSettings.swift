@@ -23,6 +23,6 @@ class AppSettings {
     var lastAppVersion: String
 
     /// Should make the setup of the "favorite Points of Interests"
-    @UserDefaultsItem("shouldSetupFavoritePOITypes", defaultValue: true)
-    var shouldSetupFavoritePOITypes: Bool
+    @UserDefaultsItem("shouldSetupFavoriteTripPointTypes", defaultValue: true)
+    var shouldSetupFavoriteTripPointTypes: Bool
 }

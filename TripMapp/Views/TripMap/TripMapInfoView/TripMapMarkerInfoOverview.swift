@@ -10,11 +10,15 @@ import MapKit
 
 struct TripMapMarkerInfoOverview: View {
 
-    var mapItem: TripMapMarker.ViewModel
+    let mapItem: TripMapMarker.ViewModel
 
     @EnvironmentObject private var router: AppRouter
 
+    @Environment(\.managedObjectContext) private var viewContext
+
     @State private var shouldOpenDetailedResult: Bool = false
+
+    @State var selectedProject: TripProjectEntity?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,11 +33,9 @@ struct TripMapMarkerInfoOverview: View {
                         .foregroundStyle(.secondary)
 
                     HStack(spacing: 16.0) {
-                        Button("add_to_project", systemImage: "plus") {
-                            // do something
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .font(.caption)
+                        AddToProjectButton(mapItem: mapItem)
+                            .buttonStyle(.borderedProminent)
+                            .font(.caption)
 
                         Spacer()
 
@@ -51,6 +53,7 @@ struct TripMapMarkerInfoOverview: View {
             }
         }
     }
+
 }
 
 #Preview {

@@ -36,9 +36,6 @@ struct TripProjectRow: View {
 
 #Preview {
     List {
-        TripProjectRow(
-            project: NSManagedObjectContext.previewViewContext
-                .createTripProjectEntity(name: "Project 1")!
-        )
+        TripProjectRow(project: .previewExample)
     }
 }

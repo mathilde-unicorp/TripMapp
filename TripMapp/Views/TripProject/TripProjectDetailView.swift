@@ -18,16 +18,22 @@ struct TripProjectDetailView: View {
 
     var body: some View {
         Map {
-            Marker(coordinate: .cabaneClartan, label: {
-                Label("_example_hello_world", image: "pin")
-            })
+            ForEach(projectEntity.points, id: \.self) { point in
+                Marker(coordinate: CLLocationCoordinate2D(
+                    latitude: point.latitude,
+                    longitude: point.longitude
+                ) , label: {
+                    Label(point.name ?? "", systemImage: "mappin")
+                })
+            }
+
         }
         .mapControls {
             MapUserLocationButton()
         }
         .overlay(alignment: .bottom) {
             MapSearchBar(
-                selectedPOITypes: .constant([]),
+                selectedTripPointTypes: .constant([]),
                 searchBarSize: .constant(.medium)
             )
             .setFullWidth()
@@ -43,11 +49,19 @@ struct TripProjectDetailView: View {
                 .shadow(radius: 4)
                 .padding(8.0)
             } else {
-                TripProjectLayersView(
-                    project: LegacyTripProject(name: projectEntity.name ?? ""),
-                    isPresented: $showSidebar
-                )
-                .frame(width: 300)
+                HStack(spacing: 0) {
+                    TripProjectLayersView(
+                        isPresented: $showSidebar,
+                        project: projectEntity
+                    )
+                    .frame(width: 300)
+
+                    // TODO: only on small portrait mode
+                    UIColor.systemBackground.withAlphaComponent(0.4).swiftUiColor
+                        .onTapGesture {
+                            withAnimation { showSidebar = false }
+                        }
+                }
             }
         }
         .toolbar {
@@ -68,8 +82,7 @@ struct TripProjectDetailView: View {
 #Preview {
     NavigationStack {
         TripProjectDetailView(
-            projectEntity: NSManagedObjectContext.previewViewContext
-                .createTripProjectEntity(name: "Project 1")!
+            projectEntity: .previewExample
         )
         .configureEnvironmentForPreview()
     }

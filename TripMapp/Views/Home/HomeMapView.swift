@@ -9,18 +9,18 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
-    @State private var searchPOITypes: [PointsOfInterestType] = []
+    @State private var searchTripPointTypes: [TripPointType] = []
     @State private var selectedMarker: TripMapMarker.ViewModel?
     @State private var searchBarSize: SearchBarSize = .medium
 
     var body: some View {
         TripMapSearch(
-            searchPOITypes: $searchPOITypes,
+            searchTripPointTypes: $searchTripPointTypes,
             selectedMarker: $selectedMarker,
             dataSource: .init(mapItemsRepository: .shared)
         )
         .tripMapSearchable(
-            searchPOITypes: $searchPOITypes,
+            searchTripPointTypes: $searchTripPointTypes,
             selectedMapMarker: $selectedMarker,
             searchBarSize: $searchBarSize
         )

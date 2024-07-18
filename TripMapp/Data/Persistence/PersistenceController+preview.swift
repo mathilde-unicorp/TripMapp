@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import MapKit
 
 extension PersistenceController {
 
@@ -14,7 +15,7 @@ extension PersistenceController {
     func generateInMemoryContent() {
         do {
             try generateTripProjectEntities()
-            try generatePointsOfInterestsEntities()
+            try generateFavoriteTripPointTypeEntities()
         } catch {
             print("CANNOT CREATE PREVIEW CONTENT ON PERSISTENCE CONTROLLER: \(error)")
         }
@@ -22,15 +23,38 @@ extension PersistenceController {
 
     private func generateTripProjectEntities() throws {
         for index in 0 ..< 10 {
-            context.createTripProjectEntity(name: "Project \(index)")
+            let project = TripProjectEntity(context: context)
+                .setup(name: "Project \(index)")
+
+            if index == 0 {
+                try generateProjectPoints(project: project)
+            }
         }
+        try? context.save()
     }
 
-    private func generatePointsOfInterestsEntities() throws {
-        let poiTypes: [POIType] = [.foodstuffProvisions, .refuge, .water, .campground]
+    private func generateFavoriteTripPointTypeEntities() throws {
+        let tripPointTypes: [TripPointType] = [.foodstuffProvisions, .refuge, .water, .campground]
 
-        for poiType in poiTypes {
-            context.createPointsOfInterestTypeEntity(type: poiType)
+        for tripPointType in tripPointTypes {
+            TripPointTypeEntity(context: context)
+                .setup(type: tripPointType)
         }
+        try? context.save()
+    }
+
+    private func generateProjectPoints(project: TripProjectEntity) throws {
+        let coordinates = CLLocationCoordinate2D.cabaneClartan
+
+        TripPointEntity(context: context)
+            .setup(name: "marker 1", type: .refuge)
+            .setup(source: .refugesInfo, sourceId: "1")
+            .setupLocation(
+                latitude: coordinates.latitude,
+                longitude: coordinates.longitude
+            )
+            .addToProject(project)
+
+        try? context.save()
     }
 }

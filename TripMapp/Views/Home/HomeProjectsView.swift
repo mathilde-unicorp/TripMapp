@@ -44,9 +44,8 @@ struct HomeProjectsView: View {
 
     private func createNewProject() -> TripProjectEntity? {
         withAnimation {
-            return viewContext.createTripProjectEntity(
-                name: String(localized: "project.new")
-            )
+            return TripProjectEntity(context: viewContext)
+                .setup(name: String(localized: "project.new"))
         }
     }
 
