@@ -14,7 +14,7 @@ struct AddToProjectButton: View {
         case added
     }
 
-    let mapItem: TripMapMarker.ViewModel
+    let mapItem: TripPoint
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -85,10 +85,7 @@ struct AddToProjectButton: View {
     private func addMapMarkerToProject(_ project: TripProjectEntity) {
         TripPointEntity(context: viewContext)
             .setup(name: mapItem.name, type: mapItem.pointType)
-            .setup(
-                source: mapItem.source.tripPointSource,
-                sourceId: mapItem.source.sourceId
-            )
+            .setup(source: mapItem.source)
             .setupLocation(coordinates: mapItem.coordinates)
             .update(position: (project.points.last?.position ?? 0) + 1)
             .addToProject(project)

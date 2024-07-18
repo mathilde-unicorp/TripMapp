@@ -10,11 +10,16 @@ import MapKit
 
 struct MarkersLayer: MapContent {
 
-    @Binding var markers: [TripMapMarker.ViewModel]
+    @Binding var markers: [TripPoint]
 
     var body: some MapContent {
-        ForEach(markers, id: \.id) {
-            TripMapMarker(viewModel: $0)
+        ForEach(markers, id: \.id) { marker in
+            TripMapMarker(
+                name: marker.name,
+                coordinates: marker.coordinates,
+                systemImage: marker.systemImage,
+                color: marker.color
+            )
         }
     }
 }
@@ -22,7 +27,7 @@ struct MarkersLayer: MapContent {
 #Preview {
     Map {
         MarkersLayer(
-            markers: .constant(TripMapMarker.ViewModel.mocks)
+            markers: .constant(TripPoint.mocks)
         )
     }
 }

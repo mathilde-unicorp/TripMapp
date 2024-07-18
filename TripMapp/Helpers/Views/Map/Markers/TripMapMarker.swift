@@ -10,22 +10,28 @@ import MapKit
 
 struct TripMapMarker: MapContent {
 
-    let viewModel: ViewModel
+    let name: String
+    let coordinates: CLLocationCoordinate2D
+    let systemImage: String
+    let color: Color
 
     var body: some MapContent {
         Marker(
-            viewModel.name,
-            systemImage: viewModel.systemImage,
-            coordinate: viewModel.coordinates
+            name,
+            systemImage: systemImage,
+            coordinate: coordinates
         )
-        .tint(viewModel.color)
+        .tint(color)
     }
 }
 
 #Preview {
     Map {
-        TripMapMarker(viewModel: .build(
-            from: MockRefuges.refuges.first!.toLightPoint
-        ))
+        TripMapMarker(
+            name: "Marker name",
+            coordinates: .giteDeLaColleStMichel,
+            systemImage: "mappin",
+            color: .red
+        )
     }
 }

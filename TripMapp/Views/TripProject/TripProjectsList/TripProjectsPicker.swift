@@ -11,7 +11,7 @@ struct TripProjectsPicker: View {
 
     @Binding var selectedProject: TripProjectEntity?
 
-    var mapItemToAdd: TripMapMarker.ViewModel?
+    var mapItemToAdd: TripPoint?
 
     // -------------------------------------------------------------------------
     // MARK: - Private

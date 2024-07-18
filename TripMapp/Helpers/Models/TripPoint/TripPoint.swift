@@ -1,54 +1,27 @@
 //
-//  SearchResultMarker+ViewModel.swift
+//  TripPoint.swift
 //  TripMapp
 //
-//  Created by Ressier Mathilde on 09/04/2024.
+//  Created by Ressier Mathilde on 18/07/2024.
 //
 
-import Foundation
-import MapKit
 import SwiftUI
+import MapKit
 
-extension TripMapMarker {
+struct TripPoint: Identifiable, Equatable {
+    let id: String
+    let source: TripPoint.Source
+    let name: String
+    let shortDescription: String
+    let coordinates: CLLocationCoordinate2D
+    let systemImage: String
+    let color: Color
 
-    enum Source {
-        case refugesInfo(refugeId: RefugeId)
-        case mkMap(item: MKMapItem)
-        case custom
-
-        var tripPointSource: TripPointSource {
-            switch self {
-            case .refugesInfo: return .refugesInfo
-            case .mkMap: return .mkMapItem
-            case .custom: return .custom
-            }
-        }
-
-        var sourceId: String? {
-            switch self {
-            case .refugesInfo(let refugeId):
-                return refugeId.toString
-            default: return nil
-            }
-        }
-    }
-
-    struct ViewModel: Identifiable, Equatable {
-        let id: String
-        let source: Source
-        let name: String
-        let shortDescription: String
-        let coordinates: CLLocationCoordinate2D
-        let systemImage: String
-        let color: Color
-
-        let pointType: TripPointType?
-
-    }
+    let pointType: TripPointType?
 }
 
-extension TripMapMarker.ViewModel {
-    static func == (lhs: TripMapMarker.ViewModel, rhs: TripMapMarker.ViewModel) -> Bool {
+extension TripPoint {
+    static func == (lhs: TripPoint, rhs: TripPoint) -> Bool {
         return lhs.id == rhs.id
     }
 }
@@ -57,7 +30,7 @@ extension TripMapMarker.ViewModel {
 // MARK: - Mocks
 // =============================================================================
 
-extension TripMapMarker.ViewModel {
+extension TripPoint {
     static var mocks: [Self] = [
         .build(from: MockRefuges.refuges.first!.toLightPoint),
         .build(from: MKMapItem(placemark: .init(coordinate: .france)), type: .waypoint),
@@ -66,36 +39,14 @@ extension TripMapMarker.ViewModel {
 }
 
 // =============================================================================
-// MARK: - ViewModel Initialization
+// MARK: - Build
 // =============================================================================
 
-extension TripMapMarker.ViewModel {
+extension TripPoint {
 
-    init(
-        source: TripMapMarker.Source,
-        name: String,
-        shortDescription: String,
-        coordinates: CLLocationCoordinate2D,
-        systemImage: String,
-        color: Color,
-        pointType: TripPointType? = nil
-    ) {
-        self.id = UUID().uuidString
-        self.source = source
-        self.name = name
-        self.shortDescription = shortDescription
-        self.coordinates = coordinates
-        self.systemImage = systemImage
-        self.color = color
-        self.pointType = pointType
-    }
-}
-
-// =============================================================================
-// MARK: - Builders
-// =============================================================================
-
-extension TripMapMarker.ViewModel {
+    // -------------------------------------------------------------------------
+    // MARK: - RefugesInfo
+    // -------------------------------------------------------------------------
 
     static func build(
         from refugeInfoResult: RefugesInfo.LightRefugePoint
@@ -135,11 +86,16 @@ extension TripMapMarker.ViewModel {
         }
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: - MKMapItem
+    // -------------------------------------------------------------------------
+
     static func build(
         from mkMapItem: MKMapItem,
         type: TripPointType
     ) -> Self {
         .init(
+            id: UUID().uuidString,
             source: .mkMap(item: mkMapItem),
             name: mkMapItem.name ?? "??",
             shortDescription: mkMapItem.placemark.shortLocationAddress,

@@ -71,7 +71,7 @@ extension TripProjectEntity {
         self.points.contains { $0.asSameSourcePoint(as: point) }
     }
 
-    func contains(marker: TripMapMarker.ViewModel) -> Bool {
+    func contains(marker: TripPoint) -> Bool {
         return self.points.contains { $0.asSameSourcePoint(as: marker) }
     }
 }

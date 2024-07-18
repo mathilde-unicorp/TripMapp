@@ -17,7 +17,7 @@ class RefugesViewModel: ObservableObject {
 
     // MARK: - UI Properties
 
-    @Published var markers: [TripMapMarker.ViewModel] = []
+    @Published var markers: [TripPoint] = []
 
     @Published var courses: [CourseLayer.ViewModel] = []
 
@@ -50,7 +50,7 @@ class RefugesViewModel: ObservableObject {
             let items = try await self.repository
                 .searchMapItems(types: Array(types), region: region)
 
-            let newMarkers = items.toTripMapMarkerViewModels()
+            let newMarkers = items.toTripPoints()
             self.markers = newMarkers
         }
     }

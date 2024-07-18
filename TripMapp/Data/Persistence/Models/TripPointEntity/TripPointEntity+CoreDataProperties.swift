@@ -51,9 +51,9 @@ extension TripPointEntity {
     }
 
     @discardableResult
-    func setup(source: TripPointSource, sourceId: String?) -> Self {
-        self.source = source.rawValue
-        self.sourceId = sourceId
+    func setup(source: TripPoint.Source) -> Self {
+        self.source = source.name
+        self.sourceId = source.sourceId
         return self
     }
 
@@ -93,8 +93,8 @@ extension TripPointEntity {
         return false
     }
 
-    func asSameSourcePoint(as marker: TripMapMarker.ViewModel) -> Bool {
-        guard self.source == marker.source.tripPointSource.rawValue else {
+    func asSameSourcePoint(as marker: TripPoint) -> Bool {
+        guard self.source == marker.source.name else {
             return false
         }
 

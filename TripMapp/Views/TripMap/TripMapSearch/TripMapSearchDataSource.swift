@@ -16,8 +16,8 @@ class TripMapSearchDataSource: ObservableObject {
     // MARK: - Published
     // -------------------------------------------------------------------------
 
-    @Published var searchResults: [TripMapMarker.ViewModel] = []
-    @Published var loadingState: LoadingState<[TripMapMarker.ViewModel]> = .idle
+    @Published var searchResults: [TripPoint] = []
+    @Published var loadingState: LoadingState<[TripPoint]> = .idle
 
     private let defaultRegion: MKCoordinateRegion = .france
 
@@ -52,7 +52,7 @@ class TripMapSearchDataSource: ObservableObject {
                 let items = try await self.mapItemsRepository
                     .searchMapItems(types: types, region: region)
 
-                let newMarkers = items.toTripMapMarkerViewModels()
+                let newMarkers = items.toTripPoints()
 
                 self.searchResults = newMarkers
                 self.loadingState = .loaded(newMarkers)

@@ -25,11 +25,19 @@ class TripProject: ObservableObject {
         self.endDate = endDate
         self.notes = notes
     }
+}
 
-    init(entity: TripProjectEntity) {
-        self.name = entity.name ?? ""
-        self.startDate = entity.startDate ?? .now
-        self.endDate = entity.endDate ?? .now.adding(days: 7)
-        self.notes = entity.notes ?? ""
+// =============================================================================
+// MARK: - Build
+// =============================================================================
+
+extension TripProject {
+    static func build(from entity: TripProjectEntity) -> TripProject {
+        TripProject(
+            name: entity.name ?? "",
+            startDate: entity.startDate ?? .now,
+            endDate: entity.endDate ?? .now.adding(days: 7),
+            notes: entity.notes ?? ""
+        )
     }
 }

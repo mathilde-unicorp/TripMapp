@@ -16,17 +16,20 @@ struct TripProjectDetailView: View {
 
     @ObservedObject var projectEntity: TripProjectEntity
 
+//    private var markers: [TripPoint] {
+//        projectEntity.points.map(<#T##transform: (TripPointEntity) throws -> T##(TripPointEntity) throws -> T#>)
+//    }
+
     var body: some View {
         Map {
             ForEach(projectEntity.points, id: \.self) { point in
                 Marker(coordinate: CLLocationCoordinate2D(
                     latitude: point.latitude,
                     longitude: point.longitude
-                ) , label: {
+                ), label: {
                     Label(point.name ?? "", systemImage: "mappin")
                 })
             }
-
         }
         .mapControls {
             MapUserLocationButton()

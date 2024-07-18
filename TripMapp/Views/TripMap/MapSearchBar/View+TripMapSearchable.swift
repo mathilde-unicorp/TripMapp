@@ -12,13 +12,13 @@ struct MapSearchableModifier: ViewModifier {
 
     @Binding var selectedTripPointTypes: [TripPointType]
     @Binding var searchBarSize: SearchBarSize
-    @Binding var selectedMarker: TripMapMarker.ViewModel?
+    @Binding var selectedMarker: TripPoint?
 
     func body(content: Content) -> some View {
         content
             .overlay(alignment: .bottom) {
                 VStack {
-                    TripMapMarkerInfoView(selectedMarker: $selectedMarker)
+                    TripPointInfoView(selectedMarker: $selectedMarker)
 
                     MapSearchBar(
                         selectedTripPointTypes: $selectedTripPointTypes,
@@ -42,7 +42,7 @@ extension View {
     /// Add a search bar and an overview for markers selected on the map
     func tripMapSearchable(
         searchTripPointTypes: Binding<[TripPointType]>,
-        selectedMapMarker: Binding<TripMapMarker.ViewModel?>,
+        selectedMapMarker: Binding<TripPoint?>,
         searchBarSize: Binding<SearchBarSize> = .constant(.medium)
     ) -> some View {
         self.modifier(MapSearchableModifier(

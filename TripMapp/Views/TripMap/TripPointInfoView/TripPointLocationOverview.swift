@@ -8,9 +8,9 @@
 import SwiftUI
 import MapKit
 
-struct TripMapMarkerLocationOverview: View {
+struct TripPointLocationOverview: View {
 
-    @Binding var mapItem: TripMapMarker.ViewModel?
+    @Binding var mapItem: TripPoint?
 
     @State var isLoadingLookAround: Bool = false
     @State private var lookAroundScene: MKLookAroundScene?
@@ -74,5 +74,5 @@ struct TripMapMarkerLocationOverview: View {
 }
 
 #Preview {
-    TripMapMarkerLocationOverview(mapItem: .constant(.mocks[1]))
+    TripPointLocationOverview(mapItem: .constant(.mocks[1]))
 }

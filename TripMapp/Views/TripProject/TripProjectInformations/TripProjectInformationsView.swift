@@ -33,7 +33,7 @@ struct TripProjectInformationsView: View {
     init(projectEntity: TripProjectEntity) {
         self.projectEntity = projectEntity
 
-        self.localProject = .init(entity: projectEntity)
+        self.localProject = .build(from: projectEntity)
     }
 
     // -------------------------------------------------------------------------

@@ -15,7 +15,7 @@ struct CourseLayer: MapContent {
         let id: UUID
         let name: String
         let polyline: TripMapPolyline.ViewModel
-        let markers: [TripMapMarker.ViewModel]
+        let markers: [TripPoint]
 
         init(gpxUrl: URL) {
             self.id = UUID()
@@ -42,33 +42,37 @@ struct CourseLayer: MapContent {
             // Build Markers
 
             var tempMarkers = content.waypoints.map {
-                TripMapMarker.ViewModel.build(
+                TripPoint.build(
                     from: .init(placemark: .init(coordinate: $0.coordinates)),
                     type: .waypoint
                 )
             }
 
             if let polylineStart = polyline.coordinates.first {
-                let marker = TripMapMarker.ViewModel(
+                let marker = TripPoint(
+                    id: UUID().uuidString,
                     source: .custom,
                     name: "Départ de \(name)",
                     shortDescription: "",
                     coordinates: polylineStart,
                     systemImage: "flag.fill",
-                    color: .label
+                    color: .label,
+                    pointType: nil
                 )
 
                 tempMarkers.append(marker)
             }
 
             if let polylineEnd = polyline.coordinates.last {
-                let marker = TripMapMarker.ViewModel(
+                let marker = TripPoint(
+                    id: UUID().uuidString,
                     source: .custom,
                     name: "Arrivée de \(name)",
                     shortDescription: "",
                     coordinates: polylineEnd,
                     systemImage: "flag.checkered",
-                    color: .label
+                    color: .label,
+                    pointType: nil
                 )
 
                 tempMarkers.append(marker)

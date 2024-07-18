@@ -21,11 +21,11 @@ struct MapItemResults {
     // MARK: - Conversion methods
     // -------------------------------------------------------------------------
 
-    func toTripMapMarkerViewModels(type: TripPointType) -> [TripMapMarker.ViewModel] {
-        let refugesInfoMarkers = TripMapMarker.ViewModel
+    func toTripPoints(type: TripPointType) -> [TripPoint] {
+        let refugesInfoMarkers = TripPoint
             .buildMarkers(from: refugesInfoResults)
 
-        let mkMapItemsMarkers = TripMapMarker.ViewModel
+        let mkMapItemsMarkers = TripPoint
             .buildMarkers(from: mkMapItemResults, type: type)
 
         return refugesInfoMarkers + mkMapItemsMarkers
@@ -53,9 +53,9 @@ extension MapItemResultsByTripPointType {
     // MARK: - Conversion methods
     // -------------------------------------------------------------------------
 
-    func toTripMapMarkerViewModels() -> [TripMapMarker.ViewModel] {
-        self.keys.map { tripPointType -> [TripMapMarker.ViewModel] in
-            return self[tripPointType]?.toTripMapMarkerViewModels(type: tripPointType) ?? []
+    func toTripPoints() -> [TripPoint] {
+        self.keys.map { tripPointType -> [TripPoint] in
+            return self[tripPointType]?.toTripPoints(type: tripPointType) ?? []
         }.flatMap { $0 }
     }
 }

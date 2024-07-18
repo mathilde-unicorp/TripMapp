@@ -10,7 +10,7 @@ import MapKit
 
 struct HomeMapView: View {
     @State private var searchTripPointTypes: [TripPointType] = []
-    @State private var selectedMarker: TripMapMarker.ViewModel?
+    @State private var selectedMarker: TripPoint?
     @State private var searchBarSize: SearchBarSize = .medium
 
     var body: some View {

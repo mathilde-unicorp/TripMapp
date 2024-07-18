@@ -8,9 +8,10 @@
 import SwiftUI
 import MapKit
 
-struct TripMapMarkerInfoOverview: View {
+struct TripPointInfoOverview: View {
 
-    let mapItem: TripMapMarker.ViewModel
+    let tripPoint: TripPoint
+    let currentProject: TripProjectEntity?
 
     @EnvironmentObject private var router: AppRouter
 
@@ -18,22 +19,26 @@ struct TripMapMarkerInfoOverview: View {
 
     @State private var shouldOpenDetailedResult: Bool = false
 
-    @State var selectedProject: TripProjectEntity?
+    @State private var selectedProject: TripProjectEntity?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         VStack(alignment: .leading) {
-            Label(mapItem.name, systemImage: mapItem.systemImage)
+            Label(tripPoint.name, systemImage: tripPoint.systemImage)
                 .font(.headline)
 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(mapItem.shortDescription)
+                    Text(tripPoint.shortDescription)
                         .lineLimit(3)
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
                     HStack(spacing: 16.0) {
-                        AddToProjectButton(mapItem: mapItem)
+                        AddToProjectButton(mapItem: tripPoint)
                             .buttonStyle(.borderedProminent)
                             .font(.caption)
 
@@ -48,7 +53,7 @@ struct TripMapMarkerInfoOverview: View {
             }
         }
         .sheet(isPresented: $shouldOpenDetailedResult) {
-            if case .refugesInfo(let refugeId) = mapItem.source {
+            if case .refugesInfo(let refugeId) = tripPoint.source {
                 router.createRefugeDetailView(refugeId: refugeId) // TODO: not using AppRouter
             }
         }
@@ -57,6 +62,9 @@ struct TripMapMarkerInfoOverview: View {
 }
 
 #Preview {
-    TripMapMarkerInfoOverview(mapItem: .mocks.first!)
-        .configureEnvironmentForPreview()
+    TripPointInfoOverview(
+        tripPoint: .mocks.first!,
+        currentProject: nil
+    )
+    .configureEnvironmentForPreview()
 }
