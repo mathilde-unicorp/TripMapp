@@ -16,19 +16,14 @@ struct TripProjectDetailView: View {
 
     @ObservedObject var projectEntity: TripProjectEntity
 
-//    private var markers: [TripPoint] {
-//        projectEntity.points.map(<#T##transform: (TripPointEntity) throws -> T##(TripPointEntity) throws -> T#>)
-//    }
+    private var markers: [TripPoint] {
+        projectEntity.points.map { TripPoint.build(from: $0) }
+    }
 
     var body: some View {
         Map {
-            ForEach(projectEntity.points, id: \.self) { point in
-                Marker(coordinate: CLLocationCoordinate2D(
-                    latitude: point.latitude,
-                    longitude: point.longitude
-                ), label: {
-                    Label(point.name ?? "", systemImage: "mappin")
-                })
+            ForEach(markers, id: \.id) {
+                TripMapMarker(tripPoint: $0)
             }
         }
         .mapControls {

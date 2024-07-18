@@ -13,13 +13,8 @@ struct MarkersLayer: MapContent {
     @Binding var markers: [TripPoint]
 
     var body: some MapContent {
-        ForEach(markers, id: \.id) { marker in
-            TripMapMarker(
-                name: marker.name,
-                coordinates: marker.coordinates,
-                systemImage: marker.systemImage,
-                color: marker.color
-            )
+        ForEach(markers, id: \.id) {
+            TripMapMarker(tripPoint: $0)
         }
     }
 }

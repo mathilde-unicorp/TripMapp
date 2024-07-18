@@ -24,12 +24,7 @@ extension RefugeDescriptionView {
 
         var body: some View {
             Map(position: $mapCameraPositon) {
-                TripMapMarker(
-                    name: marker.name,
-                    coordinates: marker.coordinates,
-                    systemImage: marker.systemImage,
-                    color: marker.color
-                )
+                TripMapMarker(tripPoint: marker)
             }
             .mapStyle(.hybrid(elevation: .realistic))
         }

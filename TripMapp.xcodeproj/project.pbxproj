@@ -149,6 +149,7 @@
 		58E89EEA2C4952F1009FA21B /* TripPointInfoOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE52C4952F1009FA21B /* TripPointInfoOverview.swift */; };
 		58E89EEB2C4952F1009FA21B /* TripPointLocationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE62C4952F1009FA21B /* TripPointLocationOverview.swift */; };
 		58E89EEC2C4952F1009FA21B /* TripPointInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE72C4952F1009FA21B /* TripPointInfoView.swift */; };
+		58E89EEE2C495728009FA21B /* TripPoint+build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EED2C495728009FA21B /* TripPoint+build.swift */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
 		58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */; };
 		58EB4A712A054003001BAE72 /* URL+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A702A054003001BAE72 /* URL+extensions.swift */; };
@@ -333,6 +334,7 @@
 		58E89EE52C4952F1009FA21B /* TripPointInfoOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointInfoOverview.swift; sourceTree = "<group>"; };
 		58E89EE62C4952F1009FA21B /* TripPointLocationOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointLocationOverview.swift; sourceTree = "<group>"; };
 		58E89EE72C4952F1009FA21B /* TripPointInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointInfoView.swift; sourceTree = "<group>"; };
+		58E89EED2C495728009FA21B /* TripPoint+build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripPoint+build.swift"; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorView.swift; sourceTree = "<group>"; };
 		58EB4A702A054003001BAE72 /* URL+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extensions.swift"; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 			children = (
 				58E89EE02C494CD2009FA21B /* TripPoint.swift */,
 				58E89EE22C494FBD009FA21B /* TripPoint+Source.swift */,
+				58E89EED2C495728009FA21B /* TripPoint+build.swift */,
 				58EFC4892B975AD1009B6A61 /* TripPointType */,
 			);
 			path = TripPoint;
@@ -1368,6 +1371,7 @@
 				58E15C442C2C56A8004E2431 /* MapSearchPOITypeSection.swift in Sources */,
 				58CFCCA22B7A7BC100D18E4F /* RefugesInfo+Bbox.swift in Sources */,
 				584C6EF42B76E5F40090D1E0 /* MassifsView.swift in Sources */,
+				58E89EEE2C495728009FA21B /* TripPoint+build.swift in Sources */,
 				584C6EED2B76DB850090D1E0 /* RefugesInfo+MassifsResponse.swift in Sources */,
 				58D338B62B714014000D45EC /* RefugesInfoDataProviderProtocol.swift in Sources */,
 				585C05BE2B9773840023B13D /* CLAuthorizationStatus+extensions.swift in Sources */,
