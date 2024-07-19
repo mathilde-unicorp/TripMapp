@@ -21,7 +21,8 @@ extension TripPoint {
 
         return .init(
             id: "\(refugeInfoResult.properties.id)",
-            source: .refugesInfo(refugeId: refugeInfoResult.properties.id),
+            source: .refugesInfo,
+            sourceId: refugeInfoResult.properties.id.toString,
             name: refugeInfoResult.properties.name,
             shortDescription: shortDescription(from: refugeInfoResult, type: type),
             coordinates: refugeInfoResult.geometry.coordinate2D,
@@ -65,7 +66,8 @@ extension TripPoint {
     ) -> Self {
         .init(
             id: UUID().uuidString,
-            source: .mkMap(item: mkMapItem),
+            source: .mkMap,
+            sourceId: nil,
             name: mkMapItem.name ?? "??",
             shortDescription: mkMapItem.placemark.shortLocationAddress,
             coordinates: mkMapItem.placemark.coordinate,
@@ -99,7 +101,8 @@ extension TripPoint {
 
         return self.init(
             id: (entity.id ?? UUID()).uuidString,
-            source: .custom,
+            source: TripPoint.Source(rawValue: entity.source ?? "") ?? .custom,
+            sourceId: entity.sourceId,
             name: entity.name ?? "",
             shortDescription: "",
             coordinates: .init(latitude: entity.latitude, longitude: entity.longitude),

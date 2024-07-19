@@ -11,61 +11,57 @@ import CoreData
 
 struct TripProjectDetailView: View {
 
-    @State private var showSidebar: Bool = false
-    @State private var editProject: Bool = false
-
     @ObservedObject var projectEntity: TripProjectEntity
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
+    @State private var editProject: Bool = false
+    /// The local selected item id
+    @State private var localSelectedItem: String?
+    /// The  region visible on the map
+    @State private var visibleRegion: MKCoordinateRegion?
+
+    /// The marker selected on the map
+    @State private var selectedMarker: TripPoint?
 
     private var markers: [TripPoint] {
         projectEntity.points.map { TripPoint.build(from: $0) }
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
+
     var body: some View {
-        Map {
-            ForEach(markers, id: \.id) {
-                TripMapMarker(tripPoint: $0)
-            }
+        TripMap(
+            visibleRegion: $visibleRegion,
+            selectedItem: $localSelectedItem
+        ) {
+            MarkersLayer(markers: .constant(markers))
         }
         .mapControls {
             MapUserLocationButton()
-        }
-        .overlay(alignment: .bottom) {
-            MapSearchBar(
-                selectedTripPointTypes: .constant([]),
-                searchBarSize: .constant(.medium)
-            )
-            .setFullWidth()
-            .background(.thinMaterial)
-        }
-        .overlay(alignment: .topLeading) {
-            if !showSidebar {
-                LayersButton {
-                    withAnimation { showSidebar = true }
-                }
-                .background(.thickMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 6.0))
-                .shadow(radius: 4)
-                .padding(8.0)
-            } else {
-                HStack(spacing: 0) {
-                    TripProjectLayersView(
-                        isPresented: $showSidebar,
-                        project: projectEntity
-                    )
-                    .frame(width: 300)
-
-                    // TODO: only on small portrait mode
-                    UIColor.systemBackground.withAlphaComponent(0.4).swiftUiColor
-                        .onTapGesture {
-                            withAnimation { showSidebar = false }
-                        }
-                }
-            }
         }
         .toolbar {
             ToolbarItem {
                 Button("edit") { editProject.toggle() }
             }
+        }
+        .overlay(alignment: .topLeading) {
+            TripLayersPanel(projectEntity: projectEntity)
+        }
+        .overlay(alignment: .bottom) {
+            VStack {
+                TripPointInfoView(
+                    tripPoint: $selectedMarker,
+                    currentProject: projectEntity
+                )
+            }
+        }
+        .onChange(of: localSelectedItem) { _, newSelectedItem in
+            self.onSelectedItemChanged(newSelectedItem)
         }
         .fullScreenCover(isPresented: $editProject) {
             NavigationStack {
@@ -74,6 +70,20 @@ struct TripProjectDetailView: View {
         }
         .navigationTitle(projectEntity.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func onSelectedItemChanged(_ newSelectedItem: String?) {
+        var newMarker: TripPoint?
+
+        if let markerId = newSelectedItem {
+            newMarker = self.markers.first(keyPath: \.id, equals: markerId)
+        } else {
+            newMarker = nil
+        }
+
+        withAnimation {
+            self.selectedMarker = newMarker
+        }
     }
 }
 

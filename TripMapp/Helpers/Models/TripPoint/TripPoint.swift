@@ -11,6 +11,7 @@ import MapKit
 struct TripPoint: Identifiable, Equatable {
     let id: String
     let source: TripPoint.Source
+    let sourceId: String?
     let name: String
     let shortDescription: String
     let coordinates: CLLocationCoordinate2D

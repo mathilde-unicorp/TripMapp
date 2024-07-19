@@ -469,6 +469,23 @@
         }
       }
     },
+    "add_to_project %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to \"%@\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter à \"%@\""
+          }
+        }
+      }
+    },
     "added_to_project" : {
       "localizations" : {
         "en" : {
@@ -632,6 +649,9 @@
           }
         }
       }
+    },
+    "error" : {
+
     },
     "hello" : {
       "localizations" : {
@@ -946,6 +966,9 @@
         }
       }
     },
+    "MyMap" : {
+
+    },
     "notes" : {
       "localizations" : {
         "en" : {
@@ -994,6 +1017,9 @@
           }
         }
       }
+    },
+    "Play Sound" : {
+
     },
     "points_of_interest.bank" : {
       "localizations" : {
@@ -1535,6 +1561,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retirer des favoris"
+          }
+        }
+      }
+    },
+    "remove_from_project %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from \"%@\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer de \"%@\""
+          }
+        }
+      }
+    },
+    "removed_from_project" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well removed !"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimé !"
           }
         }
       }

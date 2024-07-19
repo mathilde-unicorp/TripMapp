@@ -8,12 +8,26 @@
 import SwiftUI
 import MapKit
 
+/// Display a location overview of the given tripPoint item
 struct TripPointLocationOverview: View {
 
-    @Binding var mapItem: TripPoint?
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
 
-    @State var isLoadingLookAround: Bool = false
+    /// Selected Trip Point  we want to display the location overview
+    @Binding var tripPoint: TripPoint?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
+    @State private var isLoadingLookAround: Bool = false
     @State private var lookAroundScene: MKLookAroundScene?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         VStack {
@@ -31,35 +45,30 @@ struct TripPointLocationOverview: View {
         .onAppear {
             getLookAroundScene()
         }
-        .onChange(of: mapItem) {
+        .onChange(of: tripPoint) {
             getLookAroundScene()
         }
     }
 
     // MARK: - Requests
 
-    func getLookAroundScene() {
+    private func getLookAroundScene() {
         withAnimation {
             lookAroundScene = nil
         }
 
-        guard let mapItem else { return }
+        guard let tripPoint else { return }
 
-        switch mapItem.source {
-        case .refugesInfo, .custom:
-            let coordinates = mapItem.coordinates
-            let mapItem = MKMapItem(placemark: .init(coordinate: coordinates))
-            getLookAroundScene(mkMapItem: mapItem)
-        case .mkMap(let item):
-            getLookAroundScene(mkMapItem: item)
-        }
+        getLookAroundScene(coordinate: tripPoint.coordinates)
     }
 
-    private func getLookAroundScene(mkMapItem: MKMapItem) {
+    private func getLookAroundScene(coordinate: CLLocationCoordinate2D) {
+        guard isLoadingLookAround == false else { return }
+
         withAnimation { isLoadingLookAround = true }
 
         Task {
-            let request = MKLookAroundSceneRequest(mapItem: mkMapItem)
+            let request = MKLookAroundSceneRequest(coordinate: coordinate)
             let scene = try? await request.scene
 
             DispatchQueue.main.async {
@@ -74,5 +83,5 @@ struct TripPointLocationOverview: View {
 }
 
 #Preview {
-    TripPointLocationOverview(mapItem: .constant(.mocks[1]))
+    TripPointLocationOverview(tripPoint: .constant(.mocks[1]))
 }

@@ -7,17 +7,27 @@
 
 import SwiftUI
 
+/// Display a bunch of informations about a TripPoint
 struct TripPointInfoView: View {
-    @Binding var selectedMarker: TripPoint?
+
+    /// The selected TripPoint presenting its informations
+    @Binding var tripPoint: TripPoint?
+
+    /// If the TripPoint is displayed within a Project context, it's set here
+    var currentProject: TripProjectEntity?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
-        if let selectedMarker {
+        if let tripPoint {
             VStack {
-                TripPointLocationOverview(mapItem: $selectedMarker)
+                TripPointLocationOverview(tripPoint: $tripPoint)
 
-                TripPointInfoOverview(
-                    tripPoint: selectedMarker,
-                    currentProject: nil
+                TripPointDescriptionOverview(
+                    tripPoint: tripPoint,
+                    currentProject: currentProject
                 )
                 .padding()
             }
@@ -33,7 +43,7 @@ struct TripPointInfoView: View {
     @ViewBuilder
     private func closeButton() -> some View {
         Button("", systemImage: "xmark.circle.fill") {
-            withAnimation { self.selectedMarker = nil }
+            withAnimation { self.tripPoint = nil }
         }
         .foregroundStyle(.secondary)
         .shadow(color: .systemBackground, radius: 5)
@@ -42,6 +52,15 @@ struct TripPointInfoView: View {
 }
 
 #Preview {
-    TripPointInfoView(selectedMarker: .constant(.mocks.first!))
+    VStack {
+        TripPointInfoView(
+            tripPoint: .constant(.mocks.first!)
+        )
+
+        TripPointInfoView(
+            tripPoint: .constant(.mocks.first!),
+            currentProject: .previewExample
+        )
+    }
         .configureEnvironmentForPreview()
 }

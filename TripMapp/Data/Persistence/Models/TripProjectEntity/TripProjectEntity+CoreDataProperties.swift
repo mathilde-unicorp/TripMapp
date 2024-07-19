@@ -67,10 +67,6 @@ extension TripProjectEntity {
     // MARK: - Methods
     // -------------------------------------------------------------------------
 
-    func contains(point: TripPointEntity) -> Bool {
-        self.points.contains { $0.asSameSourcePoint(as: point) }
-    }
-
     func contains(marker: TripPoint) -> Bool {
         return self.points.contains { $0.asSameSourcePoint(as: marker) }
     }

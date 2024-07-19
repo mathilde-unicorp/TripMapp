@@ -10,14 +10,19 @@ import MapKit
 
 struct TripMapSearch: View {
 
-    /// Points Of Interest Types to search on the map
+    /// Types of point to search on the map
     @Binding var searchTripPointTypes: [TripPointType]
+    /// The marker selected on the map
     @Binding var selectedMarker: TripPoint?
 
-    @ObservedObject var dataSource: TripMapSearchDataSource
+    /// Data source to use to make research on the map
+    @ObservedObject private var dataSource: TripMapSearchDataSource
 
+    /// The local selected item id
     @State private var localSelectedItem: String?
+    /// The  region we are searching results for
     @State private var searchOnRegion: MKCoordinateRegion?
+    /// Should the refresh button be shown on the map
     @State private var shouldShowRefreshButton: Bool = false
 
     // -------------------------------------------------------------------------

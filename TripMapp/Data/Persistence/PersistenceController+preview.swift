@@ -46,7 +46,7 @@ extension PersistenceController {
     private func generateProjectPoints(project: TripProjectEntity) throws {
         TripPointEntity(context: context)
             .setup(name: "marker 1", type: .refuge)
-            .setup(source: .refugesInfo(refugeId: 1))
+            .setup(source: .refugesInfo, sourceId: "1")
             .setupLocation(coordinates: .cabaneClartan)
             .addToProject(project)
 

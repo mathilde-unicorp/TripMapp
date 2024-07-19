@@ -16,8 +16,8 @@ extension TripPointEntity {
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var name: String?
-    @NSManaged public var source: String?
     @NSManaged public var type: Int16
+    @NSManaged public var source: String?
     @NSManaged public var sourceId: String?
     @NSManaged public var position: Int16
     @NSManaged public var project: NSSet?
@@ -51,9 +51,9 @@ extension TripPointEntity {
     }
 
     @discardableResult
-    func setup(source: TripPoint.Source) -> Self {
-        self.source = source.name
-        self.sourceId = source.sourceId
+    func setup(source: TripPoint.Source, sourceId: String?) -> Self {
+        self.source = source.rawValue
+        self.sourceId = sourceId
         return self
     }
 
@@ -81,25 +81,13 @@ extension TripPointEntity {
     // MARK: - Methods
     // -------------------------------------------------------------------------
 
-    func asSameSourcePoint(as otherPoint: TripPointEntity) -> Bool {
-        if self.source != otherPoint.source {
-            return false
-        }
-
-        if let sourceId, let otherSourceId = otherPoint.sourceId {
-            return otherSourceId != sourceId
-        }
-
-        return false
-    }
-
     func asSameSourcePoint(as marker: TripPoint) -> Bool {
-        guard self.source == marker.source.name else {
+        guard self.source == marker.source.rawValue else {
             return false
         }
 
         // Compare sourceIds if there are presents
-        if let sourceId, let otherSourceId = marker.source.sourceId {
+        if let sourceId, let otherSourceId = marker.sourceId {
             return otherSourceId == sourceId
         }
 

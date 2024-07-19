@@ -52,6 +52,7 @@ struct CourseLayer: MapContent {
                 let marker = TripPoint(
                     id: UUID().uuidString,
                     source: .custom,
+                    sourceId: nil,
                     name: "Départ de \(name)",
                     shortDescription: "",
                     coordinates: polylineStart,
@@ -67,6 +68,7 @@ struct CourseLayer: MapContent {
                 let marker = TripPoint(
                     id: UUID().uuidString,
                     source: .custom,
+                    sourceId: nil,
                     name: "Arrivée de \(name)",
                     shortDescription: "",
                     coordinates: polylineEnd,

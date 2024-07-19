@@ -73,11 +73,9 @@ struct TripProjectsPicker: View {
     // -------------------------------------------------------------------------
 
     private func isMapItemAlreadyAdded(in project: TripProjectEntity) -> Bool {
-        if let mapItemToAdd {
-            return project.contains(marker: mapItemToAdd)
-        } else {
-            return false
-        }
+        guard let mapItemToAdd else { return false }
+
+        return project.contains(marker: mapItemToAdd)
     }
 }
 
