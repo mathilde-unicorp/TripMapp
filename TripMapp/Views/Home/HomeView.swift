@@ -16,7 +16,7 @@ struct HomeView: View {
         TabView {
             HomeMapView()
                 .tabItem {
-                    Label("map", systemImage: "map")
+                    Label("map", systemImage: "magnifyingglass")
                 }
 
             HomeProjectsView()

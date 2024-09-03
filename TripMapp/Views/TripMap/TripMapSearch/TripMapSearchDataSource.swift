@@ -54,11 +54,16 @@ class TripMapSearchDataSource: ObservableObject {
 
                 let newMarkers = items.toTripPoints()
 
-                self.searchResults = newMarkers
-                self.loadingState = .loaded(newMarkers)
+                await MainActor.run {
+                    self.searchResults = newMarkers
+                    self.loadingState = .loaded(newMarkers)
+                }
             } catch {
                 print("Got error while getting map items of types \(types): \(error)")
-                self.loadingState = .failed(error)
+                
+                await MainActor.run {
+                    self.loadingState = .failed(error)
+                }
             }
         }
     }

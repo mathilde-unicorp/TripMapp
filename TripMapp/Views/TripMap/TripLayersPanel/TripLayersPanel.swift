@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct TripLayersPanel: View {
 
-    let projectEntity: TripProjectEntity
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
+    @ObservedObject var projectEntity: TripProjectEntity
+
+    @Binding var selectedItemId: String?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
 
     @State private var showSidebar: Bool = false
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         if !showSidebar {
@@ -26,12 +41,14 @@ struct TripLayersPanel: View {
             HStack(spacing: 0) {
                 TripProjectLayersView(
                     isPresented: $showSidebar,
+                    selectedItemId: $selectedItemId,
                     project: projectEntity
                 )
                 .frame(width: 300)
 
                 // TODO: only on small portrait mode
                 UIColor.systemBackground.withAlphaComponent(0.4).swiftUiColor
+                    .ignoresSafeArea(edges: .all)
                     .onTapGesture {
                         withAnimation { showSidebar = false }
                     }
@@ -41,8 +58,13 @@ struct TripLayersPanel: View {
 }
 
 #Preview {
-    Text("MyMap")
-        .overlay(alignment: .topLeading) {
-            TripLayersPanel(projectEntity: .previewExample)
-        }
+    Map {
+
+    }
+    .overlay(alignment: .topLeading) {
+        TripLayersPanel(
+            projectEntity: .previewExample,
+            selectedItemId: .constant(nil)
+        )
+    }
 }

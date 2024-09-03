@@ -966,9 +966,6 @@
         }
       }
     },
-    "MyMap" : {
-
-    },
     "notes" : {
       "localizations" : {
         "en" : {
@@ -1019,6 +1016,9 @@
       }
     },
     "Play Sound" : {
+
+    },
+    "points" : {
 
     },
     "points_of_interest.bank" : {
@@ -1629,6 +1629,9 @@
           }
         }
       }
+    },
+    "Selected point id: %@" : {
+
     },
     "services.title" : {
       "extractionState" : "manual",

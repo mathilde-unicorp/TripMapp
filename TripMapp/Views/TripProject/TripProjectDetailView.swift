@@ -23,7 +23,7 @@ struct TripProjectDetailView: View {
 
     @State private var editProject: Bool = false
     /// The local selected item id
-    @State private var localSelectedItem: String?
+    @State private var localSelectedItemId: String?
     /// The  region visible on the map
     @State private var visibleRegion: MKCoordinateRegion?
 
@@ -41,7 +41,7 @@ struct TripProjectDetailView: View {
     var body: some View {
         TripMap(
             visibleRegion: $visibleRegion,
-            selectedItem: $localSelectedItem
+            selectedItem: $localSelectedItemId
         ) {
             MarkersLayer(markers: .constant(markers))
         }
@@ -54,17 +54,18 @@ struct TripProjectDetailView: View {
             }
         }
         .overlay(alignment: .topLeading) {
-            TripLayersPanel(projectEntity: projectEntity)
+            TripLayersPanel(
+                projectEntity: projectEntity,
+                selectedItemId: $localSelectedItemId
+            )
         }
         .overlay(alignment: .bottom) {
-            VStack {
-                TripPointInfoView(
-                    tripPoint: $selectedMarker,
-                    currentProject: projectEntity
-                )
-            }
+            TripPointInfoView(
+                tripPoint: $selectedMarker,
+                currentProject: projectEntity
+            )
         }
-        .onChange(of: localSelectedItem) { _, newSelectedItem in
+        .onChange(of: localSelectedItemId) { _, newSelectedItem in
             self.onSelectedItemChanged(newSelectedItem)
         }
         .fullScreenCover(isPresented: $editProject) {
@@ -74,7 +75,7 @@ struct TripProjectDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(projectEntity.name ?? "")
-        .toolbarBackground(.visible , for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 
     private func onSelectedItemChanged(_ newSelectedItem: String?) {

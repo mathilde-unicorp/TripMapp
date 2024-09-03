@@ -81,12 +81,12 @@ struct TripMapSearch: View {
             self.localSelectedItem = nil
 
             self.shouldShowRefreshButton = false
-
-            self.dataSource.searchMapItems(
-                ofTypes: searchTripPointTypes,
-                on: searchOnRegion
-            )
         }
+
+        self.dataSource.searchMapItems(
+            ofTypes: searchTripPointTypes,
+            on: searchOnRegion
+        )
     }
 
     private func onSelectedItemChanged(_ newSelectedItem: String?) {

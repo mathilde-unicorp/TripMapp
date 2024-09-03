@@ -33,6 +33,7 @@ struct TripPointInfoView: View {
             }
             .background(.thinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10.0))
+            .shadow(radius: 8)
             .overlay(alignment: .topTrailing) {
                 closeButton()
             }
