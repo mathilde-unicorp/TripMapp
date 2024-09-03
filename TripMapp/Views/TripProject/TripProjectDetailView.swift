@@ -11,6 +11,10 @@ import CoreData
 
 struct TripProjectDetailView: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
     @ObservedObject var projectEntity: TripProjectEntity
 
     // -------------------------------------------------------------------------
@@ -68,8 +72,9 @@ struct TripProjectDetailView: View {
                 TripProjectInformationsView(projectEntity: projectEntity)
             }
         }
-        .navigationTitle(projectEntity.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(projectEntity.name ?? "")
+        .toolbarBackground(.visible , for: .navigationBar)
     }
 
     private func onSelectedItemChanged(_ newSelectedItem: String?) {
