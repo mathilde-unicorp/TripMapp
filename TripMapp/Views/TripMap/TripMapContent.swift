@@ -11,7 +11,7 @@ import MapKit
 /// A MapContent with classic items for the current usages of the application
 struct TripMapContent: MapContent {
 
-    @Binding var markers: [TripMapMarker.ViewModel]
+    @Binding var markers: [TripPoint]
     @Binding var polylines: [TripMapPolyline.ViewModel]
 
     var body: some MapContent {
@@ -24,7 +24,7 @@ struct TripMapContent: MapContent {
 #Preview {
     Map {
         TripMapContent(
-            markers: .constant(TripMapMarker.ViewModel.mocks),
+            markers: .constant(TripPoint.mocks),
             polylines: .constant(TripMapPolyline.ViewModel.mocks)
         )
     }

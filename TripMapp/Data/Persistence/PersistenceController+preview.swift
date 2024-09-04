@@ -44,15 +44,10 @@ extension PersistenceController {
     }
 
     private func generateProjectPoints(project: TripProjectEntity) throws {
-        let coordinates = CLLocationCoordinate2D.cabaneClartan
-
         TripPointEntity(context: context)
             .setup(name: "marker 1", type: .refuge)
             .setup(source: .refugesInfo, sourceId: "1")
-            .setupLocation(
-                latitude: coordinates.latitude,
-                longitude: coordinates.longitude
-            )
+            .setupLocation(coordinates: .cabaneClartan)
             .addToProject(project)
 
         try? context.save()

@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 
+/// Apple system sounds used in the app
 enum SystemSounds {
     case smsReceived
     case workoutSavedHaptic
@@ -24,16 +25,20 @@ enum SystemSounds {
     }
 }
 
+// =============================================================================
+// MARK: - UIApplication
+// =============================================================================
 
 extension UIApplication {
 
+    /// Instantly play a system sound
     static func play(sound: SystemSounds) {
         guard let url = sound.url else {
-            print("Cannot get URL :(")
+            print("Cannot get system sound URL :(")
             return
         }
 
-        var systemSoundID : SystemSoundID = 1013 // doesnt matter; edit path instead
+        var systemSoundID: SystemSoundID = 1013 // doesnt matter; edit path instead
         AudioServicesCreateSystemSoundID(url as CFURL, &systemSoundID)
         AudioServicesPlaySystemSound(systemSoundID)
     }

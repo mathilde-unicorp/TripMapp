@@ -50,7 +50,10 @@ struct RefugesView: View {
     private func selectedResultOverview() -> some View {
         if let selectedResult = selectedResult,
             let marker = viewModel.markers.first(where: { $0.id == selectedResult}) {
-            TripMapMarkerInfoView(selectedMarker: .constant(marker))
+            TripPointInfoView(
+                tripPoint: .constant(marker),
+                currentProject: nil
+            )
         }
     }
 

@@ -10,8 +10,9 @@ import SwiftUI
 struct TripProjectLayersView: View {
 
     @Binding var isPresented: Bool
+    @Binding var selectedItemId: String?
 
-    @ObservedObject private var project: TripProjectEntity
+    @ObservedObject var project: TripProjectEntity
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -22,15 +23,6 @@ struct TripProjectLayersView: View {
     @State private var points: [TripPointEntity] = []
 
     // -------------------------------------------------------------------------
-    // MARK: - Initialization
-    // -------------------------------------------------------------------------
-
-    init(isPresented: Binding<Bool>, project: TripProjectEntity) {
-        self._isPresented = isPresented
-        self.project = project
-    }
-
-    // -------------------------------------------------------------------------
     // MARK: - Body
     // -------------------------------------------------------------------------
 
@@ -39,20 +31,19 @@ struct TripProjectLayersView: View {
             customToolbar()
 
             List {
-                ForEach(points, id: \.id) { item in
-                    pointRow(item)
+                Section("points") {
+                    ForEach(points, id: \.self) { item in
+                        pointRow(item)
+                    }
+                    .onDelete { deleteItems(offsets: $0) }
+                    .onMove { moveItems(fromOffsets: $0, toOffset: $1) }
                 }
-                .onDelete { deleteItems(offsets: $0) }
-                .onMove { moveItems(fromOffsets: $0, toOffset: $1) }
             }
             .listStyle(.plain)
         }
         .background(.background)
         .onAppear {
             self.points = self.project.points
-        }
-        .onChange(of: project.points) { _, newValue in
-            self.points = newValue
         }
     }
 
@@ -72,10 +63,16 @@ struct TripProjectLayersView: View {
 
     @ViewBuilder
     private func pointRow(_ item: TripPointEntity) -> some View {
-        Label(
-            item.name ?? "--",
-            systemImage: item.tripPointType?.systemImage ?? "mappin"
-        )
+        Button(action: {
+            withAnimation {
+                selectedItemId = item.id?.uuidString
+            }
+        }, label: {
+            Label(
+                item.name ?? "--",
+                systemImage: item.tripPointType?.systemImage ?? "mappin"
+            )
+        })
     }
 
     // -------------------------------------------------------------------------
@@ -119,10 +116,31 @@ struct TripProjectLayersView: View {
 // MARK: - Preview
 // =============================================================================
 
-#Preview {
-    TripProjectLayersView(
-        isPresented: .constant(true),
-        project: .previewExample
-    )
-    .configureEnvironmentForPreview()
+struct TripProjectLayersView_Previews: PreviewProvider {
+
+    //A view which will wraps the actual view and holds state variable.
+    struct ContainerView: View {
+        @State private var isPresented: Bool = true
+        @State private var selectedItemId: String?
+
+        var body: some View {
+            VStack {
+                Text("Selected point id: \(selectedItemId ?? "nil")")
+
+                Divider()
+
+                TripProjectLayersView(
+                    isPresented: .constant(true),
+                    selectedItemId: $selectedItemId,
+                    project: .previewExample
+                )
+            }
+            .configureEnvironmentForPreview()
+        }
+    }
+
+    static var previews: some View {
+        ContainerView()
+            .configureEnvironmentForPreview()
+    }
 }

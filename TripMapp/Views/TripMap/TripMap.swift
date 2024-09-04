@@ -72,7 +72,7 @@ struct TripMap_Previews: PreviewProvider {
                 selectedItem: $selectedItem
             ) {
                 TripMapContent(
-                    markers: .constant(TripMapMarker.ViewModel.mocks),
+                    markers: .constant(TripPoint.mocks),
                     polylines: .constant(TripMapPolyline.ViewModel.mocks)
                 )
             }

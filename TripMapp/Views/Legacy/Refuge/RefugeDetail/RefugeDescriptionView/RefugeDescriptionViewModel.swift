@@ -14,7 +14,7 @@ extension RefugeDescriptionView {
         let name: String
         let note: String
         let url: URL
-        let marker: TripMapMarker.ViewModel
+        let marker: TripPoint
         let coordinate: CLLocationCoordinate2D
         let altitude: Int
         let accessDescription: String

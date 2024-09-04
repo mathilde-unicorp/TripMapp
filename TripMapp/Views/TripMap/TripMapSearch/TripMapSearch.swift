@@ -10,14 +10,19 @@ import MapKit
 
 struct TripMapSearch: View {
 
-    /// Points Of Interest Types to search on the map
+    /// Types of point to search on the map
     @Binding var searchTripPointTypes: [TripPointType]
-    @Binding var selectedMarker: TripMapMarker.ViewModel?
+    /// The marker selected on the map
+    @Binding var selectedMarker: TripPoint?
 
-    @ObservedObject var dataSource: TripMapSearchDataSource
+    /// Data source to use to make research on the map
+    @ObservedObject private var dataSource: TripMapSearchDataSource
 
+    /// The local selected item id
     @State private var localSelectedItem: String?
+    /// The  region we are searching results for
     @State private var searchOnRegion: MKCoordinateRegion?
+    /// Should the refresh button be shown on the map
     @State private var shouldShowRefreshButton: Bool = false
 
     // -------------------------------------------------------------------------
@@ -26,7 +31,7 @@ struct TripMapSearch: View {
 
     init(
         searchTripPointTypes: Binding<[TripPointType]>,
-        selectedMarker: Binding<TripMapMarker.ViewModel?>,
+        selectedMarker: Binding<TripPoint?>,
         dataSource: TripMapSearchDataSource = .init(mapItemsRepository: .shared)
     ) {
         self._searchTripPointTypes = searchTripPointTypes
@@ -76,16 +81,16 @@ struct TripMapSearch: View {
             self.localSelectedItem = nil
 
             self.shouldShowRefreshButton = false
-
-            self.dataSource.searchMapItems(
-                ofTypes: searchTripPointTypes,
-                on: searchOnRegion
-            )
         }
+
+        self.dataSource.searchMapItems(
+            ofTypes: searchTripPointTypes,
+            on: searchOnRegion
+        )
     }
 
     private func onSelectedItemChanged(_ newSelectedItem: String?) {
-        var newMarker: TripMapMarker.ViewModel?
+        var newMarker: TripPoint?
 
         if let markerId = newSelectedItem {
             newMarker = self.dataSource.searchResults.first(keyPath: \.id, equals: markerId)

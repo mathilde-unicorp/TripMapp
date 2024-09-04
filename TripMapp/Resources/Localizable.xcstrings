@@ -469,6 +469,23 @@
         }
       }
     },
+    "add_to_project %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to \"%@\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter à \"%@\""
+          }
+        }
+      }
+    },
     "added_to_project" : {
       "localizations" : {
         "en" : {
@@ -632,6 +649,9 @@
           }
         }
       }
+    },
+    "error" : {
+
     },
     "hello" : {
       "localizations" : {
@@ -994,6 +1014,12 @@
           }
         }
       }
+    },
+    "Play Sound" : {
+
+    },
+    "points" : {
+
     },
     "points_of_interest.bank" : {
       "localizations" : {
@@ -1539,6 +1565,38 @@
         }
       }
     },
+    "remove_from_project %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from \"%@\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer de \"%@\""
+          }
+        }
+      }
+    },
+    "removed_from_project" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well removed !"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimé !"
+          }
+        }
+      }
+    },
     "retry_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1571,6 +1629,9 @@
           }
         }
       }
+    },
+    "Selected point id: %@" : {
+
     },
     "services.title" : {
       "extractionState" : "manual",
