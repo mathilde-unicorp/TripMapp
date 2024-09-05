@@ -60,7 +60,7 @@ struct TripProjectDetailView: View {
             )
         }
         .overlay(alignment: .bottom) {
-            TripPointInfoView(
+            TripPointCardView(
                 tripPoint: $selectedMarker,
                 currentProject: projectEntity
             )

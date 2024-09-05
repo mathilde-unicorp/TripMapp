@@ -7,24 +7,41 @@
 
 import SwiftUI
 
+/// A Picker with user TripProjects list
+/// It allows to specify a `tripPoint` that disable a project if it's already contained in it
 struct TripProjectsPicker: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
+    /// User project selection in the picker
     @Binding var selectedProject: TripProjectEntity?
 
-    var mapItemToAdd: TripPoint?
+    /// A trip point the user want to add in a project
+    let tripPointToAdd: TripPoint?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Swift Data
+    // -------------------------------------------------------------------------
+
+    /// Local data access
+    @Environment(\.managedObjectContext) private var viewContext
+
+    /// Get user's TripProjects list sorted by the next coming trip first
+    @FetchRequest(
+        fetchRequest: TripProjectEntity.sortedFetchRequest(),
+        transaction: .init(animation: .default)
+    )
+    private var projects: FetchedResults<TripProjectEntity>
 
     // -------------------------------------------------------------------------
     // MARK: - Private
     // -------------------------------------------------------------------------
 
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        fetchRequest: TripProjectEntity.sortedFetchRequest(),
-        transaction: .init(animation: .default)
-    )
-
-    private var projects: FetchedResults<TripProjectEntity>
+    // -------------------------------------------------------------------------
+    // MARK: - Init
+    // -------------------------------------------------------------------------
 
     // -------------------------------------------------------------------------
     // MARK: - Body
@@ -38,7 +55,8 @@ struct TripProjectsPicker: View {
 
             Section("projects") {
                 ForEach(projects, id: \.self) { project in
-                    projectRow(project)
+                    TripProjectRow(project: project)
+                        .withPointsDetails(checkTripPointIncluded: tripPointToAdd)
                 }
             }
         }
@@ -47,42 +65,12 @@ struct TripProjectsPicker: View {
             self.selectedProject = nil
         }
     }
-
-    @ViewBuilder
-    private func projectRow(_ project: TripProjectEntity) -> some View {
-        let isMapItemAlreadyAdded = isMapItemAlreadyAdded(in: project)
-
-        VStack(alignment: .leading) {
-            TripProjectRow(project: project)
-
-            HStack {
-                Text("markers_count \(project.points.count)")
-
-                if isMapItemAlreadyAdded {
-                    Text("marker_already_added")
-                }
-            }
-            .font(.caption)
-        }
-        .selectionDisabled(isMapItemAlreadyAdded)
-        .opacity(isMapItemAlreadyAdded ? 0.5 : 1.0)
-    }
-
-    // -------------------------------------------------------------------------
-    // MARK: - Tools
-    // -------------------------------------------------------------------------
-
-    private func isMapItemAlreadyAdded(in project: TripProjectEntity) -> Bool {
-        guard let mapItemToAdd else { return false }
-
-        return project.contains(marker: mapItemToAdd)
-    }
 }
 
 #Preview {
     TripProjectsPicker(
         selectedProject: .constant(nil),
-        mapItemToAdd: .mocks.first!
+        tripPointToAdd: .mocks.first!
     )
     .configureEnvironmentForPreview()
 }

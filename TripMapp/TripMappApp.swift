@@ -12,6 +12,7 @@ struct TripMappApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     let persistenceController = PersistenceController.shared
+
     let appRouter = AppRouter.shared
     let appSettings = AppSettings.shared
 
@@ -47,6 +48,7 @@ extension View {
         appRouter: AppRouter
     ) -> some View {
         self
+            // Local data access
             .environment(\.managedObjectContext, persistenceController.context)
             .environmentObject(appRouter) // TODO: TEMP
     }

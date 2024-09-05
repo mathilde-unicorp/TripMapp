@@ -152,7 +152,7 @@
 		58E89EE92C4952F1009FA21B /* AddToProjectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE42C4952F1009FA21B /* AddToProjectButton.swift */; };
 		58E89EEA2C4952F1009FA21B /* TripPointDescriptionOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE52C4952F1009FA21B /* TripPointDescriptionOverview.swift */; };
 		58E89EEB2C4952F1009FA21B /* TripPointLocationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE62C4952F1009FA21B /* TripPointLocationOverview.swift */; };
-		58E89EEC2C4952F1009FA21B /* TripPointInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE72C4952F1009FA21B /* TripPointInfoView.swift */; };
+		58E89EEC2C4952F1009FA21B /* TripPointCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE72C4952F1009FA21B /* TripPointCardView.swift */; };
 		58E89EEE2C495728009FA21B /* TripPoint+build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EED2C495728009FA21B /* TripPoint+build.swift */; };
 		58E8F58E2B63FE3800FAD846 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */; };
 		58E8F5902B64072A00FAD846 /* DefaultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */; };
@@ -163,6 +163,8 @@
 		58EB4A852A05A46B001BAE72 /* View+setFullHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB4A842A05A46B001BAE72 /* View+setFullHeight.swift */; };
 		58EFC48F2B975E83009B6A61 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EFC48E2B975E83009B6A61 /* String+extensions.swift */; };
 		58EFC4912B976332009B6A61 /* TripPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EFC4902B976332009B6A61 /* TripPointType.swift */; };
+		58F075A42C89FA4400DB903D /* TripPointInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F075A32C89FA4400DB903D /* TripPointInfoView.swift */; };
+		58F075A62C8A08EA00DB903D /* EnvironmentValues+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F075A52C8A08EA00DB903D /* EnvironmentValues+extensions.swift */; };
 		58F485C82BBD94CF008673B0 /* TripPointType+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485C72BBD94CF008673B0 /* TripPointType+Category.swift */; };
 		58F485D22BBD9C60008673B0 /* CoursesMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F485D12BBD9C60008673B0 /* CoursesMapView.swift */; };
 		58F485D42BBDA378008673B0 /* gr70.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 58F485D32BBDA378008673B0 /* gr70.gpx */; };
@@ -341,7 +343,7 @@
 		58E89EE42C4952F1009FA21B /* AddToProjectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToProjectButton.swift; sourceTree = "<group>"; };
 		58E89EE52C4952F1009FA21B /* TripPointDescriptionOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointDescriptionOverview.swift; sourceTree = "<group>"; };
 		58E89EE62C4952F1009FA21B /* TripPointLocationOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointLocationOverview.swift; sourceTree = "<group>"; };
-		58E89EE72C4952F1009FA21B /* TripPointInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointInfoView.swift; sourceTree = "<group>"; };
+		58E89EE72C4952F1009FA21B /* TripPointCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointCardView.swift; sourceTree = "<group>"; };
 		58E89EED2C495728009FA21B /* TripPoint+build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripPoint+build.swift"; sourceTree = "<group>"; };
 		58E8F58D2B63FE3800FAD846 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		58E8F58F2B64072A00FAD846 /* DefaultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,8 @@
 		58EB4A842A05A46B001BAE72 /* View+setFullHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+setFullHeight.swift"; sourceTree = "<group>"; };
 		58EFC48E2B975E83009B6A61 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		58EFC4902B976332009B6A61 /* TripPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPointType.swift; sourceTree = "<group>"; };
+		58F075A32C89FA4400DB903D /* TripPointInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPointInfoView.swift; sourceTree = "<group>"; };
+		58F075A52C8A08EA00DB903D /* EnvironmentValues+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+extensions.swift"; sourceTree = "<group>"; };
 		58F485C72BBD94CF008673B0 /* TripPointType+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripPointType+Category.swift"; sourceTree = "<group>"; };
 		58F485D12BBD9C60008673B0 /* CoursesMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapView.swift; sourceTree = "<group>"; };
 		58F485D32BBDA378008673B0 /* gr70.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gr70.gpx; sourceTree = "<group>"; };
@@ -952,8 +956,8 @@
 			isa = PBXGroup;
 			children = (
 				58CDB7422C4809F9003C614C /* TripProjectsPicker.swift */,
-				58E1B97B2BF64BFF00192C92 /* TripProjectRow.swift */,
 				58E1B97D2BF6505D00192C92 /* TripProjectsList.swift */,
+				58E1B97B2BF64BFF00192C92 /* TripProjectRow.swift */,
 			);
 			path = TripProjectsList;
 			sourceTree = "<group>";
@@ -962,9 +966,10 @@
 			isa = PBXGroup;
 			children = (
 				58CD259A2C870DBA000CAB08 /* AddOrRemoveFromProjectButton */,
+				58E89EE72C4952F1009FA21B /* TripPointCardView.swift */,
 				58E89EE52C4952F1009FA21B /* TripPointDescriptionOverview.swift */,
 				58E89EE62C4952F1009FA21B /* TripPointLocationOverview.swift */,
-				58E89EE72C4952F1009FA21B /* TripPointInfoView.swift */,
+				58F075A32C89FA4400DB903D /* TripPointInfoView.swift */,
 			);
 			path = TripPointInfoView;
 			sourceTree = "<group>";
@@ -978,6 +983,7 @@
 				58D684262C134675001379A0 /* UIWindow+extensions.swift */,
 				58D684282C13468C001379A0 /* UIScreen+extensions.swift */,
 				58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */,
+				58F075A52C8A08EA00DB903D /* EnvironmentValues+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1383,6 +1389,7 @@
 				58B42ACE2C412C5000509535 /* TripProjectEntity+CoreDataClass.swift in Sources */,
 				58B42ACF2C412C5000509535 /* TripProjectEntity+CoreDataProperties.swift in Sources */,
 				58B42AD02C412C5000509535 /* TripPointEntity+CoreDataClass.swift in Sources */,
+				58F075A42C89FA4400DB903D /* TripPointInfoView.swift in Sources */,
 				58B42AD12C412C5000509535 /* TripPointEntity+CoreDataProperties.swift in Sources */,
 				58C55C6329F6DD25008F3A54 /* PersistenceController.swift in Sources */,
 				58E87A912C342D5500F3D8AB /* PolylinesLayer.swift in Sources */,
@@ -1441,7 +1448,7 @@
 				58CDB7432C4809F9003C614C /* TripProjectsPicker.swift in Sources */,
 				582FA24C2C85FFF30021C27F /* View+playSound.swift in Sources */,
 				58AD5A492A97BE9200571534 /* RefugesInfo+Description.swift in Sources */,
-				58E89EEC2C4952F1009FA21B /* TripPointInfoView.swift in Sources */,
+				58E89EEC2C4952F1009FA21B /* TripPointCardView.swift in Sources */,
 				58CFCCA02B7A79E800D18E4F /* MockMassifs.swift in Sources */,
 				58AD5A5A2A97C4EC00571534 /* RefugeDescriptionView.swift in Sources */,
 				585F14882BF4F6180089F7E7 /* LegacyTripProject+mock.swift in Sources */,
@@ -1451,6 +1458,7 @@
 				58E15C3E2C2C4F40004E2431 /* MapSearchPOITypeSectionHeader.swift in Sources */,
 				58B2B9042A99465F007BFE3F /* AppRouter.swift in Sources */,
 				58AD5A532A97C39D00571534 /* MockRefugesInfoDataProvider.swift in Sources */,
+				58F075A62C8A08EA00DB903D /* EnvironmentValues+extensions.swift in Sources */,
 				585F14842BF4B9F60089F7E7 /* TripLayer.swift in Sources */,
 				58FD00632A04072F004182B6 /* ExampleView.swift in Sources */,
 				5887DB7F2BCD851E004241E6 /* LegacyTripProject.swift in Sources */,

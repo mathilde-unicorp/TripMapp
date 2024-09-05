@@ -73,11 +73,12 @@ final class TripMapItemsRepository: ObservableObject, TripMapItemsRepositoryProt
         }
 
         // Concurrent results returns an array, we need to flatten it.
-        let otherResult = concurrentResults.reduce(into: MapItemResultsByTripPointType()) { result, item in
-            item.keys.forEach { key in
-                result[key] = item[key]
+        let otherResult = concurrentResults
+            .reduce(into: MapItemResultsByTripPointType()) { result, item in
+                item.keys.forEach { key in
+                    result[key] = item[key]
+                }
             }
-        }
 
         return otherResult
     }

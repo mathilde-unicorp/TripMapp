@@ -118,7 +118,7 @@ struct TripProjectLayersView: View {
 
 struct TripProjectLayersView_Previews: PreviewProvider {
 
-    //A view which will wraps the actual view and holds state variable.
+    // A view which will wraps the actual view and holds state variable.
     struct ContainerView: View {
         @State private var isPresented: Bool = true
         @State private var selectedItemId: String?

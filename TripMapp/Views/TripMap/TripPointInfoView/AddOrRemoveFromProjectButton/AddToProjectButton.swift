@@ -90,7 +90,7 @@ struct AddToProjectButton: View {
 
             TripProjectsPicker(
                 selectedProject: $selectedProject,
-                mapItemToAdd: tripPoint
+                tripPointToAdd: tripPoint
             )
         }
     }

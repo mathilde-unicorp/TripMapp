@@ -10,16 +10,19 @@ import MapKit
 
 extension PersistenceController {
 
-    static var preview = PersistenceController(inMemory: true)
-
+    /// Generate fake content for inMemory persistence controller (currently used for preview)
     func generateInMemoryContent() {
         do {
             try generateTripProjectEntities()
             try generateFavoriteTripPointTypeEntities()
         } catch {
-            print("CANNOT CREATE PREVIEW CONTENT ON PERSISTENCE CONTROLLER: \(error)")
+            print("ERROR: CANNOT CREATE PREVIEW CONTENT ON PERSISTENCE CONTROLLER: \(error)")
         }
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
 
     private func generateTripProjectEntities() throws {
         for index in 0 ..< 10 {

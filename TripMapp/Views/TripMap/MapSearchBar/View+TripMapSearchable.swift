@@ -18,7 +18,7 @@ struct MapSearchableModifier: ViewModifier {
         content
             .overlay(alignment: .bottom) {
                 VStack {
-                    TripPointInfoView(
+                    TripPointCardView(
                         tripPoint: $selectedMarker,
                         currentProject: nil
                     )

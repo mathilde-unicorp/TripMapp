@@ -10,10 +10,18 @@ import MapKit
 
 struct TripMapSearch: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
     /// Types of point to search on the map
     @Binding var searchTripPointTypes: [TripPointType]
     /// The marker selected on the map
     @Binding var selectedMarker: TripPoint?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
 
     /// Data source to use to make research on the map
     @ObservedObject private var dataSource: TripMapSearchDataSource

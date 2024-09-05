@@ -10,7 +10,15 @@ import CoreData
 
 struct TripProjectRow: View {
 
-    var project: TripProjectEntity
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
+    let project: TripProjectEntity
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         HStack {
@@ -32,10 +40,46 @@ struct TripProjectRow: View {
             }
         }
     }
+
+    /// Add informations about the number of points included on the project
+    /// If `checkTripPointIncluded` is specified ->
+    ///     if this tripPoint is already in the project, it disabled the row and add a message about it
+    @ViewBuilder
+    func withPointsDetails(checkTripPointIncluded tripPoint: TripPoint? = nil) -> some View {
+        let isMapItemAlreadyAdded = isAlreadyAdded(tripPoint: tripPoint, in: project)
+
+        VStack(alignment: .leading) {
+            self
+
+            HStack {
+                Text("markers_count \(project.points.count)")
+
+                if isMapItemAlreadyAdded {
+                    Text("marker_already_added")
+                }
+            }
+            .font(.caption)
+        }
+        .selectionDisabled(isMapItemAlreadyAdded)
+        .opacity(isMapItemAlreadyAdded ? 0.5 : 1.0)
+    }
+
+    private func isAlreadyAdded(tripPoint: TripPoint?, in project: TripProjectEntity) -> Bool {
+        guard let tripPoint else { return false }
+
+        return project.contains(marker: tripPoint)
+    }
+
 }
 
 #Preview {
     List {
         TripProjectRow(project: .previewExample)
+
+        TripProjectRow(project: .previewExample)
+            .withPointsDetails()
+
+        TripProjectRow(project: .previewExample)
+            .withPointsDetails(checkTripPointIncluded: .mocks.first!)
     }
 }

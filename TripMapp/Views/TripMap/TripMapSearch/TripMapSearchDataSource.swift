@@ -60,7 +60,7 @@ class TripMapSearchDataSource: ObservableObject {
                 }
             } catch {
                 print("Got error while getting map items of types \(types): \(error)")
-                
+
                 await MainActor.run {
                     self.loadingState = .failed(error)
                 }

@@ -14,14 +14,13 @@ struct RefugeDescriptionView: View {
 
     var body: some View {
         VStack {
-            ZStack(alignment: .topLeading) {
-                RefugeDescriptionView.AccessMap(marker: viewModel.marker)
-                    .frame(height: 300)
-
-                RefugeDescriptionView.Title(viewModel: viewModel)
-                    .padding()
-                    .background(Color.secondarySystemBackground.opacity(0.5))
-            }
+            RefugeDescriptionView.AccessMap(marker: viewModel.marker)
+                .frame(height: 300)
+                .overlay(alignment: .top) {
+                    RefugeDescriptionView.Title(viewModel: viewModel)
+                        .padding()
+                        .background(Color.secondarySystemBackground.opacity(0.5))
+                }
 
             TabView {
                 // Global Informations

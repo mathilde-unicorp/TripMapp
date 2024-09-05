@@ -11,6 +11,8 @@ struct PersistenceController {
 
     static let shared = PersistenceController()
 
+    static let preview = PersistenceController(inMemory: true)
+
     // -------------------------------------------------------------------------
     // MARK: - Properties
     // -------------------------------------------------------------------------
