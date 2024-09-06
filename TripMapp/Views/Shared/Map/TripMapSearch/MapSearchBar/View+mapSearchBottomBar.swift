@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct MapSearchableModifier: ViewModifier {
+struct MapSearchBottomBarModifier: ViewModifier {
 
     @Binding var selectedTripPointTypes: [TripPointType]
     @Binding var searchBarSize: SearchBarSize
@@ -43,23 +43,25 @@ struct MapSearchableModifier: ViewModifier {
 extension View {
 
     /// Add a search bar and an overview for markers selected on the map
-    func tripMapSearchable(
+    func mapSearchBottomBar(
         searchTripPointTypes: Binding<[TripPointType]>,
         selectedMapMarker: Binding<TripPoint?>,
         searchBarSize: Binding<SearchBarSize> = .constant(.medium)
     ) -> some View {
-        self.modifier(MapSearchableModifier(
-            selectedTripPointTypes: searchTripPointTypes,
-            searchBarSize: searchBarSize,
-            selectedMarker: selectedMapMarker
-        ))
+        self.modifier(
+            MapSearchBottomBarModifier(
+                selectedTripPointTypes: searchTripPointTypes,
+                searchBarSize: searchBarSize,
+                selectedMarker: selectedMapMarker
+            )
+        )
     }
 }
 
 #Preview {
     Map {
 
-    }.tripMapSearchable(
+    }.mapSearchBottomBar(
         searchTripPointTypes: .constant([.refuge]),
         selectedMapMarker: .constant(nil),
         searchBarSize: .constant(.medium)

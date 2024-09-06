@@ -9,11 +9,22 @@ import SwiftUI
 
 struct HomeProjectsView: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Swift Data
+    // -------------------------------------------------------------------------
+
+    /// Local data access
+    @Environment(\.managedObjectContext) var viewContext
+
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
+    /// Selected project to open in the projects list
     @State private var selectedProject: TripProjectEntity?
 
+    /// NavigationSplitView column visibility
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
-
-    @Environment(\.managedObjectContext) var viewContext
 
     var body: some View {
         NavigationSplitView(

@@ -78,6 +78,10 @@ struct TripProjectDetailView: View {
         .toolbarBackground(.visible, for: .navigationBar)
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: - Actions
+    // -------------------------------------------------------------------------
+
     private func onSelectedItemChanged(_ newSelectedItem: String?) {
         var newMarker: TripPoint?
 

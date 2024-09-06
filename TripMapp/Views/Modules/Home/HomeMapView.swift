@@ -9,9 +9,18 @@ import SwiftUI
 import MapKit
 
 struct HomeMapView: View {
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
     @State private var searchTripPointTypes: [TripPointType] = []
     @State private var selectedMarker: TripPoint?
     @State private var searchBarSize: SearchBarSize = .medium
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         TripMapSearch(
@@ -19,7 +28,7 @@ struct HomeMapView: View {
             selectedMarker: $selectedMarker,
             dataSource: .init(mapItemsRepository: .shared)
         )
-        .tripMapSearchable(
+        .mapSearchBottomBar(
             searchTripPointTypes: $searchTripPointTypes,
             selectedMapMarker: $selectedMarker,
             searchBarSize: $searchBarSize

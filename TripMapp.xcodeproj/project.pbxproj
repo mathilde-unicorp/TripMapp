@@ -97,7 +97,7 @@
 		58C779552BA73B260020BF67 /* Unicorp.APIBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 58C779542BA73B260020BF67 /* Unicorp.APIBuilder */; };
 		58CB12082C36C895007AD11A /* TripMapSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB12072C36C895007AD11A /* TripMapSearchDataSource.swift */; };
 		58CB120C2C36D3C9007AD11A /* MapLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB120B2C36D3C9007AD11A /* MapLoadingIndicator.swift */; };
-		58CBF7132C383054009D6538 /* View+TripMapSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF7122C383054009D6538 /* View+TripMapSearchable.swift */; };
+		58CBF7132C383054009D6538 /* View+mapSearchBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF7122C383054009D6538 /* View+mapSearchBottomBar.swift */; };
 		58CBF71A2C3BF636009D6538 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF7192C3BF636009D6538 /* AppSettings.swift */; };
 		58CBF71C2C3C0F42009D6538 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF71B2C3C0F42009D6538 /* AppDelegate.swift */; };
 		58CBF71E2C3C16B7009D6538 /* PersistenceRepository+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBF71D2C3C16B7009D6538 /* PersistenceRepository+setup.swift */; };
@@ -288,7 +288,7 @@
 		58C55C7B29F6DD26008F3A54 /* TripMappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		58CB12072C36C895007AD11A /* TripMapSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapSearchDataSource.swift; sourceTree = "<group>"; };
 		58CB120B2C36D3C9007AD11A /* MapLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLoadingIndicator.swift; sourceTree = "<group>"; };
-		58CBF7122C383054009D6538 /* View+TripMapSearchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TripMapSearchable.swift"; sourceTree = "<group>"; };
+		58CBF7122C383054009D6538 /* View+mapSearchBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+mapSearchBottomBar.swift"; sourceTree = "<group>"; };
 		58CBF7192C3BF636009D6538 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		58CBF71B2C3C0F42009D6538 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58CBF71D2C3C16B7009D6538 /* PersistenceRepository+setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceRepository+setup.swift"; sourceTree = "<group>"; };
@@ -949,7 +949,7 @@
 				58DEF50D2BDBEAAB007EE569 /* MapSearchBar.swift */,
 				58BE8F5C2C37FD3A00DC8EC6 /* MapSearchBar+sizedView.swift */,
 				58BE8F5A2C37FC3500DC8EC6 /* MapSearchBarSizeSlider.swift */,
-				58CBF7122C383054009D6538 /* View+TripMapSearchable.swift */,
+				58CBF7122C383054009D6538 /* View+mapSearchBottomBar.swift */,
 			);
 			path = MapSearchBar;
 			sourceTree = "<group>";
@@ -1486,7 +1486,7 @@
 				585F14882BF4F6180089F7E7 /* LegacyTripProject+mock.swift in Sources */,
 				58EB4A812A05A2D3001BAE72 /* View+banner.swift in Sources */,
 				58E89EDF2C491690009FA21B /* UIApplication+sounds.swift in Sources */,
-				58CBF7132C383054009D6538 /* View+TripMapSearchable.swift in Sources */,
+				58CBF7132C383054009D6538 /* View+mapSearchBottomBar.swift in Sources */,
 				58E15C3E2C2C4F40004E2431 /* MapSearchPOITypeSectionHeader.swift in Sources */,
 				58B2B9042A99465F007BFE3F /* AppRouter.swift in Sources */,
 				58AD5A532A97C39D00571534 /* MockRefugesInfoDataProvider.swift in Sources */,
