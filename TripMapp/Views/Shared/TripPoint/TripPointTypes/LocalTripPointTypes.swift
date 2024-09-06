@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// UI element containing the list of Trip Point Types saved by the user
 struct LocalTripPointTypes<V: View>: View {
 
     // -------------------------------------------------------------------------
@@ -27,28 +28,26 @@ struct LocalTripPointTypes<V: View>: View {
         fetchRequest: TripPointTypeEntity.sortedFetchRequest(),
         transaction: .init(animation: .default)
     )
-    private var favoritesTripPointTypes: FetchedResults<TripPointTypeEntity>
+    private var tripPointTypes: FetchedResults<TripPointTypeEntity>
 
     // -------------------------------------------------------------------------
     // MARK: - Body
     // -------------------------------------------------------------------------
 
     var body: some View {
-        contentBuilder(favoritesTripPointTypes)
+        contentBuilder(tripPointTypes)
     }
 }
 
 #Preview {
     List {
         LocalTripPointTypes { types in
-            ForEach(types) { type in
-                if let tripPointType = type.tripPointType {
-                    TripPointTypeRow(
-                        type: tripPointType,
-                        isFavorite: false,
-                        isSelectedForMapDisplay: false
-                    )
-                }
+            ForEach(types.compactMap(\.tripPointType)) { type in
+                TripPointTypeRow(
+                    type: type,
+                    isFavorite: false,
+                    isSelectedForMapDisplay: false
+                )
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MapSearchTripPointTypeSection: View {
+struct TripPointTypesSection: View {
 
     // -------------------------------------------------------------------------
     // MARK: - Parameters
@@ -31,32 +31,33 @@ struct MapSearchTripPointTypeSection: View {
 
     var body: some View {
         LocalTripPointTypes { tripPointTypes in
-            VStack {
-                switch sectionSize {
-                case .reduced:
-                    reducedTripPointTypeSection(
-                        displayedTypes: selectedTypes
-                            .merged(with: tripPointTypes.compactMap { $0.tripPointType })
-                    )
-                case .medium:
-                    mediumTripPointTypeSection(
-                        displayedTypes: selectedTypes
-                            .merged(with: tripPointTypes.compactMap { $0.tripPointType })
-                    )
-                }
-            }
+            buildSection(
+                displayedTypes: selectedTypes.merged(
+                    with: tripPointTypes.compactMap { $0.tripPointType }
+                )
+            )
         }
     }
 
     @ViewBuilder
-    private func mediumTripPointTypeSection(displayedTypes: [TripPointType]) -> some View {
+    private func buildSection(displayedTypes: [TripPointType]) -> some View {
+        switch sectionSize {
+        case .reduced:
+            reducedSection(displayedTypes: displayedTypes)
+        case .medium:
+            mediumSection(displayedTypes: displayedTypes)
+        }
+    }
+
+    @ViewBuilder
+    private func mediumSection(displayedTypes: [TripPointType]) -> some View {
         VStack {
-            MapSearchTripPointTypeSectionHeader(onShowMore: {
+            TripPointTypesSectionHeader(onShowMore: {
                 shouldShowTripPointTypesList = true
             })
 
             VStack(alignment: .leading) {
-                MapSearchTripPointTypePicker(
+                TripPointTypesPicker(
                     displayedTypes: displayedTypes,
                     selectedTypes: $selectedTypes
                 )
@@ -71,13 +72,13 @@ struct MapSearchTripPointTypeSection: View {
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
         }
         .sheet(isPresented: $shouldShowTripPointTypesList) {
-            TripPointTypesPicker(selectedTypes: $selectedTypes)
+            TripPointTypesSelectionView(selectedTypes: $selectedTypes)
         }
     }
 
     @ViewBuilder
-    private func reducedTripPointTypeSection(displayedTypes: [TripPointType]) -> some View {
-        SmallMapSearchTripPointTypePicker(
+    private func reducedSection(displayedTypes: [TripPointType]) -> some View {
+        TripPointTypesCompactPicker(
             displayedTypes: displayedTypes,
             selectedTypes: $selectedTypes
         )
@@ -92,13 +93,13 @@ struct MapSearchTripPointTypeSection_Previews: PreviewProvider {
         var body: some View {
             VStack {
                 ScrollView {
-                    MapSearchTripPointTypeSection(
+                    TripPointTypesSection(
                         selectedTypes: $selectedTypes,
                         sectionSize: .medium
                     )
                     .padding()
 
-                    MapSearchTripPointTypeSection(
+                    TripPointTypesSection(
                         selectedTypes: $selectedTypes,
                         sectionSize: .reduced
                     )

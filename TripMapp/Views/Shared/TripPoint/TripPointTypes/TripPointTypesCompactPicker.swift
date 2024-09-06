@@ -1,5 +1,5 @@
 //
-//  SmallMapSearchTripPointTypePicker.swift
+//  TripPointTypesCompactPicker.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 05/07/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SmallMapSearchTripPointTypePicker: View {
+struct TripPointTypesCompactPicker: View {
 
     /// All the types that should be displayed on the picker
     let displayedTypes: [TripPointType]
@@ -65,7 +65,7 @@ struct SmallMapSearchTripPointTypePicker: View {
 }
 
 #Preview {
-    SmallMapSearchTripPointTypePicker(
+    TripPointTypesCompactPicker(
         displayedTypes: TripPointType.Category.accommodation.types,
         selectedTypes: .constant([.cottage])
     )

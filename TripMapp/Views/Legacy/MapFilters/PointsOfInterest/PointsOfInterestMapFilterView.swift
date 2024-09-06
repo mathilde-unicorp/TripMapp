@@ -25,10 +25,10 @@ struct PointsOfInterestMapFilterView: View {
                 }
             }
 
-            TripPointTypesCompactPicker(selectedTypes: $selectedTypes)
+            TripPointTypesPicker(selectedTypes: $selectedTypes)
         }
         .sheet(isPresented: $isTripPointTypesSheetVisible) {
-            TripPointTypesPicker(selectedTypes: $selectedTypes)
+            TripPointTypesSelectionView(selectedTypes: $selectedTypes)
         }
     }
 }
