@@ -84,7 +84,6 @@
 		58BE8F572C37E15D00DC8EC6 /* NSManagedObjectContext+TripPointTypeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE8F562C37E15D00DC8EC6 /* NSManagedObjectContext+TripPointTypeEntity.swift */; };
 		58BE8F5B2C37FC3500DC8EC6 /* MapSearchBarSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE8F5A2C37FC3500DC8EC6 /* MapSearchBarSizeSlider.swift */; };
 		58BE8F5D2C37FD3A00DC8EC6 /* MapSearchBar+sizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE8F5C2C37FD3A00DC8EC6 /* MapSearchBar+sizedView.swift */; };
-		58BE8F672C38022200DC8EC6 /* TripPointTypesCompactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE8F642C38022200DC8EC6 /* TripPointTypesCompactPicker.swift */; };
 		58C55C5A29F6DD22008F3A54 /* TripMappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C5929F6DD22008F3A54 /* TripMappApp.swift */; };
 		58C55C5C29F6DD22008F3A54 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C55C5B29F6DD22008F3A54 /* HomeView.swift */; };
 		58C55C5E29F6DD25008F3A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C55C5D29F6DD25008F3A54 /* Assets.xcassets */; };
@@ -274,7 +273,6 @@
 		58BE8F562C37E15D00DC8EC6 /* NSManagedObjectContext+TripPointTypeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+TripPointTypeEntity.swift"; sourceTree = "<group>"; };
 		58BE8F5A2C37FC3500DC8EC6 /* MapSearchBarSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchBarSizeSlider.swift; sourceTree = "<group>"; };
 		58BE8F5C2C37FD3A00DC8EC6 /* MapSearchBar+sizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapSearchBar+sizedView.swift"; sourceTree = "<group>"; };
-		58BE8F642C38022200DC8EC6 /* TripPointTypesCompactPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPointTypesCompactPicker.swift; sourceTree = "<group>"; };
 		58C55C5629F6DD22008F3A54 /* TripMapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripMapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C55C5929F6DD22008F3A54 /* TripMappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMappApp.swift; sourceTree = "<group>"; };
 		58C55C5B29F6DD22008F3A54 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -873,7 +871,6 @@
 				58F597A72C8B02C600C261FE /* LocalTripPointTypes.swift */,
 				582A39AC2B9F63A00057FCCD /* TripPointTypesSelectionView.swift */,
 				58D684242C133C55001379A0 /* TripPointTypesPicker.swift */,
-				58BE8F642C38022200DC8EC6 /* TripPointTypesCompactPicker.swift */,
 				58D983E62C2F072A006F7568 /* TripPointTypeRow.swift */,
 				58E779522C40120900DE5A67 /* TripPointTypeLabel.swift */,
 				58E779542C40125C00DE5A67 /* TripPointTypeImage.swift */,
@@ -1379,7 +1376,6 @@
 				58E1B97C2BF64BFF00192C92 /* TripProjectRow.swift in Sources */,
 				58EB4A7E2A05A1AA001BAE72 /* BannerView.swift in Sources */,
 				585002E82C46AB7600F6E08C /* TripProjectEntity+Preview.swift in Sources */,
-				58BE8F672C38022200DC8EC6 /* TripPointTypesCompactPicker.swift in Sources */,
 				58FD00682A04089C004182B6 /* RefugeDetailView.swift in Sources */,
 				58B2B8F42A98F745007BFE3F /* RefugeDescriptionView.Title.swift in Sources */,
 				58CBF71E2C3C16B7009D6538 /* PersistenceRepository+setup.swift in Sources */,

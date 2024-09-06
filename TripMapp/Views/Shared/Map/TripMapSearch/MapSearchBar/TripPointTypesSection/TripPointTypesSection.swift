@@ -60,7 +60,12 @@ struct TripPointTypesSection: View {
                 TripPointTypesPicker(
                     displayedTypes: displayedTypes,
                     selectedTypes: $selectedTypes
-                )
+                ) { type in
+                    TripPointTypeLabel(
+                        tripPointType: type,
+                        isSelected: selectedTypes.contains(type)
+                    )
+                }
 
                 if displayedTypes.isEmpty {
                     Text("map_search_bar.point_of_interests.empty")
@@ -78,10 +83,15 @@ struct TripPointTypesSection: View {
 
     @ViewBuilder
     private func reducedSection(displayedTypes: [TripPointType]) -> some View {
-        TripPointTypesCompactPicker(
+        TripPointTypesPicker(
             displayedTypes: displayedTypes,
             selectedTypes: $selectedTypes
-        )
+        ) { type in
+            TripPointTypeImage(
+                tripPointType: type,
+                isSelected: selectedTypes.contains(type)
+            )
+        }
     }
 }
 

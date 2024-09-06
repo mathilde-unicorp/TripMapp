@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-struct TripPointTypesPicker: View {
+/// A Picker for TripPointTypes
+struct TripPointTypesPicker<V: View>: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
+    /// List of types we want to choose on
     let displayedTypes: [TripPointType]
 
+    /// The selected types on the picker
     @Binding var selectedTypes: [TripPointType]
 
-    init(
-        displayedTypes: [TripPointType] = TripPointType.allCases,
-        selectedTypes: Binding<[TripPointType]>
-    ) {
-        self.displayedTypes = displayedTypes
-        self._selectedTypes = selectedTypes
-    }
+    var contentBuilder: (_ type: TripPointType) -> V
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         ScrollView(.horizontal) {
@@ -28,10 +33,7 @@ struct TripPointTypesPicker: View {
                     Button(action: {
                         withAnimation { selectedTypes.toggle(element: type) }
                     }, label: {
-                        TripPointTypeLabel(
-                            tripPointType: type,
-                            isSelected: selectedTypes.contains(type)
-                        )
+                        contentBuilder(type)
                     })
                     .id(type.id)
                 }
@@ -45,20 +47,11 @@ struct TripPointTypesPicker: View {
         TripPointTypesPicker(
             displayedTypes: TripPointType.Category.accommodation.types,
             selectedTypes: .constant([.hotel])
-        )
-
-        Divider()
-
-        TripPointTypesPicker(
-            displayedTypes: TripPointType.Category.service.types,
-            selectedTypes: .constant([.foodstuffProvisions])
-        )
-
-        Divider()
-
-        TripPointTypesPicker(
-            displayedTypes: TripPointType.Category.hiking.types,
-            selectedTypes: .constant([.summit])
-        )
+        ) { type in
+            TripPointTypeLabel(
+                tripPointType: type,
+                isSelected: [.hotel].contains(type)
+            )
+        }
     }
 }

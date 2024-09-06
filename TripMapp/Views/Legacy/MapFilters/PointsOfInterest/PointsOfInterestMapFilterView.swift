@@ -25,7 +25,15 @@ struct PointsOfInterestMapFilterView: View {
                 }
             }
 
-            TripPointTypesPicker(selectedTypes: $selectedTypes)
+            TripPointTypesPicker(
+                displayedTypes: TripPointType.allCases,
+                selectedTypes: $selectedTypes
+            ) { type in
+                TripPointTypeLabel(
+                    tripPointType: type,
+                    isSelected: selectedTypes.contains(type)
+                )
+            }
         }
         .sheet(isPresented: $isTripPointTypesSheetVisible) {
             TripPointTypesSelectionView(selectedTypes: $selectedTypes)
