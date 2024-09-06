@@ -1065,6 +1065,24 @@
 			path = TripPoint;
 			sourceTree = "<group>";
 		};
+		58F597A32C8AFC7900C261FE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				58ED9C5A2C3E6D6300F08424 /* Map */,
+				58F597A22C8AFAEF00C261FE /* TripPoint */,
+				5887DB7A2BCD8474004241E6 /* TripProject */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		58F597A42C8AFC8800C261FE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5887DB752BCD812C004241E6 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		58F90E632C008A3200B6930B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1087,10 +1105,8 @@
 		58FD00642A040757004182B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				58F597A22C8AFAEF00C261FE /* TripPoint */,
-				58ED9C5A2C3E6D6300F08424 /* Map */,
-				5887DB7A2BCD8474004241E6 /* TripProject */,
-				5887DB752BCD812C004241E6 /* Home */,
+				58F597A32C8AFC7900C261FE /* Shared */,
+				58F597A42C8AFC8800C261FE /* Modules */,
 				5887DB722BCD810E004241E6 /* Examples */,
 				5887DB712BCD80FE004241E6 /* Legacy */,
 			);

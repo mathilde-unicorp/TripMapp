@@ -9,15 +9,20 @@ import SwiftUI
 import CoreData
 
 struct TripPointTypesPicker: View {
+
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
+    /// Selected Trip Point Types on the picker
     @Binding var selectedTypes: [TripPointType]
 
-    @Environment(\.dismiss) private var dismiss
+    // -------------------------------------------------------------------------
+    // MARK: - Swift Data
+    // -------------------------------------------------------------------------
 
+    /// Local data access
     @Environment(\.managedObjectContext) private var viewContext
-
-    // -------------------------------------------------------------------------
-    // MARK: - Private properties
-    // -------------------------------------------------------------------------
 
     @FetchRequest(
         fetchRequest: TripPointTypeEntity.sortedFetchRequest(),
@@ -25,12 +30,22 @@ struct TripPointTypesPicker: View {
     )
     private var favoritesTripPointTypes: FetchedResults<TripPointTypeEntity>
 
-    /// Local selection avoid the owner of `selectedType` property 
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
+    @Environment(\.dismiss) private var dismiss
+
+    /// Local selection avoid the owner of `selectedType` property
     /// to be triggered every time the user change its selection on this view
     @State private var localSelectionForMapDisplay: [TripPointType]
 
     /// Single selection is used on the `List` to get notified when the user select an item
     @State private var listSingleSelection: Int?
+
+    // -------------------------------------------------------------------------
+    // MARK: - Init
+    // -------------------------------------------------------------------------
 
     init(selectedTypes: Binding<[TripPointType]>) {
         self._selectedTypes = selectedTypes
