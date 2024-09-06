@@ -24,13 +24,6 @@ struct TripProjectsList: View {
     /// Local data access
     @Environment(\.managedObjectContext) private var viewContext
 
-    /// List of user projects sorted by the one starting first then by name
-    @FetchRequest(
-        fetchRequest: TripProjectEntity.sortedFetchRequest(),
-        transaction: .init(animation: .default)
-    )
-    private var projects: FetchedResults<TripProjectEntity>
-
     // -------------------------------------------------------------------------
     // MARK: - Private
     // -------------------------------------------------------------------------
@@ -41,12 +34,14 @@ struct TripProjectsList: View {
 
     var body: some View {
         List(selection: $selectedProject) {
-            ForEach(projects) { project in
-                NavigationLink(value: project) {
-                    TripProjectRow(project: project)
+            LocalTripProjects { projects in
+                ForEach(projects) { project in
+                    NavigationLink(value: project) {
+                        TripProjectRow(project: project)
+                    }
                 }
+                .onDelete { deleteItems(from: projects, offsets: $0) }
             }
-            .onDelete { deleteItems(offsets: $0) }
         }
         .listStyle(.plain)
     }
@@ -55,7 +50,10 @@ struct TripProjectsList: View {
     // MARK: - Actions
     // -------------------------------------------------------------------------
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItems(
+        from projects: FetchedResults<TripProjectEntity>,
+        offsets: IndexSet
+    ) {
         withAnimation {
             offsets.map { projects[$0] }
                 .forEach { viewContext.deleteTripProject($0) }
@@ -63,7 +61,6 @@ struct TripProjectsList: View {
             try? viewContext.save()
         }
     }
-
 }
 
 #Preview {

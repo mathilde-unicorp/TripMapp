@@ -47,10 +47,14 @@ struct MapSearchTripPointTypePicker: View {
             selectedTypes: .constant([.hotel])
         )
 
+        Divider()
+
         MapSearchTripPointTypePicker(
             displayedTypes: TripPointType.Category.service.types,
             selectedTypes: .constant([.foodstuffProvisions])
         )
+
+        Divider()
 
         MapSearchTripPointTypePicker(
             displayedTypes: TripPointType.Category.hiking.types,

@@ -669,6 +669,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "hide_on_map" : {
       "localizations" : {
         "en" : {

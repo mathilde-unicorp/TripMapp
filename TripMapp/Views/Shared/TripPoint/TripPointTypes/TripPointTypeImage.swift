@@ -16,7 +16,7 @@ struct TripPointTypeImage: View {
     var isSelected: Bool
 
     private var backgroundColor: Color {
-        isSelected ? selectedColor : .systemBackground
+        isSelected ? selectedColor : .systemGroupedBackground
     }
 
     private var imageColor: Color {

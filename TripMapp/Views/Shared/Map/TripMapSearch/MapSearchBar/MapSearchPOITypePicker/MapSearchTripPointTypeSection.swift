@@ -9,6 +9,10 @@ import SwiftUI
 
 struct MapSearchTripPointTypeSection: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
     @Binding var selectedTypes: [TripPointType]
 
     let sectionSize: SearchBarSize
@@ -19,18 +23,6 @@ struct MapSearchTripPointTypeSection: View {
     // MARK: - Private properties
     // -------------------------------------------------------------------------
 
-    @FetchRequest(
-        fetchRequest: TripPointTypeEntity.sortedFetchRequest(),
-        transaction: .init(animation: .default)
-    )
-    private var savedTripPointTypeEntity: FetchedResults<TripPointTypeEntity>
-
-    private var defaultDisplayedTypes: [TripPointType] {
-        let savedTripPointType = savedTripPointTypeEntity.compactMap(\.tripPointType)
-
-        return selectedTypes.merged(with: savedTripPointType)
-    }
-
     @State private var shouldShowTripPointTypesList: Bool = false
 
     // -------------------------------------------------------------------------
@@ -38,16 +30,26 @@ struct MapSearchTripPointTypeSection: View {
     // -------------------------------------------------------------------------
 
     var body: some View {
-        switch sectionSize {
-        case .reduced:
-            reducedTripPointTypeSection()
-        case .medium:
-            mediumTripPointTypeSection()
+        LocalTripPointTypes { tripPointTypes in
+            VStack {
+                switch sectionSize {
+                case .reduced:
+                    reducedTripPointTypeSection(
+                        displayedTypes: selectedTypes
+                            .merged(with: tripPointTypes.compactMap { $0.tripPointType })
+                    )
+                case .medium:
+                    mediumTripPointTypeSection(
+                        displayedTypes: selectedTypes
+                            .merged(with: tripPointTypes.compactMap { $0.tripPointType })
+                    )
+                }
+            }
         }
     }
 
     @ViewBuilder
-    private func mediumTripPointTypeSection() -> some View {
+    private func mediumTripPointTypeSection(displayedTypes: [TripPointType]) -> some View {
         VStack {
             MapSearchTripPointTypeSectionHeader(onShowMore: {
                 shouldShowTripPointTypesList = true
@@ -55,11 +57,11 @@ struct MapSearchTripPointTypeSection: View {
 
             VStack(alignment: .leading) {
                 MapSearchTripPointTypePicker(
-                    displayedTypes: defaultDisplayedTypes,
+                    displayedTypes: displayedTypes,
                     selectedTypes: $selectedTypes
                 )
 
-                if defaultDisplayedTypes.isEmpty {
+                if displayedTypes.isEmpty {
                     Text("map_search_bar.point_of_interests.empty")
                         .font(.caption)
                 }
@@ -74,9 +76,9 @@ struct MapSearchTripPointTypeSection: View {
     }
 
     @ViewBuilder
-    private func reducedTripPointTypeSection() -> some View {
+    private func reducedTripPointTypeSection(displayedTypes: [TripPointType]) -> some View {
         SmallMapSearchTripPointTypePicker(
-            displayedTypes: defaultDisplayedTypes,
+            displayedTypes: displayedTypes,
             selectedTypes: $selectedTypes
         )
     }
@@ -88,12 +90,20 @@ struct MapSearchTripPointTypeSection_Previews: PreviewProvider {
         @State private var selectedTypes: [TripPointType] = [.summit, .water]
 
         var body: some View {
-            ScrollView {
-                MapSearchTripPointTypeSection(
-                    selectedTypes: $selectedTypes,
-                    sectionSize: .medium
-                )
-                .padding()
+            VStack {
+                ScrollView {
+                    MapSearchTripPointTypeSection(
+                        selectedTypes: $selectedTypes,
+                        sectionSize: .medium
+                    )
+                    .padding()
+
+                    MapSearchTripPointTypeSection(
+                        selectedTypes: $selectedTypes,
+                        sectionSize: .reduced
+                    )
+                    .padding()
+                }
             }
             .background(.thinMaterial)
             .configureEnvironmentForPreview()

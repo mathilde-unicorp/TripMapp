@@ -29,7 +29,7 @@ struct TripPointTypeRow: View {
                     if isFavorite {
                         Image(systemName: "star.circle")
                             .foregroundStyle(Color.yellow)
-                            .clipToCircle(backgroundColor: .systemGroupedBackground)
+                            .clipToCircle(backgroundColor: .systemBackground)
                             .padding(-8)
                     }
                 }

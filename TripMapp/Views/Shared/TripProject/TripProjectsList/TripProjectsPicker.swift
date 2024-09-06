@@ -22,28 +22,6 @@ struct TripProjectsPicker: View {
     let tripPointToAdd: TripPoint?
 
     // -------------------------------------------------------------------------
-    // MARK: - Swift Data
-    // -------------------------------------------------------------------------
-
-    /// Local data access
-    @Environment(\.managedObjectContext) private var viewContext
-
-    /// Get user's TripProjects list sorted by the next coming trip first
-    @FetchRequest(
-        fetchRequest: TripProjectEntity.sortedFetchRequest(),
-        transaction: .init(animation: .default)
-    )
-    private var projects: FetchedResults<TripProjectEntity>
-
-    // -------------------------------------------------------------------------
-    // MARK: - Private
-    // -------------------------------------------------------------------------
-
-    // -------------------------------------------------------------------------
-    // MARK: - Init
-    // -------------------------------------------------------------------------
-
-    // -------------------------------------------------------------------------
     // MARK: - Body
     // -------------------------------------------------------------------------
 
@@ -54,9 +32,11 @@ struct TripProjectsPicker: View {
                 .listRowSeparator(.hidden)
 
             Section("projects") {
-                ForEach(projects, id: \.self) { project in
-                    TripProjectRow(project: project)
-                        .withPointsDetails(checkTripPointIncluded: tripPointToAdd)
+                LocalTripProjects { projects in
+                    ForEach(projects, id: \.self) { project in
+                        TripProjectRow(project: project)
+                            .withPointsDetails(checkTripPointIncluded: tripPointToAdd)
+                    }
                 }
             }
         }
