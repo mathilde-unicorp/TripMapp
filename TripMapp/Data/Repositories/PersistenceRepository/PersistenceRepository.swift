@@ -7,17 +7,17 @@
 
 import CoreData
 
-struct PersistenceController {
+struct PersistenceRepository {
 
-    static let shared = PersistenceController()
+    static let shared = PersistenceRepository()
 
-    static let preview = PersistenceController(inMemory: true)
+    static let preview = PersistenceRepository(inMemory: true)
 
     // -------------------------------------------------------------------------
     // MARK: - Properties
     // -------------------------------------------------------------------------
 
-    let container: NSPersistentContainer
+    private let container: NSPersistentContainer
 
     var context: NSManagedObjectContext {
         container.viewContext
@@ -27,7 +27,8 @@ struct PersistenceController {
     // MARK: - Init
     // -------------------------------------------------------------------------
 
-    /// Create aPersistenceController for `TripMapp`.
+    /// Create a PersistenceRepository to handle local data storage
+    ///
     /// If the controller is `inMemory`, it won't keep it between two executions (perfect for previews)
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "TripMapp")

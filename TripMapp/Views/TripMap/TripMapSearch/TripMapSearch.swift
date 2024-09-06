@@ -66,7 +66,7 @@ struct TripMapSearch: View {
             MapLoadingIndicator(loadingState: $dataSource.loadingState)
         }
         .onChange(of: searchTripPointTypes) { _, _ in
-            // When the PointOfInterest types selected changed, update the map results
+            // When the selected point types changed, update the map results
             self.refreshMapResults()
         }
         .onChange(of: searchOnRegion) { oldRegion, newRegion in
@@ -87,7 +87,6 @@ struct TripMapSearch: View {
     private func refreshMapResults() {
         withAnimation {
             self.localSelectedItem = nil
-
             self.shouldShowRefreshButton = false
         }
 

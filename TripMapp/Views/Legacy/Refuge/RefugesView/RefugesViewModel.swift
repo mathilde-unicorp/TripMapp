@@ -13,7 +13,7 @@ class RefugesViewModel: ObservableObject {
     // MARK: Private properties
 
     private let router: AppRouter
-    private let repository: TripMapItemsRepository
+    private let repository: MapItemsRepository
 
     // MARK: - UI Properties
 

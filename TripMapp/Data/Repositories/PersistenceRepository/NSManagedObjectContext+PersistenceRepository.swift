@@ -10,8 +10,8 @@ import CoreData
 
 extension NSManagedObjectContext {
     /// Easy access to a view context that should be used only on `previews`
-    static var previewViewContext = PersistenceController.preview.container.viewContext
+    static var previewViewContext = PersistenceRepository.preview.context
 
     /// Easy access to a view context that is used in the real worl application
-    static var sharedViewContext = PersistenceController.shared.container.viewContext
+    static var sharedViewContext = PersistenceRepository.shared.context
 }

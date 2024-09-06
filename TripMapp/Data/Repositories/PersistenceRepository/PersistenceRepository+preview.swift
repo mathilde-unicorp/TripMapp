@@ -8,7 +8,7 @@
 import CoreData
 import MapKit
 
-extension PersistenceController {
+extension PersistenceRepository {
 
     /// Generate fake content for inMemory persistence controller (currently used for preview)
     func generateInMemoryContent() {

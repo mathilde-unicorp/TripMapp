@@ -68,6 +68,49 @@ extension TripPointType {
 }
 
 // =============================================================================
+// MARK: - TripPointType + MKLocalSearch
+// =============================================================================
+
+extension TripPointType {
+
+    var toMkPointOfInterestCategory: [MKPointOfInterestCategory]? {
+        switch self {
+        case .foodstuffProvisions: [.foodMarket]
+        case .sportsProvisions: [.store]
+        case .laundryRoom: [.laundry]
+        case .restaurant: [.bakery, .restaurant]
+        case .pharmacy: [.pharmacy]
+        case .postOffice: [.postOffice]
+        case .bank: [.bank]
+        case .publicTransport: [.publicTransport]
+        case .restroom: [.restroom]
+        case .breakSpot: [.cafe, .brewery, .movieTheater]
+        case .campground: [.campground]
+        case .hotel: [.hotel]
+        default: nil
+        }
+    }
+
+    var toMkPointOfInterestQuery: String? {
+        switch self {
+        case .foodstuffProvisions: "épicerie"
+        case .sportsProvisions: "sport"
+        case .laundryRoom: "laverie"
+        case .restaurant: "restaurant"
+        case .pharmacy: "pharmacie"
+        case .postOffice: "poste"
+        case .bank: "banque"
+        case .publicTransport: "gare"
+        case .restroom: "toilettes"
+        case .breakSpot: "loisir"
+        case .campground: "camping"
+        case .hotel: "hotel"
+        default: nil
+        }
+    }
+}
+
+// =============================================================================
 // MARK: - Computed Properties
 // =============================================================================
 

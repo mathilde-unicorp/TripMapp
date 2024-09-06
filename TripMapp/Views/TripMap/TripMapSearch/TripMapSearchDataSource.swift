@@ -10,7 +10,7 @@ import MapKit
 
 class TripMapSearchDataSource: ObservableObject {
 
-    let mapItemsRepository: TripMapItemsRepository
+    let mapItemsRepository: MapItemsRepository
 
     // -------------------------------------------------------------------------
     // MARK: - Published
@@ -27,7 +27,7 @@ class TripMapSearchDataSource: ObservableObject {
     // MARK: - Init
     // -------------------------------------------------------------------------
 
-    init(mapItemsRepository: TripMapItemsRepository = .shared) {
+    init(mapItemsRepository: MapItemsRepository = .shared) {
         self.mapItemsRepository = mapItemsRepository
     }
 
