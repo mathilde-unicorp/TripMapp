@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct TripPointTypeRow: View {
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
     let type: TripPointType
     let isFavorite: Bool
     let isSelectedForMapDisplay: Bool
 
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+
     private var labelImageColor: Color {
         isSelectedForMapDisplay ? type.color : .secondary
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         HStack {

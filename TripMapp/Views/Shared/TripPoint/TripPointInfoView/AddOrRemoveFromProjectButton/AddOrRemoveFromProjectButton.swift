@@ -10,12 +10,21 @@ import SwiftUI
 /// Dynamic Button to add or remove a tripPoint from a TripProject, depending on if it's already added or not
 struct AddOrRemoveFromProjectButton: View {
 
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+
     /// Trip Point to add or remove from the project
     let tripPoint: TripPoint
 
     /// Project selected to add the `mapItem` into. If nil, present a sheet to select a project
     @ObservedObject var selectedProject: TripProjectEntity
 
+    // -------------------------------------------------------------------------
+    // MARK: - Swift Data
+    // -------------------------------------------------------------------------
+
+    /// Local data access
     @Environment(\.managedObjectContext) private var viewContext
 
     // -------------------------------------------------------------------------

@@ -9,22 +9,26 @@ import SwiftUI
 
 /// Display a bunch of informations about a TripPoint
 struct TripPointCardView: View {
-
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
+    
     /// The selected TripPoint presenting its informations
     @Binding var tripPoint: TripPoint?
-
-    /// If the TripPoint is displayed within a Project context, it's set here
+    
+    /// The project context
     var currentProject: TripProjectEntity?
-
+    
     // -------------------------------------------------------------------------
     // MARK: - Body
     // -------------------------------------------------------------------------
-
+    
     var body: some View {
         if let tripPoint {
             VStack {
                 TripPointLocationOverview(tripPoint: $tripPoint)
-
+                
                 TripPointDescriptionOverview(
                     tripPoint: tripPoint,
                     currentProject: currentProject
@@ -40,7 +44,7 @@ struct TripPointCardView: View {
             .padding()
         }
     }
-
+    
     @ViewBuilder
     private func closeButton() -> some View {
         Button("", systemImage: "xmark.circle.fill") {
@@ -57,11 +61,11 @@ struct TripPointCardView: View {
         TripPointCardView(
             tripPoint: .constant(.mocks.first!)
         )
-
+        
         TripPointCardView(
             tripPoint: .constant(.mocks.first!),
             currentProject: .previewExample
         )
     }
-        .configureEnvironmentForPreview()
+    .configureEnvironmentForPreview()
 }

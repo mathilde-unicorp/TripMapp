@@ -20,6 +20,7 @@ struct TripPointTypesPicker<V: View>: View {
     /// The selected types on the picker
     @Binding var selectedTypes: [TripPointType]
 
+    /// Build picker cells for each TripPoint Type
     var contentBuilder: (_ type: TripPointType) -> V
 
     // -------------------------------------------------------------------------

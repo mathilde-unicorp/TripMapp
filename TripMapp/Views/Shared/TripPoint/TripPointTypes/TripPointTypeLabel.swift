@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct TripPointTypeLabel: View {
-    let systemImage: String
-    let title: LocalizedStringKey
-    let selectedColor: Color
-    let imageSize: CGFloat = 30.0
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Private
+    // -------------------------------------------------------------------------
+    
+    private let systemImage: String
+    private let title: LocalizedStringKey
+    private let selectedColor: Color
+    private let imageSize: CGFloat = 30.0
 
-    var isSelected: Bool
+    private let isSelected: Bool
 
     private var backgroundColor: Color {
         isSelected ? selectedColor : .secondarySystemBackground
@@ -52,6 +57,10 @@ struct TripPointTypeLabel: View {
         self.selectedColor = tripPointType.color
         self.isSelected = isSelected
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some View {
         VStack(alignment: .center) {
