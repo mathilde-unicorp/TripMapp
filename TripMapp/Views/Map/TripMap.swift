@@ -11,9 +11,17 @@ import MapKit
 /// A Map configured for the current usages of the application
 struct TripMap<TripMapContentView: MapContent>: View {
 
-    @Binding var visibleRegion: MKCoordinateRegion?
-    @Binding var selectedItem: String?
+    // -------------------------------------------------------------------------
+    // MARK: - Parameters
+    // -------------------------------------------------------------------------
 
+    /// Displayed region on the map
+    @Binding var visibleRegion: MKCoordinateRegion?
+    
+    /// Currently selected item on the map, by id
+    @Binding var selectedItemId: String?
+
+    /// Map content builder
     @MapContentBuilder var mapContentBuilder: () -> TripMapContentView
 
     // -------------------------------------------------------------------------
@@ -24,12 +32,8 @@ struct TripMap<TripMapContentView: MapContent>: View {
 
     @State private var mapCameraPosition: MapCameraPosition = .automatic
 
-    private var mapUserLocationVisibility: Visibility {
-        if locationManager.locationAuthorization.isAuthorized {
-            return .visible
-        } else {
-            return .hidden
-        }
+    private var userLocationVisibility: Visibility {
+        locationManager.locationAuthorization.isAuthorized ? .visible : .hidden
     }
 
     // -------------------------------------------------------------------------
@@ -39,14 +43,14 @@ struct TripMap<TripMapContentView: MapContent>: View {
     var body: some View {
         Map(
             position: $mapCameraPosition,
-            selection: $selectedItem
+            selection: $selectedItemId
         ) {
             mapContentBuilder()
         }
         .mapStyle(.hybrid(elevation: .realistic))
         .mapControls {
                 MapUserLocationButton()
-                    .mapControlVisibility(mapUserLocationVisibility)
+                    .mapControlVisibility(userLocationVisibility)
                 MapCompass()
                 MapScaleView()
             }
@@ -60,6 +64,10 @@ struct TripMap<TripMapContentView: MapContent>: View {
     }
 }
 
+// =============================================================================
+// MARK: - Preview
+// =============================================================================
+
 struct TripMap_Previews: PreviewProvider {
 
     struct ContainerView: View {
@@ -69,10 +77,11 @@ struct TripMap_Previews: PreviewProvider {
         var body: some View {
             TripMap(
                 visibleRegion: $visibleRegion,
-                selectedItem: $selectedItem
+                selectedItemId: $selectedItem
             ) {
-                TripMapContent(
-                    markers: .constant(TripPoint.mocks),
+                MarkersLayer(markers: .constant(TripPoint.mocks))
+
+                PolylinesLayer(
                     polylines: .constant(TripMapPolyline.ViewModel.mocks)
                 )
             }

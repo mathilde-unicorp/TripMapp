@@ -54,7 +54,7 @@ struct TripMapSearch: View {
     var body: some View {
         TripMap(
             visibleRegion: $searchOnRegion,
-            selectedItem: $localSelectedItem
+            selectedItemId: $localSelectedItem
         ) {
             MarkersLayer(markers: $dataSource.searchResults)
         }

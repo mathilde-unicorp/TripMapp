@@ -41,7 +41,7 @@ struct TripProjectDetailView: View {
     var body: some View {
         TripMap(
             visibleRegion: $visibleRegion,
-            selectedItem: $localSelectedItemId
+            selectedItemId: $localSelectedItemId
         ) {
             MarkersLayer(markers: .constant(markers))
         }

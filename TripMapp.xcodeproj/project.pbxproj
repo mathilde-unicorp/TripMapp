@@ -145,7 +145,6 @@
 		58E7D9072BBC5A96005350F2 /* gr66.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 58E7D9062BBC5A96005350F2 /* gr66.gpx */; };
 		58E87A8F2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */; };
 		58E87A912C342D5500F3D8AB /* PolylinesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */; };
-		58E87A932C34330100F3D8AB /* TripMapContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E87A922C34330100F3D8AB /* TripMapContent.swift */; };
 		58E89EDF2C491690009FA21B /* UIApplication+sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */; };
 		58E89EE12C494CD2009FA21B /* TripPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE02C494CD2009FA21B /* TripPoint.swift */; };
 		58E89EE32C494FBD009FA21B /* TripPoint+Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E89EE22C494FBD009FA21B /* TripPoint+Source.swift */; };
@@ -337,7 +336,6 @@
 		58E7D9062BBC5A96005350F2 /* gr66.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gr66.gpx; sourceTree = "<group>"; };
 		58E87A8E2C342C4E00F3D8AB /* TripMapPolyline+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripMapPolyline+ViewModel.swift"; sourceTree = "<group>"; };
 		58E87A902C342D5500F3D8AB /* PolylinesLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylinesLayer.swift; sourceTree = "<group>"; };
-		58E87A922C34330100F3D8AB /* TripMapContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapContent.swift; sourceTree = "<group>"; };
 		58E89EDE2C491690009FA21B /* UIApplication+sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+sounds.swift"; sourceTree = "<group>"; };
 		58E89EE02C494CD2009FA21B /* TripPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPoint.swift; sourceTree = "<group>"; };
 		58E89EE22C494FBD009FA21B /* TripPoint+Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripPoint+Source.swift"; sourceTree = "<group>"; };
@@ -1014,7 +1012,7 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
-		58ED9C5A2C3E6D6300F08424 /* TripMap */ = {
+		58ED9C5A2C3E6D6300F08424 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				58553C6B2C7CB15400ED31CD /* TripLayersPanel */,
@@ -1022,9 +1020,8 @@
 				58CE763C2C343C5A00C0FC1B /* TripMapSearch */,
 				58DEF50C2BDBEA8C007EE569 /* MapSearchBar */,
 				5899736E2C32E972000A3F70 /* TripMap.swift */,
-				58E87A922C34330100F3D8AB /* TripMapContent.swift */,
 			);
-			path = TripMap;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		58EFC4892B975AD1009B6A61 /* TripPointType */ = {
@@ -1082,7 +1079,7 @@
 		58FD00642A040757004182B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				58ED9C5A2C3E6D6300F08424 /* TripMap */,
+				58ED9C5A2C3E6D6300F08424 /* Map */,
 				58D983E82C2F141E006F7568 /* PointOfInterestTypes */,
 				5887DB7A2BCD8474004241E6 /* TripProject */,
 				5887DB752BCD812C004241E6 /* Home */,
@@ -1362,7 +1359,6 @@
 				58D338B42B713FF2000D45EC /* RefugesInfoEndpoint.swift in Sources */,
 				58E1B97C2BF64BFF00192C92 /* TripProjectRow.swift in Sources */,
 				58EB4A7E2A05A1AA001BAE72 /* BannerView.swift in Sources */,
-				58E87A932C34330100F3D8AB /* TripMapContent.swift in Sources */,
 				585002E82C46AB7600F6E08C /* TripProjectEntity+Preview.swift in Sources */,
 				58BE8F672C38022200DC8EC6 /* SmallMapSearchPOITypePicker.swift in Sources */,
 				58FD00682A04089C004182B6 /* RefugeDetailView.swift in Sources */,

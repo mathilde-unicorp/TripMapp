@@ -11,7 +11,7 @@ import MapKit
 ///
 /// See official doc: https://developer.apple.com/documentation/mapkit/mklocalsearch
 class MKLocalSearchDataProvider {
-    
+
     /// Search for a particular `query` (ex: "restaurant", "parking", ...)
     /// into some specific `categories`, only in a given `region`
     func search(
