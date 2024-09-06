@@ -11,9 +11,17 @@ import SwiftUI
 struct TripMappApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    let persistenceController = PersistenceController.shared
+    // -------------------------------------------------------------------------
+    // MARK: - Shared App Content
+    // -------------------------------------------------------------------------
+
+    let persistenceController = PersistenceRepository.shared
     let appRouter = AppRouter.shared
     let appSettings = AppSettings.shared
+
+    // -------------------------------------------------------------------------
+    // MARK: - Body
+    // -------------------------------------------------------------------------
 
     var body: some Scene {
         WindowGroup {
@@ -27,6 +35,10 @@ struct TripMappApp: App {
                 }
         }
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - Setup App
+    // -------------------------------------------------------------------------
 
     private func setupApplication() {
         if self.appSettings.shouldSetupFavoriteTripPointTypes {
@@ -43,14 +55,16 @@ struct TripMappApp: App {
 extension View {
 
     func configureEnvironment(
-        persistenceController: PersistenceController,
+        persistenceController: PersistenceRepository,
         appRouter: AppRouter
     ) -> some View {
         self
+            // Local data access
             .environment(\.managedObjectContext, persistenceController.context)
             .environmentObject(appRouter) // TODO: TEMP
     }
 
+    /// Default env configuration for `Previews`
     func configureEnvironmentForPreview() -> some View {
         self
             .configureEnvironment(

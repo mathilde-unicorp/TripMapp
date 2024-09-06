@@ -10,7 +10,7 @@ import Unicorp_APIBuilder
 
 // https://www.refuges.info/api/doc/
 
-final class RefugesInfoDataProvider: ObservableObject {
+final class RefugesInfoDataProvider {
 
     private let session: URLSession
 

@@ -25,10 +25,18 @@ struct PointsOfInterestMapFilterView: View {
                 }
             }
 
-            TripPointTypesCompactPicker(selectedTypes: $selectedTypes)
+            TripPointTypesPicker(
+                displayedTypes: TripPointType.allCases,
+                selectedTypes: $selectedTypes
+            ) { type in
+                TripPointTypeLabel(
+                    tripPointType: type,
+                    isSelected: selectedTypes.contains(type)
+                )
+            }
         }
         .sheet(isPresented: $isTripPointTypesSheetVisible) {
-            TripPointTypesPicker(selectedTypes: $selectedTypes)
+            TripPointTypesSelectionView(selectedTypes: $selectedTypes)
         }
     }
 }
