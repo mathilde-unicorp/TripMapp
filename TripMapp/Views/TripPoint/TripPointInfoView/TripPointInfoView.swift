@@ -34,7 +34,7 @@ struct TripPointInfoView: View {
     // MARK: - Private
     // -------------------------------------------------------------------------
 
-    //@State private var localState: <#Type#>?
+//    @State private var localState: <#Type#>?
 
     // -------------------------------------------------------------------------
     // MARK: - Body

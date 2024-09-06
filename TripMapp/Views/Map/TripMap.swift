@@ -17,7 +17,7 @@ struct TripMap<TripMapContentView: MapContent>: View {
 
     /// Displayed region on the map
     @Binding var visibleRegion: MKCoordinateRegion?
-    
+
     /// Currently selected item on the map, by id
     @Binding var selectedItemId: String?
 

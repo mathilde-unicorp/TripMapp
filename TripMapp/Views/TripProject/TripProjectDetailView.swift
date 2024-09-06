@@ -54,7 +54,7 @@ struct TripProjectDetailView: View {
             }
         }
         .overlay(alignment: .topLeading) {
-            TripLayersPanel(
+            LayersSidePanel(
                 projectEntity: projectEntity,
                 selectedItemId: $localSelectedItemId
             )

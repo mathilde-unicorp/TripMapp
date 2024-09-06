@@ -1,5 +1,5 @@
 //
-//  PointsOfInterestsSelectionView.swift
+//  TripPointTypesPicker.swift
 //  TripMapp
 //
 //  Created by Ressier Mathilde on 11/03/2024.

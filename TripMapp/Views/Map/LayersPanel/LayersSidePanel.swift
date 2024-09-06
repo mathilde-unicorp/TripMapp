@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct TripLayersPanel: View {
+struct LayersSidePanel: View {
 
     // -------------------------------------------------------------------------
     // MARK: - Parameters
@@ -62,7 +62,7 @@ struct TripLayersPanel: View {
 
     }
     .overlay(alignment: .topLeading) {
-        TripLayersPanel(
+        LayersSidePanel(
             projectEntity: .previewExample,
             selectedItemId: .constant(nil)
         )
